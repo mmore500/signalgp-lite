@@ -12,9 +12,12 @@ namespace sgpl {
 template<typename Library>
 inline void execute_cpu(size_t cycles, Cpu& state, const Program& program) {
 
-  for (size_t i{}; i < cycles && state.GetActiveCoreOrNullptr(); ++i) {
-    execute_core<Library>(*state.GetActiveCoreOrNullptr(), program);
-    state.ActivateNextCore();
+  for (size_t i{}; i < cycles && state.GetNumCores(); ++i) {
+
+    sgpl::Core& core{ state.GetActiveCore() };
+    execute_core<Library>(core, program);
+    if ( core.HasTerminated() ) state.KillActiveCore();
+    else state.ActivateNextCore();
   }
 
 }

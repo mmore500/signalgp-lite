@@ -11,7 +11,7 @@ namespace sgpl {
 template<typename Library>
 inline void advance_core(sgpl::Core& state, const sgpl::Program& program) {
 
-  const sgpl::Instruction& instruction = program[state.inst_counter];
+  const sgpl::Instruction& instruction = program[ state.GetProgramCounter() ];
 
   switch( instruction.op_code ) {
     case 0:
@@ -118,7 +118,7 @@ inline void advance_core(sgpl::Core& state, const sgpl::Program& program) {
     break;
   }
 
-  ++state.inst_counter %= program.size();
+  state.AdvanceProgramCounter( program.size() );
 
 };
 

@@ -20,7 +20,7 @@ struct Instruction {
   Instruction() = default;
 
   Instruction(emp::Random& rand)
-  : op_code( rand.GetUInt( 5 ) )
+  : op_code( rand.GetUInt( 7 ) )
   , tag( rand )
   {
     std::generate(
