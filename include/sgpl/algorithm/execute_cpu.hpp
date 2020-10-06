@@ -13,7 +13,7 @@ template<typename Library>
 inline void execute_cpu(size_t cycles, Cpu& state, const Program& program) {
 
   for (size_t i{}; i < cycles && state.GetActiveCoreOrNullptr(); ++i) {
-    advance_core<Library>(16, *state.GetActiveCoreOrNullptr(), program);
+    execute_core<Library>(*state.GetActiveCoreOrNullptr(), program);
     state.ActivateNextCore();
   }
 

@@ -14,7 +14,12 @@ class Cpu {
 
 public:
 
-  void ActivateNextCore() { active_core = (active_core + 1) % cores.size(); }
+  void ActivateNextCore() { ++active_core %= cores.size(); }
+
+  Core& GetActiveCore() {
+    emp_assert( cores.size() );
+    return cores[active_core];
+  };
 
   Core* GetActiveCoreOrNullptr() {
     return cores.size() ? &cores[active_core] : nullptr;
@@ -26,6 +31,14 @@ public:
   }
 
   void LaunchCore() { if ( !cores.full() ) cores.push_back( sgpl::Core{} ); }
+
+  size_t GetNumCores() const { return cores.size(); }
+
+  size_t GetMaxCores() const { return cores.max_size(); }
+
+  auto begin() { return std::begin( cores ); }
+
+  auto end() { return std::end( cores ); }
 
 };
 

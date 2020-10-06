@@ -11,3 +11,6 @@
 [submodule "third-party/emsdk"]
 	path = third-party/emsdk
 	url = https://github.com/emscripten-core/emsdk.git
+[submodule "third-party/conduit"]
+	path = third-party/conduit
+	url = https://github.com/mmore500/conduit.git

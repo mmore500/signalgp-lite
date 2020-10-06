@@ -118,14 +118,14 @@ inline void advance_core(sgpl::Core& state, const sgpl::Program& program) {
     break;
   }
 
-  ++state.inst_counter;
+  ++state.inst_counter %= program.size();
 
 };
 
 template<typename Library>
-inline void execute_core(size_t cycles, Core& state, const Program& program) {
+inline void execute_core(Core& state, const Program& program) {
 
-  for (size_t i{}; i < cycles; ++i) advance_core<Library>(state, program);
+  for (size_t i{}; i < 16; ++i) advance_core<Library>(state, program);
 
 };
 

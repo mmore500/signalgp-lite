@@ -28,15 +28,20 @@ public:
 
   size_t size() const { return size_; }
 
+  constexpr size_t max_size() const { return N; }
+
   bool empty() const { return size(); }
 
-  bool full() const { return size() < N; }
+  bool full() const { return size() == N; }
 
   void pop_back() { emp_assert( size() ); --size_; }
 
-  T& back() { return operator[](size() - 1); };
+  T& back() { emp_assert( size() ); return operator[](size() - 1); };
 
-  const T& back() const { return operator[](size() - 1); };
+  const T& back() const {
+   emp_assert( size() );
+   return operator[](size() - 1);
+ };
 
   T& front() { return data.front(); };
 
