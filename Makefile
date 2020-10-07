@@ -3,11 +3,11 @@ PROJECT := signalgp-lite
 EMP_DIR := third-party/Empirical/source
 
 # Flags to use regardless of compiler
-CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/ -Iinclude/
+CFLAGS_all := -pipe -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/ -Iinclude/
 
 # Native compiler information
 CXX ?= g++
-CFLAGS_nat := -O3 -DNDEBUG -msse4.2 $(CFLAGS_all)
+CFLAGS_nat := -O3 -DNDEBUG -flto -march=native  $(CFLAGS_all)
 CFLAGS_nat_debug := -g $(CFLAGS_all)
 
 # Emscripten compiler information
