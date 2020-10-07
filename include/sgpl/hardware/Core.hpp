@@ -29,9 +29,9 @@ public:
   : global_jump_table(&global_jump_table_)
   { ; }
 
-  emp::array<double, 5> registers;
+  emp::array<float, 5> registers{}; // value initialize
 
-  sgpl::CappedSet<tag_t, 4> fork_requests;
+  sgpl::CappedSet<tag_t, 4> fork_requests{}; // value initialize
 
   void Terminate() { program_counter = std::numeric_limits<size_t>::max(); };
 
