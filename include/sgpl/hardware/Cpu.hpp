@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../../../third-party/Empirical/source/base/optional.h"
+
 #include "../utility/CappedSet.hpp"
 
 #include "Core.hpp"
@@ -16,9 +18,11 @@ class Cpu {
 
   size_t active_core{};
 
-  sgpl::JumpTable<Library> global_jump_table;
+  emp::optional< sgpl::JumpTable<Library> > global_jump_table;
 
   sgpl::JumpTable<Library> local_jump_table_template;
+
+  using tag_t = typename sgpl::JumpTable<Library>::tag_t;
 
 public:
 
@@ -36,9 +40,14 @@ public:
 
   void LaunchCore() {
     if ( !cores.full() ) {
-      cores.push_back(
-        sgpl::Core{ local_jump_table_template, &global_jump_table }
-      );
+      cores.push_back( sgpl::Core{ *global_jump_table } );
+    }
+  }
+
+  void LaunchCore( const tag_t& tag ) {
+    if ( !cores.full() ) {
+      cores.push_back( sgpl::Core{ *global_jump_table } );
+      cores.back().JumpToGlobalAnchorMatch( tag );
     }
   }
 
@@ -51,8 +60,8 @@ public:
   auto end() { return std::end( cores ); }
 
   void InitializeAnchors(const sgpl::Program<Library>& program) {
-    global_jump_table.InitializeGlobalAnchors( program );
-    local_jump_table_template.InitializeLocalAnchors( program );
+    global_jump_table.emplace();
+    global_jump_table->InitializeGlobalAnchors( program );
   }
 };
 
