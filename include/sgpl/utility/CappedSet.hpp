@@ -70,9 +70,9 @@ public:
 
   const T* begin() const { return &front(); }
 
-  T* end() { return &back() + 1; }
+  T* end() { return begin() + size(); }
 
-  const T* end() const { return &back() + 1; }
+  const T* end() const { return begin() + size(); }
 
 };
 
