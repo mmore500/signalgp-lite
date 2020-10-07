@@ -14,7 +14,7 @@ struct Terminate {
     const sgpl::Instruction<Library>& inst,
     const sgpl::Program<Library>& program
   ) {
-    // core.Terminate();
+    core.Terminate();
   }
 
 };
