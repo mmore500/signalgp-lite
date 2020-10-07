@@ -18,6 +18,7 @@ struct JumpIfNot {
     if ( !core.registers[ inst.args[0] ] ) {
       core.JumpToGlobalAnchorMatch( inst.tag );
     }
+    if ( !core.registers[ inst.args[1] ] ) core.ResetRegisters();
   }
 
 };
