@@ -12,9 +12,9 @@ namespace sgpl {
 template<typename Library>
 struct Instruction {
 
-  size_t op_code;
+  unsigned char op_code;
 
-  emp::array<size_t, 3> args;
+  emp::array<unsigned char, 3> args;
 
   emp::BitSet<32> tag;
 
@@ -29,6 +29,7 @@ struct Instruction {
       std::end( args ),
       [&rand](){ return rand.GetUInt( 5 ); }
     );
+    emp_assert( Library::GetSize() < 256 );
   }
 
 };
