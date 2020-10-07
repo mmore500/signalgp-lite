@@ -10,7 +10,7 @@ namespace sgpl {
 
 template<
   typename MaxRatio=std::ratio<1>,
-  typename MinRatio=std::ratio<0>
+  typename MinRatio=std::ratio<-1>
 >
 struct Terminal {
 
