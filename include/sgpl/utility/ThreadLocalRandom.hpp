@@ -10,7 +10,7 @@ class ThreadLocalRandom {
 
 public:
 
-  static thread_local emp::Random& Get() { return rand; }
+  static emp::Random& Get() { return rand; }
 
 };
 
