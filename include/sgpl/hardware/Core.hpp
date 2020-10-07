@@ -63,6 +63,7 @@ public:
   void JumpToGlobalAnchorMatch(const tag_t& query) {
     const auto res { global_jump_table->Match(query) };
     if ( res.size() ) program_counter = res.front();
+    else Terminate();
     local_jump_table.Clear();
   }
 
