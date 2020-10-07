@@ -162,6 +162,12 @@ inline void advance_core(
         Functor::template run<Library>( state, instruction, program );
       }
     break;
+    case 24:
+      if constexpr (24 < Library::GetSize()) {
+        using Functor = typename Library::template Operation<24>;
+        Functor::template run<Library>( state, instruction, program );
+      }
+    break;
   }
 
   state.AdvanceProgramCounter( program.size() );

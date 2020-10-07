@@ -4,6 +4,8 @@
 
 #include "../../../third-party/Empirical/source/base/array.h"
 
+#include "../utility/CappedSet.hpp"
+
 #include "JumpTable.hpp"
 
 namespace sgpl {
@@ -28,6 +30,8 @@ public:
   { ; }
 
   emp::array<double, 5> registers;
+
+  sgpl::CappedSet<tag_t, 4> fork_requests;
 
   void Terminate() { program_counter = std::numeric_limits<size_t>::max(); };
 
@@ -70,6 +74,10 @@ public:
   sgpl::JumpTable<Library>& GetLocalJumpTable() { return local_jump_table; }
 
   sgpl::JumpTable<Library>& GetGlobalJumpTable() { return *global_jump_table; }
+
+  bool RequestFork(const tag_t& tag) {
+    return fork_requests.try_push_back( tag );
+  }
 
 };
 

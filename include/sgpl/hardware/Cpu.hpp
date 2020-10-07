@@ -34,6 +34,10 @@ public:
   };
 
   void KillActiveCore() {
+
+    for ( const auto& request : cores[ active_core ].fork_requests ) {
+      LaunchCore( request );
+    }
     cores.erase(active_core);
     if (active_core) --active_core;
   }
@@ -63,6 +67,7 @@ public:
     global_jump_table.emplace();
     global_jump_table->InitializeGlobalAnchors( program );
   }
+
 };
 
 

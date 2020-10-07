@@ -10,6 +10,7 @@
 namespace sgpl {
 
 using op_library_parent_t = std::tuple<
+  sgpl::Fork,
   sgpl::Nop,
   sgpl::Terminate,
   sgpl::Add,

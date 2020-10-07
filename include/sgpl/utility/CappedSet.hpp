@@ -20,6 +20,20 @@ public:
 
   const T& operator[]( const size_t pos ) const { return data[pos]; }
 
+  bool try_push_back( const T& value ) {
+    if ( !full() ) {
+      push_back( value );
+      return true;
+    } else return false;
+  }
+
+  bool try_push_back( T&& value ) {
+    if ( !full() ) {
+      push_back( std::move( value ) );
+      return true;
+    } else return false;
+  }
+
   void push_back( const T& value ) { data[size()] = value; ++size_; }
 
   void push_back( T&& value ) { data[size()] = std::move( value ); ++size_; }

@@ -6,7 +6,7 @@
 
 namespace sgpl {
 
-struct Terminate {
+struct Fork {
 
   template<typename Library>
   static void run(
@@ -14,7 +14,7 @@ struct Terminate {
     const sgpl::Instruction<Library>& inst,
     const sgpl::Program<Library>& program
   ) {
-    // core.Terminate();
+    core.RequestFork( inst.tag );
   }
 
 };
