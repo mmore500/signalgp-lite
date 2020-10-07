@@ -80,7 +80,7 @@ public:
     return fork_requests.try_push_back( tag );
   }
 
-  void ResetRegisters() { registers.fill( decltype(registers)::value_type{} ); }
+  void ResetRegisters() { registers.fill( {} ); }
 
 };
 
