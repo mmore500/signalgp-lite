@@ -9,6 +9,7 @@
 
 namespace sgpl {
 
+template<typename Library>
 struct Instruction {
 
   size_t op_code;
@@ -20,7 +21,7 @@ struct Instruction {
   Instruction() = default;
 
   Instruction(emp::Random& rand)
-  : op_code( rand.GetUInt( 7 ) )
+  : op_code( rand.GetUInt( Library::GetSize() ) )
   , tag( rand )
   {
     std::generate(

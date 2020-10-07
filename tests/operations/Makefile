@@ -1,4 +1,6 @@
 TEST_NAMES += Add
+TEST_NAMES += AnchorGlobal
+TEST_NAMES += AnchorLocal
 TEST_NAMES += Decrement
 TEST_NAMES += Increment
 TEST_NAMES += Not

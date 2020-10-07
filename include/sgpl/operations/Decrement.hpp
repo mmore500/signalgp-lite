@@ -7,7 +7,10 @@ namespace sgpl {
 
 struct Decrement {
 
-  static void run(Core& core, const Instruction& inst) {
+  template<typename Library>
+  static void run(
+    sgpl::Core<Library>& core, const sgpl::Instruction<Library>& inst
+  ) {
     --core.registers[ inst.args[0] ];
   }
 

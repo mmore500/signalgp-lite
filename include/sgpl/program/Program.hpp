@@ -10,13 +10,14 @@
 
 namespace sgpl {
 
-struct Program : public emp::vector<sgpl::Instruction> {
+template<typename Library>
+struct Program : public emp::vector<sgpl::Instruction<Library>> {
 
   Program( emp::Random& rand, const size_t n ) {
     std::generate_n(
       std::back_inserter( *this ),
       n,
-      [&rand](){ return sgpl::Instruction{ rand }; }
+      [&rand](){ return sgpl::Instruction<Library>{ rand }; }
     );
   }
 

@@ -3,16 +3,16 @@
 #include "../hardware/Core.hpp"
 #include "../program/Instruction.hpp"
 
+#include "Nop.hpp"
+
 namespace sgpl {
 
-struct Not {
+struct AnchorLocal {
 
   template<typename Library>
   static void run(
     sgpl::Core<Library>& core, const sgpl::Instruction<Library>& inst
-  ) {
-    core.registers[ inst.args[0] ] = !core.registers[ inst.args[0] ];
-  }
+  ) { sgpl::Nop::template run<Library>(core, inst); }
 
 };
 

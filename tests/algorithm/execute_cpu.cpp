@@ -9,14 +9,15 @@
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/program/Program.hpp"
-#include "sgpl/program/Library.hpp"
+#include "sgpl/program/OpLibrary.hpp"
 
 TEST_CASE("Test execute_cpu") {
 
   emp::Random rand;
 
-  sgpl::Cpu cpu;
-  sgpl::Program program{ rand, 100 };
+  sgpl::Cpu<sgpl::OpLibrary> cpu;
+  sgpl::Program<sgpl::OpLibrary> program{ rand, 100 };
+  cpu.InitializeAnchors( program );
 
   REQUIRE( cpu.GetNumCores() == 0 );
 
@@ -27,7 +28,7 @@ TEST_CASE("Test execute_cpu") {
   cpu.LaunchCore();
   REQUIRE( cpu.GetNumCores() == 3 );
 
-  sgpl::execute_cpu<sgpl::Library>( 10 * std::mega::num, cpu, program );
+  sgpl::execute_cpu<sgpl::OpLibrary>( 10 * std::mega::num, cpu, program );
 
   REQUIRE( cpu.GetNumCores() == 3 );
 

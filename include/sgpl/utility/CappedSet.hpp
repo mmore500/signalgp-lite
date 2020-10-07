@@ -48,7 +48,7 @@ public:
   const T& front()  const { return data.front(); };
 
   void erase( const size_t pos ) {
-    std::swap( operator[](pos), back() );
+    operator[](pos) = std::move( back() );
     pop_back();
   }
 

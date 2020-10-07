@@ -5,13 +5,15 @@
 
 namespace sgpl {
 
-struct Not {
+struct JumpIfGlobal {
 
   template<typename Library>
   static void run(
     sgpl::Core<Library>& core, const sgpl::Instruction<Library>& inst
   ) {
-    core.registers[ inst.args[0] ] = !core.registers[ inst.args[0] ];
+    if ( core.registers[ inst.args[0] ] ) {
+      core.JumpToGlobalAnchorMatch( inst.tag );
+    }
   }
 
 };
