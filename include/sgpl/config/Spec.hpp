@@ -15,6 +15,8 @@ struct Spec {
 
   using peripheral_t = Peripheral;
 
+  static constexpr inline size_t num_cores{ 16 };
+
 };
 
 } // namespace sgpl

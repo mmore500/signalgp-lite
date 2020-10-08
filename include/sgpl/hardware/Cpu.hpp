@@ -14,7 +14,7 @@ class Cpu {
 
   using core_t = sgpl::Core<Spec>;
 
-  sgpl::CappedSet<core_t, 16> cores;
+  sgpl::CappedSet<core_t, Spec::num_cores> cores;
 
   size_t active_core{};
 
@@ -56,6 +56,8 @@ public:
   }
 
   size_t GetNumCores() const { return cores.size(); }
+
+  size_t GetNumFreeCores() const { return Spec::num_cores - cores.size(); }
 
   size_t GetMaxCores() const { return cores.max_size(); }
 
