@@ -2,7 +2,7 @@
 
 #include "../../../third-party/Empirical/source/base/optional.h"
 
-#include "../utility/CappedSet.hpp"
+#include "../utility/Resevoir.hpp"
 
 #include "Core.hpp"
 #include "JumpTable.hpp"
@@ -14,9 +14,11 @@ class Cpu {
 
   using core_t = sgpl::Core<Spec>;
 
-  sgpl::CappedSet<core_t, Spec::num_cores> cores;
+  emp::array<core_t, Spec::num_cores> cores;
 
-  size_t active_core{};
+  sgpl::Resevoir<core_t*, Spec::num_cores> threads;
+
+  size_t active_thread{};
 
   emp::optional< sgpl::JumpTable<Spec> > global_jump_table;
 
@@ -26,44 +28,52 @@ class Cpu {
 
 public:
 
-  void ActivateNextCore() { ++active_core %= cores.size(); }
+  Cpu() { std::iota(
+    std::begin(threads.array()),
+    std::end(threads.array()),
+    std::begin(cores)
+  );}
+
+  void ActivateNextCore() { ++active_thread %= threads.size(); }
 
   core_t& GetActiveCore() {
-    emp_assert( cores.size() );
-    return cores[active_core];
+    emp_assert( threads.size() );
+    return *threads[active_thread];
   };
 
   void KillActiveCore() {
 
-    for ( const auto& request : cores[ active_core ].fork_requests ) {
+    for ( const auto& request : threads[ active_thread ]->fork_requests ) {
       LaunchCore( request );
     }
-    cores.erase(active_core);
-    if (active_core) --active_core;
+    threads.release(active_thread);
+    if (active_thread) --active_thread; // todo fixme
   }
 
   void LaunchCore() {
-    if ( !cores.full() ) {
-      cores.push_back( sgpl::Core{ *global_jump_table } );
+    if ( !threads.full() ) {
+      threads.acquire();
+      *threads.back() = sgpl::Core{ *global_jump_table };
     }
   }
 
   void LaunchCore( const tag_t& tag ) {
-    if ( !cores.full() ) {
-      cores.push_back( sgpl::Core{ *global_jump_table } );
-      cores.back().JumpToGlobalAnchorMatch( tag );
+    if ( !threads.full() ) {
+      threads.acquire();
+      *threads.back() = sgpl::Core{ *global_jump_table };
+      threads.back()->JumpToGlobalAnchorMatch( tag );
     }
   }
 
-  size_t GetNumCores() const { return cores.size(); }
+  size_t GetNumCores() const { return threads.size(); }
 
-  size_t GetNumFreeCores() const { return Spec::num_cores - cores.size(); }
+  size_t GetNumFreeCores() const { return Spec::num_cores - threads.size(); }
 
-  size_t GetMaxCores() const { return cores.max_size(); }
+  size_t GetMaxCores() const { return threads.max_size(); }
 
-  auto begin() { return std::begin( cores ); }
+  auto begin() { return std::begin( threads ); }
 
-  auto end() { return std::end( cores ); }
+  auto end() { return std::end( threads ); }
 
   void InitializeAnchors(const sgpl::Program<Spec>& program) {
     global_jump_table.emplace();

@@ -17,13 +17,14 @@ static void Lite_Complete(benchmark::State& state) {
   // Perform setup here
   for (auto _ : state) {
 
-    while ( cpu.GetNumFreeCores() ) {
-      cpu.LaunchCore( emp::BitSet<32>(rand) );
+    // This code gets timed
+    while ( countcount < 16 ) {
+      while ( cpu.GetNumFreeCores() ) cpu.LaunchCore( emp::BitSet<32>(rand) );
+      sgpl::execute_cpu<spec_t>( 1, cpu, program );
     }
 
-    // This code gets timed
-    // for (size_t i = 0; i < 2; ++i)
-      sgpl::execute_cpu<spec_t>( 1, cpu, program );
+    countcount -= 16;
+
   }
 
   assert( cpu.GetNumCores() );
