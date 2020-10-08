@@ -39,7 +39,7 @@ cranky: $(addprefix test-, $(TEST_NAMES))
 	rm -rf test*.out
 
 ../coverage_include:
-	./convert_for_tests.sh
+	./$(TO_ROOT)/tests/convert_for_tests.sh
 
 ../third-party/Catch/single_include/catch2/catch.hpp:
 	git submodule init

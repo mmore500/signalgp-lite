@@ -18,7 +18,7 @@ clean-%: %
 	cd $< && make clean
 
 cov-%: % $(TO_ROOT)/coverage_include
-	cd $< && make cov
+	cd $< && make coverage
 
 $(TO_ROOT)/coverage_include:
 	cd $(TO_ROOT)/tests && ./convert_for_tests.sh
@@ -32,7 +32,7 @@ fulldebug: $(addprefix fulldebug-, $(TARGET_NAMES))
 
 cranky: $(addprefix cranky-, $(TARGET_NAMES))
 
-cov: $(addprefix cov-, $(TARGET_NAMES))
+coverage: $(addprefix cov-, $(TARGET_NAMES))
 
 clean: $(addprefix clean-, $(TARGET_NAMES))
 	rm -f *.out
