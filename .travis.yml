@@ -68,6 +68,15 @@ jobs:
     - ci_env=`bash <(curl -s https://codecov.io/env)`
     - sudo docker run $ci_env -e CXX mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
 
+  - name: Microbenchmarks
+    env: CXX=clang++
+    install:
+    - docker build -t mmore500/signalgp-lite .
+    - docker ps -a
+    script:
+    - ci_env=`bash <(curl -s https://codecov.io/env)`
+    - sudo docker run $ci_env -e CXX mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make && bash <(curl -s https://codecov.io/bash)"
+
   - name: Source (clang)
     env: CXX=clang++
     install:
