@@ -22,7 +22,8 @@ static void Lite_Complete(benchmark::State& state) {
     }
 
     // This code gets timed
-    // for (size_t i = 0; i < 2; ++i)
+    // ( with this setup, sgp-lite potentially has 16x more iterations )
+    for (size_t i = 0; i < 16; ++i)
       sgpl::execute_cpu<spec_t>( 1, cpu, program );
   }
 
