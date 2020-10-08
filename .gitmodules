@@ -14,3 +14,6 @@
 [submodule "third-party/conduit"]
 	path = third-party/conduit
 	url = https://github.com/mmore500/conduit.git
+[submodule "third-party/SignalGP"]
+	path = third-party/SignalGP
+	url = https://github.com/amlalejini/SignalGP.git
