@@ -9,6 +9,6 @@ OSF_PATH="microbenchmarks/context=${CONTEXT}/nnode=${NNODE}+nproc=${NPROC}/time=
 
 set -o xtrace
 
-for f in $(find . -name "*.json") *.csv *.png; do
+for f in $(find . -name "*.json"); do
   osf -u mmore500.login@gmail.com -p j8pge upload $f $OSF_PATH/$f;
 done
