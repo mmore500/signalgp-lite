@@ -8,11 +8,12 @@ namespace sgpl {
 
 struct Fork {
 
-  template<typename Library>
+  template<typename Library, typename Peripheral>
   static void run(
     sgpl::Core<Library>& core,
     const sgpl::Instruction<Library>& inst,
-    const sgpl::Program<Library>& program
+    const sgpl::Program<Library>& program,
+    Peripheral&
   ) {
     core.RequestFork( inst.tag );
   }
