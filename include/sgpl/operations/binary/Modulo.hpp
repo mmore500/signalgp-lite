@@ -15,7 +15,14 @@ struct Modulo {
     const sgpl::Program<Library>&
   ) {
     const size_t a = inst.args[0], b = inst.args[1], c = inst.args[2];
-    core.registers[a] = core.registers[b] % core.registers[c];
+
+    // TODO refactor this into a library call
+
+    const float in_val = core.registers[b];
+    const float mod_val = core.registers[c];
+
+    const float remain = std::remainder(in_val, mod_val);
+    core.registers[a] = (remain < 0.0) ? (remain + mod_val) : remain;
   }
 
 };
