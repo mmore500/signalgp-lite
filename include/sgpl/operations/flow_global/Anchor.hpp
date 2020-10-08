@@ -11,15 +11,15 @@ namespace global {
 
 struct Anchor {
 
-  template<typename Library, typename Peripheral>
+  template<typename Spec>
   static void run(
-    sgpl::Core<Library>& core,
-    const sgpl::Instruction<Library>& inst,
-    const sgpl::Program<Library>& program,
-    Peripheral&
+    sgpl::Core<Spec>& core,
+    const sgpl::Instruction<Spec>& inst,
+    const sgpl::Program<Spec>& program,
+    typename Spec::peripheral_t& peripheral
   ) {
     if ( core.HasLocalAnchors() ) {
-      sgpl::Terminate::template run<Library>(core, inst, program);
+      sgpl::Terminate::template run<Spec>(core, inst, program, peripheral);
     } else core.LoadLocalAnchors( program );
   }
 

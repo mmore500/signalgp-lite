@@ -9,8 +9,10 @@
 
 namespace sgpl {
 
-template<typename Library>
+template<typename Spec>
 struct Instruction {
+
+  using library_t = typename Spec::library_t;
 
   unsigned char op_code;
 
@@ -21,7 +23,7 @@ struct Instruction {
   Instruction() = default;
 
   Instruction(emp::Random& rand)
-  : op_code( rand.GetUInt( Library::GetSize() ) )
+  : op_code( rand.GetUInt( library_t::GetSize() ) )
   , tag( rand )
   {
     std::generate(
@@ -29,7 +31,7 @@ struct Instruction {
       std::end( args ),
       [&rand](){ return rand.GetUInt( 5 ); }
     );
-    emp_assert( Library::GetSize() < 256 );
+    emp_assert( library_t::GetSize() < 256 );
   }
 
 };

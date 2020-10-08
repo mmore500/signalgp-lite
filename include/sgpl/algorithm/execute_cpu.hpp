@@ -2,6 +2,7 @@
 
 #include <tuple>
 
+#include "../config/Spec.hpp"
 #include "../hardware/Cpu.hpp"
 #include "../program/Program.hpp"
 #include "../utility/EmptyType.hpp"
@@ -10,37 +11,38 @@
 
 namespace sgpl {
 
-template<typename Library, typename Peripheral>
+template<typename Spec>
 inline void execute_cpu(
   const size_t cycles,
-  sgpl::Cpu<Library>& state,
-  const sgpl::Program<Library>& program,
-  Peripheral& peripheral
+  sgpl::Cpu<Spec>& state,
+  const sgpl::Program<Spec>& program,
+  typename Spec::peripheral_t& peripheral
 ) {
 
   for (size_t i{}; i < cycles && state.GetNumCores(); ++i) {
 
-    sgpl::Core<Library>& core{ state.GetActiveCore() };
-    execute_core<Library>(core, program, peripheral);
+    sgpl::Core<Spec>& core{ state.GetActiveCore() };
+    execute_core<Spec>(core, program, peripheral);
     if ( core.HasTerminated() ) state.KillActiveCore();
     else state.ActivateNextCore();
   }
 
 }
 
-template<typename Library, typename Peripheral=sgpl::EmptyType>
+template<typename Spec=sgpl::Spec<>>
 inline void execute_cpu(
   const size_t cycles,
-  sgpl::Cpu<Library>& state,
-  const sgpl::Program<Library>& program
+  sgpl::Cpu<Spec>& state,
+  const sgpl::Program<Spec>& program
 ) {
 
-  Peripheral peripheral;
+  using peripheral_t = typename Spec::peripheral_t;
+  peripheral_t peripheral;
 
   for (size_t i{}; i < cycles && state.GetNumCores(); ++i) {
 
-    sgpl::Core<Library>& core{ state.GetActiveCore() };
-    execute_core<Library>(core, program, peripheral);
+    sgpl::Core<Spec>& core{ state.GetActiveCore() };
+    execute_core<Spec>(core, program, peripheral);
     if ( core.HasTerminated() ) state.KillActiveCore();
     else state.ActivateNextCore();
   }

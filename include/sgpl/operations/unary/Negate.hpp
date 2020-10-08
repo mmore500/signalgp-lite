@@ -8,12 +8,12 @@ namespace sgpl {
 
 struct Negate {
 
-  template<typename Library, typename Peripheral>
+  template<typename Spec>
   static void run(
-    sgpl::Core<Library>& core,
-    const sgpl::Instruction<Library>& inst,
-    const sgpl::Program<Library>&,
-    Peripheral&
+    sgpl::Core<Spec>& core,
+    const sgpl::Instruction<Spec>& inst,
+    const sgpl::Program<Spec>&,
+    typename Spec::peripheral_t&
   ) {
     core.registers[ inst.args[0] ] = -core.registers[ inst.args[0] ];
   }

@@ -8,12 +8,12 @@ namespace sgpl {
 
 struct Terminate {
 
-  template<typename Library, typename Peripheral>
+  template<typename Spec>
   static void run(
-    sgpl::Core<Library>& core,
-    const sgpl::Instruction<Library>& inst,
-    const sgpl::Program<Library>& program,
-    Peripheral&
+    sgpl::Core<Spec>& core,
+    const sgpl::Instruction<Spec>& inst,
+    const sgpl::Program<Spec>& program,
+    typename Spec::peripheral_t&
   ) {
     core.Terminate();
   }

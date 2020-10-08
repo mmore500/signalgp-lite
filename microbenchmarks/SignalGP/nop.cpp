@@ -47,7 +47,7 @@ void Inst_Loop(HARDWARE_T & hw, const INSTRUCTION_T & inst) {
 }
 
 
-static void BM_Nop(benchmark::State& state) {
+static void Vanilla_Nop(benchmark::State& state) {
 
   using mem_model_t = sgp::SimpleMemoryModel;
   using signalgp_t = sgp::LinearFunctionsProgramSignalGP<
@@ -131,6 +131,6 @@ static void BM_Nop(benchmark::State& state) {
 }
 
 // Register the function as a benchmark
-BENCHMARK(BM_Nop);
+BENCHMARK(Vanilla_Nop);
 // Run the benchmark
 BENCHMARK_MAIN();

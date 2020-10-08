@@ -15,12 +15,12 @@ template<
 struct Terminal {
 
   // writes a genetically-encoded value into a register.
-  template<typename Library, typename Peripheral>
+  template<typename Spec>
   static void run(
-    sgpl::Core<Library>& core,
-    const sgpl::Instruction<Library>& inst,
-    const sgpl::Program<Library>&,
-    Peripheral&
+    sgpl::Core<Spec>& core,
+    const sgpl::Instruction<Spec>& inst,
+    const sgpl::Program<Spec>&,
+    typename Spec::peripheral_t&
   ) {
     constexpr double max = static_cast<double>(MaxRatio::num) / MaxRatio::den;
     constexpr double min = static_cast<double>(MinRatio::num) / MinRatio::den;

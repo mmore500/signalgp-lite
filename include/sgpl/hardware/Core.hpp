@@ -10,22 +10,22 @@
 
 namespace sgpl {
 
-template<typename Library>
+template<typename Spec>
 class Core {
 
   size_t program_counter{};
 
-  sgpl::JumpTable<Library> local_jump_table;
+  sgpl::JumpTable<Spec> local_jump_table;
 
-  sgpl::JumpTable<Library>* global_jump_table; // non-owning ptr
+  sgpl::JumpTable<Spec>* global_jump_table; // non-owning ptr
 
-  using tag_t = typename sgpl::JumpTable<Library>::tag_t;
+  using tag_t = typename sgpl::JumpTable<Spec>::tag_t;
 
 public:
 
   Core() = default;
 
-  Core( sgpl::JumpTable<Library>& global_jump_table_ )
+  Core( sgpl::JumpTable<Spec>& global_jump_table_ )
   : global_jump_table(&global_jump_table_)
   { ; }
 
@@ -55,7 +55,7 @@ public:
 
   bool HasLocalAnchors() const { return local_jump_table.Size(); }
 
-  void LoadLocalAnchors( const sgpl::Program<Library>& program ) {
+  void LoadLocalAnchors( const sgpl::Program<Spec>& program ) {
     emp_assert( ! HasLocalAnchors() );
     local_jump_table.InitializeLocalAnchors( program, GetProgramCounter() );
   }
@@ -72,9 +72,9 @@ public:
     if ( res.size() ) program_counter = res.front();
   }
 
-  sgpl::JumpTable<Library>& GetLocalJumpTable() { return local_jump_table; }
+  sgpl::JumpTable<Spec>& GetLocalJumpTable() { return local_jump_table; }
 
-  sgpl::JumpTable<Library>& GetGlobalJumpTable() { return *global_jump_table; }
+  sgpl::JumpTable<Spec>& GetGlobalJumpTable() { return *global_jump_table; }
 
   bool RequestFork(const tag_t& tag) {
     return fork_requests.try_push_back( tag );

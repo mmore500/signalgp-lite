@@ -9,20 +9,20 @@
 
 namespace sgpl {
 
-template<typename Library>
+template<typename Spec>
 class Cpu {
 
-  using core_t = sgpl::Core<Library>;
+  using core_t = sgpl::Core<Spec>;
 
   sgpl::CappedSet<core_t, 16> cores;
 
   size_t active_core{};
 
-  emp::optional< sgpl::JumpTable<Library> > global_jump_table;
+  emp::optional< sgpl::JumpTable<Spec> > global_jump_table;
 
-  sgpl::JumpTable<Library> local_jump_table_template;
+  sgpl::JumpTable<Spec> local_jump_table_template;
 
-  using tag_t = typename sgpl::JumpTable<Library>::tag_t;
+  using tag_t = typename sgpl::JumpTable<Spec>::tag_t;
 
 public:
 
@@ -63,7 +63,7 @@ public:
 
   auto end() { return std::end( cores ); }
 
-  void InitializeAnchors(const sgpl::Program<Library>& program) {
+  void InitializeAnchors(const sgpl::Program<Spec>& program) {
     global_jump_table.emplace();
     global_jump_table->InitializeGlobalAnchors( program );
   }

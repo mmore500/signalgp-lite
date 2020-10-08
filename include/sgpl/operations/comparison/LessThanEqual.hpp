@@ -8,12 +8,12 @@ namespace sgpl {
 
 struct LessThanEqual {
 
-  template<typename Library, typename Peripheral>
+  template<typename Spec>
   static void run(
-    sgpl::Core<Library>& core,
-    const sgpl::Instruction<Library>& inst,
-    const sgpl::Program<Library>&,
-    Peripheral&
+    sgpl::Core<Spec>& core,
+    const sgpl::Instruction<Spec>& inst,
+    const sgpl::Program<Spec>&,
+    typename Spec::peripheral_t&
   ) {
     const size_t a = inst.args[0], b = inst.args[1], c = inst.args[2];
     core.registers[a] = core.registers[b] <= core.registers[c];
