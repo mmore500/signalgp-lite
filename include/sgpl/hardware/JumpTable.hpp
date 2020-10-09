@@ -1,25 +1,16 @@
 #pragma once
 
-#include "../../../third-party/Empirical/source/tools/MatchBin.h"
-#include "../../../third-party/Empirical/source/tools/matchbin_utils.h"
-
-#include "../hardware/JumpTable.hpp"
 #include "../utility/EmptyType.hpp"
 #include "../program/Program.hpp"
 
 namespace sgpl {
 
-using match_bin_t = emp::MatchBin<
-  sgpl::EmptyType,
-  emp::HammingMetric<32>,
-  emp::RankedSelector<std::ratio<16+8, 16>>,
-  emp::AdditiveCountdownRegulator<>
->;
-
 template<typename Spec>
-struct JumpTable : public match_bin_t  {
+struct JumpTable : public Spec::match_bin_t {
 
-  using tag_t = match_bin_t::query_t;
+  using match_bin_t = typename Spec::match_bin_t;
+
+  using tag_t = typename match_bin_t::query_t;
 
   using library_t = typename Spec::library_t;
 
@@ -55,7 +46,6 @@ struct JumpTable : public match_bin_t  {
       }
     }
   }
-
 
 };
 

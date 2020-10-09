@@ -1,5 +1,8 @@
 #pragma once
 
+#include "../../../third-party/Empirical/source/tools/MatchBin.h"
+#include "../../../third-party/Empirical/source/tools/matchbin_utils.h"
+
 #include "../library/prefab/CompleteOpLibrary.hpp"
 #include "../utility/EmptyType.hpp"
 
@@ -14,6 +17,13 @@ struct Spec {
   using library_t = Library;
 
   using peripheral_t = Peripheral;
+
+  using match_bin_t = emp::MatchBin<
+    sgpl::EmptyType,
+    emp::HammingMetric<32>,
+    emp::RankedSelector<std::ratio<16+8, 16>>,
+    emp::AdditiveCountdownRegulator<>
+  >;
 
   static constexpr inline size_t num_cores{ 16 };
 
