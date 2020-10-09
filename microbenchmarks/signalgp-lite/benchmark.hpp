@@ -62,6 +62,8 @@ static void DoBench(benchmark::State& state) {
   // prevent work from being optimized away
   for (const auto& cpu : collection) assert( cpu.GetNumCores() );
 
+  state.counters["num agents"] = NUM_AGENTS;
+
 }
 
 template<size_t NUM_AGENTS>

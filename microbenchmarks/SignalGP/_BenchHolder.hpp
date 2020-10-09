@@ -57,6 +57,8 @@ struct BenchHolder {
       assert( hardware.GetActiveThreadIDs().size() == 1 );
     }
 
+    state.counters["num agents"] = NUM_AGENTS;
+
   }
 
 };
