@@ -64,7 +64,7 @@ template<size_t NUM_AGENTS>
 void Register(BenchHolder<NUM_AGENTS>& holder) {
   auto res = benchmark::RegisterBenchmark(
     emp::to_string(
-      "Lite_Arithmetic<", NUM_AGENTS, ">"
+      "Vanilla_Arithmetic<", NUM_AGENTS, ">"
     ).c_str(),
     [&](benchmark::State& state){ holder.Run(state); }
   );
