@@ -23,7 +23,10 @@ struct Modulo {
     const float mod_val = core.registers[c];
 
     const float remain = std::remainder(in_val, mod_val);
-    core.registers[a] = (remain < 0.0) ? (remain + mod_val) : remain;
+
+    if (mod_val) { // disallow mod by zero
+      core.registers[a] = (remain < 0.0) ? (remain + mod_val) : remain;
+    }
   }
 
 };
