@@ -3,14 +3,17 @@
 
 #include "Empirical/source/tools/Random.h"
 
+#include "sgpl/config/Spec.hpp"
 #include "sgpl/program/Program.hpp"
+
+using spec_t = sgpl::Spec<>;
 
 TEST_CASE("Test Program") {
 
   emp::Random rand;
 
   // TODO flesh out stub test
-  sgpl::Program{
+  sgpl::Program<spec_t>{
     rand,
     100
   };
