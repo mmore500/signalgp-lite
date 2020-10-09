@@ -70,15 +70,6 @@ struct SetupA {
       {inst_prop_t::BLOCK_CLOSE}
     );
 
-    inst_lib.AddInst(
-      "AdjRegulator", sgp::inst_impl::Inst_AdjRegulator<signalgp_t, inst_t>, ""
-    );
-    inst_lib.AddInst(
-      "SenseRegulator", sgp::inst_impl::Inst_SenseRegulator<signalgp_t, inst_t>, ""
-    );
-    inst_lib.AddInst(
-      "SetRegulator", sgp::inst_impl::Inst_SetRegulator<signalgp_t, inst_t>, ""
-    );
     inst_lib.AddInst("Call", sgp::inst_impl::Inst_Call<signalgp_t, inst_t>, "");
     inst_lib.AddInst("Dec", sgp::inst_impl::Inst_Dec<signalgp_t, inst_t>, "");
     inst_lib.AddInst(

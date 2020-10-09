@@ -31,6 +31,14 @@ static void DoBench(benchmark::State& state) {
 
   size_t agent{};
 
+  emp::vector< emp::BitSet<32> > tags;
+  std::generate_n(
+    std::back_inserter(tags),
+    20,
+    [&]{ return emp::BitSet<32>(rand); }
+  );
+  size_t tag{};
+
   // Perform setup here
   for (auto _ : state) {
 
@@ -38,7 +46,10 @@ static void DoBench(benchmark::State& state) {
 
     // This code gets timed
     if constexpr (fill_cores) {
-      while ( cpu.GetNumFreeCores() ) cpu.LaunchCore();
+      while ( cpu.GetNumFreeCores() ) {
+        cpu.LaunchCore( tags[tag] );
+        ++tag %= 20;
+      }
       // do *at least* sixteen cycles
       sgpl::execute_cpu<spec_t>( 16, cpu, program );
     } else {
@@ -65,7 +76,7 @@ struct Setup {
       DoBench<NUM_AGENTS>
     );
 
-    uitsl::report_confidence( res );
+    uitsl::report_confidence<20>( res );
 
   }
 
