@@ -17,6 +17,10 @@ struct Spec {
 
   static constexpr inline size_t num_cores{ 16 };
 
+  static constexpr inline size_t num_fork_requests{ 3 };
+
+  static constexpr inline size_t num_registers{ 5 };
+
 };
 
 } // namespace sgpl
