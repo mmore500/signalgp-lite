@@ -16,7 +16,7 @@ class Cpu {
 
   emp::array<core_t, Spec::num_cores> cores;
 
-  sgpl::Resevoir<core_t*, Spec::num_cores> threads;
+  sgpl::Resevoir<typename decltype(cores)::iterator, Spec::num_cores> threads;
 
   size_t active_thread{};
 
@@ -28,11 +28,14 @@ class Cpu {
 
 public:
 
-  Cpu() { std::iota(
-    std::begin(threads.array()),
-    std::end(threads.array()),
-    std::begin(cores)
-  );}
+  Cpu() {
+    std::iota(
+      std::begin( threads.array() ),
+      std::end( threads.array() ),
+      std::begin(cores)
+    );
+    cores.fill( core_t{ *global_jump_table} );
+  }
 
   void ActivateNextCore() { ++active_thread %= threads.size(); }
 
@@ -53,14 +56,14 @@ public:
   void LaunchCore() {
     if ( !threads.full() ) {
       threads.acquire();
-      *threads.back() = sgpl::Core{ *global_jump_table };
+      threads.back()->Reset();
     }
   }
 
   void LaunchCore( const tag_t& tag ) {
     if ( !threads.full() ) {
       threads.acquire();
-      *threads.back() = sgpl::Core{ *global_jump_table };
+      threads.back()->Reset();
       threads.back()->JumpToGlobalAnchorMatch( tag );
     }
   }

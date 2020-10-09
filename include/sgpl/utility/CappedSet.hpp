@@ -38,6 +38,8 @@ public:
 
   void push_back( T&& value ) { data[size()] = std::move( value ); ++size_; }
 
+  void push_back() { ++size_; }
+
   void clear() { size_ = 0; }
 
   size_t size() const { return size_; }

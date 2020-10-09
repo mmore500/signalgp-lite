@@ -82,6 +82,11 @@ public:
 
   void ResetRegisters() { registers.fill( {} ); }
 
+  void Reset() {
+    ResetRegisters();
+    local_jump_table.Clear();
+  }
+
 };
 
 } // namespace sgpl
