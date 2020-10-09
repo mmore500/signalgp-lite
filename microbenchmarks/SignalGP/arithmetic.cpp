@@ -33,7 +33,7 @@ struct SetupA {
       1, // num inst tags
       3, // num inst args
       {0, 5}
-    ) sdsd;
+    );
 
     inst_lib.AddInst(
       "Loop",
