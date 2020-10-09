@@ -11,7 +11,7 @@ namespace sgpl {
 
 using match_bin_t = emp::MatchBin<
   sgpl::EmptyType,
-  emp::StreakMetric<32>,
+  emp::HammingMetric<32>,
   emp::RankedSelector<std::ratio<16+8, 16>>,
   emp::AdditiveCountdownRegulator<>
 >;
