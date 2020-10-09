@@ -21,6 +21,9 @@ struct Spec {
 
   static constexpr inline size_t num_registers{ 5 };
 
+  // maximum num steps executed on one core before next core is executed
+  static constexpr inline size_t switch_steps{ 8 };
+
 };
 
 } // namespace sgpl

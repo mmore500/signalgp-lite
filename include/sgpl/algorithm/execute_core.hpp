@@ -53,7 +53,7 @@ inline void execute_core(
   typename Spec::peripheral_t& peripheral
 ) {
 
-  for (size_t i{}; i < 16 && state.HasTerminated() == false; ++i) {
+  for (size_t i{}; i < Spec::switch_steps && !state.HasTerminated(); ++i) {
     advance_core<Spec>(state, program, peripheral);
   }
 
