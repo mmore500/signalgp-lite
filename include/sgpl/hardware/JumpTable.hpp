@@ -11,9 +11,9 @@ namespace sgpl {
 
 using match_bin_t = emp::MatchBin<
   sgpl::EmptyType,
-  emp::HammingMetric<32>,
-  emp::RankedSelector<std::ratio<32 + 3, 32>>,
-  emp::LegacyRegulator
+  emp::StreakMetric<32>,
+  emp::RankedSelector<std::ratio<16+8, 16>>,
+  emp::AdditiveCountdownRegulator<>
 >;
 
 template<typename Spec>

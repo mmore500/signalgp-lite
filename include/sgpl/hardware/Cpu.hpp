@@ -43,9 +43,7 @@ public:
   }
 
   void LaunchCore() {
-    if ( !cores.full() ) {
-      cores.push_back( sgpl::Core{ *global_jump_table } );
-    }
+    if ( !cores.full() ) cores.push_back( sgpl::Core{ *global_jump_table } );
   }
 
   void LaunchCore( const tag_t& tag ) {

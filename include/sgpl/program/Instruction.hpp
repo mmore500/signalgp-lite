@@ -29,7 +29,7 @@ struct Instruction {
     std::generate(
       std::begin( args ),
       std::end( args ),
-      [&rand](){ return rand.GetUInt( 5 ); }
+      [&rand](){ return rand.GetUInt( Spec::num_registers ); }
     );
     emp_assert( library_t::GetSize() < 256 );
   }
