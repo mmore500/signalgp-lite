@@ -1,89 +1,26 @@
 #include <benchmark/benchmark.h>
 
-#include "SignalGP/source/hardware/SignalGP/EventLibrary.h"
-#include "SignalGP/source/hardware/SignalGP/SignalGPBase.h"
-#include "SignalGP/source/hardware/SignalGP/impls/SignalGPToy.h"
-#include "SignalGP/source/hardware/SignalGP/impls/SignalGPLinearProgram.h"
-#include "SignalGP/source/hardware/SignalGP/impls/SignalGPLinearFunctionsProgram.h"
-#include "SignalGP/source/hardware/SignalGP/utils/InstructionLibrary.h"
-#include "SignalGP/source/hardware/SignalGP/utils/linear_program_instructions_impls.h"
-#include "SignalGP/source/hardware/SignalGP/utils/linear_functions_program_instructions_impls.h"
-#include "SignalGP/source/hardware/SignalGP/utils/MemoryModel.h"
-#include "SignalGP/source/hardware/SignalGP/utils/LinearFunctionsProgram.h"
-#include "SignalGP/source/random_utils.h"
+#include "conduit/include/uitsl/debug/benchmark_utils.hpp"
+#include "Empirical/source/tools/string_utils.h"
 
-template<typename HARDWARE_T, typename INSTRUCTION_T>
-void Inst_Loop(HARDWARE_T & hw, const INSTRUCTION_T & inst) {
-  auto & call_state = hw.GetCurThread().GetExecState().GetTopCallState();
-  auto & mem_state = call_state.GetMemory();
-  size_t cur_ip = call_state.GetIP();
-  const size_t cur_mp = call_state.GetMP();
-  emp_assert(cur_ip > 0);
-  // CurIP is the next instruction (not the one currently executing)
-  // Because IP gets incremented before execution, cur_ip should never be 0.
-  const size_t bob = cur_ip - 1;
-  const size_t eob = hw.FindEndOfBlock(cur_mp, cur_ip);
-  const bool skip = false;
-  if (skip) {
-    // Skip to EOB
-    call_state.SetIP(eob);
-    // Advance past the block close if not at end of module.
-    if (hw.IsValidProgramPosition(cur_mp, eob)) ++call_state.IP();
-  } else {
-    // Open flow
-    emp_assert(cur_mp < hw.GetProgram().GetSize());
-    hw.GetFlowHandler().OpenFlow(
-      hw,
-      {
-        sgp::lsgp_utils::FlowType::WHILE_LOOP,
-        cur_mp,
-        cur_ip,
-        bob,
-        eob
-      },
-      hw.GetCurThread().GetExecState()
-    );
-  }
-}
+#include "_BenchHolder.hpp"
+#include "_Inst_Loop.hpp"
+#include "_SignalGP.hpp"
 
 
-static void Vanilla_Nop(benchmark::State& state) {
+inst_lib_t inst_lib;
+event_lib_t event_lib;
+program_t program;
 
-  using mem_model_t = sgp::SimpleMemoryModel;
-  using signalgp_t = sgp::LinearFunctionsProgramSignalGP<
-    mem_model_t,
-    emp::BitSet<32>,
-    int,
-    emp::MatchBin<
-      size_t,
-      emp::HammingMetric<32>,
-      emp::RankedSelector<std::ratio<16+8, 16>>,
-      emp::AdditiveCountdownRegulator<>
-    >,
-    sgp::DefaultCustomComponent
-  >;
+struct SetupA {
 
-  using inst_lib_t = typename signalgp_t::inst_lib_t;
-  using inst_t = typename signalgp_t::inst_t;
-  using inst_prop_t = typename signalgp_t::InstProperty;
+  SetupA() {
 
-  using event_lib_t = typename signalgp_t::event_lib_t;
-  using program_t = typename signalgp_t::program_t;
-  using tag_t = typename signalgp_t::tag_t;
+    inst_lib.AddInst("Nop", sgp::inst_impl::Inst_Nop<signalgp_t, inst_t>, "");
 
-  using mem_buffer_t = typename mem_model_t::mem_buffer_t;
+    emp::Random rand;
 
-  inst_lib_t inst_lib;
-  event_lib_t event_lib;
-
-  inst_lib.AddInst("Nop", sgp::inst_impl::Inst_Nop<signalgp_t, inst_t>, "");
-
-
-  emp::Random rand;
-  signalgp_t hardware(rand, inst_lib, event_lib);
-  hardware.SetActiveThreadLimit(16);
-  auto program {
-    sgp::GenRandLinearFunctionsProgram<signalgp_t, 32>(
+    program = sgp::GenRandLinearFunctionsProgram<signalgp_t, 32>(
       rand,
       inst_lib,
       {1, 1}, // num functions
@@ -92,45 +29,58 @@ static void Vanilla_Nop(benchmark::State& state) {
       1, // num inst tags
       3, // num inst args
       {0, 5}
-    )
-  };
+    );
 
-  inst_lib.AddInst(
-    "Loop",
-    Inst_Loop<signalgp_t, inst_t>,
-    "",
-    {inst_prop_t::BLOCK_DEF}
-  );
-  inst_lib.AddInst(
-    "Close",
-    sgp::inst_impl::Inst_Close<signalgp_t, inst_t>,
-    "",
-    {inst_prop_t::BLOCK_CLOSE}
-  );
+    inst_lib.AddInst(
+      "Loop",
+      Inst_Loop<signalgp_t, inst_t>,
+      "",
+      {inst_prop_t::BLOCK_DEF}
+    );
+    inst_lib.AddInst(
+      "Close",
+      sgp::inst_impl::Inst_Close<signalgp_t, inst_t>,
+      "",
+      {inst_prop_t::BLOCK_CLOSE}
+    );
 
-  program[0][0].SetID( inst_lib.GetID("Loop") );
-  program[0][99].SetID( inst_lib.GetID("Close") );
+    program[0][0].SetID( inst_lib.GetID("Loop") );
+    program[0][99].SetID( inst_lib.GetID("Close") );
 
-  // Load program on hardware.
-  hardware.SetProgram(program);
-
-  // Spawn a thread to run the program.
-  hardware.SpawnThreadWithID(0);
-
-  assert( hardware.GetActiveThreadIDs().size() == 1 );
-
-  // Perform setup here
-  for (auto _ : state) {
-    // This code gets timed
-    for (size_t i{}; i < 16; ++i) hardware.SingleProcess();
   }
 
-  assert( hardware.GetActiveThreadIDs().size() == 1 );
+} setup_a;
 
+
+BenchHolder<1> bench1{ program, inst_lib, event_lib };
+BenchHolder<32> bench32{ program, inst_lib, event_lib };
+BenchHolder<1024> bench1024{ program, inst_lib, event_lib };
+BenchHolder<32768> bench32768{ program, inst_lib, event_lib };
+
+template<size_t NUM_AGENTS>
+void Register(BenchHolder<NUM_AGENTS>& holder) {
+  auto res = benchmark::RegisterBenchmark(
+    emp::to_string(
+      "Lite_Arithmetic<", NUM_AGENTS, ">"
+    ).c_str(),
+    [&](benchmark::State& state){ holder.Run(state); }
+  );
+
+  uitsl::report_confidence( res );
 
 }
 
-// Register the function as a benchmark
-BENCHMARK(Vanilla_Nop);
+
+struct SetupB {
+
+  SetupB() {
+    Register<1>( bench1 );
+    Register<32>( bench32 );
+    Register<1024>( bench1024);
+    Register<32768>( bench32768 );
+  }
+
+} setup_b;
+
 // Run the benchmark
 BENCHMARK_MAIN();

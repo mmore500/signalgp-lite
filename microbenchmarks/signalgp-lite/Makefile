@@ -1,3 +1,4 @@
+TARGET_NAMES += agent=several+library=arithmetic
 TARGET_NAMES += arithmetic
 TARGET_NAMES += complete
 TARGET_NAMES += nop
