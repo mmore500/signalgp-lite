@@ -75,7 +75,7 @@ struct Setup {
       DoBench<NUM_AGENTS>
     );
 
-    uitsl::report_confidence<20>( res );
+    uitsl::report_confidence<50>( res );
 
   }
 

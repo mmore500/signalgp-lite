@@ -70,7 +70,7 @@ void Register(BenchHolder<NUM_AGENTS>& holder) {
     [&](benchmark::State& state){ holder.Run(state); }
   );
 
-  uitsl::report_confidence<20>( res );
+  uitsl::report_confidence<50>( res );
 
 }
 
