@@ -19,7 +19,11 @@ for k, v in kn.unpack(filename).items():
 
 df = df.astype({ 'num agents' : int })
 
-df = df.groupby(['Library', 'Implementation', 'num agents',]).mean().reset_index()
+df = df.groupby([
+    'Library',
+    'Implementation',
+    'num agents',
+]).mean().reset_index()
 
 vanilla = df[df['Implementation'] == 'vanilla']
 lite = df[df['Implementation'] == 'lite']
@@ -47,7 +51,7 @@ sns.barplot(
 
 plt.savefig(
   kn.pack({
-    'measurement' : slugify('Wall Speedup'),
+    'measurement' : slugify('Wall Time Speedup'),
     'ext' : '.png',
   }),
   transparent=True,
@@ -65,7 +69,7 @@ sns.barplot(
 
 plt.savefig(
   kn.pack({
-    'measurement' : slugify('CPU Speedup'),
+    'measurement' : slugify('CPU Time Speedup'),
     'ext' : '.png',
   }),
   transparent=True,
