@@ -20,7 +20,7 @@ class Cpu {
 
   size_t active_thread{};
 
-  emp::optional< sgpl::JumpTable<Spec> > global_jump_table;
+  sgpl::JumpTable<Spec> global_jump_table;
 
   sgpl::JumpTable<Spec> local_jump_table_template;
 
@@ -34,7 +34,7 @@ public:
       std::end( threads.array() ),
       std::begin(cores)
     );
-    cores.fill( core_t{ *global_jump_table} );
+    cores.fill( core_t{ global_jump_table } );
   }
 
   void ActivateNextCore() { ++active_thread %= threads.size(); }
@@ -79,8 +79,7 @@ public:
   auto end() { return std::end( threads ); }
 
   void InitializeAnchors(const sgpl::Program<Spec>& program) {
-    global_jump_table.emplace();
-    global_jump_table->InitializeGlobalAnchors( program );
+    global_jump_table.InitializeGlobalAnchors( program );
   }
 
 };
