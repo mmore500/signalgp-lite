@@ -12,7 +12,7 @@ def facet(df):
         df,
         col='Library',
         margin_titles="true",
-        sharex=False,
+        sharey=False,
     )
 
 
