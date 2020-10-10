@@ -9,7 +9,7 @@ bench:
 	./script/fixup_and_validate.sh
 	python3 script/consolidate.py $$(find SignalGP signalgp-lite -name '*.json')
 	for f in *run_type=iteration*.csv; do \
-		python3 script/graph.py $f; \
-		python3 script/graph_speedup.py $f; \
+		python3 script/graph.py $$f; \
+		python3 script/graph_speedup.py $$f; \
 	done
 	./script/upload.sh
