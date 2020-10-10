@@ -21,14 +21,14 @@ TEST_CASE("Test execute_cpu") {
   sgpl::Program<spec_t> program{ rand, 100 };
   cpu.InitializeAnchors( program );
 
-  REQUIRE( cpu.GetNumCores() == 0 );
+  REQUIRE( cpu.GetNumBusyCores() == 0 );
 
-  cpu.LaunchCore();
-  REQUIRE( cpu.GetNumCores() == 1 );
+  REQUIRE( cpu.TryLaunchCore() );
+  REQUIRE( cpu.GetNumBusyCores() == 1 );
 
-  cpu.LaunchCore();
-  cpu.LaunchCore();
-  REQUIRE( cpu.GetNumCores() == 3 );
+  REQUIRE( cpu.TryLaunchCore() );
+  REQUIRE( cpu.TryLaunchCore() );
+  REQUIRE( cpu.GetNumBusyCores() == 3 );
 
   // TODO flesh out stub test
   sgpl::execute_cpu<spec_t>( 10 * std::mega::num, cpu, program );

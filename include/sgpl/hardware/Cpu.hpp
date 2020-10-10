@@ -2,7 +2,7 @@
 
 #include "../../../third-party/Empirical/source/base/optional.h"
 
-#include "../utility/Resevoir.hpp"
+#include "../utility/RingResevoir.hpp"
 
 #include "Core.hpp"
 #include "JumpTable.hpp"
@@ -16,9 +16,14 @@ class Cpu {
 
   emp::array<core_t, Spec::num_cores> cores;
 
-  sgpl::Resevoir<typename decltype(cores)::iterator, Spec::num_cores> threads;
+  using core_iterator_t = typename decltype(cores)::iterator;
 
-  size_t active_thread{};
+  sgpl::RingResevoir<core_iterator_t, Spec::num_cores> scheduler{
+    std::begin(cores),
+    std::end(cores)
+  };
+
+  size_t active_core_idx{};
 
   sgpl::JumpTable<Spec> global_jump_table;
 
@@ -28,55 +33,96 @@ class Cpu {
 
 public:
 
-  Cpu() {
-    std::iota(
-      std::begin( threads.array() ),
-      std::end( threads.array() ),
-      std::begin(cores)
-    );
-    cores.fill( core_t{ global_jump_table } );
+  Cpu() { cores.fill( core_t{ global_jump_table } ); }
+
+  void ActivateNextCore() {
+    emp_assert( GetNumBusyCores() );
+    ++active_core_idx %= GetNumBusyCores();
   }
 
-  void ActivateNextCore() { ++active_thread %= threads.size(); }
+  bool TryActivateNextCore() {
+    if ( HasActiveCore() ) { ActivateNextCore(); return true; }
+    else { emp_assert( active_core_idx == 0 ); return false; }
+  }
 
+  void ActivatePrevCore() {
+    emp_assert( GetNumBusyCores() );
+    active_core_idx += GetNumBusyCores() - 1;
+    active_core_idx %= GetNumBusyCores();
+  }
+
+  bool TryActivatePrevCore() {
+    if ( HasActiveCore() ) { ActivatePrevCore(); return true; }
+    else { emp_assert( active_core_idx == 0 ); return false; }
+  }
+
+  __attribute__ ((hot))
   core_t& GetActiveCore() {
-    emp_assert( threads.size() );
-    return *threads[active_thread];
+    emp_assert( HasActiveCore() );
+    return scheduler.Deref( active_core_idx );
   };
 
   void KillActiveCore() {
-
-    for ( const auto& request : threads[ active_thread ]->fork_requests ) {
-      LaunchCore( request );
+    emp_assert( HasActiveCore() );
+    for ( const auto& req : GetActiveCore().fork_requests ) {
+      if ( !TryLaunchCore(req) ) break;
     }
-    threads.release(active_thread);
-    if (active_thread) --active_thread; // todo fixme
+    scheduler.Release(active_core_idx);
+    TryActivatePrevCore();
   }
 
-  void LaunchCore() {
-    if ( !threads.full() ) {
-      threads.acquire();
-      threads.back()->Reset();
-    }
+  void KillStaleCore() {
+    emp_assert( !HasFreeCore() );
+    scheduler.ReleaseTail();
+    // no need to activate prev core, killed core is idx 0
   }
 
-  void LaunchCore( const tag_t& tag ) {
-    if ( !threads.full() ) {
-      threads.acquire();
-      threads.back()->Reset();
-      threads.back()->JumpToGlobalAnchorMatch( tag );
-    }
+  void DoLaunchCore() {
+    emp_assert( HasFreeCore() );
+    auto& acquired = *scheduler.Acquire();
+    acquired.Reset();
   }
 
-  size_t GetNumCores() const { return threads.size(); }
+  bool TryLaunchCore() {
+    if ( ! HasFreeCore() ) return false;
+    else { DoLaunchCore(); return true; }
+  }
 
-  size_t GetNumFreeCores() const { return Spec::num_cores - threads.size(); }
+  void ForceLaunchCore() {
+    if ( ! HasFreeCore() ) KillStaleCore();
+    DoLaunchCore();
+  }
 
-  size_t GetMaxCores() const { return threads.max_size(); }
+  void DoLaunchCore( const tag_t& tag ) {
+    emp_assert( HasFreeCore() );
+    auto& acquired = *scheduler.Acquire();
+    acquired.Reset();
+    acquired.JumpToGlobalAnchorMatch( tag );
+  }
 
-  auto begin() { return std::begin( threads ); }
+  bool TryLaunchCore( const tag_t& tag ) {
+    if ( ! HasFreeCore() ) return false;
+    else { DoLaunchCore( tag ); return true; }
+  }
 
-  auto end() { return std::end( threads ); }
+  void ForceLaunchCore( const tag_t& tag ) {
+    if ( ! HasFreeCore() ) KillStaleCore();
+    DoLaunchCore( tag );
+  }
+
+  size_t GetNumBusyCores() const { return scheduler.GetSize(); }
+
+  size_t GetNumFreeCores() const {
+    return scheduler.GetAvailableCapacity();
+  }
+
+  size_t GetMaxCores() const { return scheduler.GetCapacity(); }
+
+  __attribute__ ((hot))
+  bool HasActiveCore() const { return GetNumBusyCores(); }
+
+  __attribute__ ((hot))
+  bool HasFreeCore() const { return GetNumFreeCores(); }
 
   void InitializeAnchors(const sgpl::Program<Spec>& program) {
     global_jump_table.InitializeGlobalAnchors( program );

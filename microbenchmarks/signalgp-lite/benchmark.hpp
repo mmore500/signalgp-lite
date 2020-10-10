@@ -25,8 +25,8 @@ static void DoBench(benchmark::State& state) {
   emp::vector<sgpl::Cpu<spec_t>> collection( NUM_AGENTS );
   for (auto& cpu : collection) {
     cpu.InitializeAnchors( program );
-    cpu.LaunchCore();
-    assert( cpu.GetNumCores() );
+    cpu.DoLaunchCore();
+    assert( cpu.HasActiveCore() );
   }
 
   size_t agent{};
@@ -46,11 +46,8 @@ static void DoBench(benchmark::State& state) {
 
     // This code gets timed
     if constexpr (fill_cores) {
-      while ( cpu.GetNumFreeCores() ) {
-        cpu.LaunchCore( tags[tag] );
-        ++tag %= 20;
-      }
-      // do *at least* sixteen cycles
+      while ( cpu.TryLaunchCore( tags[tag] ) ) ++tag %= 20;
+
       sgpl::execute_cpu<spec_t>( 16, cpu, program );
     } else {
       sgpl::execute_cpu<spec_t>( 1, cpu, program );
@@ -60,7 +57,7 @@ static void DoBench(benchmark::State& state) {
   }
 
   // prevent work from being optimized away
-  for (const auto& cpu : collection) assert( cpu.GetNumCores() );
+  for (const auto& cpu : collection) assert( cpu.HasActiveCore() );
 
   state.counters["num agents"] = NUM_AGENTS;
 

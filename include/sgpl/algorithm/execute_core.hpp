@@ -13,6 +13,7 @@ namespace sgpl {
 // tried a dispatch table, seemed to do about the same or worse
 // https://eli.thegreenplace.net/2012/07/12/computed-goto-for-efficient-dispatch-tables
 template<typename Spec>
+__attribute__ ((hot))
 inline void advance_core(
   sgpl::Core<Spec>& state,
   const sgpl::Program<Spec>& program,
