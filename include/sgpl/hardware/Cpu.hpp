@@ -27,8 +27,6 @@ class Cpu {
 
   sgpl::JumpTable<Spec> global_jump_table;
 
-  sgpl::JumpTable<Spec> local_jump_table_template;
-
   using tag_t = typename sgpl::JumpTable<Spec>::tag_t;
 
 public:
