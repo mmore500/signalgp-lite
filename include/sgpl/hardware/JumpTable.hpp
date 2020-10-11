@@ -15,6 +15,7 @@ struct JumpTable {
   using tag_t = typename match_bin_t::query_t;
 
   using library_t = typename Spec::library_t;
+  using program_t = sgpl::Program<Spec>;
 
   inline emp::vector<size_t> MatchRaw(
     const tag_t & query,
@@ -42,20 +43,17 @@ struct JumpTable {
 
   inline size_t Size() const { return match_bin.Size(); }
 
-  void InitializeLocalAnchors(
-    const sgpl::Program<Spec>& program,
-    const size_t start_position
-  ) {
+  void InitializeLocalAnchors(const program_t& prog, const size_t start_pos) {
     Clear();
     for (
-      size_t pos = (start_position + 1) % program.size();
-      pos != start_position
-        && !library_t::IsAnchorGlobalOpCode( program[pos].op_code )
+      size_t pos = (start_pos + 1) % prog.size();
+      pos != start_pos
+        && !library_t::IsAnchorGlobalOpCode( prog[pos].op_code )
       ;
-      ++pos %= program.size()
+      ++pos %= prog.size()
     ) {
-      const auto& instruction = program[pos];
-      if ( library_t::IsAnchorLocalOpCode( program[pos].op_code ) ) {
+      const auto& instruction = prog[pos];
+      if ( library_t::IsAnchorLocalOpCode( prog[pos].op_code ) ) {
         match_bin.Set( {}, instruction.tag, pos ); // store pos as UID
       }
 
