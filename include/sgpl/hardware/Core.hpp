@@ -89,7 +89,11 @@ public:
 
   void ResetRegisters() { registers.fill( {} ); }
 
-  void Reset() { ResetRegisters(); local_jump_table.Clear(); }
+  void Reset() {
+    fork_requests.clear();
+    ResetRegisters();
+    local_jump_table.Clear();
+  }
 
 };
 
