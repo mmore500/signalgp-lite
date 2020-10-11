@@ -14,14 +14,7 @@ class Cpu {
 
   using core_t = sgpl::Core<Spec>;
 
-  emp::array<core_t, Spec::num_cores> cores;
-
-  using core_iterator_t = typename decltype(cores)::iterator;
-
-  sgpl::RingResevoir<core_iterator_t, Spec::num_cores> scheduler{
-    std::begin(cores),
-    std::end(cores)
-  };
+  sgpl::RingResevoir<core_t, Spec::num_cores> scheduler;
 
   size_t active_core_idx{};
 
@@ -31,7 +24,7 @@ class Cpu {
 
 public:
 
-  Cpu() { cores.fill( core_t{ global_jump_table } ); }
+  Cpu() { scheduler.Fill( core_t{ global_jump_table } ); }
 
   void ActivateNextCore() {
     emp_assert( GetNumBusyCores() );
@@ -57,7 +50,7 @@ public:
   __attribute__ ((hot))
   core_t& GetActiveCore() {
     emp_assert( HasActiveCore() );
-    return scheduler.Deref( active_core_idx );
+    return scheduler.Get( active_core_idx );
   };
 
   void KillActiveCore() {
@@ -77,7 +70,7 @@ public:
 
   void DoLaunchCore() {
     emp_assert( HasFreeCore() );
-    auto& acquired = *scheduler.Acquire();
+    auto& acquired = scheduler.Acquire();
     acquired.Reset();
   }
 
@@ -93,7 +86,7 @@ public:
 
   void DoLaunchCore( const tag_t& tag ) {
     emp_assert( HasFreeCore() );
-    auto& acquired = *scheduler.Acquire();
+    auto& acquired = scheduler.Acquire();
     acquired.Reset();
     acquired.JumpToGlobalAnchorMatch( tag );
   }

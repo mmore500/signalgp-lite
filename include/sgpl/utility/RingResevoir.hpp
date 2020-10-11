@@ -29,15 +29,6 @@ class RingResevoir {
 
 public:
 
-  template<typename It>
-  RingResevoir(const It begin, const It end) {
-    emp_assert( std::distance(begin, end) >= 0 );
-    emp_assert( uitsl::safe_equal(
-      std::distance(begin, end), this->GetCapacity()
-    ) );
-    std::iota( std::begin( buffer ), std::end( buffer ), begin );
-  }
-
   inline size_t GetSize() const { return num_items; }
 
   constexpr size_t GetCapacity() const { return N; }
@@ -50,6 +41,8 @@ public:
 
   inline bool IsFull() const { return GetSize() == GetCapacity(); }
 
+  inline T& Get( const size_t pos ) { return buffer[ GetBufferIndex( pos ) ]; }
+
   inline T& GetTail() {
     emp_assert( !IsEmpty() );
     return buffer[tail_index];
@@ -57,7 +50,7 @@ public:
 
   inline T& GetHead() {
     emp_assert( !IsEmpty() );
-    return buffer[ GetBufferIndex( GetSize() - 1 ) ];
+    return Get( GetSize() - 1 );
   }
 
   T& Acquire() {
@@ -81,7 +74,7 @@ public:
 
   inline bool IsHead(const size_t pos) const { return pos == GetSize(); }
 
-  void Release( const size_t pos ) {
+  void Release(const size_t pos) {
     if ( IsTail( pos ) ) ReleaseTail();
     else {
       if ( !IsHead( pos ) ) std::swap( this->Get(pos), this->GetHead() );
@@ -89,21 +82,7 @@ public:
     }
   }
 
-  inline T& Get( const size_t pos ) { return buffer[ GetBufferIndex( pos ) ]; }
-
-  inline auto& Deref( const size_t pos ) { return * this->Get( pos ); }
-
-  inline const auto& Deref( const size_t pos ) const {
-    return * this->Get( pos );
-  }
-
-  inline auto& DerefHead() { return * this->GetHead(); }
-
-  inline const auto& DerefHead() const { return * this->GetHead(); }
-
-  inline auto& DerefTail() { return * this->GetTail(); }
-
-  inline const auto& DerefTail() const { return * this->GetTail(); }
+  void Fill( const T& t ) { buffer.fill( t ); }
 
 };
 
