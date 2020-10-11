@@ -17,7 +17,7 @@ class Core {
 
   sgpl::JumpTable<Spec> local_jump_table;
 
-  sgpl::JumpTable<Spec>* global_jump_table; // non-owning ptr
+  sgpl::JumpTable<Spec>* global_jump_table{ nullptr }; // non-owning ptr
 
   using tag_t = typename sgpl::JumpTable<Spec>::tag_t;
 
