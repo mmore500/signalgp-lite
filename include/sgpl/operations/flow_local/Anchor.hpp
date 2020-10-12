@@ -17,6 +17,8 @@ struct Anchor {
     typename Spec::peripheral_t&
   ) { ; }
 
+  static std::string name() { return "local::Anchor"; }
+
 };
 
 } // namespace local

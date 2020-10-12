@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <cstddef>
 
+#include "../../../third-party/cereal/include/cereal/cereal.hpp"
+#include "../../../third-party/cereal/include/cereal/types/string.hpp"
 #include "../../../third-party/Empirical/source/base/array.h"
 #include "../../../third-party/Empirical/source/tools/BitSet.h"
 #include "../../../third-party/Empirical/source/tools/Random.h"
@@ -32,6 +34,39 @@ struct Instruction {
       [&rand](){ return rand.GetUInt( Spec::num_registers ); }
     );
     emp_assert( library_t::GetSize() < 256 );
+  }
+
+
+  // human-readable output
+  template<
+    typename Archive,
+    cereal::traits::EnableIf<cereal::traits::is_text_archive<Archive>::value>
+    = cereal::traits::sfinae
+  >
+  void save( Archive& archive ) const {
+    std::stringstream ss;
+    tag.Print( ss );
+
+    archive(
+      cereal::make_nvp("operation", library_t::GetOpName(op_code) ),
+      CEREAL_NVP( args ),
+      cereal::make_nvp("bitstring", ss.str() )
+    );
+
+  }
+
+  // binary input/output
+  template<
+    typename Archive,
+    cereal::traits::DisableIf<cereal::traits::is_text_archive<Archive>::value>
+    = cereal::traits::sfinae
+  >
+  void serialize( Archive& archive ) {
+    archive(
+      CEREAL_NVP( op_code ),
+      CEREAL_NVP( args ),
+      CEREAL_NVP( tag )
+    );
   }
 
 };

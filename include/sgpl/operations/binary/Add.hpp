@@ -19,6 +19,8 @@ struct Add {
     core.registers[a] = core.registers[b] + core.registers[c];
   }
 
+  static std::string name() { return "Add"; }
+
 };
 
 } // namespace sgpl

@@ -33,6 +33,9 @@ struct Terminal {
     core.registers[ inst.args[0] ] = val;
 
   }
+
+  static std::string name() { return "Terminal"; }
+
 };
 
 } // namespace sgpl

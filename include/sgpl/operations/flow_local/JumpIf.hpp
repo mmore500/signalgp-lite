@@ -21,6 +21,8 @@ struct JumpIf {
     }
   }
 
+  static std::string name() { return "local::JumpIf"; }
+
 };
 
 } // namespace local

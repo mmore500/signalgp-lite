@@ -18,6 +18,9 @@ struct Negate {
     core.registers[ inst.args[0] ] = -core.registers[ inst.args[0] ];
   }
 
+  static std::string name() { return "Negate"; }
+
+
 };
 
 } // namespace sgpl

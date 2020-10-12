@@ -29,6 +29,8 @@ struct Modulo {
     }
   }
 
+  static std::string name() { return "Modulo"; }
+
 };
 
 } // namespace sgpl

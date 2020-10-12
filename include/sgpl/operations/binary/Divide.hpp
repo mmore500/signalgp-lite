@@ -22,6 +22,8 @@ struct Divide {
     }
   }
 
+  static std::string name() { return "Divide"; }
+
 };
 
 } // namespace sgpl

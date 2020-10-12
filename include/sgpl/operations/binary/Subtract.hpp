@@ -19,6 +19,8 @@ struct Subtract {
     core.registers[a] = core.registers[b] - core.registers[c];
   }
 
+  static std::string name() { return "Subtract"; }
+
 };
 
 } // namespace sgpl

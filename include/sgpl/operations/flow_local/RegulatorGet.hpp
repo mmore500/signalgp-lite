@@ -31,6 +31,8 @@ struct RegulatorGet {
 
   }
 
+  static std::string name() { return "local::RegulatorGet"; }
+
 };
 
 } // namespace local

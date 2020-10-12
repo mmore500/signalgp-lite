@@ -21,6 +21,8 @@ struct JumpIfNot {
     }
   }
 
+  static std::string name() { return "local::JumpIfNot"; }
+
 };
 
 } // namespace local

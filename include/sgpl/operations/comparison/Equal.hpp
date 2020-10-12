@@ -19,6 +19,8 @@ struct Equal {
     core.registers[a] = core.registers[b] == core.registers[c];
   }
 
+  static std::string name() { return "Equal"; }
+
 };
 
 } // namespace sgpl

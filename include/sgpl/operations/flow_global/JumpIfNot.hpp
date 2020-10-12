@@ -22,6 +22,8 @@ struct JumpIfNot {
     if ( !core.registers[ inst.args[1] ] ) core.ResetRegisters();
   }
 
+  static std::string name() { return "global::JumpIfNot"; }
+
 };
 
 } // namespace global

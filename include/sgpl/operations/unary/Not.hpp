@@ -18,6 +18,8 @@ struct Not {
     core.registers[ inst.args[0] ] = !core.registers[ inst.args[0] ];
   }
 
+  static std::string name() { return "Not"; }
+
 };
 
 } // namespace sgpl

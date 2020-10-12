@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cstddef>
 
+#include "../../../third-party/cereal/include/cereal/types/vector.hpp"
 #include "../../../third-party/Empirical/source/base/vector.h"
 #include "../../../third-party/Empirical/source/tools/Random.h"
 

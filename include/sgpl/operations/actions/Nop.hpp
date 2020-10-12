@@ -16,6 +16,8 @@ struct Nop {
     typename Spec::peripheral_t&
   ) { ; }
 
+  static std::string name() { return "Nop"; }
+
 };
 
 } // namespace sgpl

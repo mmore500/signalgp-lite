@@ -28,6 +28,8 @@ struct RegulatorAdj {
 
   }
 
+  static std::string name() { return "local::RegulatorAdj"; }
+
 };
 
 } // namespace local

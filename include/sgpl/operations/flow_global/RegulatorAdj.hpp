@@ -30,6 +30,8 @@ struct RegulatorAdj {
 
   }
 
+  static std::string name() { return "global::RegulatorAdj"; }
+
 };
 
 } // namespace global
