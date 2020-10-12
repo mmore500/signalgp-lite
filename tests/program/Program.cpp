@@ -1,6 +1,9 @@
+#include <fstream>
+
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
+#include "cereal/include/cereal/archives/binary.hpp"
 #include "cereal/include/cereal/archives/json.hpp"
 #include "Empirical/source/tools/Random.h"
 
@@ -19,8 +22,48 @@ TEST_CASE("Test Program") {
     100
   };
 
-  cereal::JSONOutputArchive archive( std::cout );
+}
 
-  archive( program );
+template<typename InArchive, typename OutArchive>
+void DoSerializationTest(const std::string& filename) {
+
+  emp::Random rand;
+
+  sgpl::Program<spec_t> original{
+    rand,
+    100
+  };
+
+  std::ofstream os(filename);
+
+  { OutArchive archive( os ); archive( original ); }
+
+  os.close();
+
+  std::ifstream is(filename);
+
+  sgpl::Program<spec_t> reconstituted;
+
+  { InArchive archive( is ); archive( reconstituted ); }
+
+  REQUIRE( reconstituted == original );
+
+  os.close();
+}
+
+TEST_CASE("Test Program Binary Serialization") {
+
+  DoSerializationTest<cereal::BinaryInputArchive, cereal::BinaryOutputArchive>(
+    "program.bin"
+  );
+
+}
+
+
+TEST_CASE("Test Program Text Serialization") {
+
+  DoSerializationTest<cereal::JSONInputArchive, cereal::JSONOutputArchive>(
+    "program.json"
+  );
 
 }

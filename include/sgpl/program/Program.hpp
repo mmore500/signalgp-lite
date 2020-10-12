@@ -14,6 +14,8 @@ namespace sgpl {
 template<typename Spec>
 struct Program : public emp::vector<sgpl::Instruction<Spec>> {
 
+  Program() = default;
+
   Program( emp::Random& rand, const size_t n ) {
     std::generate_n(
       std::back_inserter( *this ),

@@ -2,8 +2,10 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <tuple>
 
 #include "../../../third-party/cereal/include/cereal/cereal.hpp"
+#include "../../../third-party/cereal/include/cereal/archives/json.hpp"
 #include "../../../third-party/cereal/include/cereal/types/string.hpp"
 #include "../../../third-party/Empirical/source/base/array.h"
 #include "../../../third-party/Empirical/source/tools/BitSet.h"
@@ -36,6 +38,12 @@ struct Instruction {
     emp_assert( library_t::GetSize() < 256 );
   }
 
+  bool operator==(const Instruction& other) const {
+    return (
+      std::tuple{ op_code, args, tag }
+      == std::tuple{ other.op_code, other.args, other.tag }
+    );
+  }
 
   // human-readable output
   template<
@@ -91,5 +99,12 @@ struct Instruction {
   }
 
 };
+
+template<typename Spec>
+std::ostream& operator<<(std::ostream& os, const Instruction<Spec>& inst) {
+  cereal::JSONOutputArchive archive{ os };
+  archive( inst );
+  return os;
+}
 
 } // namespace sgpl
