@@ -7,21 +7,63 @@
 #include "../../../third-party/Empirical/source/base/vector.h"
 #include "../../../third-party/Empirical/source/tools/Random.h"
 
+#include "../algorithm/mutate_bytes.hpp"
+#include "../utility/ThreadLocalRandom.hpp"
+
 #include "Instruction.hpp"
+#include "OpCodeRectifier.hpp"
 
 namespace sgpl {
 
 template<typename Spec>
-struct Program : public emp::vector<sgpl::Instruction<Spec>> {
+class Program : public emp::vector<sgpl::Instruction<Spec>> {
+
+  using parent_t = emp::vector<sgpl::Instruction<Spec>>;
+  using library_t = typename Spec::library_t;
+  using rectifier_t = sgpl::OpCodeRectifier<library_t>;
+
+  size_t size_bytes() const {
+    return this->size() * sizeof( typename parent_t::value_type );
+  }
+
+  void Rectify(const rectifier_t& rectifier=rectifier_t{}) {
+    for (auto& inst : *this) inst.Rectify(rectifier);
+  }
+
+public:
 
   Program() = default;
 
-  Program( emp::Random& rand, const size_t n ) {
-    std::generate_n(
-      std::back_inserter( *this ),
-      n,
-      [&rand](){ return sgpl::Instruction<Spec>{ rand }; }
+  Program( const size_t n ) : parent_t( n ) {
+    sgpl::ThreadLocalRandom::Get().RandFill(
+      reinterpret_cast<unsigned char*>( this->data() ),
+      size_bytes()
     );
+    Rectify();
+  }
+
+  size_t Perturb(
+    const float p_byte_scramble, const rectifier_t& rectifier=rectifier_t{}
+  ) {
+
+    // TODO optimize?
+    const size_t n_muts = sgpl::ThreadLocalRandom::Get().GetApproxRandBinomial(
+      size_bytes(),
+      p_byte_scramble
+    );
+
+    sgpl::mutate_bytes(
+      std::span<std::byte>(
+        reinterpret_cast<std::byte*>( this->data() ),
+        size_bytes()
+      ),
+      n_muts
+    );
+
+    Rectify();
+
+    return n_muts;
+
   }
 
 

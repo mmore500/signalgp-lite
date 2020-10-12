@@ -18,7 +18,7 @@ TEST_CASE("Test execute_cpu") {
   emp::Random rand;
 
   sgpl::Cpu<spec_t> cpu;
-  sgpl::Program<spec_t> program{ rand, 100 };
+  sgpl::Program<spec_t> program{ 100 };
   cpu.InitializeAnchors( program );
 
   REQUIRE( cpu.GetNumBusyCores() == 0 );

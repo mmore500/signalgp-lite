@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstddef>
+
 #include "../../../third-party/Empirical/source/tools/Random.h"
 
 namespace sgpl {
@@ -8,9 +10,25 @@ class ThreadLocalRandom {
 
   inline static thread_local emp::Random rand{};
 
+  inline static uint32_t cache{ rand.GetUInt() };
+
+  inline static std::byte* cache_ptr{reinterpret_cast<std::byte*>( &cache )};
+
+  inline static size_t cache_pos{};
+
 public:
 
   static emp::Random& Get() { return rand; }
+
+  static std::byte GetByte() {
+    const auto res { cache_ptr[cache_pos] };
+    ++cache_pos;
+    if ( cache_pos == sizeof( cache ) ) {
+      cache_pos %= sizeof( cache );
+      cache = rand.GetUInt();
+    }
+    return res;
+  }
 
 };
 

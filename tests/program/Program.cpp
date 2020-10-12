@@ -7,32 +7,19 @@
 #include "cereal/include/cereal/archives/json.hpp"
 #include "Empirical/source/tools/Random.h"
 
+#include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/config/Spec.hpp"
+#include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/program/Program.hpp"
 
 using spec_t = sgpl::Spec<>;
-
-TEST_CASE("Test Program") {
-
-  emp::Random rand;
-
-  // TODO flesh out stub test
-  sgpl::Program<spec_t> program{
-    rand,
-    100
-  };
-
-}
 
 template<typename InArchive, typename OutArchive>
 void DoSerializationTest(const std::string& filename) {
 
   emp::Random rand;
 
-  sgpl::Program<spec_t> original{
-    rand,
-    100
-  };
+  sgpl::Program<spec_t> original{ 100 };
 
   std::ofstream os(filename);
 
@@ -65,5 +52,34 @@ TEST_CASE("Test Program Text Serialization") {
   DoSerializationTest<cereal::JSONInputArchive, cereal::JSONOutputArchive>(
     "program.json"
   );
+
+}
+
+TEST_CASE("Program Perturbation") {
+
+  const sgpl::Program<spec_t> original{ 100 };
+
+  auto copy = original;
+
+  REQUIRE( copy == original );
+
+  REQUIRE( 0 == copy.Perturb( 0.0f ) );
+
+  REQUIRE( copy == original );
+
+  REQUIRE( 0 < copy.Perturb( 0.05f ) );
+
+  REQUIRE( copy != original );
+
+  // did rectification work?
+  sgpl::Cpu<spec_t> cpu;
+  cpu.InitializeAnchors( copy );
+
+  REQUIRE( cpu.TryLaunchCore() );
+  REQUIRE( cpu.TryLaunchCore() );
+  REQUIRE( cpu.TryLaunchCore() );
+
+  // TODO flesh out stub test
+  sgpl::execute_cpu<spec_t>( std::mega::num, cpu, copy );
 
 }

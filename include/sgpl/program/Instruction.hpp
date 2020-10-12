@@ -6,10 +6,13 @@
 
 #include "../../../third-party/cereal/include/cereal/cereal.hpp"
 #include "../../../third-party/cereal/include/cereal/archives/json.hpp"
+#include "../../../third-party/cereal/include/cereal/types/array.hpp"
 #include "../../../third-party/cereal/include/cereal/types/string.hpp"
 #include "../../../third-party/Empirical/source/base/array.h"
 #include "../../../third-party/Empirical/source/tools/BitSet.h"
 #include "../../../third-party/Empirical/source/tools/Random.h"
+
+#include "OpCodeRectifier.hpp"
 
 namespace sgpl {
 
@@ -17,26 +20,21 @@ template<typename Spec>
 struct Instruction {
 
   using library_t = typename Spec::library_t;
+  using rectifier_t = sgpl::OpCodeRectifier<library_t>;
 
   unsigned char op_code;
 
-  emp::array<unsigned char, 3> args;
+  std::array<unsigned char, 3> args;
 
   emp::BitSet<32> tag;
 
   Instruction() = default;
 
-  Instruction(emp::Random& rand)
-  : op_code( rand.GetUInt( library_t::GetSize() ) )
-  , tag( rand )
-  {
-    std::generate(
-      std::begin( args ),
-      std::end( args ),
-      [&rand](){ return rand.GetUInt( Spec::num_registers ); }
-    );
-    emp_assert( library_t::GetSize() < 256 );
-  }
+  void RectifyArgs() { for (auto& arg : args) arg %= Spec::num_registers; }
+
+  void RectifyOpCode(const rectifier_t& r) { op_code = r.Rectify(op_code); }
+
+  void Rectify(const rectifier_t& r) { RectifyArgs(); RectifyOpCode(r); }
 
   bool operator==(const Instruction& other) const {
     return (

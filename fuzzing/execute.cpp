@@ -22,7 +22,7 @@ emp::Random rng;
 void fuzz_one() {
 
   sgpl::Cpu<spec_t> cpu;
-  sgpl::Program<spec_t> program{ rng, 100 };
+  sgpl::Program<spec_t> program{ 100 };
   cpu.InitializeAnchors( program );
 
   for ( [[maybe_unused]] auto j : timekeeper_t{ std::chrono::seconds{ 1 } }) {

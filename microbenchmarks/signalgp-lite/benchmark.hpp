@@ -20,7 +20,7 @@ static void DoBench(benchmark::State& state) {
 
   emp::Random rand;
 
-  sgpl::Program<spec_t> program{ rand, 100 };
+  sgpl::Program<spec_t> program{ 100 };
 
   emp::vector<sgpl::Cpu<spec_t>> collection( NUM_AGENTS );
   for (auto& cpu : collection) {
