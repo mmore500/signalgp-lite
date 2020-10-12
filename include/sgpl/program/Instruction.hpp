@@ -55,6 +55,27 @@ struct Instruction {
 
   }
 
+  // human-readable input
+  template<
+    typename Archive,
+    cereal::traits::EnableIf<cereal::traits::is_text_archive<Archive>::value>
+    = cereal::traits::sfinae
+  >
+  void load( Archive& archive ) {
+    std::string op_name;
+    std::string bitstring;
+
+    archive(
+      cereal::make_nvp( "operation", op_name ),
+      CEREAL_NVP( args ),
+      cereal::make_nvp( "bitstring", bitstring )
+    );
+
+    op_code = library_t::GetOpCode( op_name );
+    tag = emp::BitSet<32>( bitstring );
+
+  }
+
   // binary input/output
   template<
     typename Archive,
