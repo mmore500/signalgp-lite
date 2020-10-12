@@ -18,9 +18,9 @@ class Cpu {
 
   size_t active_core_idx{};
 
-  sgpl::JumpTable<Spec> global_jump_table;
+  sgpl::JumpTable<Spec, typename Spec::global_matching_t> global_jump_table;
 
-  using tag_t = typename sgpl::JumpTable<Spec>::tag_t;
+  using tag_t = typename Spec::tag_t;
 
 public:
 

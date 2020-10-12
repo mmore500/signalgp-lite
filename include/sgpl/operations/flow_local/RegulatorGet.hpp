@@ -19,10 +19,7 @@ struct RegulatorGet {
     typename Spec::peripheral_t&
   ) {
 
-    for ( const auto uid : core.GetLocalJumpTable().MatchRaw(
-      inst.tag,
-      std::numeric_limits<size_t>::max()
-    ) ) {
+    for ( const auto uid : core.GetLocalJumpTable().MatchRaw(inst.tag) ) {
       // (+) values down regulate
       // (-) values up regulate
       core.registers[ inst.args[0] ]

@@ -1,7 +1,11 @@
 #pragma once
 
-#include "../../../third-party/Empirical/source/tools/MatchBin.h"
-#include "../../../third-party/Empirical/source/tools/matchbin_utils.h"
+#include <type_traits>
+
+#include "../../../third-party/Empirical/source/matching/MatchDepository.h"
+#include "../../../third-party/Empirical/source/matching/selectors_static/RankedSelector.h"
+#include "../../../third-party/Empirical/source/matching/regulators/PlusCountdownRegulator.h"
+#include "../../../third-party/Empirical/source/tools/matchbin_metrics.h"
 
 #include "../library/prefab/CompleteOpLibrary.hpp"
 #include "../utility/EmptyType.hpp"
@@ -18,12 +22,27 @@ struct Spec {
 
   using peripheral_t = Peripheral;
 
-  using match_bin_t = emp::MatchBin<
-    sgpl::EmptyType,
+  using global_matching_t = emp::MatchDepository<
+    unsigned short,
     emp::HammingMetric<32>,
-    emp::RankedSelector<std::ratio<16+8, 16>>,
-    emp::AdditiveCountdownRegulator<>
+    emp::statics::RankedSelector<std::ratio<1, 2>>,
+    emp::PlusCountdownRegulator<>,
+    8
   >;
+
+  using local_matching_t = emp::MatchDepository<
+    unsigned short,
+    emp::HammingMetric<32>,
+    emp::statics::RankedSelector<std::ratio<1, 2>>,
+    emp::PlusCountdownRegulator<>,
+    0
+  >;
+
+  using tag_t = typename global_matching_t::tag_t;
+
+  static_assert( std::is_same<
+    typename global_matching_t::tag_t, typename local_matching_t::tag_t
+  >::value );
 
   static constexpr inline size_t num_cores{ 16 };
 
