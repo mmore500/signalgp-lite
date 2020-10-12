@@ -7,7 +7,7 @@ CFLAGS_all := -pipe -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/ -Iinclud
 
 # Native compiler information
 CXX ?= g++
-CFLAGS_nat := -O3 -DNDEBUG -flto -march=native  $(CFLAGS_all)
+CFLAGS_nat := -O3 -ffast-math -DNDEBUG -flto -march=native  $(CFLAGS_all)
 CFLAGS_nat_debug := -g $(CFLAGS_all)
 
 # Emscripten compiler information
