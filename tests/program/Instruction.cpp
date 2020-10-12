@@ -10,11 +10,7 @@ using spec_t = sgpl::Spec<>;
 
 TEST_CASE("Test Instruction") {
 
-  emp::Random rand;
-
   // TODO flesh out stub test
   sgpl::Instruction<spec_t>{};
-
-  sgpl::Instruction<spec_t>{ rand };
 
 }

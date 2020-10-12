@@ -28,8 +28,6 @@ struct Instruction {
 
   emp::BitSet<32> tag;
 
-  Instruction() = default;
-
   void RectifyArgs() { for (auto& arg : args) arg %= Spec::num_registers; }
 
   void RectifyOpCode(const rectifier_t& r) { op_code = r.Rectify(op_code); }
