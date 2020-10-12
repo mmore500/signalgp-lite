@@ -68,6 +68,13 @@ jobs:
     - ci_env=`bash <(curl -s https://codecov.io/env)`
     - sudo docker run $ci_env -e CXX mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
 
+  - name: Fuzzing
+    install:
+    - docker build -t mmore500/signalgp-lite .
+    - docker ps -a
+    script:
+    - sudo docker run $ci_env -e CXX -e OSF_PASSWORD -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/fuzing && make && make opt"
+
   - name: Microbenchmarks
     env: CXX=clang++
     install:
