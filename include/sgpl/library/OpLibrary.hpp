@@ -59,8 +59,8 @@ struct OpLibrary : public std::tuple<Ops...> {
     return decltype( lookup_table )::GetOpName( op_code );
   }
 
-  static std::string GetOpCode(const size_t op_code) {
-    return lookup_table.GetOpCode( op_code );
+  static unsigned char GetOpCode(const std::string& op_name) {
+    return lookup_table.GetOpCode( op_name );
   }
 
 };
