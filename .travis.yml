@@ -81,7 +81,7 @@ jobs:
     - docker build -t mmore500/signalgp-lite .
     - docker ps -a
     script:
-    - sudo docker run $ci_env -e CXX -e OSF_PASSWORD -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
+    - sudo docker run -e CXX -e OSF_PASSWORD -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
 
   - name: Source (clang)
     env: CXX=clang++
