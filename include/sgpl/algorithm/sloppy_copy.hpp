@@ -7,7 +7,7 @@
 
 namespace sgpl {
 
-  template< typename T >
+  template< typename T , size_t TemplatedInstance=0 >
   emp::vector<T> sloppy_copy(
     const emp::vector<T>& original,
     const float p_defect,
