@@ -1,6 +1,6 @@
 #pragma once
 #ifndef SGPL_OPERATIONS_FLOW_GLOBAL_FLOW_GLOBAL_HPP_INCLUDE
-
+#define SGPL_OPERATIONS_FLOW_GLOBAL_FLOW_GLOBAL_HPP_INCLUDE
 
 #include "Anchor.hpp"
 #include "JumpIf.hpp"
