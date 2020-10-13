@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_PROGRAM_PROGRAM_HPP_INCLUDE
+#define SGPL_PROGRAM_PROGRAM_HPP_INCLUDE
 
 #include <algorithm>
 #include <cstddef>
@@ -70,3 +72,5 @@ public:
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_PROGRAM_PROGRAM_HPP_INCLUDE

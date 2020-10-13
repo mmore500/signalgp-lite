@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_FLOW_GLOBAL_REGULATORSET_HPP_INCLUDE
+#define SGPL_OPERATIONS_FLOW_GLOBAL_REGULATORSET_HPP_INCLUDE
 
 #include <limits>
 
@@ -36,3 +38,5 @@ struct RegulatorSet {
 
 } // namespace global
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_FLOW_GLOBAL_REGULATORSET_HPP_INCLUDE

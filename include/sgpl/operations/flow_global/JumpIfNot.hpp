@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_FLOW_GLOBAL_JUMPIFNOT_HPP_INCLUDE
+#define SGPL_OPERATIONS_FLOW_GLOBAL_JUMPIFNOT_HPP_INCLUDE
+
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -28,3 +31,5 @@ struct JumpIfNot {
 
 } // namespace global
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_FLOW_GLOBAL_JUMPIFNOT_HPP_INCLUDE

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_PROGRAM_INSTRUCTION_HPP_INCLUDE
+#define SGPL_PROGRAM_INSTRUCTION_HPP_INCLUDE
 
 #include <algorithm>
 #include <cstddef>
@@ -104,3 +106,5 @@ std::ostream& operator<<(std::ostream& os, const Instruction<Spec>& inst) {
 }
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_PROGRAM_INSTRUCTION_HPP_INCLUDE

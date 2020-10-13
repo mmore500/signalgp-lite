@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_ALGORITHM_SLOPPY_COPY_HPP_INCLUDE
+#define SGPL_ALGORITHM_SLOPPY_COPY_HPP_INCLUDE
 
 #include "../../../third-party/Empirical/source/base/vector.h"
 #include "../../../third-party/Empirical/source/tools/Distribution.h"
@@ -49,4 +51,6 @@ namespace sgpl {
 
   }
 
-}
+} // namespace sgpl
+
+#endif // #ifndef SGPL_ALGORITHM_SLOPPY_COPY_HPP_INCLUDE

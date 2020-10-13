@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_HARDWARE_CORE_HPP_INCLUDE
+#define SGPL_HARDWARE_CORE_HPP_INCLUDE
 
 #include <limits>
 
@@ -98,3 +100,5 @@ public:
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_HARDWARE_CORE_HPP_INCLUDE

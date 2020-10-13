@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_FLOW_LOCAL_REGULATORADJ_HPP_INCLUDE
+#define SGPL_OPERATIONS_FLOW_LOCAL_REGULATORADJ_HPP_INCLUDE
 
 #include <limits>
 
@@ -34,3 +36,5 @@ struct RegulatorAdj {
 
 } // namespace local
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_FLOW_LOCAL_REGULATORADJ_HPP_INCLUDE

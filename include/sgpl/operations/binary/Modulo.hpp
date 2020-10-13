@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_BINARY_MODULO_HPP_INCLUDE
+#define SGPL_OPERATIONS_BINARY_MODULO_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -34,3 +36,5 @@ struct Modulo {
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_BINARY_MODULO_HPP_INCLUDE

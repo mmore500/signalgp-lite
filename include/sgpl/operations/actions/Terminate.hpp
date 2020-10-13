@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_ACTIONS_TERMINATE_HPP_INCLUDE
+#define SGPL_OPERATIONS_ACTIONS_TERMINATE_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -23,3 +25,5 @@ struct Terminate {
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_ACTIONS_TERMINATE_HPP_INCLUDE

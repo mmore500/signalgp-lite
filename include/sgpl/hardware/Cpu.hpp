@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_HARDWARE_CPU_HPP_INCLUDE
+#define SGPL_HARDWARE_CPU_HPP_INCLUDE
 
 #include "../../../third-party/Empirical/source/base/optional.h"
 
@@ -123,3 +125,5 @@ public:
 
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_HARDWARE_CPU_HPP_INCLUDE

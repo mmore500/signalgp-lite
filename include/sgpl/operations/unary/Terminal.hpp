@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE
+#define SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE
 
 #include <ratio>
 
@@ -39,3 +41,5 @@ struct Terminal {
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE

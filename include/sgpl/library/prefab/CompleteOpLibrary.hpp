@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_LIBRARY_PREFAB_COMPLETEOPLIBRARY_HPP_INCLUDE
+#define SGPL_LIBRARY_PREFAB_COMPLETEOPLIBRARY_HPP_INCLUDE
 
 #include "../../operations/operations.hpp"
 
@@ -39,3 +41,5 @@ using CompleteOpLibrary = sgpl::OpLibrary<
 >;
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_LIBRARY_PREFAB_COMPLETEOPLIBRARY_HPP_INCLUDE

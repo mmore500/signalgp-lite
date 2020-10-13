@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_BINARY_ADD_HPP_INCLUDE
+#define SGPL_OPERATIONS_BINARY_ADD_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -24,3 +26,5 @@ struct Add {
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_BINARY_ADD_HPP_INCLUDE

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_UTILITY_THREADLOCALRANDOM_HPP_INCLUDE
+#define SGPL_UTILITY_THREADLOCALRANDOM_HPP_INCLUDE
 
 #include <cstddef>
 
@@ -34,3 +36,5 @@ public:
 
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_UTILITY_THREADLOCALRANDOM_HPP_INCLUDE

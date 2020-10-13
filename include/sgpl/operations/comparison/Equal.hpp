@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_COMPARISON_EQUAL_HPP_INCLUDE
+#define SGPL_OPERATIONS_COMPARISON_EQUAL_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -24,3 +26,5 @@ struct Equal {
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_COMPARISON_EQUAL_HPP_INCLUDE

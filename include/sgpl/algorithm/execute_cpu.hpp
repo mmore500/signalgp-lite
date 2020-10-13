@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_ALGORITHM_EXECUTE_CPU_HPP_INCLUDE
+#define SGPL_ALGORITHM_EXECUTE_CPU_HPP_INCLUDE
 
 #include <tuple>
 
@@ -45,3 +47,5 @@ void execute_cpu(
 }
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_ALGORITHM_EXECUTE_CPU_HPP_INCLUDE

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_FLOW_LOCAL_JUMPIF_HPP_INCLUDE
+#define SGPL_OPERATIONS_FLOW_LOCAL_JUMPIF_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -27,3 +29,5 @@ struct JumpIf {
 
 } // namespace local
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_FLOW_LOCAL_JUMPIF_HPP_INCLUDE

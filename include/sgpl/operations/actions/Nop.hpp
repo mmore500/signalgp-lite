@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_ACTIONS_NOP_HPP_INCLUDE
+#define SGPL_OPERATIONS_ACTIONS_NOP_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -21,3 +23,5 @@ struct Nop {
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_ACTIONS_NOP_HPP_INCLUDE

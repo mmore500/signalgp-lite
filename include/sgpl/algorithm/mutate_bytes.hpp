@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_ALGORITHM_MUTATE_BYTES_HPP_INCLUDE
+#define SGPL_ALGORITHM_MUTATE_BYTES_HPP_INCLUDE
 
 #include <cstddef>
 
@@ -27,3 +29,5 @@ void mutate_bytes(const std::span<std::byte> target, const size_t num_muts) {
 
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_ALGORITHM_MUTATE_BYTES_HPP_INCLUDE

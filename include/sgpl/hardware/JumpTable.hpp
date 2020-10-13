@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_HARDWARE_JUMPTABLE_HPP_INCLUDE
+#define SGPL_HARDWARE_JUMPTABLE_HPP_INCLUDE
 
 #include "../program/Program.hpp"
 #include "../utility/EmptyType.hpp"
@@ -72,3 +74,5 @@ struct JumpTable {
 
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_HARDWARE_JUMPTABLE_HPP_INCLUDE

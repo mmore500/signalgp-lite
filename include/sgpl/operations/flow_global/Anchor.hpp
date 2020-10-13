@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_FLOW_GLOBAL_ANCHOR_HPP_INCLUDE
+#define SGPL_OPERATIONS_FLOW_GLOBAL_ANCHOR_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -29,3 +31,5 @@ struct Anchor {
 
 } // namespace global
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_FLOW_GLOBAL_ANCHOR_HPP_INCLUDE

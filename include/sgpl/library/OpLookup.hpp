@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_LIBRARY_OPLOOKUP_HPP_INCLUDE
+#define SGPL_LIBRARY_OPLOOKUP_HPP_INCLUDE
 
 #include <unordered_map>
 
@@ -62,3 +64,5 @@ public:
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_LIBRARY_OPLOOKUP_HPP_INCLUDE

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_LIBRARY_OPLIBRARY_HPP_INCLUDE
+#define SGPL_LIBRARY_OPLIBRARY_HPP_INCLUDE
 
 #include <tuple>
 
@@ -66,3 +68,5 @@ struct OpLibrary : public std::tuple<Ops...> {
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_LIBRARY_OPLIBRARY_HPP_INCLUDE

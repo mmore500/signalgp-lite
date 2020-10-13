@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_PROGRAM_OPCODERECTIFIER_HPP_INCLUDE
+#define SGPL_PROGRAM_OPCODERECTIFIER_HPP_INCLUDE
 
 #include <algorithm>
 
@@ -28,3 +30,5 @@ public:
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_PROGRAM_OPCODERECTIFIER_HPP_INCLUDE

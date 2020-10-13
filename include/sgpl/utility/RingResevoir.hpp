@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_UTILITY_RINGRESEVOIR_HPP_INCLUDE
+#define SGPL_UTILITY_RINGRESEVOIR_HPP_INCLUDE
 
 #include <numeric>
 #include <utility>
@@ -87,3 +89,5 @@ public:
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_UTILITY_RINGRESEVOIR_HPP_INCLUDE

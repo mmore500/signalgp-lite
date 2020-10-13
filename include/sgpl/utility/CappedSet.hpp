@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_UTILITY_CAPPEDSET_HPP_INCLUDE
+#define SGPL_UTILITY_CAPPEDSET_HPP_INCLUDE
 
 #include <utility>
 
@@ -79,3 +81,5 @@ public:
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_UTILITY_CAPPEDSET_HPP_INCLUDE

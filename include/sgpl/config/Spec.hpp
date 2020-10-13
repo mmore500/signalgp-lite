@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_CONFIG_SPEC_HPP_INCLUDE
+#define SGPL_CONFIG_SPEC_HPP_INCLUDE
 
 #include <type_traits>
 
@@ -58,3 +60,5 @@ struct Spec {
 };
 
 } // namespace sgpl
+
+#endif // #ifndef SGPL_CONFIG_SPEC_HPP_INCLUDE

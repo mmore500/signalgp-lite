@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SGPL_OPERATIONS_FLOW_LOCAL_JUMPIFNOT_HPP_INCLUDE
+#define SGPL_OPERATIONS_FLOW_LOCAL_JUMPIFNOT_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -27,3 +29,5 @@ struct JumpIfNot {
 
 } // namespace local
 } // namespace sgpl
+
+#endif // #ifndef SGPL_OPERATIONS_FLOW_LOCAL_JUMPIFNOT_HPP_INCLUDE
