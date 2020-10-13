@@ -16,8 +16,13 @@ struct Divide {
     typename Spec::peripheral_t&
   ) {
     const size_t a = inst.args[0], b = inst.args[1], c = inst.args[2];
-    core.registers[a] = core.registers[b] / core.registers[c];
+
+    if ( core.registers[c] ) { // disallow division by zero
+      core.registers[a] = core.registers[b] / core.registers[c];
+    }
   }
+
+  static std::string name() { return "Divide"; }
 
 };
 

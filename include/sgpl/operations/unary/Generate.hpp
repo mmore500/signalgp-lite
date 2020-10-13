@@ -18,6 +18,9 @@ struct Generate {
   ) {
     core.registers[ inst.args[0] ] = sgpl::ThreadLocalRandom::Get().GetDouble();
   }
+
+  static std::string name() { return "Generate"; }
+
 };
 
 } // namespace sgpl

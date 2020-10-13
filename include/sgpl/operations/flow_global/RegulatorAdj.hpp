@@ -19,10 +19,7 @@ struct RegulatorAdj {
     typename Spec::peripheral_t&
   ) {
 
-    for ( const auto uid : core.GetGlobalJumpTable().MatchRaw(
-      inst.tag,
-      std::numeric_limits<size_t>::max()
-    ) ) {
+    for ( const auto uid : core.GetGlobalJumpTable().MatchRaw(inst.tag) ) {
       // (+) values down regulate
       // (-) values up regulate
       core.GetGlobalJumpTable().SetRegulator(
@@ -32,6 +29,8 @@ struct RegulatorAdj {
     }
 
   }
+
+  static std::string name() { return "global::RegulatorAdj"; }
 
 };
 

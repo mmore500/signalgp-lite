@@ -10,15 +10,15 @@ namespace sgpl {
 template<typename T, size_t N>
 class CappedSet {
 
-  emp::array<T, N> data;
+  emp::array<T, N> buffer;
 
   size_t size_{};
 
 public:
 
-  T& operator[]( const size_t pos ) { return data[pos]; }
+  T& operator[]( const size_t pos ) { return buffer[pos]; }
 
-  const T& operator[]( const size_t pos ) const { return data[pos]; }
+  const T& operator[]( const size_t pos ) const { return buffer[pos]; }
 
   bool try_push_back( const T& value ) {
     if ( !full() ) {
@@ -34,9 +34,11 @@ public:
     } else return false;
   }
 
-  void push_back( const T& value ) { data[size()] = value; ++size_; }
+  void push_back( const T& value ) { buffer[size()] = value; ++size_; }
 
-  void push_back( T&& value ) { data[size()] = std::move( value ); ++size_; }
+  void push_back( T&& value ) { buffer[size()] = std::move( value ); ++size_; }
+
+  void push_back() { ++size_; }
 
   void clear() { size_ = 0; }
 
@@ -57,9 +59,9 @@ public:
    return operator[](size() - 1);
  };
 
-  T& front() { return data.front(); };
+  T& front() { return buffer.front(); };
 
-  const T& front()  const { return data.front(); };
+  const T& front()  const { return buffer.front(); };
 
   void erase( const size_t pos ) {
     operator[](pos) = std::move( back() );

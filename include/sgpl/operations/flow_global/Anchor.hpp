@@ -23,6 +23,8 @@ struct Anchor {
     } else core.LoadLocalAnchors( program );
   }
 
+  static std::string name() { return "global::Anchor"; }
+
 };
 
 } // namespace global

@@ -10,10 +10,9 @@ from iterpop import iterpop as ip
 def facet(df):
     return sns.FacetGrid(
         df,
-        col='Overloaded',
-        row='Mesh',
+        col='Library',
         margin_titles="true",
-        sharex=False,
+        sharey=False,
     )
 
 
@@ -21,7 +20,7 @@ def draw_plots(measurement, df):
 
     facet(df).map(
         sns.barplot,
-        'Threads',
+        'num agents',
         measurement,
         'Implementation',
         hue_order=sorted(df['Implementation'].unique()),
@@ -31,7 +30,6 @@ def draw_plots(measurement, df):
     plt.savefig(
       kn.pack({
         'measurement' : slugify(measurement),
-        'time_type' : ip.pophomogeneous(df['time_type']),
         'ext' : '.png',
       }),
       transparent=True,
@@ -43,7 +41,7 @@ def draw_plots(measurement, df):
     for showfliers in True, False:
         facet(df).map(
             sns.boxplot,
-            'Threads',
+            'num agents',
             measurement,
             'Implementation',
             hue_order=sorted(df['Implementation'].unique()),
@@ -55,7 +53,6 @@ def draw_plots(measurement, df):
           kn.pack({
             'fliers' : showfliers,
             'measurement' : slugify(measurement),
-            'time_type' : ip.pophomogeneous(df['time_type']),
             'ext' : '.png',
           }),
           transparent=True,
@@ -73,12 +70,10 @@ df = pd.read_csv(filename)
 for k, v in kn.unpack(filename).items():
     df[k] = v
 
-df['Overloaded'] = (df['Threads'] > nproc)
+df = df.astype({ 'num agents' : int })
 
 for measurement in [
         'Wall Nanoseconds',
         'CPU Nanoseconds',
-        'Latency',
-        'Lossiness',
     ]:
         draw_plots(measurement, df)

@@ -18,6 +18,8 @@ struct Terminate {
     core.Terminate();
   }
 
+  static std::string name() { return "Terminate"; }
+
 };
 
 } // namespace sgpl

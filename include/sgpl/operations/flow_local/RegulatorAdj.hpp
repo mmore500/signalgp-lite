@@ -19,10 +19,7 @@ struct RegulatorAdj {
     typename Spec::peripheral_t&
   ) {
 
-    for ( const auto uid : core.GetLocalJumpTable().MatchRaw(
-      inst.tag,
-      std::numeric_limits<size_t>::max()
-    ) ) {
+    for ( const auto uid : core.GetLocalJumpTable().MatchRaw(inst.tag) ) {
       core.GetLocalJumpTable().AdjRegulator(
         uid,
         core.registers[ inst.args[0] ]
@@ -30,6 +27,8 @@ struct RegulatorAdj {
     }
 
   }
+
+  static std::string name() { return "local::RegulatorAdj"; }
 
 };
 

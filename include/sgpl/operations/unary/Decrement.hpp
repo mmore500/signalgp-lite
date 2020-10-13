@@ -18,6 +18,8 @@ struct Decrement {
     --core.registers[ inst.args[0] ];
   }
 
+  static std::string name() { return "Decrement"; }
+
 };
 
 } // namespace sgpl

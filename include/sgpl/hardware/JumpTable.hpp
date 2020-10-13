@@ -1,61 +1,72 @@
 #pragma once
 
-#include "../../../third-party/Empirical/source/tools/MatchBin.h"
-#include "../../../third-party/Empirical/source/tools/matchbin_utils.h"
-
-#include "../hardware/JumpTable.hpp"
 #include "../utility/EmptyType.hpp"
 #include "../program/Program.hpp"
 
 namespace sgpl {
 
-using match_bin_t = emp::MatchBin<
-  sgpl::EmptyType,
-  emp::StreakMetric<32>,
-  emp::RankedSelector<std::ratio<16+8, 16>>,
-  emp::AdditiveCountdownRegulator<>
->;
+template<typename Spec, typename Impl>
+struct JumpTable {
 
-template<typename Spec>
-struct JumpTable : public match_bin_t  {
+  Impl match_bin;
 
-  using tag_t = match_bin_t::query_t;
-
+  using tag_t = typename Impl::query_t;
   using library_t = typename Spec::library_t;
+  using program_t = sgpl::Program<Spec>;
 
-  // inherit parent's constructors
-  using match_bin_t::match_bin_t;
+  inline auto MatchRaw( const tag_t & query ) {
+    return match_bin.MatchRaw(query);
+  }
 
-  void InitializeLocalAnchors(
-    const sgpl::Program<Spec>& program,
-    const size_t start_position
-  ) {
-    this->Clear();
+  inline auto MatchRegulated( const tag_t & query ) {
+    return match_bin.MatchRegulated(query);
+  }
+
+  inline void SetRegulator( const uid_t uid, const double set ) {
+    match_bin.SetRegulator(uid, set);
+  }
+
+  inline void AdjRegulator( const uid_t uid, const double set ) {
+    match_bin.AdjRegulator(uid, set);
+  }
+
+  inline double ViewRegulator(const uid_t uid) {
+    return match_bin.ViewRegulator(uid);
+  }
+
+  inline auto GetVal(const uid_t uid) const { return match_bin.GetVal( uid ); }
+
+  inline void Clear() { match_bin.Clear(); }
+
+  inline size_t GetSize() const { return match_bin.GetSize(); }
+
+  void InitializeLocalAnchors(const program_t& prog, const size_t start_pos) {
+    Clear();
+    const size_t prog_len{ prog.size() };
     for (
-      size_t pos = (start_position + 1) % program.size();
-      pos != start_position
-        && !library_t::IsAnchorGlobalOpCode( program[pos].op_code )
+      size_t pos = (start_pos + 1) % prog_len;
+      pos != start_pos
+        && !library_t::IsAnchorGlobalOpCode( prog[pos].op_code )
       ;
-      ++pos %= program.size()
+      ++pos %= prog_len
     ) {
-      const auto& instruction = program[pos];
-      if ( library_t::IsAnchorLocalOpCode( program[pos].op_code ) ) {
-        this->Set( {}, instruction.tag, pos ); // store pos as UID
+      const auto& instruction = prog[pos];
+      if ( library_t::IsAnchorLocalOpCode( prog[pos].op_code ) ) {
+        match_bin.Put( pos, instruction.tag );
       }
 
     }
   }
 
   void InitializeGlobalAnchors(const sgpl::Program<Spec>& program) {
-    this->Clear();
+    Clear();
     for (size_t pos{}; pos < program.size(); ++pos) {
       const auto& instruction = program[pos];
       if ( library_t::IsAnchorGlobalOpCode( instruction.op_code ) ) {
-        this->Set( {}, instruction.tag, pos ); // store pos as UID
+        match_bin.Put( pos, instruction.tag );
       }
     }
   }
-
 
 };
 

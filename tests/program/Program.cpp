@@ -1,21 +1,85 @@
+#include <fstream>
+
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
+#include "cereal/include/cereal/archives/binary.hpp"
+#include "cereal/include/cereal/archives/json.hpp"
 #include "Empirical/source/tools/Random.h"
 
+#include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/config/Spec.hpp"
+#include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/program/Program.hpp"
 
 using spec_t = sgpl::Spec<>;
 
-TEST_CASE("Test Program") {
+template<typename InArchive, typename OutArchive>
+void DoSerializationTest(const std::string& filename) {
 
   emp::Random rand;
 
+  sgpl::Program<spec_t> original{ 100 };
+
+  std::ofstream os(filename);
+
+  { OutArchive archive( os ); archive( original ); }
+
+  os.close();
+
+  std::ifstream is(filename);
+
+  sgpl::Program<spec_t> reconstituted;
+
+  { InArchive archive( is ); archive( reconstituted ); }
+
+  REQUIRE( reconstituted == original );
+
+  os.close();
+}
+
+TEST_CASE("Test Program Binary Serialization") {
+
+  DoSerializationTest<cereal::BinaryInputArchive, cereal::BinaryOutputArchive>(
+    "program.bin"
+  );
+
+}
+
+
+TEST_CASE("Test Program Text Serialization") {
+
+  DoSerializationTest<cereal::JSONInputArchive, cereal::JSONOutputArchive>(
+    "program.json"
+  );
+
+}
+
+TEST_CASE("Program Perturbation") {
+
+  const sgpl::Program<spec_t> original{ 100 };
+
+  auto copy = original;
+
+  REQUIRE( copy == original );
+
+  REQUIRE( 0 == copy.Perturb( 0.0f ) );
+
+  REQUIRE( copy == original );
+
+  REQUIRE( 0 < copy.Perturb( 0.05f ) );
+
+  REQUIRE( copy != original );
+
+  // did rectification work?
+  sgpl::Cpu<spec_t> cpu;
+  cpu.InitializeAnchors( copy );
+
+  REQUIRE( cpu.TryLaunchCore() );
+  REQUIRE( cpu.TryLaunchCore() );
+  REQUIRE( cpu.TryLaunchCore() );
+
   // TODO flesh out stub test
-  sgpl::Program<spec_t>{
-    rand,
-    100
-  };
+  sgpl::execute_cpu<spec_t>( std::mega::num, cpu, copy );
 
 }

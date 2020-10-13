@@ -9,6 +9,6 @@ using spec_t = sgpl::Spec<>;
 TEST_CASE("Test JumpTable") {
 
   // TODO flesh out stub test
-  sgpl::JumpTable<spec_t>{};
+  sgpl::JumpTable<spec_t, typename spec_t::global_matching_t>{};
 
 }

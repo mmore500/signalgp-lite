@@ -12,25 +12,26 @@
 namespace sgpl {
 
 template<typename Spec>
-inline void execute_cpu(
+void execute_cpu(
   const size_t cycles,
   sgpl::Cpu<Spec>& state,
   const sgpl::Program<Spec>& program,
   typename Spec::peripheral_t& peripheral
 ) {
 
-  for (size_t i{}; i < cycles && state.GetNumCores(); ++i) {
+  for (size_t i{}; i < cycles && state.HasActiveCore(); ++i) {
 
-    sgpl::Core<Spec>& core{ state.GetActiveCore() };
+    auto& core = state.GetActiveCore();
     execute_core<Spec>(core, program, peripheral);
     if ( core.HasTerminated() ) state.KillActiveCore();
-    else state.ActivateNextCore();
+
+    state.TryActivateNextCore();
   }
 
 }
 
 template<typename Spec=sgpl::Spec<>>
-inline void execute_cpu(
+void execute_cpu(
   const size_t cycles,
   sgpl::Cpu<Spec>& state,
   const sgpl::Program<Spec>& program
@@ -39,13 +40,7 @@ inline void execute_cpu(
   using peripheral_t = typename Spec::peripheral_t;
   peripheral_t peripheral;
 
-  for (size_t i{}; i < cycles && state.GetNumCores(); ++i) {
-
-    sgpl::Core<Spec>& core{ state.GetActiveCore() };
-    execute_core<Spec>(core, program, peripheral);
-    if ( core.HasTerminated() ) state.KillActiveCore();
-    else state.ActivateNextCore();
-  }
+  execute_cpu<Spec>( cycles, state, program, peripheral );
 
 }
 

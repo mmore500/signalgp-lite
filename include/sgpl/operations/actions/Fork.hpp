@@ -18,6 +18,8 @@ struct Fork {
     core.RequestFork( inst.tag );
   }
 
+  static std::string name() { return "Fork"; }
+
 };
 
 } // namespace sgpl

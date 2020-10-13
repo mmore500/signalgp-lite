@@ -5,12 +5,20 @@
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_index.hpp"
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_has_type.hpp"
 
+#include "../utility/ByteEnumeration.hpp"
+
+#include "OpLookup.hpp"
+
 namespace sgpl {
 
 template<typename... Ops>
 struct OpLibrary : public std::tuple<Ops...> {
 
   using op_library_parent_t = std::tuple<Ops...>;
+
+  using this_t = sgpl::OpLibrary<Ops...>;
+
+  inline static sgpl::OpLookup<this_t> lookup_table;
 
   constexpr static bool IsAnchorLocalOpCode(const size_t op_code) {
     if constexpr (
@@ -47,6 +55,13 @@ struct OpLibrary : public std::tuple<Ops...> {
   template<size_t I>
   using Operation = typename std::tuple_element<I, op_library_parent_t>::type;
 
+  static std::string GetOpName(const size_t op_code) {
+    return decltype( lookup_table )::GetOpName( op_code );
+  }
+
+  static unsigned char GetOpCode(const std::string& op_name) {
+    return lookup_table.GetOpCode( op_name );
+  }
 
 };
 

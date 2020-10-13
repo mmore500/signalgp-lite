@@ -15,32 +15,39 @@ class Core {
 
   size_t program_counter{};
 
-  sgpl::JumpTable<Spec> local_jump_table;
+  sgpl::JumpTable<Spec, typename Spec::local_matching_t> local_jump_table;
 
-  sgpl::JumpTable<Spec>* global_jump_table; // non-owning ptr
+  // non-owning ptr
+  sgpl::JumpTable<Spec, typename Spec::global_matching_t>* global_jump_table{};
 
-  using tag_t = typename sgpl::JumpTable<Spec>::tag_t;
+  using tag_t = typename Spec::tag_t;
 
 public:
 
   Core() = default;
 
-  Core( sgpl::JumpTable<Spec>& global_jump_table_ )
-  : global_jump_table(&global_jump_table_)
+  Core(
+    sgpl::JumpTable<Spec, typename Spec::global_matching_t>& global_jump_table_
+  ) : global_jump_table(&global_jump_table_)
   { ; }
 
   emp::array<float, Spec::num_registers> registers{}; // value initialize
 
   sgpl::CappedSet<tag_t, Spec::num_fork_requests> fork_requests{};
 
-  void Terminate() { program_counter = std::numeric_limits<size_t>::max(); };
+  inline void Terminate() {
+    program_counter = std::numeric_limits<size_t>::max();
+  };
 
-  bool HasTerminated() const {
+  __attribute__ ((hot))
+  inline bool HasTerminated() const {
     return program_counter == std::numeric_limits<size_t>::max();
   }
 
-  size_t GetProgramCounter() const { return program_counter; }
+  __attribute__ ((hot))
+  inline size_t GetProgramCounter() const { return program_counter; }
 
+  __attribute__ ((hot))
   void AdvanceProgramCounter(const size_t program_length) {
     // equivalent to
     // if ( HasTerminated() == false ) {
@@ -53,34 +60,40 @@ public:
     program_counter -= has_termianted;
   }
 
-  bool HasLocalAnchors() const { return local_jump_table.Size(); }
+  inline bool HasLocalAnchors() const { return local_jump_table.GetSize(); }
 
-  void LoadLocalAnchors( const sgpl::Program<Spec>& program ) {
+  inline void LoadLocalAnchors( const sgpl::Program<Spec>& program ) {
     emp_assert( ! HasLocalAnchors() );
     local_jump_table.InitializeLocalAnchors( program, GetProgramCounter() );
   }
 
   void JumpToGlobalAnchorMatch(const tag_t& query) {
-    const auto res { global_jump_table->Match(query) };
-    if ( res.size() ) program_counter = res.front();
+    const auto res { global_jump_table->MatchRegulated(query) };
+    if ( res.size() ) program_counter = global_jump_table->GetVal(res.front());
     else Terminate();
     local_jump_table.Clear();
   }
 
   void JumpToLocalAnchorMatch(const tag_t& query) {
-    const auto res { local_jump_table.Match(query) };
-    if ( res.size() ) program_counter = res.front();
+    const auto res { local_jump_table.MatchRegulated(query) };
+    if ( res.size() ) program_counter = local_jump_table.GetVal( res.front() );
   }
 
-  sgpl::JumpTable<Spec>& GetLocalJumpTable() { return local_jump_table; }
+  inline auto& GetLocalJumpTable() { return local_jump_table; }
 
-  sgpl::JumpTable<Spec>& GetGlobalJumpTable() { return *global_jump_table; }
+  inline auto& GetGlobalJumpTable() { return *global_jump_table; }
 
   bool RequestFork(const tag_t& tag) {
     return fork_requests.try_push_back( tag );
   }
 
   void ResetRegisters() { registers.fill( {} ); }
+
+  void Reset() {
+    fork_requests.clear();
+    ResetRegisters();
+    local_jump_table.Clear();
+  }
 
 };
 

@@ -3,10 +3,11 @@
 #include "conduit/include/uitsl/debug/benchmark_utils.hpp"
 #include "Empirical/source/tools/string_utils.h"
 
+constexpr bool fill_cores = false;
+
 #include "_BenchHolder.hpp"
 #include "_Inst_Loop.hpp"
 #include "_SignalGP.hpp"
-
 
 inst_lib_t inst_lib;
 event_lib_t event_lib;
@@ -55,10 +56,10 @@ struct SetupA {
 } setup_a;
 
 
-BenchHolder<1> bench1{ program, inst_lib, event_lib };
-BenchHolder<32> bench32{ program, inst_lib, event_lib };
-BenchHolder<1024> bench1024{ program, inst_lib, event_lib };
-BenchHolder<32768> bench32768{ program, inst_lib, event_lib };
+BenchHolder<1> bench1{ [](){ return program; }, inst_lib, event_lib };
+BenchHolder<32> bench32{ [](){ return program; }, inst_lib, event_lib };
+BenchHolder<1024> bench1024{ [](){ return program; }, inst_lib, event_lib };
+BenchHolder<32768> bench32768{ [](){ return program; }, inst_lib, event_lib };
 
 template<size_t NUM_AGENTS>
 void Register(BenchHolder<NUM_AGENTS>& holder) {
@@ -69,7 +70,7 @@ void Register(BenchHolder<NUM_AGENTS>& holder) {
     [&](benchmark::State& state){ holder.Run(state); }
   );
 
-  uitsl::report_confidence( res );
+  uitsl::report_confidence<50>( res );
 
 }
 

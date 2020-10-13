@@ -18,6 +18,8 @@ struct Increment {
     ++core.registers[ inst.args[0] ];
   }
 
+  static std::string name() { return "Increment"; }
+
 };
 
 } // namespace sgpl

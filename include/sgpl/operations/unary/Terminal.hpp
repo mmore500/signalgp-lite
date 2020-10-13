@@ -24,14 +24,18 @@ struct Terminal {
   ) {
     constexpr double max = static_cast<double>(MaxRatio::num) / MaxRatio::den;
     constexpr double min = static_cast<double>(MinRatio::num) / MinRatio::den;
+    constexpr double max_double = decltype(inst.tag)::MaxDouble();
 
     const auto& tag = inst.tag;
 
-    const double val = (tag.GetDouble() / tag.MaxDouble()) * (max - min) - min;
+    const double val = (tag.GetDouble() / max_double) * (max - min) - min;
 
     core.registers[ inst.args[0] ] = val;
 
   }
+
+  static std::string name() { return "Terminal"; }
+
 };
 
 } // namespace sgpl

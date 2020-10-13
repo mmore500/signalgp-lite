@@ -22,6 +22,8 @@ struct JumpIf {
     if ( core.registers[ inst.args[1] ] ) core.ResetRegisters();
   }
 
+  static std::string name() { return "global::JumpIf"; }
+
 };
 
 } // namespace global

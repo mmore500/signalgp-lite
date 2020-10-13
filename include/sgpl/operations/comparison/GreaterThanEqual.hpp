@@ -19,6 +19,8 @@ struct GreaterThanEqual {
     core.registers[a] = core.registers[b] >= core.registers[c];
   }
 
+  static std::string name() { return "GreaterThanEqual"; }
+
 };
 
 } // namespace sgpl

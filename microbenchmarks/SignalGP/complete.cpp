@@ -5,10 +5,11 @@
 
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
+constexpr bool fill_cores = true;
+
 #include "_BenchHolder.hpp"
 #include "_Inst_Loop.hpp"
 #include "_SignalGP.hpp"
-
 
 inst_lib_t inst_lib;
 event_lib_t event_lib;
@@ -105,28 +106,32 @@ struct SetupA {
       "Terminal", sgp::inst_impl::Inst_Terminal<signalgp_t, inst_t>, ""
     );
 
-    emp::Random rand;
-
-    program = sgp::GenRandLinearFunctionsProgram<signalgp_t, 32>(
-      rand,
-      inst_lib,
-      {5, 5}, // num functions
-      1, // num func tags
-      {20, 20}, // num instructions
-      1, // num inst tags
-      3, // num inst args
-      {0, 5}
-    );
-
   }
 
 } setup_a;
 
 
-BenchHolder<1> bench1{ program, inst_lib, event_lib };
-BenchHolder<32> bench32{ program, inst_lib, event_lib };
-BenchHolder<1024> bench1024{ program, inst_lib, event_lib };
-BenchHolder<32768> bench32768{ program, inst_lib, event_lib };
+program_t MakeProgram() {
+
+  emp::Random rand;
+
+  return sgp::GenRandLinearFunctionsProgram<signalgp_t, 32>(
+    rand,
+    inst_lib,
+    {1, 1}, // num functions
+    1, // num func tags
+    {100, 100}, // num instructions
+    1, // num inst tags
+    3, // num inst args
+    {0, 5}
+  );
+
+}
+
+BenchHolder<1> bench1{ MakeProgram, inst_lib, event_lib };
+BenchHolder<32> bench32{ MakeProgram, inst_lib, event_lib };
+BenchHolder<1024> bench1024{ MakeProgram, inst_lib, event_lib };
+BenchHolder<32768> bench32768{ MakeProgram, inst_lib, event_lib };
 
 template<size_t NUM_AGENTS>
 void Register(BenchHolder<NUM_AGENTS>& holder) {
@@ -137,10 +142,9 @@ void Register(BenchHolder<NUM_AGENTS>& holder) {
     [&](benchmark::State& state){ holder.Run(state); }
   );
 
-  uitsl::report_confidence( res );
+  uitsl::report_confidence<20>( res );
 
 }
-
 
 struct SetupB {
 
