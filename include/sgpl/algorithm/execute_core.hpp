@@ -5,8 +5,8 @@
 #include "../../../third-party/Empirical/source/base/macros.h"
 
 #include "../hardware/Core.hpp"
-#include "../program/Program.hpp"
 #include "../program/Instruction.hpp"
+#include "../program/Program.hpp"
 #include "../utility/ByteEnumeration.hpp"
 
 namespace sgpl {

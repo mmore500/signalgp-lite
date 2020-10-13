@@ -1,15 +1,15 @@
 #pragma once
 
 #include "SignalGP/source/hardware/SignalGP/EventLibrary.h"
-#include "SignalGP/source/hardware/SignalGP/SignalGPBase.h"
-#include "SignalGP/source/hardware/SignalGP/impls/SignalGPToy.h"
-#include "SignalGP/source/hardware/SignalGP/impls/SignalGPLinearProgram.h"
 #include "SignalGP/source/hardware/SignalGP/impls/SignalGPLinearFunctionsProgram.h"
+#include "SignalGP/source/hardware/SignalGP/impls/SignalGPLinearProgram.h"
+#include "SignalGP/source/hardware/SignalGP/impls/SignalGPToy.h"
+#include "SignalGP/source/hardware/SignalGP/SignalGPBase.h"
 #include "SignalGP/source/hardware/SignalGP/utils/InstructionLibrary.h"
-#include "SignalGP/source/hardware/SignalGP/utils/linear_program_instructions_impls.h"
-#include "SignalGP/source/hardware/SignalGP/utils/linear_functions_program_instructions_impls.h"
-#include "SignalGP/source/hardware/SignalGP/utils/MemoryModel.h"
 #include "SignalGP/source/hardware/SignalGP/utils/LinearFunctionsProgram.h"
+#include "SignalGP/source/hardware/SignalGP/utils/linear_functions_program_instructions_impls.h"
+#include "SignalGP/source/hardware/SignalGP/utils/linear_program_instructions_impls.h"
+#include "SignalGP/source/hardware/SignalGP/utils/MemoryModel.h"
 #include "SignalGP/source/random_utils.h"
 
 using mem_model_t = sgp::SimpleMemoryModel;

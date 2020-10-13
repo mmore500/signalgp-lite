@@ -2,8 +2,8 @@
 
 #include <tuple>
 
-#include "../../../third-party/conduit/include/uitsl/meta/tuple_index.hpp"
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_has_type.hpp"
+#include "../../../third-party/conduit/include/uitsl/meta/tuple_index.hpp"
 
 #include "../utility/ByteEnumeration.hpp"
 

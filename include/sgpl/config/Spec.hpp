@@ -3,8 +3,8 @@
 #include <type_traits>
 
 #include "../../../third-party/Empirical/source/matching/MatchDepository.h"
-#include "../../../third-party/Empirical/source/matching/selectors_static/RankedSelector.h"
 #include "../../../third-party/Empirical/source/matching/regulators/PlusCountdownRegulator.h"
+#include "../../../third-party/Empirical/source/matching/selectors_static/RankedSelector.h"
 #include "../../../third-party/Empirical/source/tools/matchbin_metrics.h"
 
 #include "../library/prefab/CompleteOpLibrary.hpp"

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../utility/EmptyType.hpp"
 #include "../program/Program.hpp"
+#include "../utility/EmptyType.hpp"
 
 namespace sgpl {
 
