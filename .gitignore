@@ -18,6 +18,7 @@
 .DS_Store
 a.out
 a.out.js
+web/signalgp-lite.js
 
 build/
 doc/_build/
