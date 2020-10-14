@@ -12,11 +12,96 @@
 <!-- Check out the live in-browser web app at <https://mmore500.github.io/signalgp-lite>. -->
 
 -   Free software: MIT license
--   Documentation: <https://signalgp-lite.readthedocs.io>.
+-   Documentation: <https://signalgp-lite.readthedocs.io>
+-   header-only, namespace-encapsulated software
 
 A genetic programming implementation designed for large-scale artificial life applications.
 Organized as a header-only C++ library.
 Inspired by [Alex Lalejini](http://lalejini.com/)'s [SignalGP](https://github.com/amlalejini/signalgp).
+
+## Quick Start
+
+This "hello world" example throws together
+* a custom hardware peripheral to manage greeting information,
+* a custom operation to print a greeting, and
+* generation of a random program,
+* execution of that random program on a virtual multi-core CPU.
+
+`say-hello.cpp`:
+```cpp
+#include <iostream>
+#include <ratio>
+#include <string>
+
+#include "Empirical/source/tools/Random.h"
+
+#include "sgpl/algorithm/execute_cpu.hpp"
+#include "sgpl/config/Spec.hpp"
+#include "sgpl/hardware/Cpu.hpp"
+#include "sgpl/library/OpLibraryCoupler.hpp"
+#include "sgpl/library/prefab/ControlFlowOpLibrary.hpp"
+#include "sgpl/program/Program.hpp"
+
+emp::Random rng;
+
+// custom hardware peripheral, can be written to or read from during execution
+struct Peripheral {
+  size_t greet_count{};
+  std::string name;
+};
+
+// custom CPU operation
+struct SayHello {
+
+  template<typename Spec>
+  static void run(
+    sgpl::Core<Spec>&,
+    const sgpl::Instruction<Spec>&,
+    const sgpl::Program<Spec>&,
+    typename Spec::peripheral_t& peripheral
+  ) {
+    std::cout << "for the " << peripheral.greet_count++ << "th time... ";
+    std::cout << "hello there " << peripheral.name << std::endl;
+  }
+
+  static std::string name() { return "SayHello"; }
+
+};
+
+// extends prefab ControlFlowOpLibrary with SayHello operation
+using library_t = sgpl::OpLibraryCoupler<sgpl::ControlFlowOpLibrary, SayHello>;
+
+// custom compile-time configurator type
+using spec_t = sgpl::Spec<library_t, Peripheral>;
+
+int main() {
+
+  sgpl::Cpu<spec_t> cpu;
+  Peripheral peripheral;
+  peripheral.name = "Grace Hopper";
+
+  sgpl::Program<spec_t> program{ 100 }; // randomly generated, 100 instructions
+
+  cpu.InitializeAnchors( program ); // load program onto CPU
+
+  // generate random signals to launch available virtual cores
+  while ( cpu.TryLaunchCore( emp::BitSet<32>(rng) ) ) ;
+
+  // execute up to one thousand instructions
+  sgpl::execute_cpu<spec_t>( std::kilo::num, cpu, program, peripheral );
+
+}
+```
+
+compile:
+```bash
+g++ --std=c++17 -Iinclude/ -Ithird-party/ say-hello.cpp -o say-hello.out
+```
+
+run:
+```bash
+./say-hello.out
+```
 
 ## Benchmarks
 
