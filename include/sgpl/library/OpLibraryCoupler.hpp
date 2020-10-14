@@ -5,6 +5,8 @@
 #include <tuple>
 #include <utility>
 
+#include "OpLibrary.hpp"
+
 namespace sgpl {
 
 namespace internal {
