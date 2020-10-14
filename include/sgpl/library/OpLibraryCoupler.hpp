@@ -2,8 +2,8 @@
 #ifndef SGPL_LIBRARY_OPLIBRARYCOUPLER_HPP_INCLUDE
 #define SGPL_LIBRARY_OPLIBRARYCOUPLER_HPP_INCLUDE
 
-#include <utility>
 #include <tuple>
+#include <utility>
 
 namespace sgpl {
 

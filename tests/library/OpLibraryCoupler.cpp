@@ -3,8 +3,8 @@
 
 #include "Empirical/source/tools/Random.h"
 
-#include "sgpl/library/prefab/CompleteOpLibrary.hpp"
 #include "sgpl/library/OpLibraryCoupler.hpp"
+#include "sgpl/library/prefab/CompleteOpLibrary.hpp"
 
 struct ExampleOp {
 
