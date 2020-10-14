@@ -1,4 +1,6 @@
-
+#pragma once
+#ifndef SGPL_LIBRARY_OPLIBRARYCOUPLER_HPP_INCLUDE
+#define SGPL_LIBRARY_OPLIBRARYCOUPLER_HPP_INCLUDE
 
 #include <utility>
 #include <tuple>
@@ -27,5 +29,6 @@ class OpLibraryCoupler
 ) >::type
 {};
 
-
 } //namespace sgpl
+
+#endif // #ifndef SGPL_LIBRARY_OPLIBRARYCOUPLER_HPP_INCLUDE
