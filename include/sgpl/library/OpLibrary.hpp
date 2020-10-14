@@ -7,6 +7,8 @@
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_has_type.hpp"
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_index.hpp"
 
+#include "../operations/flow_global/Anchor.hpp"
+#include "../operations/flow_local/Anchor.hpp"
 #include "../utility/ByteEnumeration.hpp"
 
 #include "OpLookup.hpp"
