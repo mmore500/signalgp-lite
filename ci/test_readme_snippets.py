@@ -15,6 +15,6 @@ for snippet, __ in exdown.extract('README.md', syntax_filter='cpp'):
             file.write(snippet)
 
         audited_execute(
-            f'g++ --std=c++17 -Iinclude/ -Ithird-party/ say-hello.cpp -o {out}'
+            f'g++ --std=c++17 -Iinclude/ -Ithird-party/ {source} -o {out}'
         )
         audited_execute(f'{out}')
