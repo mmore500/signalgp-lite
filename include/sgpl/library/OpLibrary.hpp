@@ -16,7 +16,7 @@ namespace sgpl {
 template<typename... Ops>
 struct OpLibrary : public std::tuple<Ops...> {
 
-  using op_library_parent_t = std::tuple<Ops...>;
+  using parent_t = std::tuple<Ops...>;
 
   using this_t = sgpl::OpLibrary<Ops...>;
 
@@ -24,11 +24,11 @@ struct OpLibrary : public std::tuple<Ops...> {
 
   constexpr static bool IsAnchorLocalOpCode(const size_t op_code) {
     if constexpr (
-      uitsl::tuple_has_type<sgpl::local::Anchor, op_library_parent_t>::value
+      uitsl::tuple_has_type<sgpl::local::Anchor, parent_t>::value
     ) {
 
       constexpr size_t anchor_local_op_code
-        = uitsl::tuple_index<sgpl::local::Anchor, op_library_parent_t>::value;
+        = uitsl::tuple_index<sgpl::local::Anchor, parent_t>::value;
       return op_code == anchor_local_op_code;
 
     } else return false;
@@ -39,11 +39,11 @@ struct OpLibrary : public std::tuple<Ops...> {
   constexpr static bool IsAnchorGlobalOpCode(const size_t op_code) {
 
     if constexpr (
-      uitsl::tuple_has_type<sgpl::global::Anchor, op_library_parent_t>::value
+      uitsl::tuple_has_type<sgpl::global::Anchor, parent_t>::value
     ) {
 
       constexpr size_t anchor_global_op_code
-        = uitsl::tuple_index<sgpl::global::Anchor, op_library_parent_t>::value;
+        = uitsl::tuple_index<sgpl::global::Anchor, parent_t>::value;
       return op_code == anchor_global_op_code;
 
     } else return false;
@@ -51,11 +51,11 @@ struct OpLibrary : public std::tuple<Ops...> {
   }
 
   constexpr static size_t GetSize() {
-    return std::tuple_size<op_library_parent_t>();
+    return std::tuple_size<parent_t>();
   }
 
   template<size_t I>
-  using Operation = typename std::tuple_element<I, op_library_parent_t>::type;
+  using Operation = typename std::tuple_element<I, parent_t>::type;
 
   static std::string GetOpName(const size_t op_code) {
     return decltype( lookup_table )::GetOpName( op_code );

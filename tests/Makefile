@@ -1,5 +1,6 @@
 TARGET_NAMES += algorithm
 TARGET_NAMES += hardware
+TARGET_NAMES += library
 TARGET_NAMES += operations
 TARGET_NAMES += program
 TARGET_NAMES += utility
