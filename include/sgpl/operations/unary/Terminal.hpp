@@ -30,7 +30,7 @@ struct Terminal {
 
     const auto& tag = inst.tag;
 
-    const double val = (tag.GetDouble() / max_double) * (max - min) - min;
+    const double val = (tag.GetDouble() / max_double) * (max - min) + min;
 
     core.registers[ inst.args[0] ] = val;
 
