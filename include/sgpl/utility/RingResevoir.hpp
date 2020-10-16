@@ -86,6 +86,12 @@ public:
 
   void Fill( const T& t ) { buffer.fill( t ); }
 
+  void Reset() {
+    tail_index = {};
+    num_items = {};
+    for (auto& val : buffer) val.Reset();
+  }
+
 };
 
 } // namespace sgpl

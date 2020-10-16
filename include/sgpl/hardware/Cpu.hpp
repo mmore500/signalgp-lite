@@ -117,7 +117,14 @@ public:
   __attribute__ ((hot))
   bool HasFreeCore() const { return GetNumFreeCores(); }
 
+  void Reset() {
+    scheduler.Reset();
+    active_core_idx = {};
+    global_jump_table.clear();
+  }
+
   void InitializeAnchors(const sgpl::Program<Spec>& program) {
+    Reset();
     global_jump_table.InitializeGlobalAnchors( program );
   }
 
