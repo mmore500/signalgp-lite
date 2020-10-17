@@ -120,7 +120,7 @@ public:
   void Reset() {
     scheduler.Reset();
     active_core_idx = {};
-    global_jump_table.clear();
+    global_jump_table.Clear();
   }
 
   void InitializeAnchors(const sgpl::Program<Spec>& program) {
