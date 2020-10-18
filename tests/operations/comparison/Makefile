@@ -1,6 +1,6 @@
-TEST_NAMES += Fork
-TEST_NAMES += Nop
-TEST_NAMES += Terminate
+TEST_NAMES += Equal
+TEST_NAMES += GreaterThanEqual
+TEST_NAMES += LessThanEqual
 
 TO_ROOT := $(shell git rev-parse --show-cdup)
 
