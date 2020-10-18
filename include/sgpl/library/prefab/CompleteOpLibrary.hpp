@@ -32,6 +32,7 @@ using CompleteOpLibrary = sgpl::OpLibrary<
   sgpl::local::RegulatorAdj,
   sgpl::local::RegulatorGet,
   sgpl::local::RegulatorSet,
+  sgpl::CoinFlip,
   sgpl::Decrement,
   sgpl::Generate,
   sgpl::Increment,

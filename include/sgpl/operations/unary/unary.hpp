@@ -2,6 +2,7 @@
 #ifndef SGPL_OPERATIONS_UNARY_UNARY_HPP_INCLUDE
 #define SGPL_OPERATIONS_UNARY_UNARY_HPP_INCLUDE
 
+#include "CoinFlip.hpp"
 #include "Decrement.hpp"
 #include "Generate.hpp"
 #include "Increment.hpp"
