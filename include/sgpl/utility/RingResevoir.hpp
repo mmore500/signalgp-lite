@@ -89,8 +89,9 @@ public:
   void Reset() {
     tail_index = {};
     num_items = {};
-    for (auto& val : buffer) val.Reset();
   }
+
+  emp::array<T, N>& GetBuffer() { return buffer; }
 
 };
 

@@ -2,6 +2,8 @@
 #ifndef SGPL_HARDWARE_CPU_HPP_INCLUDE
 #define SGPL_HARDWARE_CPU_HPP_INCLUDE
 
+#include <utility>
+
 #include "../../../third-party/Empirical/source/base/optional.h"
 
 #include "../utility/RingResevoir.hpp"
@@ -16,43 +18,71 @@ class Cpu {
 
   using core_t = sgpl::Core<Spec>;
 
-  sgpl::RingResevoir<core_t, Spec::num_cores> scheduler;
+  struct impl_ {
 
-  size_t active_core_idx{};
+    sgpl::RingResevoir<core_t, Spec::num_cores> scheduler;
 
-  sgpl::JumpTable<Spec, typename Spec::global_matching_t> global_jump_table;
+    size_t active_core_idx{};
+
+    sgpl::JumpTable<Spec, typename Spec::global_matching_t> global_jump_table;
+
+  } data;
 
   using tag_t = typename Spec::tag_t;
 
+  void RefreshCoreGlobalJumpTablePtrs() {
+    for (size_t i{}; i < data.scheduler.GetCapacity(); ++i) {
+      data.scheduler.GetBuffer()[i].SetGlobalJumpTable(data.global_jump_table);
+    }
+  }
+
 public:
 
-  Cpu() { scheduler.Fill( core_t{ global_jump_table } ); }
+  /// Default constructor.
+  Cpu() { RefreshCoreGlobalJumpTablePtrs(); }
+
+  /// Copy constructor.
+  Cpu(const Cpu& other) : data(other.data) { RefreshCoreGlobalJumpTablePtrs(); }
+
+  /// Move constructor.
+  Cpu(Cpu&& other) noexcept : data( std::move(other.data) ) {
+    RefreshCoreGlobalJumpTablePtrs();
+  }
+
+  /// Copy assignment operator.
+  Cpu& operator=(const Cpu& other) { return *this = Cpu(other); }
+
+  /// Move assignment operator.
+  Cpu& operator=(Cpu&& other) noexcept {
+    std::swap(data, other.data);
+    return *this;
+  }
 
   void ActivateNextCore() {
     emp_assert( GetNumBusyCores() );
-    ++active_core_idx %= GetNumBusyCores();
+    ++data.active_core_idx %= GetNumBusyCores();
   }
 
   bool TryActivateNextCore() {
     if ( HasActiveCore() ) { ActivateNextCore(); return true; }
-    else { emp_assert( active_core_idx == 0 ); return false; }
+    else { emp_assert( data.active_core_idx == 0 ); return false; }
   }
 
   void ActivatePrevCore() {
     emp_assert( GetNumBusyCores() );
-    active_core_idx += GetNumBusyCores() - 1;
-    active_core_idx %= GetNumBusyCores();
+    data.active_core_idx += GetNumBusyCores() - 1;
+    data.active_core_idx %= GetNumBusyCores();
   }
 
   bool TryActivatePrevCore() {
     if ( HasActiveCore() ) { ActivatePrevCore(); return true; }
-    else { emp_assert( active_core_idx == 0 ); return false; }
+    else { emp_assert( data.active_core_idx == 0 ); return false; }
   }
 
   __attribute__ ((hot))
   core_t& GetActiveCore() {
     emp_assert( HasActiveCore() );
-    return scheduler.Get( active_core_idx );
+    return data.scheduler.Get( data.active_core_idx );
   };
 
   void KillActiveCore() {
@@ -60,19 +90,19 @@ public:
     for ( const auto& req : GetActiveCore().fork_requests ) {
       if ( !TryLaunchCore(req) ) break;
     }
-    scheduler.Release(active_core_idx);
+    data.scheduler.Release(data.active_core_idx);
     TryActivatePrevCore();
   }
 
   void KillStaleCore() {
     emp_assert( !HasFreeCore() );
-    scheduler.ReleaseTail();
+    data.scheduler.ReleaseTail();
     // no need to activate prev core, killed core is idx 0
   }
 
   void DoLaunchCore() {
     emp_assert( HasFreeCore() );
-    auto& acquired = scheduler.Acquire();
+    auto& acquired = data.scheduler.Acquire();
     acquired.Reset();
   }
 
@@ -88,7 +118,7 @@ public:
 
   void DoLaunchCore( const tag_t& tag ) {
     emp_assert( HasFreeCore() );
-    auto& acquired = scheduler.Acquire();
+    auto& acquired = data.scheduler.Acquire();
     acquired.Reset();
     acquired.JumpToGlobalAnchorMatch( tag );
   }
@@ -103,13 +133,13 @@ public:
     DoLaunchCore( tag );
   }
 
-  size_t GetNumBusyCores() const { return scheduler.GetSize(); }
+  size_t GetNumBusyCores() const { return data.scheduler.GetSize(); }
 
   size_t GetNumFreeCores() const {
-    return scheduler.GetAvailableCapacity();
+    return data.scheduler.GetAvailableCapacity();
   }
 
-  size_t GetMaxCores() const { return scheduler.GetCapacity(); }
+  size_t GetMaxCores() const { return data.scheduler.GetCapacity(); }
 
   __attribute__ ((hot))
   bool HasActiveCore() const { return GetNumBusyCores(); }
@@ -118,14 +148,14 @@ public:
   bool HasFreeCore() const { return GetNumFreeCores(); }
 
   void Reset() {
-    scheduler.Reset();
-    active_core_idx = {};
-    global_jump_table.Clear();
+    data.scheduler.Reset();
+    data.active_core_idx = {};
+    data.global_jump_table.Clear();
   }
 
   void InitializeAnchors(const sgpl::Program<Spec>& program) {
     Reset();
-    global_jump_table.InitializeGlobalAnchors( program );
+    data.global_jump_table.InitializeGlobalAnchors( program );
   }
 
 };

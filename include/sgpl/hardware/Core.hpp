@@ -19,8 +19,8 @@ class Core {
 
   sgpl::JumpTable<Spec, typename Spec::local_matching_t> local_jump_table;
 
-  // non-owning ptr
-  sgpl::JumpTable<Spec, typename Spec::global_matching_t>* global_jump_table{};
+  using gjt_t = sgpl::JumpTable<Spec, typename Spec::global_matching_t>;
+  gjt_t* global_jump_table{}; // non-owning ptr
 
   using tag_t = typename Spec::tag_t;
 
@@ -96,6 +96,8 @@ public:
     ResetRegisters();
     local_jump_table.Clear();
   }
+
+  void SetGlobalJumpTable(gjt_t& j_table) { global_jump_table = &j_table; }
 
 };
 
