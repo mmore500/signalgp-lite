@@ -11,7 +11,14 @@ jobs:
   include:
   - stage: Tests
 
-    name: Unit Tests (clang, debug mode)
+    name: Docs, Miscellaneous
+    install:
+    - docker build -t mmore500/signalgp-lite .
+    - docker ps -a
+    script:
+    - sudo docker run mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && python3 ci/test_readme_snippets.py && make docs"
+
+  - name: Unit Tests (clang, debug mode)
     env: CXX=clang++
     install:
     - docker build -t mmore500/signalgp-lite .
@@ -98,13 +105,6 @@ jobs:
     - docker ps -a
     script:
     - sudo docker run -e CXX --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
-
-  - name: Docs, Miscellaneous
-    install:
-    - docker build -t mmore500/signalgp-lite .
-    - docker ps -a
-    script:
-    - sudo docker run mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && python3 ci/test_readme_snippets.py && make docs"
 
 
   - stage: Deploy
