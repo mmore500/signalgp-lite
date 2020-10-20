@@ -48,8 +48,12 @@ public:
     const float p_byte_scramble, const rectifier_t& rectifier=rectifier_t{}
   ) {
 
-    // TODO optimize?
-    const size_t n_muts = sgpl::ThreadLocalRandom::Get().GetRandBinomial(
+    // ideally, we would draw from the binomial distn,
+    // but that's expensive with varying n...
+    // so approximate with the poisson distribution instead
+    // they're similar-ish, e.g., https://www.researchgate.net/figure/Poisson-versus-binomial-distribution-from-number-of-heads-in-a-coin-toss-The-Poisson_fig3_255717571
+    // (they become more similar for large n)
+    const size_t n_muts = sgpl::ThreadLocalRandom::Get().GetRandPoisson(
       size_bytes(),
       p_byte_scramble
     );
