@@ -49,7 +49,7 @@ public:
   ) {
 
     // TODO optimize?
-    const size_t n_muts = sgpl::ThreadLocalRandom::Get().GetApproxRandBinomial(
+    const size_t n_muts = sgpl::ThreadLocalRandom::Get().GetRandBinomial(
       size_bytes(),
       p_byte_scramble
     );
