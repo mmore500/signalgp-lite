@@ -55,7 +55,7 @@ TEST_CASE("Test Program Text Serialization") {
 
 }
 
-TEST_CASE("Program Perturbation") {
+TEST_CASE("Program ApplyPointMutations") {
 
   const sgpl::Program<spec_t> original{ 100 };
 
@@ -63,11 +63,11 @@ TEST_CASE("Program Perturbation") {
 
   REQUIRE( copy == original );
 
-  REQUIRE( 0 == copy.Perturb( 0.0f ) );
+  REQUIRE( 0 == copy.ApplyPointMutations( 0.0f ) );
 
   REQUIRE( copy == original );
 
-  REQUIRE( 0 < copy.Perturb( 0.05f ) );
+  REQUIRE( 0 < copy.ApplyPointMutations( 0.05f ) );
 
   REQUIRE( copy != original );
 

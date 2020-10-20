@@ -44,7 +44,7 @@ public:
     Rectify();
   }
 
-  size_t Perturb(
+  size_t ApplyPointMutations(
     const float p_byte_scramble, const rectifier_t& rectifier=rectifier_t{}
   ) {
 
