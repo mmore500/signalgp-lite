@@ -9,7 +9,10 @@ TEST_CASE("Test sloppy_copy without mutation") {
   emp::vector<int> original( 100 );
   std::iota( std::begin( original ), std::end( original ), 0 );
 
-  REQUIRE( original == sgpl::sloppy_copy( original, 1.0f, 0 ) );
+  auto [copy, num_muts] = sgpl::sloppy_copy( original, 1.0f, 0 );
+
+  REQUIRE( original == copy );
+  REQUIRE( num_muts == 0 );
 
 }
 
@@ -18,10 +21,12 @@ TEST_CASE("Test sloppy_copy with mild mutation") {
   emp::vector<int> original( 100 );
   std::iota( std::begin( original ), std::end( original ), 0 );
 
-  emp::vector<int> copy = sgpl::sloppy_copy( original, 0.1f, 2 );
+  auto [copy, num_muts] = sgpl::sloppy_copy( original, 0.1f, 2 );
 
   REQUIRE( copy != original );
+  REQUIRE( num_muts > 0 );
 
+  // do all of the items in copy come from somewhere in the original?
   REQUIRE( std::all_of(
     std::begin( copy ),
     std::begin( copy ),
@@ -36,16 +41,17 @@ TEST_CASE("Test sloppy_copy with mild mutation") {
 
 }
 
-
 TEST_CASE("Test sloppy_copy with severe mutation") {
 
   emp::vector<int> original( 100 );
   std::iota( std::begin( original ), std::end( original ), 0 );
 
-  emp::vector<int> copy = sgpl::sloppy_copy( original, 0.1f, original.size() );
+  auto [copy, num_muts] = sgpl::sloppy_copy( original, 0.1f, original.size() );
 
   REQUIRE( copy != original );
+  REQUIRE( num_muts > 0 );
 
+  // do all of the items in copy come from somewhere in the original?
   REQUIRE( std::all_of(
     std::begin( copy ),
     std::begin( copy ),

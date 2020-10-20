@@ -2,6 +2,8 @@
 #ifndef SGPL_ALGORITHM_SLOPPY_COPY_HPP_INCLUDE
 #define SGPL_ALGORITHM_SLOPPY_COPY_HPP_INCLUDE
 
+#include <tuple>
+
 #include "../../../third-party/Empirical/source/base/vector.h"
 #include "../../../third-party/Empirical/source/tools/Distribution.h"
 
@@ -9,15 +11,24 @@
 
 namespace sgpl {
 
+  template <typename T>
+  using sloppy_copy_res_t = std::tuple<
+    emp::vector<T>,
+    size_t // cumulative num sites inserted and/or deleted
+  >;
+
   template< typename T , size_t TemplatedInstance=0 >
-  emp::vector<T> sloppy_copy(
+  sgpl::sloppy_copy_res_t<T> sloppy_copy(
     const emp::vector<T>& original,
     const float p_defect,
     const size_t defect_bound
   ) {
 
-    emp::vector<T> res;
-    res.reserve( original.size() );
+    sloppy_copy_res_t< T > res{};
+    auto& res_vector = std::get<0>(res);
+    auto& cumulative_insertion_deletion = std::get<1>(res);
+
+    std::get<0>(res).reserve( original.size() );
 
     // TODO cache based on p_defect
     thread_local emp::NegativeBinomial neg_bino( p_defect, 1 );
@@ -29,21 +40,23 @@ namespace sgpl {
 
     // if we wanted to make the process uniform across a circular genome,
     // then we would draw this from [0, original.size())
-    const size_t offset = 0;
+    const size_t offset{};
 
     // TODO audit_cast
     for (int idx{}; idx < static_cast<int>( original.size() ); ++idx) {
 
       if (--defect_countdown == 0) {
-        idx += sgpl::ThreadLocalRandom::Get().GetInt(
+        const int defect = sgpl::ThreadLocalRandom::Get().GetInt(
           -defect_bound, defect_bound
         );
+        idx += defect;
+        cumulative_insertion_deletion += std::abs( defect );
         defect_countdown = neg_bino.PickRandom(
           sgpl::ThreadLocalRandom::Get()
         );
       }
 
-      res.push_back( original[ (idx + offset) % original.size() ] );
+      res_vector.push_back( original[ (idx + offset) % original.size() ] );
 
     }
 
