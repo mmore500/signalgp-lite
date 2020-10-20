@@ -4,6 +4,7 @@
 
 #include <tuple>
 
+#include "../../../third-party/conduit/include/uitsl/debug/audit_cast.hpp"
 #include "../../../third-party/Empirical/source/base/vector.h"
 #include "../../../third-party/Empirical/source/tools/Distribution.h"
 
@@ -42,8 +43,7 @@ namespace sgpl {
     // then we would draw this from [0, original.size())
     const size_t offset{};
 
-    // TODO audit_cast
-    for (int idx{}; idx < static_cast<int>( original.size() ); ++idx) {
+    for (int idx{}; idx < uitsl::audit_cast<int>( original.size() ); ++idx) {
 
       if (--defect_countdown == 0) {
         const int defect = sgpl::ThreadLocalRandom::Get().GetInt(
