@@ -34,6 +34,7 @@ class Program : public emp::vector<sgpl::Instruction<Spec>> {
 
 public:
 
+  /// Default constructor.
   Program() = default;
 
   Program( const size_t n ) : parent_t( n ) {
@@ -43,6 +44,36 @@ public:
     );
     Rectify();
   }
+
+  /// Copy constructor.
+  Program( const Program& other ) : parent_t(other) {}
+
+  /// Move constructor.
+  Program( Program&& other ) : parent_t( std::move(other) ) {}
+
+  /// Raw copy constructor.
+  Program( const parent_t& other ) : parent_t(other) {}
+
+  /// Raw move constructor.
+  Program( parent_t&& other ) : parent_t( std::move(other) ) {}
+
+  /// Copy assignment operator.
+  Program& operator=(const Program& other) {
+    parent_t::operator=(other);
+    return *this;
+  }
+
+  /// Move assignment operator.
+  Program& operator=(Program&& other) {
+    parent_t::operator=( std::move(other) );
+    return *this;
+ }
+
+  /// Raw move assignment operator.
+  Program& operator=(parent_t&& other) {
+    parent_t::operator=( std::move(other) );
+    return *this;
+ }
 
   size_t ApplyPointMutations(
     const float p_byte_scramble, const rectifier_t& rectifier=rectifier_t{}
