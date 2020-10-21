@@ -21,6 +21,8 @@ void execute_cpu(
   typename Spec::peripheral_t& peripheral
 ) {
 
+  emp_assert( program.size() );
+
   for (size_t i{}; i < cycles && state.HasActiveCore(); ++i) {
 
     auto& core = state.GetActiveCore();

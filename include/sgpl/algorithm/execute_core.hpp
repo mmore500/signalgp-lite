@@ -25,6 +25,8 @@ inline void advance_core(
 
   using library_t = typename Spec::library_t;
 
+  emp_assert( program.size() );
+
   const auto& instruction = program[ state.GetProgramCounter() ];
 
   emp_assert( instruction.op_code < library_t::GetSize() );
