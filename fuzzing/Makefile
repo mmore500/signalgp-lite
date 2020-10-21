@@ -11,7 +11,7 @@ default: fuzz
 fuzz-%: %.cpp
 	$(CXX) $(FLAGS) $< -o $@.out
 	# execute fuzz
-	gdb ./$@.out --ex=run --ex=bt --ex=quit
+	gdb ./$@.out --ex=run --ex=bt --ex='quit $$_exitcode'
 
 # Test in debug mode without pointer tracker
 fuzz: $(addprefix fuzz-, $(TARGET_NAMES))
