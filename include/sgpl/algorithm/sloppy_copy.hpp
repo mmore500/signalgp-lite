@@ -2,6 +2,7 @@
 #ifndef SGPL_ALGORITHM_SLOPPY_COPY_HPP_INCLUDE
 #define SGPL_ALGORITHM_SLOPPY_COPY_HPP_INCLUDE
 
+#include <limits>
 #include <tuple>
 
 #include "../../../third-party/conduit/include/uitsl/debug/audit_cast.hpp"
@@ -22,7 +23,8 @@ namespace sgpl {
   sgpl::sloppy_copy_res_t<T> sloppy_copy(
     const emp::vector<T>& original,
     const float p_defect,
-    const size_t defect_bound
+    const size_t defect_bound,
+    const size_t res_size_limit=std::numeric_limits<size_t>::max()
   ) {
 
     sloppy_copy_res_t< T > res{};
@@ -57,6 +59,9 @@ namespace sgpl {
       }
 
       res_vector.push_back( original[ (idx + offset) % original.size() ] );
+
+      // enforce maximum result size
+      if ( res_vector.size() >= res_size_limit ) break;
 
     }
 
