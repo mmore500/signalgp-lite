@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SGPL_OPERATIONS_ACTIONS_TERMINATE_HPP_INCLUDE
-#define SGPL_OPERATIONS_ACTIONS_TERMINATE_HPP_INCLUDE
+#ifndef SGPL_OPERATIONS_ACTIONS_FORKIF_HPP_INCLUDE
+#define SGPL_OPERATIONS_ACTIONS_FORKIF_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -8,7 +8,7 @@
 
 namespace sgpl {
 
-struct Terminate {
+struct ForkIf {
 
   template<typename Spec>
   static void run(
@@ -17,13 +17,13 @@ struct Terminate {
     const sgpl::Program<Spec>& program,
     typename Spec::peripheral_t&
   ) {
-    core.Terminate();
+    if ( core.registers[ inst.args[0] ] ) core.RequestFork( inst.tag );
   }
 
-  static std::string name() { return "Terminate"; }
+  static std::string name() { return "ForkIf"; }
 
 };
 
 } // namespace sgpl
 
-#endif // #ifndef SGPL_OPERATIONS_ACTIONS_TERMINATE_HPP_INCLUDE
+#endif // #ifndef SGPL_OPERATIONS_ACTIONS_FORK_HPP_INCLUDE

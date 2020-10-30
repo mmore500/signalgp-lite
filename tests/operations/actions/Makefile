@@ -1,6 +1,6 @@
-TEST_NAMES += Fork
+TEST_NAMES += ForkIf
 TEST_NAMES += Nop
-TEST_NAMES += Terminate
+TEST_NAMES += TerminateIf
 
 TO_ROOT := $(shell git rev-parse --show-cdup)
 

@@ -6,8 +6,6 @@
 #include "../../program/Instruction.hpp"
 #include "../../program/Program.hpp"
 
-#include "../actions/Terminate.hpp"
-
 namespace sgpl {
 namespace global {
 
@@ -20,9 +18,8 @@ struct Anchor {
     const sgpl::Program<Spec>& program,
     typename Spec::peripheral_t& peripheral
   ) {
-    if ( core.HasLocalAnchors() ) {
-      sgpl::Terminate::template run<Spec>(core, inst, program, peripheral);
-    } else core.LoadLocalAnchors( program );
+    if ( core.HasLocalAnchors() ) core.Terminate();
+    else core.LoadLocalAnchors( program );
   }
 
   static std::string name() { return "global::Anchor"; }

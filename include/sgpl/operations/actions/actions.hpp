@@ -2,8 +2,8 @@
 #ifndef SGPL_OPERATIONS_ACTIONS_ACTIONS_HPP_INCLUDE
 #define SGPL_OPERATIONS_ACTIONS_ACTIONS_HPP_INCLUDE
 
-#include "Fork.hpp"
+#include "ForkIf.hpp"
 #include "Nop.hpp"
-#include "Terminate.hpp"
+#include "TerminateIf.hpp"
 
 #endif // #ifndef SGPL_OPERATIONS_ACTIONS_ACTIONS_HPP_INCLUDE

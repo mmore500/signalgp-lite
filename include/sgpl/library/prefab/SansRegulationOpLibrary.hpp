@@ -9,9 +9,9 @@
 namespace sgpl {
 
 using SansRegulationOpLibrary = sgpl::OpLibrary<
-  sgpl::Fork,
+  sgpl::ForkIf,
   sgpl::Nop,
-  sgpl::Terminate,
+  sgpl::TerminateIf,
   sgpl::Add,
   sgpl::Divide,
   sgpl::Modulo,
