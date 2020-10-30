@@ -60,6 +60,8 @@ public:
     ++program_counter; // if has terminated, wraps around
     program_counter %= program_length;
     program_counter -= has_termianted;
+
+    emp_assert( has_termianted || program_counter < program_length );
   }
 
   inline bool HasLocalAnchors() const { return local_jump_table.GetSize(); }
@@ -95,6 +97,7 @@ public:
     fork_requests.clear();
     ResetRegisters();
     local_jump_table.Clear();
+    program_counter = 0;
   }
 
   void SetGlobalJumpTable(gjt_t& j_table) { global_jump_table = &j_table; }
