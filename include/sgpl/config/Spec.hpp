@@ -2,6 +2,7 @@
 #ifndef SGPL_CONFIG_SPEC_HPP_INCLUDE
 #define SGPL_CONFIG_SPEC_HPP_INCLUDE
 
+#include <array>
 #include <type_traits>
 
 #include "../../../third-party/Empirical/source/matching/MatchDepository.h"
@@ -56,6 +57,12 @@ struct Spec {
   static constexpr inline size_t switch_steps{ 8 };
 
   static constexpr inline float per_byte_scramble{ 0.001 };
+
+  static constexpr inline std::array<size_t, 2>
+    global_jump_table_inclusion_mods{ 1, 2 };
+
+  static constexpr inline size_t num_global_jump_tables
+    = global_jump_table_inclusion_mods.size();
 
 };
 

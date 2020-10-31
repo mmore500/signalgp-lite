@@ -4,6 +4,7 @@
 
 #include <utility>
 
+#include "../../../third-party/Empirical/source/base/array.h"
 #include "../../../third-party/Empirical/source/base/optional.h"
 
 #include "../utility/RingResevoir.hpp"
@@ -24,7 +25,10 @@ class Cpu {
 
     size_t active_core_idx{};
 
-    sgpl::JumpTable<Spec, typename Spec::global_matching_t> global_jump_table;
+    using global_jump_table_t
+      = sgpl::JumpTable<Spec, typename Spec::global_matching_t>;
+    emp::array<global_jump_table_t, Spec::num_global_jump_tables>
+      global_jump_tables{};
 
   } data;
 
@@ -32,7 +36,9 @@ class Cpu {
 
   void RefreshCoreGlobalJumpTablePtrs() {
     for (size_t i{}; i < data.scheduler.GetCapacity(); ++i) {
-      data.scheduler.GetBuffer()[i].SetGlobalJumpTable(data.global_jump_table);
+      data.scheduler.GetBuffer()[i].SetGlobalJumpTables(
+        data.global_jump_tables
+      );
     }
   }
 
@@ -116,21 +122,21 @@ public:
     DoLaunchCore();
   }
 
-  void DoLaunchCore( const tag_t& tag ) {
+  void DoLaunchCore( const tag_t& tag, const size_t jt_idx=0 ) {
     emp_assert( HasFreeCore() );
     auto& acquired = data.scheduler.Acquire();
     acquired.Reset();
-    acquired.JumpToGlobalAnchorMatch( tag );
+    acquired.JumpToGlobalAnchorMatch( tag, jt_idx );
   }
 
-  bool TryLaunchCore( const tag_t& tag ) {
+  bool TryLaunchCore( const tag_t& tag, const size_t jt_idx=0 ) {
     if ( ! HasFreeCore() ) return false;
-    else { DoLaunchCore( tag ); return true; }
+    else { DoLaunchCore( tag, jt_idx ); return true; }
   }
 
-  void ForceLaunchCore( const tag_t& tag ) {
+  void ForceLaunchCore( const tag_t& tag, const size_t jt_idx=0 ) {
     if ( ! HasFreeCore() ) KillStaleCore();
-    DoLaunchCore( tag );
+    DoLaunchCore( tag, jt_idx );
   }
 
   size_t GetNumBusyCores() const { return data.scheduler.GetSize(); }
@@ -150,12 +156,17 @@ public:
   void Reset() {
     data.scheduler.Reset();
     data.active_core_idx = {};
-    data.global_jump_table.Clear();
+    for ( auto& table : data.global_jump_tables ) table.Clear();
   }
 
   void InitializeAnchors(const sgpl::Program<Spec>& program) {
     Reset();
-    data.global_jump_table.InitializeGlobalAnchors( program );
+    for( size_t i{}; i < data.global_jump_tables.size() ; ++i ) {
+      data.global_jump_tables[i].InitializeGlobalAnchors(
+        program,
+        Spec::global_jump_table_inclusion_mods[ i ]
+      );
+    }
   }
 
 };

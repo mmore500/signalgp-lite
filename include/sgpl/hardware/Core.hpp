@@ -19,8 +19,11 @@ class Core {
 
   sgpl::JumpTable<Spec, typename Spec::local_matching_t> local_jump_table;
 
-  using gjt_t = sgpl::JumpTable<Spec, typename Spec::global_matching_t>;
-  gjt_t* global_jump_table{}; // non-owning ptr
+  using global_jump_table_t
+    = sgpl::JumpTable<Spec, typename Spec::global_matching_t>;
+  using global_jump_table_array_t
+    = emp::array<global_jump_table_t, Spec::num_global_jump_tables>;
+  global_jump_table_array_t* global_jump_tables{}; // non-owning ptr
 
   using tag_t = typename Spec::tag_t;
 
@@ -29,8 +32,8 @@ public:
   Core() = default;
 
   Core(
-    sgpl::JumpTable<Spec, typename Spec::global_matching_t>& global_jump_table_
-  ) : global_jump_table(&global_jump_table_)
+    global_jump_table_array_t& global_jump_tables_
+  ) : global_jump_tables(&global_jump_tables_)
   { ; }
 
   emp::array<float, Spec::num_registers> registers{}; // value initialize
@@ -71,10 +74,11 @@ public:
     local_jump_table.InitializeLocalAnchors( program, GetProgramCounter() );
   }
 
-  void JumpToGlobalAnchorMatch(const tag_t& query) {
-    const auto res { global_jump_table->MatchRegulated(query) };
-    if ( res.size() ) program_counter = global_jump_table->GetVal(res.front());
-    else Terminate();
+  void JumpToGlobalAnchorMatch( const tag_t& query, const size_t jt_idx=0 ) {
+    const auto res { global_jump_tables->at( jt_idx ).MatchRegulated(query) };
+    if ( res.size() ) {
+      program_counter = global_jump_tables->at( jt_idx ).GetVal(res.front());
+    } else Terminate();
     local_jump_table.Clear();
   }
 
@@ -85,7 +89,9 @@ public:
 
   inline auto& GetLocalJumpTable() { return local_jump_table; }
 
-  inline auto& GetGlobalJumpTable() { return *global_jump_table; }
+  inline auto& GetGlobalJumpTable(const size_t jt_idx=0) {
+    return global_jump_tables->at( jt_idx );
+  }
 
   bool RequestFork(const tag_t& tag) {
     return fork_requests.try_push_back( tag );
@@ -100,7 +106,9 @@ public:
     program_counter = 0;
   }
 
-  void SetGlobalJumpTable(gjt_t& j_table) { global_jump_table = &j_table; }
+  void SetGlobalJumpTables(global_jump_table_array_t& j_tables) {
+    global_jump_tables = &j_tables;
+  }
 
 };
 

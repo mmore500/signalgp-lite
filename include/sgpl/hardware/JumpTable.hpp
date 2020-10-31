@@ -2,6 +2,8 @@
 #ifndef SGPL_HARDWARE_JUMPTABLE_HPP_INCLUDE
 #define SGPL_HARDWARE_JUMPTABLE_HPP_INCLUDE
 
+#include "../../../third-party/conduit/include/uitsl/math/shift_mod.hpp"
+
 #include "../program/Program.hpp"
 #include "../utility/EmptyType.hpp"
 
@@ -60,11 +62,16 @@ struct JumpTable {
     }
   }
 
-  void InitializeGlobalAnchors(const sgpl::Program<Spec>& program) {
+  void InitializeGlobalAnchors(
+    const sgpl::Program<Spec>& program, const size_t inclusion_mod=1
+  ) {
     Clear();
     for (size_t pos{}; pos < program.size(); ++pos) {
       const auto& instruction = program[pos];
-      if ( library_t::IsAnchorGlobalOpCode( instruction.op_code ) ) {
+      if (
+        library_t::IsAnchorGlobalOpCode( instruction.op_code )
+        && uitsl::shift_mod(instruction.args[0], inclusion_mod) == 0
+      ) {
         match_bin.Put( pos, instruction.tag );
       }
     }
