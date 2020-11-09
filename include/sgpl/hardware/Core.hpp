@@ -36,7 +36,8 @@ public:
   ) : global_jump_tables(&global_jump_tables_)
   { ; }
 
-  emp::array<float, Spec::num_registers> registers{}; // value initialize
+  using registers_t = emp::array<float, Spec::num_registers>;
+  registers_t registers{}; // value initialize
 
   sgpl::CappedSet<tag_t, Spec::num_fork_requests> fork_requests{};
 
@@ -98,6 +99,10 @@ public:
   }
 
   void ResetRegisters() { registers.fill( {} ); }
+
+  void SetRegisters(const registers_t& set) { registers = set; }
+
+  const registers_t& GetRegisters() { return registers; }
 
   void Reset() {
     fork_requests.clear();
