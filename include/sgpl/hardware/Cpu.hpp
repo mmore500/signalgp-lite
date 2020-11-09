@@ -91,6 +91,11 @@ public:
     return data.scheduler.Get( data.active_core_idx );
   };
 
+  core_t& GetFreshestCore() {
+    emp_assert( HasActiveCore() );
+    return data.scheduler.GetHead();
+  };
+
   void KillActiveCore() {
     emp_assert( HasActiveCore() );
     for ( const auto& req : GetActiveCore().fork_requests ) {
