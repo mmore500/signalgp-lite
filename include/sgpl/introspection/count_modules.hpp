@@ -10,7 +10,7 @@
 namespace sgpl {
 
 template<typename Spec>
-size_t count_modules( const Program<Spec>& program ) {
+size_t count_modules( const stpl::Program<Spec>& program ) {
 
   return std::distance(
     sgpl::GlobalAnchorIterator<Spec>(

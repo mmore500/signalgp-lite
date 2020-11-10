@@ -41,12 +41,22 @@ public:
   const value_type* operator->() { return &operator*(); }
 
   GlobalAnchorIterator& operator++() {
-    do parent_t::operator++();
-    while (
-      !library_t::IsAnchorLocalOpCode( parent_t::operator*().op_code )
-      && *this != end
+
+    bool has_encountered_local_anchor{ false };
+
+    // todo fixme: this doesn't take into account circular genome wraparound
+    do {
+      has_encountered_local_anchor |= library_t::IsAnchorLocalOpCode(
+        parent_t::operator*().op_code
+      );
+      parent_t::operator++();
+    } while (
+      *this != end
+      && (
+        !library_t::IsAnchorGlobalOpCode( parent_t::operator*().op_code )
+        || !has_encountered_local_anchor
+      )
     );
-    // std::cout << "thru" << std::endl;
     return *this;
   }
 
