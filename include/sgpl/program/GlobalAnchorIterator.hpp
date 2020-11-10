@@ -73,6 +73,12 @@ public:
   bool operator!=(const GlobalAnchorIterator& other) const {
     return static_cast<parent_t>( *this ) != static_cast<parent_t>( other );
   }
+
+  size_t CalcDistance( const parent_t& from ) const {
+    return std::distance( from, static_cast<parent_t>( *this ) );
+  }
+
+
 };
 
 } // namespace sgpl

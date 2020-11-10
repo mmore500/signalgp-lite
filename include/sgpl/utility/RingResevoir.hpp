@@ -23,7 +23,7 @@ class RingResevoir {
 
   inline void AdvanceTail() { ++tail_index %= GetCapacity(); }
 
-  inline size_t GetBufferIndex( const size_t pos ) {
+  inline size_t GetBufferIndex( const size_t pos ) const {
     emp_assert( pos < GetSize() );
     emp_assert( tail_index < GetCapacity() );
     return ( tail_index + pos ) % GetCapacity();
@@ -44,6 +44,10 @@ public:
   inline bool IsFull() const { return GetSize() == GetCapacity(); }
 
   inline T& Get( const size_t pos ) { return buffer[ GetBufferIndex( pos ) ]; }
+
+  inline const T& Get( const size_t pos ) const {
+    return buffer[ GetBufferIndex( pos ) ];
+  }
 
   inline T& GetTail() {
     emp_assert( !IsEmpty() );

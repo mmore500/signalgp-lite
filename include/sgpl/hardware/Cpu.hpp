@@ -174,6 +174,10 @@ public:
     }
   }
 
+  const core_t& GetCore( const size_t idx ) const {
+    return data.scheduler.Get( idx );
+  }
+
 };
 
 
