@@ -26,4 +26,4 @@ struct ForkIf {
 
 } // namespace sgpl
 
-#endif // #ifndef SGPL_OPERATIONS_ACTIONS_FORK_HPP_INCLUDE
+#endif // #ifndef SGPL_OPERATIONS_ACTIONS_FORKIF_HPP_INCLUDE

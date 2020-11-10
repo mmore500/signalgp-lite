@@ -26,4 +26,4 @@ struct TerminateIf {
 
 } // namespace sgpl
 
-#endif // #ifndef SGPL_OPERATIONS_ACTIONS_TERMINATE_HPP_INCLUDE
+#endif // #ifndef SGPL_OPERATIONS_ACTIONS_TERMINATEIF_HPP_INCLUDE
