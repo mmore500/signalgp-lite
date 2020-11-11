@@ -18,6 +18,8 @@ template<typename Spec>
 class Cpu {
 
   using core_t = sgpl::Core<Spec>;
+  using global_jump_table_t
+    = sgpl::JumpTable<Spec, typename Spec::global_matching_t>;
 
   struct impl_ {
 
@@ -25,8 +27,6 @@ class Cpu {
 
     size_t active_core_idx{};
 
-    using global_jump_table_t
-      = sgpl::JumpTable<Spec, typename Spec::global_matching_t>;
     emp::array<global_jump_table_t, Spec::num_global_jump_tables>
       global_jump_tables{};
 
@@ -176,6 +176,10 @@ public:
 
   const core_t& GetCore( const size_t idx ) const {
     return data.scheduler.Get( idx );
+  }
+
+  const global_jump_table_t& GetGlobalJumpTable( const size_t idx=0 ) const {
+    return data.global_jump_tables[ idx ];
   }
 
 };

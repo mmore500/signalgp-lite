@@ -34,9 +34,13 @@ struct JumpTable {
     match_bin.AdjRegulator(uid, set);
   }
 
-  inline double ViewRegulator(const uid_t uid) {
+  inline double ViewRegulator(const uid_t uid) const {
     return match_bin.ViewRegulator(uid);
   }
+
+  inline uid_t GetUid(const tag_t tag) const { return match_bin.GetUid(tag); }
+
+  inline uid_t GetUid(const size_t pos) const { return match_bin.GetUid(pos); }
 
   inline auto GetVal(const uid_t uid) const { return match_bin.GetVal( uid ); }
 
