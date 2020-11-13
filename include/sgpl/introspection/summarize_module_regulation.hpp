@@ -35,7 +35,7 @@ emp::vector<float> summarize_module_regulation(
         program,
         module_idx,
         jump_table_idx
-      );
+      ).value_or( 0.0f );
     }
   );
 

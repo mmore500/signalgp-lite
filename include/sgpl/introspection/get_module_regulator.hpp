@@ -14,7 +14,7 @@
 namespace sgpl {
 
 template<typename Spec>
-float get_module_regulator(
+emp::optional<float> get_module_regulator(
   const sgpl::Cpu<Spec>& cpu,
   const sgpl::Program<Spec>& program,
   const size_t module_idx,
@@ -37,6 +37,8 @@ float get_module_regulator(
     module_pos == 0
     && !library_t::IsAnchorGlobalOpCode( program.front().op_code )
   ) return 0.0f;
+
+  if ( !jump_table.HasVal( module_pos ) ) return std::nullopt;
 
   const size_t module_uid = jump_table.GetUid( module_pos );
 

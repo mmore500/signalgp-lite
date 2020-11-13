@@ -44,6 +44,8 @@ struct JumpTable {
 
   inline auto GetVal(const uid_t uid) const { return match_bin.GetVal( uid ); }
 
+  inline bool HasVal(const size_t pos) const { return match_bin.HasVal( pos ); }
+
   inline void Clear() { match_bin.Clear(); }
 
   inline size_t GetSize() const { return match_bin.GetSize(); }
