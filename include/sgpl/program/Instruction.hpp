@@ -43,6 +43,13 @@ struct Instruction {
     );
   }
 
+  bool operator<(const Instruction& other) const {
+    return (
+      std::tuple{ op_code, args, tag }
+      < std::tuple{ other.op_code, other.args, other.tag }
+    );
+  }
+
   // human-readable output
   template<
     typename Archive,
