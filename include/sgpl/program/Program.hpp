@@ -7,6 +7,8 @@
 
 #include "../../../third-party/cereal/include/cereal/types/vector.hpp"
 #include "../../../third-party/Empirical/source/base/vector.h"
+#include "../../../third-party/Empirical/source/polyfill/span.h"
+#include "../../../third-party/Empirical/source/tools/hash_utils.h"
 #include "../../../third-party/Empirical/source/tools/Random.h"
 
 #include "../algorithm/mutate_bytes.hpp"
@@ -107,5 +109,22 @@ public:
 };
 
 } // namespace sgpl
+
+namespace std {
+
+template <typename Spec>
+struct hash<sgpl::Program<Spec>> {
+
+  size_t operator()( const sgpl::Program<Spec>& program ) const {
+    return emp::murmur_hash( std::span<const std::byte>(
+      reinterpret_cast<const std::byte*>( program.data() ),
+      program.size() * sizeof( program.front() )
+    ) );
+  }
+
+};
+
+} // namespace std
+
 
 #endif // #ifndef SGPL_PROGRAM_PROGRAM_HPP_INCLUDE
