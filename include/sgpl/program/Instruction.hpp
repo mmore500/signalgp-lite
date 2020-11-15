@@ -51,6 +51,10 @@ struct Instruction {
     );
   }
 
+  std::string GetOpName() const { return library_t::GetOpName(op_code); }
+
+  const tag_t& GetTag() const { return tag; }
+
   // human-readable output
   template<
     typename Archive,
@@ -62,7 +66,7 @@ struct Instruction {
     tag.Print( ss );
 
     archive(
-      cereal::make_nvp("operation", library_t::GetOpName(op_code) ),
+      cereal::make_nvp("operation", GetOpName() ),
       CEREAL_NVP( args ),
       cereal::make_nvp("bitstring", ss.str() )
     );
