@@ -3,7 +3,7 @@
 #define SGPL_OPERATIONS_COMPARISON_COMPARISON_HPP_INCLUDE
 
 #include "Equal.hpp"
-#include "GreaterThanEqual.hpp"
-#include "LessThanEqual.hpp"
+#include "GreaterThan.hpp"
+#include "LessThan.hpp"
 
 #endif // #ifndef SGPL_OPERATIONS_COMPARISON_COMPARISON_HPP_INCLUDE

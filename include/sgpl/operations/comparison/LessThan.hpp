@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SGPL_OPERATIONS_COMPARISON_GREATERTHANEQUAL_HPP_INCLUDE
-#define SGPL_OPERATIONS_COMPARISON_GREATERTHANEQUAL_HPP_INCLUDE
+#ifndef SGPL_OPERATIONS_COMPARISON_LESSTHAN_HPP_INCLUDE
+#define SGPL_OPERATIONS_COMPARISON_LESSTHAN_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -8,7 +8,7 @@
 
 namespace sgpl {
 
-struct GreaterThanEqual {
+struct LessThanEqual {
 
   template<typename Spec>
   static void run(
@@ -18,10 +18,10 @@ struct GreaterThanEqual {
     typename Spec::peripheral_t&
   ) {
     const size_t a = inst.args[0], b = inst.args[1], c = inst.args[2];
-    core.registers[a] = core.registers[b] >= core.registers[c];
+    core.registers[a] = core.registers[b] < core.registers[c];
   }
 
-  static std::string name() { return "GreaterThanEqual"; }
+  static std::string name() { return "LessThan"; }
 
   static size_t prevalence() { return 1; }
 
@@ -29,4 +29,4 @@ struct GreaterThanEqual {
 
 } // namespace sgpl
 
-#endif // #ifndef SGPL_OPERATIONS_COMPARISON_GREATERTHANEQUAL_HPP_INCLUDE
+#endif // #ifndef SGPL_OPERATIONS_COMPARISON_LESSTHAN_HPP_INCLUDE
