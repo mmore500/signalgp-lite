@@ -31,10 +31,10 @@ using SansRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::local::JumpIfNot,
   sgpl::CoinFlip,
   sgpl::Decrement,
-  sgpl::Generate,
   sgpl::Increment,
   sgpl::Negate,
   sgpl::Not,
+  sgpl::RandomDraw,
   sgpl::Terminal
 >;
 

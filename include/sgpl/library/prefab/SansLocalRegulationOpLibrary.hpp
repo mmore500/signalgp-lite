@@ -34,10 +34,10 @@ using SansLocalRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::local::RegulatorSet,
   sgpl::CoinFlip,
   sgpl::Decrement,
-  sgpl::Generate,
   sgpl::Increment,
   sgpl::Negate,
   sgpl::Not,
+  sgpl::RandomDraw,
   sgpl::Terminal
 >;
 

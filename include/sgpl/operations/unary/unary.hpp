@@ -4,7 +4,7 @@
 
 #include "CoinFlip.hpp"
 #include "Decrement.hpp"
-#include "Generate.hpp"
+#include "RandomDraw.hpp"
 #include "Increment.hpp"
 #include "Negate.hpp"
 #include "Not.hpp"
