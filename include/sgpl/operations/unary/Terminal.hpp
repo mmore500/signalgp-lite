@@ -2,19 +2,46 @@
 #ifndef SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE
 #define SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE
 
-#include <ratio>
-
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
 #include "../../program/Program.hpp"
 
 namespace sgpl {
 
-template<
-  typename MaxRatio=std::ratio<1>,
-  typename MinRatio=std::ratio<-1>
->
-struct Terminal {
+class Terminal {
+
+  template<typename Spec>
+  static double map_between_plusminus_one( const typename Spec::tag_t& tag ) {
+
+    constexpr double max = 1.0;
+    constexpr double min = -1.0;
+    constexpr double max_double = Spec::tag_t::MaxDouble();
+
+    return  (tag.GetDouble() / max_double) * (max - min) + min;
+
+  }
+
+  template<typename Spec>
+  static bool is_odd(const typename Spec::tag_t& tag) { return tag.Get(0); }
+
+  static double map_up( const double plusminus_unit_val ) {
+    emp_assert( plusminus_unit_val != 0 );
+
+    return 1.0 / (
+      plusminus_unit_val * plusminus_unit_val * plusminus_unit_val
+    );
+
+  }
+
+  template<typename Spec>
+  static float map_tag( const typename Spec::tag_t& tag ) {
+    return is_odd<Spec>( tag )
+      ? map_up( map_between_plusminus_one<Spec>(tag) )
+      : map_between_plusminus_one<Spec>( tag )
+    ;
+  }
+
+public:
 
   // writes a genetically-encoded value into a register.
   template<typename Spec>
@@ -24,21 +51,16 @@ struct Terminal {
     const sgpl::Program<Spec>&,
     typename Spec::peripheral_t&
   ) {
-    constexpr double max = static_cast<double>(MaxRatio::num) / MaxRatio::den;
-    constexpr double min = static_cast<double>(MinRatio::num) / MinRatio::den;
-    constexpr double max_double = decltype(inst.tag)::MaxDouble();
 
     const auto& tag = inst.tag;
 
-    const double val = (tag.GetDouble() / max_double) * (max - min) + min;
-
-    core.registers[ inst.args[0] ] = val;
+    core.registers[ inst.args[0] ] = map_tag<Spec>( tag );
 
   }
 
   static std::string name() { return "Terminal"; }
 
-  static size_t prevalence() { return 10; }
+  static size_t prevalence() { return 20; }
 
 };
 

@@ -47,7 +47,7 @@ using CompleteOpLibrary = sgpl::OpLibrary<
   sgpl::Increment,
   sgpl::Negate,
   sgpl::Not,
-  sgpl::Terminal<>
+  sgpl::Terminal
 >;
 
 } // namespace sgpl
