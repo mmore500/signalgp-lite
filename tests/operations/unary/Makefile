@@ -1,4 +1,4 @@
-TEST_NAMES += CoinFlip
+TEST_NAMES += RandomBool
 TEST_NAMES += Decrement
 TEST_NAMES += Generate
 TEST_NAMES += Increment

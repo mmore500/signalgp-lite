@@ -41,11 +41,11 @@ using CompleteOpLibrary = sgpl::OpLibrary<
   sgpl::local::RegulatorAdj,
   sgpl::local::RegulatorGet,
   sgpl::local::RegulatorSet,
-  sgpl::CoinFlip,
   sgpl::Decrement,
   sgpl::Increment,
   sgpl::Negate,
   sgpl::Not,
+  sgpl::RandomBool,
   sgpl::RandomDraw,
   sgpl::Terminal
 >;

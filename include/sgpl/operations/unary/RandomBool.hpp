@@ -9,7 +9,18 @@
 
 namespace sgpl {
 
-struct CoinFlip {
+class RandomBool {
+
+  template<typename Spec>
+  static double map_to_unit( const typename Spec::tag_t& tag ) {
+
+    constexpr double max_double = Spec::tag_t::MaxDouble();
+
+    return tag.GetDouble() / max_double;
+
+  }
+
+public:
 
   template<typename Spec>
   static void run(
@@ -18,15 +29,14 @@ struct CoinFlip {
     const sgpl::Program<Spec>&,
     typename Spec::peripheral_t&
   ) {
-    constexpr double max_double = decltype(inst.tag)::MaxDouble();
 
-    const double p = inst.tag.GetDouble() / max_double;
+    const double p = map_to_unit<Spec>( inst.tag );
 
     core.registers[ inst.args[0] ] = sgpl::ThreadLocalRandom::Get().P( p );
 
   }
 
-  static std::string name() { return "CoinFlip"; }
+  static std::string name() { return "RandomBool"; }
 
   static size_t prevalence() { return 1; }
 

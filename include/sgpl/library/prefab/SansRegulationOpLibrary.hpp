@@ -29,11 +29,11 @@ using SansRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::local::Anchor,
   sgpl::local::JumpIf,
   sgpl::local::JumpIfNot,
-  sgpl::CoinFlip,
   sgpl::Decrement,
   sgpl::Increment,
   sgpl::Negate,
   sgpl::Not,
+  sgpl::RandomBool,
   sgpl::RandomDraw,
   sgpl::Terminal
 >;
