@@ -23,6 +23,7 @@ using CompleteOpLibrary = sgpl::OpLibrary<
   sgpl::BitwiseShift,
   sgpl::BitwiseXor,
   sgpl::CountOnes,
+  sgpl::RandomFill,
   sgpl::Equal,
   sgpl::GreaterThan,
   sgpl::LessThan,
