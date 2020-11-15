@@ -23,12 +23,13 @@ struct Instruction {
 
   using library_t = typename Spec::library_t;
   using rectifier_t = sgpl::OpCodeRectifier<library_t>;
+  using tag_t = typename Spec::tag_t;
 
   unsigned char op_code;
 
   std::array<unsigned char, 3> args;
 
-  emp::BitSet<32> tag;
+  tag_t tag;
 
   void RectifyArgs() { for (auto& arg : args) arg %= Spec::num_registers; }
 
