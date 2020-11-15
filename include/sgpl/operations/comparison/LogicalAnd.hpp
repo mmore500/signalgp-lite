@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SGPL_OPERATIONS_COMPARISON_EQUAL_HPP_INCLUDE
-#define SGPL_OPERATIONS_COMPARISON_EQUAL_HPP_INCLUDE
+#ifndef SGPL_OPERATIONS_COMPARISON_LOGICALAND_HPP_INCLUDE
+#define SGPL_OPERATIONS_COMPARISON_LOGICALAND_HPP_INCLUDE
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -29,4 +29,4 @@ struct LogicalAnd {
 
 } // namespace sgpl
 
-#endif // #ifndef SGPL_OPERATIONS_COMPARISON_EQUAL_HPP_INCLUDE
+#endif // #ifndef SGPL_OPERATIONS_COMPARISON_LOGICALAND_HPP_INCLUDE
