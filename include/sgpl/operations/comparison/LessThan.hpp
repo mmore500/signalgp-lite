@@ -8,7 +8,7 @@
 
 namespace sgpl {
 
-struct LessThanEqual {
+struct LessThan {
 
   template<typename Spec>
   static void run(
