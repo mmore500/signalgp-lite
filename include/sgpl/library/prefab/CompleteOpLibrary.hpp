@@ -21,6 +21,7 @@ using CompleteOpLibrary = sgpl::OpLibrary<
   sgpl::BitwiseNot,
   sgpl::BitwiseOr,
   sgpl::BitwiseShift,
+  sgpl::BitwiseXor,
   sgpl::CountOnes,
   sgpl::Equal,
   sgpl::GreaterThanEqual,
