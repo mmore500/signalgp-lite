@@ -12,7 +12,7 @@
 
 namespace sgpl {
 
-struct ShiftLeft {
+struct BitwiseShift {
 
   template<typename Spec>
   static void run(
@@ -34,9 +34,14 @@ struct ShiftLeft {
 
     constexpr size_t num_bits = sizeof(core.registers[a]) * 8;
 
-    const size_t result = std::bitset<num_bits>{ as_size_t }.operator<<(
-      uitsl::clamp_cast<size_t>( core.registers[b] )
-    ).to_ulong();
+    const size_t result = ( core.registers[b] > 0 )
+      ? std::bitset<num_bits>( as_size_t ).operator<<(
+          uitsl::clamp_cast<size_t>( core.registers[b] )
+        ).to_ulong()
+      : std::bitset<num_bits>( as_size_t ).operator>>(
+          uitsl::clamp_cast<size_t>( -core.registers[b] )
+        ).to_ulong()
+      ;
 
     std::memcpy(
       &core.registers[c],
@@ -45,7 +50,7 @@ struct ShiftLeft {
     );
   }
 
-  static std::string name() { return "Shift Left"; }
+  static std::string name() { return "Bitwise Shift"; }
 
   static size_t prevalence() { return 1; }
 
