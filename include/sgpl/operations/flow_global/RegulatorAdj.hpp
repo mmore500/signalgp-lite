@@ -34,6 +34,8 @@ struct RegulatorAdj {
 
   static std::string name() { return "global::RegulatorAdj"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace global

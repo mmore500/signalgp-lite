@@ -32,6 +32,8 @@ struct BitwiseNot {
 
   static std::string name() { return "Bitwise Not"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

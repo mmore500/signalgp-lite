@@ -33,6 +33,8 @@ struct Modulo {
 
   static std::string name() { return "Modulo"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

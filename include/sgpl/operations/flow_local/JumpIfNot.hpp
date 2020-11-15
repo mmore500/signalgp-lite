@@ -25,6 +25,8 @@ struct JumpIfNot {
 
   static std::string name() { return "local::JumpIfNot"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace local

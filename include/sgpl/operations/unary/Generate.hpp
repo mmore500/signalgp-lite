@@ -23,6 +23,9 @@ struct Generate {
 
   static std::string name() { return "Generate"; }
 
+  static size_t prevalence() { return 1; }
+
+
 };
 
 } // namespace sgpl

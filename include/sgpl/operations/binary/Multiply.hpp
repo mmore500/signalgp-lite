@@ -23,6 +23,8 @@ struct Multiply {
 
   static std::string name() { return "Multiply"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

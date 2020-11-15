@@ -22,6 +22,7 @@ struct Negate {
 
   static std::string name() { return "Negate"; }
 
+  static size_t prevalence() { return 1; }
 
 };
 

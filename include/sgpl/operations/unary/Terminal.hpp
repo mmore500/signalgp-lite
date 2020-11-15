@@ -38,6 +38,8 @@ struct Terminal {
 
   static std::string name() { return "Terminal"; }
 
+  static size_t prevalence() { return 10; }
+
 };
 
 } // namespace sgpl

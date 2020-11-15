@@ -22,6 +22,8 @@ struct Not {
 
   static std::string name() { return "Not"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

@@ -33,6 +33,8 @@ struct BitwiseXor {
 
   static std::string name() { return "Bitwise Xor"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

@@ -22,6 +22,8 @@ struct Increment {
 
   static std::string name() { return "Increment"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

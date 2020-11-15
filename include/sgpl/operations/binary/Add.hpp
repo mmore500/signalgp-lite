@@ -23,6 +23,8 @@ struct Add {
 
   static std::string name() { return "Add"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

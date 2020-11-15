@@ -34,6 +34,8 @@ struct BitwiseAnd {
 
   static std::string name() { return "Bitwise And"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

@@ -67,6 +67,10 @@ struct OpLibrary : public std::tuple<Ops...> {
     return lookup_table.GetOpCode( op_name );
   }
 
+  static size_t GetOpPrevalence(const size_t op_code) {
+    return decltype( lookup_table )::GetOpPrevalence( op_code );
+  }
+
 };
 
 } // namespace sgpl

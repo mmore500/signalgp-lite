@@ -23,6 +23,8 @@ struct Equal {
 
   static std::string name() { return "Equal"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

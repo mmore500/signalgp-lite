@@ -17,11 +17,22 @@ public:
 
   OpCodeRectifier() {
 
-    // TODO intrinsic prevalence
+    emp_assert( Library::GetSize() );
 
-    std::iota( std::begin( mapper ), std::end( mapper ), 0 );
+    size_t rep_countdown{};
+    unsigned char op_code{ Library::GetSize() - 1 };
+    for (size_t mapper_idx{}; mapper_idx < mapper.size(); ++mapper_idx ) {
 
-    for (auto& entry : mapper) entry %= Library::GetSize();
+      if (rep_countdown == 0) {
+        ++op_code %= Library::GetSize();
+        rep_countdown = Library::GetOpPrevalence( op_code );
+      }
+
+      mapper[ mapper_idx ] = op_code;
+
+      --rep_countdown;
+
+    }
 
   }
 

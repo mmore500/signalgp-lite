@@ -47,6 +47,8 @@ struct ShiftLeft {
 
   static std::string name() { return "Shift Left"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

@@ -23,6 +23,8 @@ struct Subtract {
 
   static std::string name() { return "Subtract"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

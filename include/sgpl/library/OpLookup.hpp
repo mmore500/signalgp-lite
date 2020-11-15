@@ -60,6 +60,29 @@ public:
 
   }
 
+  static size_t GetOpPrevalence(const size_t op_code) {
+
+    #define SGPL_OP_PREVALENCE_PAYLOAD(N) \
+      case N: \
+        if constexpr (N < Library::GetSize()) { \
+          using Operation = typename Library::template Operation<N>; \
+          return Operation::prevalence(); \
+        } \
+      break;
+
+    static_assert( Library::GetSize() < 256 );
+
+    switch( op_code ) {
+
+      EMP_WRAP_EACH( SGPL_OP_PREVALENCE_PAYLOAD, SGPL_BYTE_ENUMERATION )
+
+    }
+
+    emp_assert(false, "bad op code");
+    throw "bad op code";
+
+  }
+
 
 };
 

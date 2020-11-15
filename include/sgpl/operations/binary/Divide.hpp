@@ -26,6 +26,8 @@ struct Divide {
 
   static std::string name() { return "Divide"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

@@ -28,6 +28,8 @@ struct CoinFlip {
 
   static std::string name() { return "CoinFlip"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

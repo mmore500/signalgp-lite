@@ -27,6 +27,8 @@ struct JumpIfNot {
 
   static std::string name() { return "global::JumpIfNot"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace global

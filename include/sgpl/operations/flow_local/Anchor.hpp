@@ -21,6 +21,8 @@ struct Anchor {
 
   static std::string name() { return "local::Anchor"; }
 
+  static size_t prevalence() { return 10; }
+
 };
 
 } // namespace local

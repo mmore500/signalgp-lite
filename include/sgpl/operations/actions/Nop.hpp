@@ -20,6 +20,8 @@ struct Nop {
 
   static std::string name() { return "Nop"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

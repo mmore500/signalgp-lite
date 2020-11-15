@@ -35,6 +35,8 @@ struct RegulatorGet {
 
   static std::string name() { return "local::RegulatorGet"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace local

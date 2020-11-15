@@ -23,6 +23,8 @@ struct LessThanEqual {
 
   static std::string name() { return "LessThanEqual"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

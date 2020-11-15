@@ -37,6 +37,8 @@ struct CountOnes {
 
   static std::string name() { return "Count Ones"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

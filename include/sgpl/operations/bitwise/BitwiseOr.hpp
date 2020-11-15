@@ -33,6 +33,8 @@ struct BitwiseOr {
 
   static std::string name() { return "Bitwise Or"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

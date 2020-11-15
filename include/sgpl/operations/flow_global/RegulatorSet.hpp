@@ -34,6 +34,8 @@ struct RegulatorSet {
 
   static std::string name() { return "global::RegulatorSet"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace global

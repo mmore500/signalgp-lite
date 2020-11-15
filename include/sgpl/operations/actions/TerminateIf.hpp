@@ -22,6 +22,8 @@ struct TerminateIf {
 
   static std::string name() { return "TerminateIf"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl

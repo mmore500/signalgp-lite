@@ -22,6 +22,8 @@ struct ForkIf {
 
   static std::string name() { return "ForkIf"; }
 
+  static size_t prevalence() { return 1; }
+
 };
 
 } // namespace sgpl
