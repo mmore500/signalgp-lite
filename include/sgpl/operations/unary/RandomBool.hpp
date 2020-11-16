@@ -2,6 +2,11 @@
 #ifndef SGPL_OPERATIONS_UNARY_COINFLIP_HPP_INCLUDE
 #define SGPL_OPERATIONS_UNARY_COINFLIP_HPP_INCLUDE
 
+#include <map>
+#include <string>
+
+#include "../../../../third-party/Empirical/source/tools/string_utils.h"
+
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
 #include "../../program/Program.hpp"
@@ -36,13 +41,19 @@ public:
 
   }
 
-  static std::string name() { return "RandomBool"; }
+  static std::string name() { return "Generate Random Bool"; }
 
   static size_t prevalence() { return 1; }
 
-  static size_t num_registers_to_print() { return 1; }
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
-  static bool should_print_tag() { return false; }
+    return std::map<std::string, std::string>{
+      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "probability", emp::to_string( map_to_unit<Spec>( inst.tag ) ) },
+      { "summary", "if p, a = 1; else a = 0" },
+    };
+  }
 
 };
 

@@ -83,13 +83,16 @@ public:
 
   }
 
-  static size_t GetNumRegistersToPrint(const size_t op_code) {
+  template< typename Instruction >
+  static auto GetOpDescriptors(
+    const size_t op_code, const Instruction& instruction
+  ) {
 
-    #define SGPL_OP_GET_NUM_REGISTERS_TO_PRINT_PAYLOAD(N) \
+    #define SGPL_OP_GET_DESCRIPTORS(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
-          return Operation::num_registers_to_print(); \
+          return Operation::descriptors( instruction ); \
         } \
       break;
 
@@ -98,7 +101,7 @@ public:
     switch( op_code ) {
 
       EMP_WRAP_EACH(
-        SGPL_OP_GET_NUM_REGISTERS_TO_PRINT_PAYLOAD, SGPL_BYTE_ENUMERATION
+        SGPL_OP_GET_DESCRIPTORS, SGPL_BYTE_ENUMERATION
       )
 
     }
@@ -107,30 +110,6 @@ public:
     throw "bad op code";
 
   }
-
-  static bool GetShouldPrintTag(const size_t op_code) {
-
-    #define SGPL_OP_GET_SHOULD_PRINT_TAG(N) \
-      case N: \
-        if constexpr (N < Library::GetSize()) { \
-          using Operation = typename Library::template Operation<N>; \
-          return Operation::should_print_tag(); \
-        } \
-      break;
-
-    static_assert( Library::GetSize() < 256 );
-
-    switch( op_code ) {
-
-      EMP_WRAP_EACH( SGPL_OP_GET_SHOULD_PRINT_TAG, SGPL_BYTE_ENUMERATION )
-
-    }
-
-    emp_assert(false, "bad op code");
-    throw "bad op code";
-
-  }
-
 
 };
 

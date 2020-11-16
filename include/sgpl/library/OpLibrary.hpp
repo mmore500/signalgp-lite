@@ -71,12 +71,13 @@ struct OpLibrary : public std::tuple<Ops...> {
     return decltype( lookup_table )::GetOpPrevalence( op_code );
   }
 
-  static size_t GetOpNumRegistersToPrint(const size_t op_code) {
-    return decltype( lookup_table )::GetOpNumRegistersToPrint( op_code );
-  }
-
-  static bool GetOpShouldPrintTag(const size_t op_code) {
-    return decltype( lookup_table )::GetShouldPrintTag( op_code );
+  template< typename Instruction >
+  static auto GetOpDescriptors(
+    const size_t op_code, const Instruction& instruction
+  ) {
+    return decltype( lookup_table )::GetOpDescriptors(
+      op_code, instruction
+    );
   }
 
 };

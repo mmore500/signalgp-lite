@@ -3,7 +3,12 @@
 #define SGPL_OPERATIONS_BITWISE_COUNTONES_HPP_INCLUDE
 
 #include <bitset>
+#include <cstddef>
 #include <cstring>
+#include <map>
+#include <string>
+
+#include "../../../../third-party/Empirical/source/tools/string_utils.h"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -39,9 +44,15 @@ struct CountOnes {
 
   static size_t prevalence() { return 1; }
 
-  static size_t num_registers_to_print() { return 2; }
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
-  static bool should_print_tag() { return false; }
+    return std::map<std::string, std::string>{
+      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "argument b", emp::to_string( static_cast<int>( inst.args[1] ) ) },
+      { "summary", "a = popcnt( b )" },
+    };
+  }
 
 };
 

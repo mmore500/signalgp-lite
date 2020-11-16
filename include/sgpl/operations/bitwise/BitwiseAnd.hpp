@@ -4,6 +4,10 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <map>
+#include <string>
+
+#include "../../../../third-party/Empirical/source/tools/string_utils.h"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -23,12 +27,12 @@ struct BitwiseAnd {
     const size_t a = inst.args[0], b = inst.args[1], c = inst.args[2];
 
     std::transform(
-      reinterpret_cast<std::byte*>( &core.registers[a] ),
-      reinterpret_cast<std::byte*>( &core.registers[a] )
-        + sizeof( core.registers[a] ),
       reinterpret_cast<std::byte*>( &core.registers[b] ),
+      reinterpret_cast<std::byte*>( &core.registers[b] )
+        + sizeof( core.registers[b] ),
       reinterpret_cast<std::byte*>( &core.registers[c] ),
-      [](const std::byte a, const std::byte b){ return a & b; }
+      reinterpret_cast<std::byte*>( &core.registers[a] ),
+      [](const std::byte b, const std::byte c){ return b & c; }
     );
   }
 
@@ -36,9 +40,16 @@ struct BitwiseAnd {
 
   static size_t prevalence() { return 1; }
 
-  static size_t num_registers_to_print() { return 3; }
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
-  static bool should_print_tag() { return false; }
+    return std::map<std::string, std::string>{
+      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "argument b", emp::to_string( static_cast<int>( inst.args[1] ) ) },
+      { "argument c", emp::to_string( static_cast<int>( inst.args[2] ) ) },
+      { "summary", "a = b & c" },
+    };
+  }
 
 };
 

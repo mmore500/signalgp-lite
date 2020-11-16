@@ -2,6 +2,9 @@
 #ifndef SGPL_OPERATIONS_ACTIONS_NOP_HPP_INCLUDE
 #define SGPL_OPERATIONS_ACTIONS_NOP_HPP_INCLUDE
 
+#include <map>
+#include <string>
+
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
 #include "../../program/Program.hpp"
@@ -22,9 +25,13 @@ struct Nop {
 
   static size_t prevalence() { return 1; }
 
-  static size_t num_registers_to_print() { return 0; }
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
-  static bool should_print_tag() { return false; }
+    return std::map<std::string, std::string>{
+      { "summary", "perform no operation" },
+    };
+  }
 
 };
 

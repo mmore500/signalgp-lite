@@ -2,11 +2,16 @@
 #ifndef SGPL_OPERATIONS_BITWISE_BITWISENOT_HPP_INCLUDE
 #define SGPL_OPERATIONS_BITWISE_BITWISENOT_HPP_INCLUDE
 
+#include <algorithm>
+#include <cstddef>
+#include <map>
+#include <string>
+
+#include "../../../../third-party/Empirical/source/tools/string_utils.h"
+
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
 #include "../../program/Program.hpp"
-
-#include <cstddef>
 
 namespace sgpl {
 
@@ -22,11 +27,11 @@ struct BitwiseNot {
     const size_t a = inst.args[0], b = inst.args[1];
 
     std::transform(
-      reinterpret_cast<std::byte*>( &core.registers[a] ),
-      reinterpret_cast<std::byte*>( &core.registers[a] )
-        + sizeof( core.registers[a] ),
       reinterpret_cast<std::byte*>( &core.registers[b] ),
-      [](const std::byte a){ return ~a; }
+      reinterpret_cast<std::byte*>( &core.registers[b] )
+        + sizeof( core.registers[b] ),
+      reinterpret_cast<std::byte*>( &core.registers[a] ),
+      [](const std::byte b){ return ~b; }
     );
   }
 
@@ -34,9 +39,15 @@ struct BitwiseNot {
 
   static size_t prevalence() { return 1; }
 
-  static size_t num_registers_to_print() { return 2; }
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
-  static bool should_print_tag() { return false; }
+    return std::map<std::string, std::string>{
+      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "argument b", emp::to_string( static_cast<int>( inst.args[1] ) ) },
+      { "summary", "a = ~b" },
+    };
+  }
 
 };
 

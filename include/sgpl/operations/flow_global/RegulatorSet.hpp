@@ -2,7 +2,11 @@
 #ifndef SGPL_OPERATIONS_FLOW_GLOBAL_REGULATORSET_HPP_INCLUDE
 #define SGPL_OPERATIONS_FLOW_GLOBAL_REGULATORSET_HPP_INCLUDE
 
-#include <limits>
+#include <map>
+#include <string>
+
+#include "../../../../third-party/Empirical/source/tools/hash_namify.h"
+#include "../../../../third-party/Empirical/source/tools/string_utils.h"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -32,13 +36,22 @@ struct RegulatorSet {
 
   }
 
-  static std::string name() { return "global::RegulatorSet"; }
+  static std::string name() { return "Set Global Regulator"; }
 
   static size_t prevalence() { return 1; }
 
-  static size_t num_registers_to_print() { return 1; }
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
-  static bool should_print_tag() { return true; }
+    using tag_t = typename Spec::tag_t;
+
+    return std::map<std::string, std::string>{
+      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "summary", "set global regulator value to a" },
+      { "tag bits", emp::to_string( inst.tag ) },
+      { "tag moniker", emp::hash_namify( std::hash< tag_t >{}( inst.tag ) ) },
+    };
+  }
 
 };
 

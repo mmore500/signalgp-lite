@@ -2,6 +2,11 @@
 #ifndef SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE
 #define SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE
 
+#include <map>
+#include <string>
+
+#include "../../../../third-party/Empirical/source/tools/string_utils.h"
+
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
 #include "../../program/Program.hpp"
@@ -62,9 +67,16 @@ public:
 
   static size_t prevalence() { return 20; }
 
-  static size_t num_registers_to_print() { return 1; }
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
-  static bool should_print_tag() { return false; }
+    return std::map<std::string, std::string>{
+      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "summary", "a = value" },
+      { "value", emp::to_string( map_tag<Spec>( inst.tag ) ) },
+    };
+
+  }
 
 };
 

@@ -3,8 +3,12 @@
 #define SGPL_OPERATIONS_BITWISE_BITWISESHIFT_HPP_INCLUDE
 
 #include <cstddef>
+#include <cstring>
+#include <map>
+#include <string>
 
 #include "../../../../third-party/conduit/include/uitsl/algorithm/clamp_cast.hpp"
+#include "../../../../third-party/Empirical/source/tools/string_utils.h"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -23,30 +27,30 @@ struct BitwiseShift {
   ) {
     const size_t a = inst.args[0], b = inst.args[1], c = inst.args[2];
 
-    static_assert( sizeof(core.registers[a]) <= sizeof(size_t) );
+    static_assert( sizeof(core.registers[b]) <= sizeof(size_t) );
     size_t as_size_t;
 
     std::memcpy(
       &as_size_t,
-      &core.registers[a],
-      sizeof( core.registers[a] )
+      &core.registers[b],
+      sizeof( core.registers[b] )
     );
 
-    constexpr size_t num_bits = sizeof(core.registers[a]) * 8;
+    constexpr size_t num_bits = sizeof(core.registers[b]) * 8;
 
-    const size_t result = ( core.registers[b] > 0 )
+    const size_t result = ( core.registers[c] > 0 )
       ? std::bitset<num_bits>( as_size_t ).operator<<(
-          uitsl::clamp_cast<size_t>( core.registers[b] )
+          uitsl::clamp_cast<size_t>( core.registers[c] )
         ).to_ulong()
       : std::bitset<num_bits>( as_size_t ).operator>>(
-          uitsl::clamp_cast<size_t>( -core.registers[b] )
+          uitsl::clamp_cast<size_t>( -core.registers[c] )
         ).to_ulong()
       ;
 
     std::memcpy(
-      &core.registers[c],
+      &core.registers[a],
       &result,
-      sizeof( core.registers[c] )
+      sizeof( core.registers[a] )
     );
   }
 
@@ -54,9 +58,16 @@ struct BitwiseShift {
 
   static size_t prevalence() { return 1; }
 
-  static size_t num_registers_to_print() { return 3; }
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
-  static bool should_print_tag() { return false; }
+    return std::map<std::string, std::string>{
+      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "argument b", emp::to_string( static_cast<int>( inst.args[1] ) ) },
+      { "argument c", emp::to_string( static_cast<int>( inst.args[2] ) ) },
+      { "summary", "a = b << c" },
+    };
+  }
 
 };
 

@@ -2,6 +2,11 @@
 #ifndef SGPL_OPERATIONS_BINARY_MODULO_HPP_INCLUDE
 #define SGPL_OPERATIONS_BINARY_MODULO_HPP_INCLUDE
 
+#include <map>
+#include <string>
+
+#include "../../../../third-party/Empirical/source/tools/string_utils.h"
+
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
 #include "../../program/Program.hpp"
@@ -34,9 +39,16 @@ struct Modulo {
 
   static size_t prevalence() { return 1; }
 
-  static size_t num_registers_to_print() { return 3; }
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
-  static bool should_print_tag() { return false; }
+    return std::map<std::string, std::string>{
+      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "argument b", emp::to_string( static_cast<int>( inst.args[1] ) ) },
+      { "argument c", emp::to_string( static_cast<int>( inst.args[2] ) ) },
+      { "summary", "a = b % c" },
+    };
+  }
 
 };
 
