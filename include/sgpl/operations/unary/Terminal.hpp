@@ -65,7 +65,7 @@ public:
 
   static std::string name() { return "Terminal"; }
 
-  static size_t prevalence() { return 20; }
+  static size_t prevalence() { return 25; }
 
   template<typename Spec>
   static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
