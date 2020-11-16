@@ -40,6 +40,10 @@ public:
 
   static size_t prevalence() { return 1; }
 
+  static size_t num_registers_to_print() { return 1; }
+
+  static bool should_print_tag() { return false; }
+
 };
 
 } // namespace sgpl

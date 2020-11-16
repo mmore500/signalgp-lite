@@ -55,6 +55,14 @@ struct Instruction {
 
   const tag_t& GetTag() const { return tag; }
 
+  size_t NumRegistersToPrint() const {
+    return library_t::GetOpNumRegistersToPrint( op_code );
+  }
+
+  size_t ShouldPrintTag() const {
+    return library_t::GetOpShouldPrintTag( op_code );
+  }
+
   // human-readable output
   template<
     typename Archive,
