@@ -19,9 +19,8 @@ struct Divide {
   ) {
     const size_t a = inst.args[0], b = inst.args[1], c = inst.args[2];
 
-    if ( core.registers[c] ) { // disallow division by zero
-      core.registers[a] = core.registers[b] / core.registers[c];
-    }
+    // division by zero allowed
+    core.registers[a] = core.registers[b] / core.registers[c];
   }
 
   static std::string name() { return "Divide"; }
