@@ -24,7 +24,7 @@ struct RegulatorAdj {
     for ( const auto uid : core.GetGlobalJumpTable().MatchRaw(inst.tag) ) {
       // (+) values down regulate
       // (-) values up regulate
-      core.GetGlobalJumpTable().SetRegulator(
+      core.GetGlobalJumpTable().AdjRegulator(
         uid,
         core.registers[ inst.args[0] ]
       );
