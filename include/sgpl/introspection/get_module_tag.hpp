@@ -14,10 +14,7 @@ typename Spec::tag_t get_module_tag(
 ) {
 
   return std::next(
-    sgpl::GlobalAnchorIterator<Spec>(
-      std::begin( program ),
-      std::end( program )
-    ),
+    sgpl::GlobalAnchorIterator<Spec>::make_begin( program ),
     module_idx
   )->tag;
 

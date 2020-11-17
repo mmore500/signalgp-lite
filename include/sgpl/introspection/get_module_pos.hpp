@@ -16,10 +16,7 @@ size_t get_module_pos(
   emp_assert( module_idx < sgpl::count_modules( program ) );
 
   const size_t raw_distance = std::next(
-    sgpl::GlobalAnchorIterator<Spec>(
-      std::begin( program ),
-      std::end( program )
-    ),
+    sgpl::GlobalAnchorIterator<Spec>::make_begin( program ),
     module_idx
   ).CalcDistance( std::begin( program ) );
 

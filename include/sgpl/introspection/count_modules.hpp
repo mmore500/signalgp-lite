@@ -13,14 +13,8 @@ template<typename Spec>
 size_t count_modules( const sgpl::Program<Spec>& program ) {
 
   return std::distance(
-    sgpl::GlobalAnchorIterator<Spec>(
-      std::begin( program ),
-      std::end( program )
-    ),
-    sgpl::GlobalAnchorIterator<Spec>(
-      std::end( program ),
-      std::end( program )
-    )
+    sgpl::GlobalAnchorIterator<Spec>::make_begin( program ),
+    sgpl::GlobalAnchorIterator<Spec>::make_end( program )
   );
 
 }

@@ -5,7 +5,6 @@
 #include <algorithm>
 
 #include "../hardware/Cpu.hpp"
-#include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"
 #include "../utility/CountingIterator.hpp"
 

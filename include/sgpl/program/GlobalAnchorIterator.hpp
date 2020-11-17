@@ -16,12 +16,10 @@ class GlobalAnchorIterator
 
   using inst_t = sgpl::Instruction<Spec>;
   using library_t = typename Spec::library_t;
-  using parent_t
-    = typename emp::vector<sgpl::Instruction<Spec>>::const_iterator;
+  using container_t = emp::vector<sgpl::Instruction<Spec>>;
+  using parent_t = typename container_t::const_iterator;
 
   parent_t end;
-
-public:
 
   GlobalAnchorIterator(
     const parent_t& init,
@@ -29,6 +27,23 @@ public:
   ) : parent_t(init)
   , end(end_)
   {}
+
+
+public:
+
+  static GlobalAnchorIterator make_begin( const container_t& container ) {
+    return GlobalAnchorIterator(
+      std::begin( container ),
+      std::end( container )
+    );
+  }
+
+  static GlobalAnchorIterator make_end( const container_t& container ) {
+    return GlobalAnchorIterator(
+      std::end( container ),
+      std::end( container )
+    );
+  }
 
   using value_type = inst_t;
   using pointer = value_type*;
