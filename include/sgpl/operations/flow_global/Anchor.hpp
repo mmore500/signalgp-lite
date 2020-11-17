@@ -30,7 +30,7 @@ struct Anchor {
 
   static std::string name() { return "Global Anchor"; }
 
-  static size_t prevalence() { return 10; }
+  static size_t prevalence() { return 15; }
 
   template<typename Spec>
   static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
