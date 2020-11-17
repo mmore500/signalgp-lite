@@ -105,6 +105,23 @@ public:
 
   }
 
+  void RotateGlobalAnchorToFront() {
+
+    const auto first_anchor = std::find_if(
+      this->begin(),
+      this->end(),
+      []( const auto& instruction ) {
+        return library_t::IsAnchorGlobalOpCode( instruction.op_code );
+      }
+    );
+
+    if ( first_anchor != this->end() ) std::rotate(
+      this->begin(),
+      first_anchor,
+      this->end()
+    );
+
+  }
 
 };
 
