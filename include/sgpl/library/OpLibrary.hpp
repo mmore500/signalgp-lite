@@ -25,6 +25,7 @@ struct OpLibrary : public std::tuple<Ops...> {
   inline static sgpl::OpLookup<this_t> lookup_table;
 
   constexpr static bool IsAnchorLocalOpCode(const size_t op_code) {
+
     if constexpr (
       uitsl::tuple_has_type<sgpl::local::Anchor, parent_t>::value
     ) {
@@ -34,7 +35,6 @@ struct OpLibrary : public std::tuple<Ops...> {
       return op_code == anchor_local_op_code;
 
     } else return false;
-
 
   }
 
@@ -52,9 +52,7 @@ struct OpLibrary : public std::tuple<Ops...> {
 
   }
 
-  constexpr static size_t GetSize() {
-    return std::tuple_size<parent_t>();
-  }
+  constexpr static size_t GetSize() { return std::tuple_size<parent_t>(); }
 
   template<size_t I>
   using Operation = typename std::tuple_element<I, parent_t>::type;
