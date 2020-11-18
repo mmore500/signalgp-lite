@@ -52,6 +52,7 @@ struct JumpTable {
 
   void InitializeLocalAnchors(const program_t& prog, const size_t start_pos) {
     Clear();
+    if ( prog.empty() ) return;
     const size_t prog_len{ prog.size() };
     for (
       size_t pos = (start_pos + 1) % prog_len;
@@ -72,6 +73,7 @@ struct JumpTable {
     const sgpl::Program<Spec>& program, const size_t inclusion_mod=1
   ) {
     Clear();
+    if ( program.empty() ) return;
     for (size_t pos{}; pos < program.size(); ++pos) {
       const auto& instruction = program[pos];
       if (
