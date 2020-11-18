@@ -37,7 +37,7 @@ emp::vector<size_t> enumerate_module_ids( const sgpl::Program<Spec>& program ) {
   );
 
   // fill in last module
-  res.resize( program.size() , res.back() + 1 );
+  res.resize( program.size() , res.size() ? res.back() + 1 : 0 );
 
   emp_assert( res.size() == program.size() );
 
