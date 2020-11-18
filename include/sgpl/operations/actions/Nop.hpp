@@ -5,12 +5,16 @@
 #include <map>
 #include <string>
 
+#include "../../../../third-party/Empirical/source/tools/string_utils.h"
+
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
 #include "../../program/Program.hpp"
+#include "../../utility/ThreadLocalRandom.hpp"
 
 namespace sgpl {
 
+template< size_t NumRngTouches=0, size_t Prevalence=1 >
 struct Nop {
 
   template<typename Spec>
@@ -19,11 +23,15 @@ struct Nop {
     const sgpl::Instruction<Spec>& inst,
     const sgpl::Program<Spec>& program,
     typename Spec::peripheral_t&
-  ) { ; }
+  ) {
+    for (size_t i{}; i < NumRngTouches; ++i ) {
+      sgpl::ThreadLocalRandom::Get().StepEngine();
+    }
+  }
 
-  static std::string name() { return "Nop"; }
+  static std::string name() { return emp::to_string("Nop-", NumRngTouches); }
 
-  static size_t prevalence() { return 1; }
+  static size_t prevalence() { return Prevalence; }
 
   template<typename Spec>
   static auto descriptors( const sgpl::Instruction<Spec>& inst ) {

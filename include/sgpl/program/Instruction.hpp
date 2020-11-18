@@ -37,6 +37,12 @@ struct Instruction {
 
   void Rectify(const rectifier_t& r) { RectifyArgs(); RectifyOpCode(r); }
 
+  void NopOut() {
+    const size_t num_rng_touches
+      = library_t::template GetOpNumRngTouches<Spec>( op_code );
+    op_code = library_t::GetNopOpCode( num_rng_touches );
+  }
+
   bool operator==(const Instruction& other) const {
     return (
       std::tuple{ op_code, args, tag }

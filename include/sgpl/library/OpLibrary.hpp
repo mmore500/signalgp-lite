@@ -61,8 +61,17 @@ struct OpLibrary : public std::tuple<Ops...> {
     return decltype( lookup_table )::GetOpName( op_code );
   }
 
+  template< typename Spec >
+  static size_t GetOpNumRngTouches(const size_t op_code) {
+    return decltype(lookup_table)::template GetOpNumRngTouches<Spec>( op_code );
+  }
+
   static unsigned char GetOpCode(const std::string& op_name) {
     return lookup_table.GetOpCode( op_name );
+  }
+
+  static unsigned char GetNopOpCode( const size_t num_rng_touches=0 ) {
+    return decltype( lookup_table )::GetNopOpCode( num_rng_touches );
   }
 
   static size_t GetOpPrevalence(const size_t op_code) {

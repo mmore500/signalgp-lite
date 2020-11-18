@@ -4,7 +4,9 @@
 
 #include <unordered_map>
 
+#include "../operations/actions/Nop.hpp"
 #include "../utility/ByteEnumeration.hpp"
+#include "../utility/count_operation_random_touches.hpp"
 
 namespace sgpl {
 
@@ -12,6 +14,8 @@ template<typename Library>
 class OpLookup {
 
   std::unordered_map<std::string, unsigned char> table;
+
+  using library_parent_t = typename Library::parent_t;
 
 public:
 
@@ -55,8 +59,57 @@ public:
 
     }
 
-    emp_assert(false, "bad op code");
+    emp_assert(false, "bad op code", op_code);
     throw "bad op code";
+
+  }
+
+  template< typename Spec >
+  static size_t GetOpNumRngTouches(const size_t op_code) {
+
+    #define SGPL_OP_NUM_RNG_TOUCHES_PAYLOAD(N) \
+      case N: \
+        if constexpr (N < Library::GetSize()) { \
+          using Operation = typename Library::template Operation<N>; \
+          return sgpl::count_operation_random_touches< Operation, Spec >(); \
+        } \
+      break;
+
+    static_assert( Library::GetSize() < 256 );
+
+    switch( op_code ) {
+
+      EMP_WRAP_EACH( SGPL_OP_NUM_RNG_TOUCHES_PAYLOAD, SGPL_BYTE_ENUMERATION )
+
+    }
+
+    emp_assert(false, "bad op code", op_code);
+    throw "bad op code";
+
+  }
+
+  static size_t GetNopOpCode( const size_t num_rng_touches ) {
+
+    #define SGPL_NOP_OP_CODE_PAYLOAD(N) \
+      case N: \
+        if constexpr ( \
+          uitsl::tuple_has_type< sgpl::Nop<N>, library_parent_t >::value \
+        )  return uitsl::tuple_index< sgpl::Nop<N>, library_parent_t >::value; \
+        else if constexpr ( \
+          uitsl::tuple_has_type< sgpl::Nop<N, 0>, library_parent_t >::value \
+        )  return uitsl::tuple_index<sgpl::Nop<N, 0>, library_parent_t>::value; \
+      break;
+
+    emp_assert( num_rng_touches < 256 );
+
+    switch( num_rng_touches ) {
+
+      EMP_WRAP_EACH( SGPL_NOP_OP_CODE_PAYLOAD, SGPL_BYTE_ENUMERATION )
+
+    }
+
+    emp_assert(false, "bad num rng touches", num_rng_touches);
+    throw "bad num rng touches";
 
   }
 
@@ -78,7 +131,7 @@ public:
 
     }
 
-    emp_assert(false, "bad op code");
+    emp_assert(false, "bad op code", op_code);
     throw "bad op code";
 
   }
@@ -106,7 +159,7 @@ public:
 
     }
 
-    emp_assert(false, "bad op code");
+    emp_assert(false, "bad op code", op_code);
     throw "bad op code";
 
   }
