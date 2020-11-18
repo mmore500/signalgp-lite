@@ -26,6 +26,7 @@ public:
       if (rep_countdown == 0) {
         ++op_code %= Library::GetSize();
         rep_countdown = Library::GetOpPrevalence( op_code );
+        if ( rep_countdown == 0 ) continue;
       }
 
       mapper[ mapper_idx ] = op_code;
