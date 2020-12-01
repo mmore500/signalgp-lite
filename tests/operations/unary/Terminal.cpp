@@ -6,6 +6,6 @@
 TEST_CASE("Test Terminal") {
 
   // TODO flesh out stub test
-  sgpl::Terminal<>{};
+  sgpl::Terminal{};
 
 }
