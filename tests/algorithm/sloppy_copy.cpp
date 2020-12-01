@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
-#include "Empirical/source/base/vector.h"
+#include "Empirical/include/emp/base/vector.hpp"
 
 #include "sgpl/algorithm/sloppy_copy.hpp"
 

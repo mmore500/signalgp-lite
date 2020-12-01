@@ -1,7 +1,7 @@
 #include <benchmark/benchmark.h>
 
 #include "conduit/include/uitsl/debug/benchmark_utils.hpp"
-#include "Empirical/source/tools/string_utils.h"
+#include "Empirical/include/emp/tools/string_utils.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/config/Spec.hpp"

@@ -1,4 +1,4 @@
-EMP_DIR := $(TO_ROOT)/third-party/Empirical/source
+EMP_DIR := $(TO_ROOT)/third-party/Empirical/include/emp
 
 CXX ?= g++
 

@@ -5,10 +5,10 @@
 #include <array>
 #include <type_traits>
 
-#include "../../../third-party/Empirical/source/matching/MatchDepository.h"
-#include "../../../third-party/Empirical/source/matching/regulators/PlusCountdownRegulator.h"
-#include "../../../third-party/Empirical/source/matching/selectors_static/RankedSelector.h"
-#include "../../../third-party/Empirical/source/tools/matchbin_metrics.h"
+#include "../../../third-party/Empirical/include/emp/matching/matchbin_metrics.hpp"
+#include "../../../third-party/Empirical/include/emp/matching/MatchDepository.hpp"
+#include "../../../third-party/Empirical/include/emp/matching/regulators/PlusCountdownRegulator.hpp"
+#include "../../../third-party/Empirical/include/emp/matching/selectors_static/RankedSelector.hpp"
 
 #include "../library/prefab/CompleteOpLibrary.hpp"
 #include "../utility/EmptyType.hpp"

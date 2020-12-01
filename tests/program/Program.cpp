@@ -5,7 +5,7 @@
 
 #include "cereal/include/cereal/archives/binary.hpp"
 #include "cereal/include/cereal/archives/json.hpp"
-#include "Empirical/source/tools/Random.h"
+#include "Empirical/include/emp/math/Random.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/config/Spec.hpp"

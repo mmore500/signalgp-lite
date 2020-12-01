@@ -4,7 +4,7 @@
 
 #include <tuple>
 
-#include "../../../third-party/Empirical/source/base/macros.h"
+#include "../../../third-party/Empirical/include/emp/base/macros.hpp"
 
 #include "../hardware/Core.hpp"
 #include "../program/Instruction.hpp"

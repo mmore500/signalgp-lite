@@ -6,10 +6,10 @@
 #include <cstddef>
 
 #include "../../../third-party/cereal/include/cereal/types/vector.hpp"
-#include "../../../third-party/Empirical/source/base/vector.h"
-#include "../../../third-party/Empirical/source/polyfill/span.h"
-#include "../../../third-party/Empirical/source/tools/hash_utils.h"
-#include "../../../third-party/Empirical/source/tools/Random.h"
+#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
+#include "../../../third-party/Empirical/include/emp/datastructs/hash_utils.hpp"
+#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
+#include "../../../third-party/Empirical/include/emp/polyfill/span.hpp"
 
 #include "../algorithm/mutate_bytes.hpp"
 #include "../utility/ThreadLocalRandom.hpp"

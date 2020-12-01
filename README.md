@@ -33,7 +33,7 @@ This "hello world" example throws together
 #include <ratio>
 #include <string>
 
-#include "Empirical/source/tools/Random.h"
+#include "Empirical/include/emp/math/Random.h"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/config/Spec.hpp"

@@ -10,9 +10,9 @@
 #include "../../../third-party/cereal/include/cereal/cereal.hpp"
 #include "../../../third-party/cereal/include/cereal/types/array.hpp"
 #include "../../../third-party/cereal/include/cereal/types/string.hpp"
-#include "../../../third-party/Empirical/source/base/array.h"
-#include "../../../third-party/Empirical/source/tools/BitSet.h"
-#include "../../../third-party/Empirical/source/tools/Random.h"
+#include "../../../third-party/Empirical/include/emp/base/array.hpp"
+#include "../../../third-party/Empirical/include/emp/bits/BitSet.hpp"
+#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
 
 #include "OpCodeRectifier.hpp"
 

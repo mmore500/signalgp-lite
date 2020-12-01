@@ -4,7 +4,7 @@
 
 #include <cstddef>
 
-#include "../../../third-party/Empirical/source/tools/Random.h"
+#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
 
 namespace sgpl {
 

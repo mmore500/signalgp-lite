@@ -4,7 +4,7 @@
 
 #include <limits>
 
-#include "../../../third-party/Empirical/source/base/array.h"
+#include "../../../third-party/Empirical/include/emp/base/array.hpp"
 
 #include "../utility/CappedSet.hpp"
 

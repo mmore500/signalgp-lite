@@ -4,8 +4,8 @@
 
 #include <utility>
 
-#include "../../../third-party/Empirical/source/base/array.h"
-#include "../../../third-party/Empirical/source/base/optional.h"
+#include "../../../third-party/Empirical/include/emp/base/array.hpp"
+#include "../../../third-party/Empirical/include/emp/base/optional.hpp"
 
 #include "../utility/RingResevoir.hpp"
 

@@ -6,8 +6,8 @@
 #include <cstddef>
 #include <functional>
 
-#include "../../../third-party/Empirical/source/tools/Random.h"
-#include "../../../third-party/Empirical/source/tools/random_utils.h"
+#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
+#include "../../../third-party/Empirical/include/emp/math/random_utils.hpp"
 
 #include "ThreadLocalRandom.hpp"
 

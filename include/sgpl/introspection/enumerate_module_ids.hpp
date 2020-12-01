@@ -6,7 +6,7 @@
 #include <iterator>
 
 #include "../../../third-party/conduit/include/uitsl/algorithm/for_each.hpp"
-#include "../../../third-party/Empirical/source/base/vector.h"
+#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
 
 #include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"

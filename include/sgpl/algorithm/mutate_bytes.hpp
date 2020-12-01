@@ -4,7 +4,7 @@
 
 #include <cstddef>
 
-#include "../../../third-party/Empirical/source/polyfill/span.h"
+#include "../../../third-party/Empirical/include/emp/polyfill/span.hpp"
 
 #include "../utility/ThreadLocalRandom.hpp"
 

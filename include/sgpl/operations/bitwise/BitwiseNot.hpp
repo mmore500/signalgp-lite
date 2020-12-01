@@ -7,7 +7,7 @@
 #include <map>
 #include <string>
 
-#include "../../../../third-party/Empirical/source/tools/string_utils.h"
+#include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"

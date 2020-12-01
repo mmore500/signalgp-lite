@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "Empirical/source/tools/Random.h"
+#include "Empirical/include/emp/math/Random.hpp"
 
 #include "sgpl/library/OpLibraryCoupler.hpp"
 #include "sgpl/library/prefab/CompleteOpLibrary.hpp"

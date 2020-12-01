@@ -7,9 +7,9 @@
 #include <functional>
 #include <type_traits>
 
-#include "../../../third-party/Empirical/source/base/optional.h"
-#include "../../../third-party/Empirical/source/tools/Random.h"
-#include "../../../third-party/Empirical/source/tools/random_utils.h"
+#include "../../../third-party/Empirical/include/emp/base/optional.hpp"
+#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
+#include "../../../third-party/Empirical/include/emp/math/random_utils.hpp"
 
 #include "../hardware/Cpu.hpp"
 #include "../program/Instruction.hpp"

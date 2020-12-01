@@ -2,7 +2,7 @@
 
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
-#include "Empirical/source/base/array.h"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/mutate_bytes.hpp"
 

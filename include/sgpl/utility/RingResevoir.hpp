@@ -7,9 +7,9 @@
 
 #include "../../../third-party/conduit/include/uitsl/datastructs/RingBuffer.hpp"
 #include "../../../third-party/conduit/include/uitsl/debug/safe_compare.hpp"
-#include "../../../third-party/Empirical/source/base/array.h"
-#include "../../../third-party/Empirical/source/base/assert.h"
-#include "../../../third-party/Empirical/source/base/optional.h"
+#include "../../../third-party/Empirical/include/emp/base/array.hpp"
+#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
+#include "../../../third-party/Empirical/include/emp/base/optional.hpp"
 
 namespace sgpl {
 

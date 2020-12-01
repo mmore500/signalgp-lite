@@ -4,7 +4,7 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 #include "conduit/include/uitsl/polyfill/identity.hpp"
-#include "Empirical/source/tools/Random.h"
+#include "Empirical/include/emp/math/Random.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/config/Spec.hpp"
