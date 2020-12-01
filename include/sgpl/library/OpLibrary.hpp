@@ -52,6 +52,10 @@ struct OpLibrary : public std::tuple<Ops...> {
 
   }
 
+  constexpr static bool IsAnchorOpCode( const size_t op_code ) {
+    return IsAnchorLocalOpCode( op_code ) || IsAnchorGlobalOpCode( op_code );
+  }
+
   constexpr static size_t GetSize() { return std::tuple_size<parent_t>(); }
 
   template<size_t I>

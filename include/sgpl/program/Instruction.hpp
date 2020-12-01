@@ -43,6 +43,10 @@ struct Instruction {
     op_code = library_t::GetNopOpCode( num_rng_touches );
   }
 
+  void NopOutIfNotAnchor() {
+    if ( !library_t::IsAnchorOpCode( op_code ) ) NopOut();
+  }
+
   bool operator==(const Instruction& other) const {
     return (
       std::tuple{ op_code, args, tag }
