@@ -33,7 +33,8 @@ jobs:
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker build -t mmore500/signalgp-lite .
       - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && echo $CXX && cd /opt/signalgp-lite/tests && make"
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c 'set -x && echo $CXX'
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-gcc-debug:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, debug mode)
