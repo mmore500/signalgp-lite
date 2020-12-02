@@ -9,7 +9,7 @@
 namespace sgpl {
 
 using NopOpLibrary = sgpl::OpLibrary<
-  sgpl::Nop
+  sgpl::Nop<>
 >;
 
 } // namespace sgpl
