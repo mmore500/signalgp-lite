@@ -33,7 +33,7 @@ jobs:
         |
           docker build -t mmore500/signalgp-lite .
           docker ps -a
-          sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && echo $CXX && cd /opt/signalgp-lite/tests && make"
   unit-gcc-debug:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, debug mode)
@@ -48,7 +48,7 @@ jobs:
         |
           docker build -t mmore500/signalgp-lite .
           docker ps -a
-          sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-clang-fulldebug:
     runs-on: ubuntu-18.04
     name: Unit Tests (clang, full debug mode)
@@ -63,7 +63,7 @@ jobs:
         |
           docker build -t mmore500/signalgp-lite .
           docker ps -a
-          sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-gcc-fulldebug:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, full debug mode)
@@ -78,7 +78,7 @@ jobs:
         |
           docker build -t mmore500/signalgp-lite .
           docker ps -a
-          sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-clang-opt:
     runs-on: ubuntu-18.04
     name: Unit Tests (clang, opt mode)
@@ -93,7 +93,7 @@ jobs:
         |
           docker build -t mmore500/signalgp-lite .
           docker ps -a
-          sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-gcc-opt:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, opt mode)
@@ -108,7 +108,7 @@ jobs:
         |
           docker build -t mmore500/signalgp-lite .
           docker ps -a
-          sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   coverage:
     runs-on: ubuntu-18.04
     name: Coverage
@@ -121,6 +121,7 @@ jobs:
       - uses: docker-practice/actions-setup-docker@v1
       - run:
         |
+          echo $CXX
           docker build -t mmore500/signalgp-lite .
           docker ps -a
           ci_env=`bash <(curl -s https://codecov.io/env)`
@@ -172,7 +173,7 @@ jobs:
           docker build -t mmore500/signalgp-lite .
           docker ps -a
           ci_env=`bash <(curl -s https://codecov.io/env)`
-          sudo docker run -e CXX --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
+          sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
   source-gcc:
     runs-on: ubuntu-18.04
     name: Source (gcc)
@@ -188,7 +189,7 @@ jobs:
           docker build -t mmore500/signalgp-lite .
           docker ps -a
           ci_env=`bash <(curl -s https://codecov.io/env)`
-          sudo docker run -e CXX --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
+          sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
   deploy-github-pages:
     runs-on: ubuntu-18.04
     name: Deploy to GitHub Pages
