@@ -18,11 +18,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          sudo docker run mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && python3 ci/test_readme_snippets.py && make docs"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && python3 ci/test_readme_snippets.py && make docs"
   unit-clang-debug:
     runs-on: ubuntu-18.04
     name: Unit Tests (clang, debug mode)
@@ -33,11 +31,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && echo $CXX && cd /opt/signalgp-lite/tests && make"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && echo $CXX && cd /opt/signalgp-lite/tests && make"
   unit-gcc-debug:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, debug mode)
@@ -48,11 +44,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-clang-fulldebug:
     runs-on: ubuntu-18.04
     name: Unit Tests (clang, full debug mode)
@@ -63,11 +57,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-gcc-fulldebug:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, full debug mode)
@@ -78,11 +70,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-clang-opt:
     runs-on: ubuntu-18.04
     name: Unit Tests (clang, opt mode)
@@ -93,11 +83,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-gcc-opt:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, opt mode)
@@ -108,11 +96,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   coverage:
     runs-on: ubuntu-18.04
     name: Coverage
@@ -123,13 +109,10 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          echo $CXX
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          ci_env=`bash <(curl -s https://codecov.io/env)`
-          sudo docker run $ci_env -e CXX mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: ci_env=`bash <(curl -s https://codecov.io/env)`
+      - run: sudo docker run $ci_env -e CXX mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
   fuzzing:
     runs-on: ubuntu-18.04
     name: Fuzzing
@@ -138,12 +121,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          ci_env=`bash <(curl -s https://codecov.io/env)`
-          sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -e CXX -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/fuzzing && make && make opt"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -e CXX -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/fuzzing && make && make opt"
   microbenchmarks:
     runs-on: ubuntu-18.04
     name: Microbenchmarks
@@ -156,12 +136,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          ci_env=`bash <(curl -s https://codecov.io/env)`
-          sudo docker run -e CXX -e OSF_PASSWORD -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run -e CXX -e OSF_PASSWORD -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
   source-clang:
     runs-on: ubuntu-18.04
     name: Source (clang)
@@ -172,12 +149,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          ci_env=`bash <(curl -s https://codecov.io/env)`
-          sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
   source-gcc:
     runs-on: ubuntu-18.04
     name: Source (gcc)
@@ -188,12 +162,9 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          ci_env=`bash <(curl -s https://codecov.io/env)`
-          sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
   deploy-github-pages:
     runs-on: ubuntu-18.04
     name: Deploy to GitHub Pages
@@ -217,9 +188,6 @@ jobs:
         with:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
-      - run:
-        |
-          docker build -t mmore500/signalgp-lite .
-          docker ps -a
-          ci_env=`bash <(curl -s https://codecov.io/env)`
-          docker run -e GH_TOKEN -e GITHUB_RUN_ID mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && source third-party/emsdk/emsdk_env.sh && make web && make badges && ./ci/deploy_gh_pages.sh"
+      - run: docker build -t mmore500/signalgp-lite .
+      - run: docker ps -a
+      - run: docker run -e GH_TOKEN -e GITHUB_RUN_ID mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && source third-party/emsdk/emsdk_env.sh && make web && make badges && ./ci/deploy_gh_pages.sh"
