@@ -2,7 +2,7 @@
 # signalgp-lite
 
 [![version](https://img.shields.io/endpoint?url=https%3A%2F%2Fmmore500.github.io%2Fsignalgp-lite%2Fversion-badge.json)](https://github.com/mmore500/signalgp-lite/releases)
-[![continuous integration](https://github.com/actions/hello-world/workflows/CI/badge.svg))](https://github.com/mmore500/signalgp-lite/actions?query=workflow%3ACI)
+[![continuous integration](https://github.com/mmore500/signalgp-lite/workflows/CI/badge.svg)](https://github.com/mmore500/signalgp-lite/actions?query=workflow%3ACI)
 [![Documentation Status](https://readthedocs.org/projects/signalgp-lite/badge/?version=latest)](https://signalgp-lite.readthedocs.io/en/latest/?badge=latest)
 [![documentation coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fmmore500.github.io%2Fsignalgp-lite%2Fdocumentation-coverage-badge.json)](https://signalgp-lite.readthedocs.io/en/latest/)
 [![code coverage status](https://codecov.io/gh/mmore500/signalgp-lite/branch/master/graph/badge.svg)](https://codecov.io/gh/mmore500/signalgp-lite)
