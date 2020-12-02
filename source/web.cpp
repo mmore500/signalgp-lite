@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "web/web.h"
+#include "web/web.hpp"
 
 namespace UI = emp::web;
 

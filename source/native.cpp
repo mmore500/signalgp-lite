@@ -4,8 +4,8 @@
 
 #include <iostream>
 
-#include "base/vector.h"
-#include "config/command_line.h"
+#include "base/vector.hpp"
+#include "config/command_line.hpp"
 
 // This is the main function for the NATIVE version of SignalGP Lite.
 
