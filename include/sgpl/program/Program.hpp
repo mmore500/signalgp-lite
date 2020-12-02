@@ -81,6 +81,10 @@ public:
     const float p_byte_scramble, const rectifier_t& rectifier=rectifier_t{}
   ) {
 
+    // rectifying removes 0-prevalence instructions, so don't do it in
+    // no-mutation mode
+    if ( p_byte_scramble == 0 ) return 0;
+
     // ideally, we would draw from the binomial distn,
     // but that's expensive with varying n...
     // so approximate with the poisson distribution instead
