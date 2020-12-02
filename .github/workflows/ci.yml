@@ -129,7 +129,7 @@ jobs:
     name: Microbenchmarks
     env:
       CXX: clang++
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
       OSF_PASSWORD: ${{ secrets.OSF_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
@@ -182,7 +182,7 @@ jobs:
       - source-clang
       - source-gcc
     env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v2
         with:
