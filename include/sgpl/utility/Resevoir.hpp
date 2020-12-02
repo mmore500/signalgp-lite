@@ -12,15 +12,15 @@ namespace sgpl {
 template<typename T, size_t N>
 class Resevoir {
 
-  emp::array<T, N> buffer;
+  emp::array<T, N> buffer_;
 
   size_t size_{};
 
 public:
 
-  T& operator[]( const size_t pos ) { return buffer[pos]; }
+  T& operator[]( const size_t pos ) { return buffer_[pos]; }
 
-  const T& operator[]( const size_t pos ) const { return buffer[pos]; }
+  const T& operator[]( const size_t pos ) const { return buffer_[pos]; }
 
   bool try_acquire() {
     if ( !full() ) {
@@ -50,9 +50,9 @@ public:
    return operator[](size() - 1);
  };
 
-  T& front() { return buffer.front(); };
+  T& front() { return buffer_.front(); };
 
-  const T& front()  const { return buffer.front(); };
+  const T& front()  const { return buffer_.front(); };
 
   void release( const size_t pos ) {
     std::swap( operator[](pos), back() );
@@ -67,9 +67,9 @@ public:
 
   const T* end() const { return begin() + size(); }
 
-  auto& buffer() { return buffer; }
+  auto& buffer() { return buffer_; }
 
-  const auto& buffer() const { return buffer; }
+  const auto& buffer() const { return buffer_; }
 
 };
 

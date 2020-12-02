@@ -5,6 +5,8 @@
 #include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"
 
+#include "count_modules.hpp"
+
 namespace sgpl {
 
 template<typename Spec>
