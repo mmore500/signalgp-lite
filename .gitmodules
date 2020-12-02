@@ -13,7 +13,7 @@
   url = https://github.com/emscripten-core/emsdk.git
 [submodule "third-party/SignalGP"]
   path = third-party/SignalGP
-  url = https://github.com/amlalejini/SignalGP.git
+  url = https://github.com/mmore500/SignalGP.git
 [submodule "third-party/cereal"]
   path = third-party/cereal
   url = https://github.com/mmore500/cereal.git
