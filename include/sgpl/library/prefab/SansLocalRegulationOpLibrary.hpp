@@ -10,7 +10,7 @@ namespace sgpl {
 
 using SansLocalRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::ForkIf,
-  sgpl::Nop,
+  sgpl::Nop<>,
   sgpl::TerminateIf,
   sgpl::Add,
   sgpl::Divide,
