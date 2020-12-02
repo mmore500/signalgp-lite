@@ -4,6 +4,9 @@
 
 #include <unordered_map>
 
+#include "../../../third-party/conduit/include/uitsl/meta/tuple_has_type.hpp"
+#include "../../../third-party/conduit/include/uitsl/meta/tuple_index.hpp"
+
 #include "../operations/actions/Nop.hpp"
 #include "../utility/ByteEnumeration.hpp"
 #include "../utility/count_operation_random_touches.hpp"
