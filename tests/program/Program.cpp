@@ -17,8 +17,6 @@ using spec_t = sgpl::Spec<>;
 template<typename InArchive, typename OutArchive>
 void DoSerializationTest(const std::string& filename) {
 
-  emp::Random rand;
-
   sgpl::Program<spec_t> original{ 100 };
 
   std::ofstream os(filename);
