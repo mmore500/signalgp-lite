@@ -2,7 +2,7 @@
 # signalgp-lite
 
 [![version](https://img.shields.io/endpoint?url=https%3A%2F%2Fmmore500.github.io%2Fsignalgp-lite%2Fversion-badge.json)](https://github.com/mmore500/signalgp-lite/releases)
-[![](https://img.shields.io/travis/mmore500/signalgp-lite.svg)](https://travis-ci.com/mmore500/signalgp-lite)
+[![continuous integration](https://github.com/actions/hello-world/workflows/CI/badge.svg))](https://github.com/mmore500/signalgp-lite/actions?query=workflow%3ACI)
 [![Documentation Status](https://readthedocs.org/projects/signalgp-lite/badge/?version=latest)](https://signalgp-lite.readthedocs.io/en/latest/?badge=latest)
 [![documentation coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fmmore500.github.io%2Fsignalgp-lite%2Fdocumentation-coverage-badge.json)](https://signalgp-lite.readthedocs.io/en/latest/)
 [![code coverage status](https://codecov.io/gh/mmore500/signalgp-lite/branch/master/graph/badge.svg)](https://codecov.io/gh/mmore500/signalgp-lite)
@@ -33,7 +33,7 @@ This "hello world" example throws together
 #include <ratio>
 #include <string>
 
-#include "Empirical/include/emp/math/Random.h"
+#include "Empirical/include/emp/math/Random.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/config/Spec.hpp"
@@ -65,6 +65,8 @@ struct SayHello {
   }
 
   static std::string name() { return "SayHello"; }
+
+  static size_t prevalence() { return 1; }
 
 };
 
