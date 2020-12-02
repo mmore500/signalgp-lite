@@ -145,6 +145,7 @@ jobs:
     env:
       CXX: clang++
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      OSF_PASSWORD: ${{ secrets.OSF_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
         with:
