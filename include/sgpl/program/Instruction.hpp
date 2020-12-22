@@ -104,7 +104,7 @@ struct Instruction {
     );
 
     op_code = library_t::GetOpCode( op_name );
-    tag = emp::BitSet<32>( bitstring );
+    tag = tag_t( bitstring );
 
   }
 
