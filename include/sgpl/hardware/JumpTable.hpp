@@ -17,6 +17,7 @@ struct JumpTable {
   using tag_t = typename Impl::query_t;
   using library_t = typename Spec::library_t;
   using program_t = sgpl::Program<Spec>;
+  using uid_t = size_t;
 
   inline auto MatchRaw( const tag_t & query ) {
     return match_bin.MatchRaw(query);
