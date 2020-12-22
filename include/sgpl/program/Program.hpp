@@ -11,7 +11,7 @@
 #include "../../../third-party/Empirical/include/emp/math/Random.hpp"
 #include "../../../third-party/Empirical/include/emp/polyfill/span.hpp"
 
-#include "../algorithm/mutate_bytes.hpp"
+#include "../algorithm/mutate_bits.hpp"
 #include "../utility/ThreadLocalRandom.hpp"
 
 #include "Instruction.hpp"
@@ -78,12 +78,12 @@ public:
  }
 
   size_t ApplyPointMutations(
-    const float p_byte_scramble, const rectifier_t& rectifier=rectifier_t{}
+    const float p_bit_toggle, const rectifier_t& rectifier=rectifier_t{}
   ) {
 
     // rectifying removes 0-prevalence instructions, so don't do it in
     // no-mutation mode
-    if ( p_byte_scramble == 0 ) return 0;
+    if ( p_bit_toggle == 0 ) return 0;
 
     // ideally, we would draw from the binomial distn,
     // but that's expensive with varying n...
@@ -92,10 +92,10 @@ public:
     // (they become more similar for large n)
     const size_t n_muts = sgpl::ThreadLocalRandom::Get().GetRandPoisson(
       size_bytes(),
-      p_byte_scramble
+      p_bit_toggle
     );
 
-    sgpl::mutate_bytes(
+    sgpl::mutate_bits(
       std::span<std::byte>(
         reinterpret_cast<std::byte*>( this->data() ),
         size_bytes()
