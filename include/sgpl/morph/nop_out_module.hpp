@@ -6,6 +6,8 @@
 
 #include "../../../third-party/Empirical/include/emp/base/vector.hpp"
 
+#include "../introspection/get_module_pos.hpp"
+#include "../introspection/get_module_length.hpp"
 #include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"
 
@@ -18,24 +20,17 @@ sgpl::Program<Spec> nop_out_module(
   sgpl::Program<Spec> program, const size_t module_idx
 ) {
 
-  const auto& inst_begin = *std::next(
-    sgpl::GlobalAnchorIterator<Spec>::make_begin(program),
-    module_idx
-  );
-
-  const auto& inst_end = *std::next(
-    sgpl::GlobalAnchorIterator<Spec>::make_begin(program),
-    module_idx + 1
-  );
+  const size_t module_pos = sgpl::get_module_pos( program, module_idx );
+  const size_t module_length = sgpl::get_module_length( program, module_idx );
 
   emp::vector< char > should_nop;
-  for (int idx{}; static_cast<size_t>(idx) < program.size(); ++idx) {
-    const auto& as_const = program;
-    should_nop.push_back(
-      idx >= std::distance( &as_const.front(), &inst_begin )
-      && idx < std::distance( &as_const.front(), &inst_end )
-    );
-  }
+
+  const emp::vector< char > before(module_pos, false);
+  const emp::vector< char > module(module_length, true);
+
+  should_nop.insert(std::end(should_nop), std::begin(before), std::end(before));
+  should_nop.insert(std::end(should_nop), std::begin(module), std::end(module));
+  should_nop.resize( program.size(), false );
 
   return sgpl::nop_out_instructions<Spec>( program, should_nop );
 
