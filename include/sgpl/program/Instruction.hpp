@@ -10,8 +10,10 @@
 #include "../../../third-party/cereal/include/cereal/cereal.hpp"
 #include "../../../third-party/cereal/include/cereal/types/array.hpp"
 #include "../../../third-party/cereal/include/cereal/types/string.hpp"
+#include "../../../third-party/conduit/include/uitsl/math/shift_mod.hpp"
 #include "../../../third-party/Empirical/include/emp/base/array.hpp"
 #include "../../../third-party/Empirical/include/emp/bits/BitSet.hpp"
+#include "../../../third-party/Empirical/include/emp/math/math.hpp"
 #include "../../../third-party/Empirical/include/emp/math/Random.hpp"
 
 #include "OpCodeRectifier.hpp"
@@ -31,7 +33,10 @@ struct Instruction {
 
   tag_t tag;
 
-  void RectifyArgs() { for (auto& arg : args) arg %= Spec::num_registers; }
+  void RectifyArgs() {
+    static_assert( emp::IsPowerOf2( Spec::num_registers ) );
+    for (auto& arg : args) arg = uitsl::shift_mod(arg, Spec::num_registers);
+  }
 
   void RectifyOpCode(const rectifier_t& r) { op_code = r.Rectify(op_code); }
 

@@ -51,7 +51,8 @@ struct Spec {
 
   static constexpr inline size_t num_fork_requests{ 3 };
 
-  static constexpr inline size_t num_registers{ 5 };
+  // must be power of 2
+  static constexpr inline size_t num_registers{ 8 };
 
   // maximum num steps executed on one core before next core is executed
   static constexpr inline size_t switch_steps{ 8 };
