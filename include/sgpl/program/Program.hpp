@@ -81,8 +81,7 @@ public:
     const float p_bit_toggle, const rectifier_t& rectifier=rectifier_t{}
   ) {
 
-    // rectifying removes 0-prevalence instructions, so don't do it in
-    // no-mutation mode
+    // bail early for p_bit_toggle == 0
     if ( p_bit_toggle == 0 ) return 0;
 
     // ideally, we would draw from the binomial distn,
