@@ -28,7 +28,7 @@ struct Spec {
   using global_matching_t = emp::MatchDepository<
     unsigned short,
     emp::ApproxSingleStreakMetric<64>,
-    emp::statics::RankedSelector<std::ratio<1, 2>>,
+    emp::statics::RankedSelector<>,
     emp::PlusCountdownRegulator<>,
     8
   >;
@@ -36,7 +36,7 @@ struct Spec {
   using local_matching_t = emp::MatchDepository<
     unsigned short,
     emp::ApproxSingleStreakMetric<64>,
-    emp::statics::RankedSelector<std::ratio<1, 2>>,
+    emp::statics::RankedSelector<>,
     emp::PlusCountdownRegulator<>,
     0
   >;
