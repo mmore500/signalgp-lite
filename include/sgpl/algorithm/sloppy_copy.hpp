@@ -31,6 +31,12 @@ namespace sgpl {
     auto& res_vector = std::get<0>(res);
     auto& cumulative_insertion_deletion = std::get<1>(res);
 
+    if (p_defect == 0) { // bail early to avoid crash when p = 0
+      res_vector = original;
+      cumulative_insertion_deletion = 0;
+      return res;
+    }
+
     std::get<0>(res).reserve( original.size() );
 
     // TODO cache based on p_defect
