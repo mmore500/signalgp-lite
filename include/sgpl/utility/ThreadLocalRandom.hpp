@@ -4,6 +4,7 @@
 
 #include <cstddef>
 
+#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
 #include "../../../third-party/Empirical/include/emp/math/Random.hpp"
 
 namespace sgpl {
@@ -31,6 +32,26 @@ public:
     }
     return res;
   }
+
+  static void Reseed( const int seed ) {
+
+    // seed <= 0 non-deterministic (uses system time and memory address)
+    emp_assert( seed > 0 );
+
+    rand = emp::Random{ seed };
+
+  }
+
+  static void Initialize( const int seed ) {
+
+    // assert that rng hasn't been touched already
+    emp_assert( rand.GetUInt() == emp::Random{ 1 }.GetUInt() );
+
+    Reseed( seed );
+
+  }
+
+  static void SeedStochastically() { rand = emp::Random{ -1 }; }
 
 };
 
