@@ -27,7 +27,7 @@ public:
 
     if ( cache_pos == sizeof( cache ) ) {
       cache_pos %= sizeof( cache );
-      cache = rand.GetUInt();
+      cache = Get().GetUInt();
     }
 
     const auto res { cache_ptr[cache_pos] };
@@ -41,20 +41,20 @@ public:
     // seed <= 0 non-deterministic (uses system time and memory address)
     emp_assert( seed > 0 );
 
-    rand = emp::Random{ seed };
+    Get() = emp::Random{ seed };
 
   }
 
   static void Initialize( const int seed ) {
 
     // assert that rng hasn't been touched already
-    emp_assert( rand.GetUInt() == emp::Random{ 1 }.GetUInt() );
+    emp_assert( Get().GetUInt() == emp::Random{ 1 }.GetUInt() );
 
     Reseed( seed );
 
   }
 
-  static void SeedStochastically() { rand = emp::Random{ -1 }; }
+  static void SeedStochastically() { Get() = emp::Random{ -1 }; }
 
 };
 
