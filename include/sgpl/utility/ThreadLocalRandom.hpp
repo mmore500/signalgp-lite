@@ -13,24 +13,27 @@ class ThreadLocalRandom {
 
   inline static thread_local emp::Random rand{ 1 };
 
-  inline static uint32_t cache{ rand.GetUInt() };
+  inline static uint32_t cache;
 
   inline static std::byte* cache_ptr{reinterpret_cast<std::byte*>( &cache )};
 
-  inline static size_t cache_pos{};
+  inline static size_t cache_pos{ sizeof(cache) };
 
 public:
 
   static emp::Random& Get() { return rand; }
 
   static std::byte GetByte() {
-    const auto res { cache_ptr[cache_pos] };
-    ++cache_pos;
+
     if ( cache_pos == sizeof( cache ) ) {
       cache_pos %= sizeof( cache );
       cache = rand.GetUInt();
     }
+
+    const auto res { cache_ptr[cache_pos] };
+    ++cache_pos;
     return res;
+
   }
 
   static void Reseed( const int seed ) {
