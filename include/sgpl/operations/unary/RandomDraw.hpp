@@ -41,7 +41,7 @@ class RandomDraw {
 
   template<typename Spec>
   static float map_draw() {
-    const typename Spec::tag_t tag( sgpl::ThreadLocalRandom::Get() );
+    const typename Spec::tag_t tag( sgpl::tlrand.Get() );
     return is_odd<Spec>( tag )
       ? map_up( map_between_plusminus_one<Spec>(tag) )
       : map_between_plusminus_one<Spec>( tag )

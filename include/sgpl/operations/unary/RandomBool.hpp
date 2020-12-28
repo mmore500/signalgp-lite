@@ -37,7 +37,7 @@ public:
 
     const double p = map_to_unit<Spec>( inst.tag );
 
-    core.registers[ inst.args[0] ] = sgpl::ThreadLocalRandom::Get().P( p );
+    core.registers[ inst.args[0] ] = sgpl::tlrand.Get().P( p );
 
   }
 

@@ -78,7 +78,7 @@ struct SetupA {
         auto & call_state = hw.GetCurThread().GetExecState().GetTopCallState();
         // Increment value in local memory @ [ARG0]
         call_state.GetMemory().AccessWorking(inst.GetArg(0))
-          = sgpl::ThreadLocalRandom::Get().GetDouble();
+          = sgpl::tlrand.Get().GetDouble();
       },
       ""
     );

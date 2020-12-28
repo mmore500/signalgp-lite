@@ -25,7 +25,7 @@ struct Nop {
     typename Spec::peripheral_t&
   ) {
     for (size_t i{}; i < NumRngTouches; ++i ) {
-      sgpl::ThreadLocalRandom::Get().StepEngine();
+      sgpl::tlrand.Get().StepEngine();
     }
   }
 

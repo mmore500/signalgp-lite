@@ -14,7 +14,7 @@ namespace sgpl {
 
 void mutate_bits(const std::span<std::byte> target) {
 
-  const size_t bit_idx = sgpl::ThreadLocalRandom::Get().GetUInt(
+  const size_t bit_idx = sgpl::tlrand.Get().GetUInt(
     target.size_bytes() * CHAR_BIT
   );
 

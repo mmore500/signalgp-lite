@@ -44,7 +44,7 @@ namespace sgpl {
     neg_bino.Setup(p_defect, 1);
 
     size_t defect_countdown = neg_bino.PickRandom(
-      sgpl::ThreadLocalRandom::Get()
+      sgpl::tlrand.Get()
     );
 
     // if we wanted to make the process uniform across a circular genome,
@@ -54,13 +54,13 @@ namespace sgpl {
     for (int idx{}; idx < uitsl::audit_cast<int>( original.size() ); ++idx) {
 
       if (--defect_countdown == 0) {
-        const int defect = sgpl::ThreadLocalRandom::Get().GetInt(
+        const int defect = sgpl::tlrand.Get().GetInt(
           -defect_bound, defect_bound
         );
         idx += defect;
         cumulative_insertion_deletion += std::abs( defect );
         defect_countdown = neg_bino.PickRandom(
-          sgpl::ThreadLocalRandom::Get()
+          sgpl::tlrand.Get()
         );
       }
 

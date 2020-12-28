@@ -40,7 +40,7 @@ public:
   Program() = default;
 
   Program( const size_t n ) : parent_t( n ) {
-    sgpl::ThreadLocalRandom::Get().RandFill(
+    sgpl::tlrand.Get().RandFill(
       reinterpret_cast<unsigned char*>( this->data() ),
       size_bytes()
     );
@@ -89,7 +89,7 @@ public:
     // so approximate with the poisson distribution instead
     // they're similar-ish, e.g., https://www.researchgate.net/figure/Poisson-versus-binomial-distribution-from-number-of-heads-in-a-coin-toss-The-Poisson_fig3_255717571
     // (they become more similar for large n)
-    const size_t n_muts = sgpl::ThreadLocalRandom::Get().GetRandPoisson(
+    const size_t n_muts = sgpl::tlrand.Get().GetRandPoisson(
       size_bytes() * CHAR_BIT,
       p_bit_toggle
     );

@@ -16,9 +16,9 @@ namespace sgpl {
 size_t count_thread_local_random_touches(const std::function<void()> routine) {
 
   return emp::CountRngTouches( [routine]( emp::Random& rand ){
-    std::swap( sgpl::ThreadLocalRandom::Get(), rand );
+    std::swap( sgpl::tlrand.Get(), rand );
     routine();
-    std::swap( sgpl::ThreadLocalRandom::Get(), rand );
+    std::swap( sgpl::tlrand.Get(), rand );
   } );
 
 }

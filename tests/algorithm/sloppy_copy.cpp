@@ -7,7 +7,7 @@
 
 TEST_CASE("Test sloppy_copy without mutation") {
 
-  sgpl::ThreadLocalRandom::Get() = emp::Random(1);
+  sgpl::tlrand.Get() = emp::Random(1);
 
   emp::vector<int> original( 100 );
   std::iota( std::begin( original ), std::end( original ), 0 );
@@ -21,7 +21,7 @@ TEST_CASE("Test sloppy_copy without mutation") {
 
 TEST_CASE("Test sloppy_copy with mild mutation") {
 
-  sgpl::ThreadLocalRandom::Get() = emp::Random(1);
+  sgpl::tlrand.Get() = emp::Random(1);
 
   emp::vector<int> original( 100 );
   std::iota( std::begin( original ), std::end( original ), 0 );
@@ -48,7 +48,7 @@ TEST_CASE("Test sloppy_copy with mild mutation") {
 
 TEST_CASE("Test sloppy_copy with severe mutation") {
 
-  sgpl::ThreadLocalRandom::Get() = emp::Random(1);
+  sgpl::tlrand.Get() = emp::Random(1);
 
   emp::vector<int> original( 100 );
   std::iota( std::begin( original ), std::end( original ), 0 );

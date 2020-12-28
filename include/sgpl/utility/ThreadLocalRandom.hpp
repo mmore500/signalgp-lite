@@ -9,21 +9,27 @@
 
 namespace sgpl {
 
+namespace internal {
+
 class ThreadLocalRandom {
 
-  inline static thread_local emp::Random rand{ 1 };
+  emp::Random rand{ 1 };
 
-  inline static uint32_t cache;
+  uint32_t cache;
 
-  inline static std::byte* cache_ptr{reinterpret_cast<std::byte*>( &cache )};
+  std::byte* cache_ptr{
+    reinterpret_cast<std::byte*>( &cache )
+  };
 
-  inline static size_t cache_pos{ sizeof(cache) };
+  size_t cache_pos{ sizeof(cache) };
 
 public:
 
-  static emp::Random& Get() { return rand; }
+  emp::Random& Get() { return rand; }
 
-  static std::byte GetByte() {
+  std::byte GetByte() {
+
+    emp_assert( false );
 
     if ( cache_pos == sizeof( cache ) ) {
       cache_pos %= sizeof( cache );
@@ -36,7 +42,7 @@ public:
 
   }
 
-  static void Reseed( const int seed ) {
+  void Reseed( const int seed ) {
 
     // seed <= 0 non-deterministic (uses system time and memory address)
     emp_assert( seed > 0 );
@@ -45,7 +51,7 @@ public:
 
   }
 
-  static void Initialize( const int seed ) {
+  void Initialize( const int seed ) {
 
     // assert that rng hasn't been touched already
     emp_assert( Get().GetUInt() == emp::Random{ 1 }.GetUInt() );
@@ -54,10 +60,13 @@ public:
 
   }
 
-  static void SeedStochastically() { Get() = emp::Random{ -1 }; }
+  void SeedStochastically() { Get() = emp::Random{ -1 }; }
 
 };
 
+} // namespace internal
+
+thread_local sgpl::internal::ThreadLocalRandom tlrand{};
 
 } // namespace sgpl
 

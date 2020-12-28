@@ -12,11 +12,11 @@ namespace sgpl {
 
 void mutate_bytes(const std::span<std::byte> target) {
 
-  const size_t idx = sgpl::ThreadLocalRandom::Get().GetUInt(
+  const size_t idx = sgpl::tlrand.Get().GetUInt(
     target.size_bytes()
   );
 
-  target[ idx ] = sgpl::ThreadLocalRandom::GetByte();
+  target[ idx ] = sgpl::tlrand.GetByte();
 
 }
 

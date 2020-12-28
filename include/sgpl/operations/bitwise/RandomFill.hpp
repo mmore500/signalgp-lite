@@ -26,7 +26,7 @@ struct RandomFill {
 
     auto& target = core.registers[ inst.args[0] ];
 
-    sgpl::ThreadLocalRandom::Get().RandFill(
+    sgpl::tlrand.Get().RandFill(
       reinterpret_cast<unsigned char*>( &target ), sizeof( target )
     );
 
