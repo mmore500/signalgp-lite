@@ -10,7 +10,7 @@ namespace sgpl {
 
 class ThreadLocalRandom {
 
-  inline static thread_local emp::Random rand{};
+  inline static thread_local emp::Random rand{ 1 };
 
   inline static uint32_t cache{ rand.GetUInt() };
 
