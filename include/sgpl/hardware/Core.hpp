@@ -115,6 +115,8 @@ public:
     global_jump_tables = &j_tables;
   }
 
+  void DecayRegulators() { local_jump_table.DecayRegulators(); }
+
 };
 
 } // namespace sgpl

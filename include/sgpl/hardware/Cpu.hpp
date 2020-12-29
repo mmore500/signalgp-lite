@@ -182,6 +182,13 @@ public:
     return data.global_jump_tables[ idx ];
   }
 
+  void DecayRegulators() {
+    for ( auto& gjt : data.global_jump_tables ) gjt.DecayRegulators();
+    for ( size_t i{}; i < data.scheduler.GetSize(); ++i) {
+      data.scheduler.Get( i ).DecayRegulators();
+    }
+  }
+
 };
 
 

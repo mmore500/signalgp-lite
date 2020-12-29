@@ -39,6 +39,8 @@ struct JumpTable {
     return match_bin.ViewRegulator(uid);
   }
 
+  inline void DecayRegulators() { match_bin.DecayRegulators(); }
+
   inline uid_t GetUid(const tag_t tag) const { return match_bin.GetUid(tag); }
 
   inline uid_t GetUid(const size_t pos) const { return match_bin.GetUid(pos); }
