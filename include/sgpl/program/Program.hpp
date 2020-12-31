@@ -48,20 +48,45 @@ public:
   }
 
   /// Copy constructor.
-  Program( const Program& other ) : parent_t(other) {}
+  Program( const Program& other ) {
+    // copy all bytes, including padding bytes so that we can
+    // reliably perform a bytewise hash
+    parent_t::resize( other.size() );
+    std::memcpy(
+      reinterpret_cast< std::byte* >( parent_t::data() ),
+      reinterpret_cast< const std::byte* >( other.data() ),
+      parent_t::size() * sizeof( other.front() )
+    );
+  }
 
   /// Move constructor.
   Program( Program&& other ) : parent_t( std::move(other) ) {}
 
   /// Raw copy constructor.
-  Program( const parent_t& other ) : parent_t(other) {}
+  Program( const parent_t& other ) {
+    // copy all bytes, including padding bytes so that we can
+    // reliably perform a bytewise hash
+    parent_t::resize( other.size() );
+    std::memcpy(
+      reinterpret_cast< std::byte* >( parent_t::data() ),
+      reinterpret_cast< const std::byte* >( other.data() ),
+      parent_t::size() * sizeof( other.front() )
+    );
+  }
 
   /// Raw move constructor.
   Program( parent_t&& other ) : parent_t( std::move(other) ) {}
 
   /// Copy assignment operator.
   Program& operator=(const Program& other) {
-    parent_t::operator=(other);
+    // copy all bytes, including padding bytes so that we can
+    // reliably perform a bytewise hash
+    parent_t::resize( other.size() );
+    std::memcpy(
+      reinterpret_cast< std::byte* >( parent_t::data() ),
+      reinterpret_cast< const std::byte* >( other.data() ),
+      parent_t::size() * sizeof( other.front() )
+    );
     return *this;
   }
 
