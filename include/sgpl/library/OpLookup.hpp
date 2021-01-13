@@ -6,6 +6,8 @@
 
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_has_type.hpp"
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_index.hpp"
+#include "../../../third-party/Empirical/include/emp/base/always_assert.hpp"
+#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
 
 #include "../operations/actions/Nop.hpp"
 #include "../utility/ByteEnumeration.hpp"
@@ -62,8 +64,7 @@ public:
 
     }
 
-    emp_assert(false, "bad op code", op_code);
-    throw "bad op code";
+    emp_always_assert(false, "bad op code", op_code);
 
   }
 
@@ -86,8 +87,7 @@ public:
 
     }
 
-    emp_assert(false, "bad op code", op_code);
-    throw "bad op code";
+    emp_always_assert(false, "bad op code", op_code);
 
   }
 
@@ -111,8 +111,7 @@ public:
 
     }
 
-    emp_assert(false, "bad num rng touches", num_rng_touches);
-    throw "bad num rng touches";
+    emp_always_assert(false, "bad num rng touches", num_rng_touches);
 
   }
 
@@ -134,8 +133,7 @@ public:
 
     }
 
-    emp_assert(false, "bad op code", op_code);
-    throw "bad op code";
+    emp_always_assert(false, "bad op code", op_code);
 
   }
 
@@ -162,8 +160,7 @@ public:
 
     }
 
-    emp_assert(false, "bad op code", op_code);
-    throw "bad op code";
+    emp_always_assert(false, "bad op code", op_code);
 
   }
 
