@@ -65,6 +65,7 @@ public:
     }
 
     emp_always_assert(false, "bad op code", op_code);
+    __builtin_unreachable();
 
   }
 
@@ -88,6 +89,7 @@ public:
     }
 
     emp_always_assert(false, "bad op code", op_code);
+    __builtin_unreachable();
 
   }
 
@@ -112,6 +114,7 @@ public:
     }
 
     emp_always_assert(false, "bad num rng touches", num_rng_touches);
+    __builtin_unreachable();
 
   }
 
@@ -134,6 +137,7 @@ public:
     }
 
     emp_always_assert(false, "bad op code", op_code);
+    __builtin_unreachable();
 
   }
 
@@ -161,6 +165,7 @@ public:
     }
 
     emp_always_assert(false, "bad op code", op_code);
+    __builtin_unreachable();
 
   }
 
