@@ -30,7 +30,7 @@ struct Spec {
   // among modules (each module is a potential match)
   using global_matching_t = emp::MatchDepository<
     unsigned short,
-    emp::ApproxDualStreakMetric<64>,
+    emp::OptimizedApproxDualStreakMetric<64>,
     emp::statics::RankedSelector<std::ratio<1, 10>>,
     emp::PlusCountdownRegulator<>,
     8
@@ -40,7 +40,7 @@ struct Spec {
   // matches within a module
   using local_matching_t = emp::MatchDepository<
     unsigned short,
-    emp::ApproxDualStreakMetric<64>,
+    emp::OptimizedApproxDualStreakMetric<64>,
     emp::statics::RankedSelector<std::ratio<1, 2>>,
     emp::PlusCountdownRegulator<>,
     0
