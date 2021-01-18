@@ -12,6 +12,7 @@ using CompleteOpLibrary = sgpl::OpLibrary<
   sgpl::ForkIf,
   sgpl::Nop<0>,
   sgpl::Nop<1>,
+  sgpl::Nop<2>,
   sgpl::TerminateIf,
   sgpl::Add,
   sgpl::Divide,
