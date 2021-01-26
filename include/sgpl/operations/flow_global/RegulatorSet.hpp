@@ -38,7 +38,15 @@ struct RegulatorSet {
 
   }
 
-  static std::string name() { return "Set Global Regulator"; }
+  static std::string name() {
+    if constexpr ( JUMP_TABLE_IDX == 0 ) {
+      return "Set Global Regulator";
+    } else if constexpr ( JUMP_TABLE_IDX == 1 ) {
+      return "Set Secondary Global Regulator";
+    } else return emp::to_string(
+      "Set ", JUMP_TABLE_IDX, "iary Global Regulator"
+    );
+  }
 
   static size_t prevalence() { return 1; }
 
@@ -50,6 +58,7 @@ struct RegulatorSet {
     return std::map<std::string, std::string>{
       { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
       { "summary", "set global regulator value to a" },
+      { "target jump table", emp::to_string( JUMP_TABLE_IDX ) },
       { "tag bits", emp::to_string( inst.tag ) },
       { "tag moniker", emp::hash_namify( std::hash< tag_t >{}( inst.tag ) ) },
     };
