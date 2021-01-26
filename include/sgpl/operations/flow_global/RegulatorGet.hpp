@@ -15,6 +15,7 @@
 namespace sgpl {
 namespace global {
 
+template< size_t JUMP_TABLE_IDX=0 >
 struct RegulatorGet {
 
   template<typename Spec>
@@ -25,13 +26,11 @@ struct RegulatorGet {
     typename Spec::peripheral_t&
   ) {
 
-    for ( const auto uid : core.GetGlobalJumpTable().MatchRaw(inst.tag) ) {
+    auto& jump_table = core.GetGlobalJumpTable( JUMP_TABLE_IDX );
+    for ( const auto uid : jump_table.MatchRaw(inst.tag) ) {
       // (+) values down regulate
       // (-) values up regulate
-      core.registers[ inst.args[0] ]
-        = core.GetGlobalJumpTable().ViewRegulator(
-        uid
-      );
+      core.registers[ inst.args[0] ] = jump_table.ViewRegulator( uid );
       break; // only process first value
     }
 

@@ -15,6 +15,7 @@
 namespace sgpl {
 namespace global {
 
+template< size_t JUMP_TABLE_IDX=0 >
 struct RegulatorAdj {
 
   template<typename Spec>
@@ -25,10 +26,11 @@ struct RegulatorAdj {
     typename Spec::peripheral_t&
   ) {
 
-    for ( const auto uid : core.GetGlobalJumpTable().MatchRaw(inst.tag) ) {
+    auto& jump_table = core.GetGlobalJumpTable( JUMP_TABLE_IDX );
+    for ( const auto uid : jump_table.MatchRaw(inst.tag) ) {
       // (+) values down regulate
       // (-) values up regulate
-      core.GetGlobalJumpTable().AdjRegulator(
+      jump_table.AdjRegulator(
         uid,
         core.registers[ inst.args[0] ]
       );
