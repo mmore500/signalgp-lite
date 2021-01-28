@@ -32,7 +32,8 @@ struct Spec {
     unsigned short,
     emp::OptimizedApproxDualStreakMetric<64>,
     emp::statics::RankedSelector<std::ratio<1, 10>>,
-    emp::PlusCountdownRegulator<std::deci, std::deci>,
+    emp::PlusCountdownRegulator<>,
+    true,
     8
   >;
 
@@ -42,7 +43,8 @@ struct Spec {
     unsigned short,
     emp::OptimizedApproxDualStreakMetric<64>,
     emp::statics::RankedSelector<std::ratio<1, 2>>,
-    emp::PlusCountdownRegulator<std::deci, std::deci>,
+    emp::PlusCountdownRegulator<>,
+    false,
     0
   >;
 
