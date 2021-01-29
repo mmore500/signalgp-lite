@@ -4,11 +4,14 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <map>
+#include <string>
 #include <tuple>
 
 #include "../../../third-party/cereal/include/cereal/archives/json.hpp"
 #include "../../../third-party/cereal/include/cereal/cereal.hpp"
 #include "../../../third-party/cereal/include/cereal/types/array.hpp"
+#include "../../../third-party/cereal/include/cereal/types/map.hpp"
 #include "../../../third-party/cereal/include/cereal/types/string.hpp"
 #include "../../../third-party/conduit/include/uitsl/math/shift_mod.hpp"
 #include "../../../third-party/Empirical/include/emp/base/array.hpp"
@@ -87,7 +90,8 @@ struct Instruction {
     archive(
       cereal::make_nvp("operation", GetOpName() ),
       CEREAL_NVP( args ),
-      cereal::make_nvp("bitstring", ss.str() )
+      cereal::make_nvp("bitstring", ss.str() ),
+      cereal::make_nvp("descriptors", GetDescriptors() )
     );
 
   }
@@ -101,15 +105,18 @@ struct Instruction {
   void load( Archive& archive ) {
     std::string op_name;
     std::string bitstring;
+    std::map<std::string, std::string> descriptors;
 
     archive(
       cereal::make_nvp( "operation", op_name ),
       CEREAL_NVP( args ),
-      cereal::make_nvp( "bitstring", bitstring )
+      cereal::make_nvp( "bitstring", bitstring ),
+      cereal::make_nvp( "descriptors", descriptors )
     );
 
     op_code = library_t::GetOpCode( op_name );
     tag = tag_t( bitstring );
+    // descriptors are read into and ignored
 
   }
 
