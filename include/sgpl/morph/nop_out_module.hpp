@@ -6,8 +6,8 @@
 
 #include "../../../third-party/Empirical/include/emp/base/vector.hpp"
 
-#include "../introspection/get_module_pos.hpp"
 #include "../introspection/get_module_length.hpp"
+#include "../introspection/get_module_pos.hpp"
 #include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"
 
