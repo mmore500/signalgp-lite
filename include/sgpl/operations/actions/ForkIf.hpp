@@ -3,6 +3,7 @@
 #define SGPL_OPERATIONS_ACTIONS_FORKIF_HPP_INCLUDE
 
 #include <map>
+#include <set>
 #include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/hash_namify.hpp"
@@ -40,6 +41,16 @@ struct ForkIf {
       { "tag bits", emp::to_string( inst.tag ) },
       { "tag moniker", emp::hash_namify( std::hash< tag_t >{}( inst.tag ) ) },
       {"summary", "if a, submit fork request (processed when core terminates)"},
+    };
+  }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "intrinsic",
+      "global flow",
+      "flow",
+      "op",
     };
   }
 

@@ -4,6 +4,7 @@
 
 #include <map>
 #include <string>
+#include <set>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
 
@@ -42,6 +43,17 @@ struct RandomFill {
     return std::map<std::string, std::string>{
       { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
       { "summary", "fill a with uniformly-distributed random bits" },
+    };
+  }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "bitwise",
+      "calculation",
+      "intrinsic",
+      "op",
+      "stochastic",
     };
   }
 

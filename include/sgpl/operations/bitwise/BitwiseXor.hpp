@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstddef>
 #include <map>
+#include <set>
 #include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
@@ -48,6 +49,16 @@ struct BitwiseXor {
       { "argument b", emp::to_string( static_cast<int>( inst.args[1] ) ) },
       { "argument c", emp::to_string( static_cast<int>( inst.args[2] ) ) },
       { "summary", "a = b ^ c" },
+    };
+  }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "bitwise",
+      "calculation",
+      "intrinsic",
+      "op",
     };
   }
 

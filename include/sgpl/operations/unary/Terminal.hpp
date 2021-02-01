@@ -3,6 +3,7 @@
 #define SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE
 
 #include <map>
+#include <set>
 #include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
@@ -76,6 +77,15 @@ public:
       { "value", emp::to_string( map_tag<Spec>( inst.tag ) ) },
     };
 
+  }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "calculation",
+      "intrinsic",
+      "op",
+    };
   }
 
 };

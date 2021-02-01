@@ -3,6 +3,7 @@
 #define SGPL_OPERATIONS_UNARY_RANDOMBOOL_HPP_INCLUDE
 
 #include <map>
+#include <set>
 #include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
@@ -52,6 +53,16 @@ public:
       { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
       { "probability", emp::to_string( map_to_unit<Spec>( inst.tag ) ) },
       { "summary", "if p, a = 1; else a = 0" },
+    };
+  }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "calculation",
+      "intrinsic",
+      "op",
+      "stochastic",
     };
   }
 

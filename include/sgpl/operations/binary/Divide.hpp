@@ -4,6 +4,7 @@
 
 #include <map>
 #include <string>
+#include <set>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
 
@@ -40,6 +41,15 @@ struct Divide {
       { "argument b", emp::to_string( static_cast<int>( inst.args[1] ) ) },
       { "argument c", emp::to_string( static_cast<int>( inst.args[2] ) ) },
       { "summary", "a = b / c" },
+    };
+  }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "calculation",
+      "intrinsic",
+      "op",
     };
   }
 

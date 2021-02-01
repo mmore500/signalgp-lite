@@ -3,6 +3,7 @@
 #define SGPL_OPERATIONS_ACTIONS_TERMINATEIF_HPP_INCLUDE
 
 #include <map>
+#include <set>
 #include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
@@ -35,6 +36,15 @@ struct TerminateIf {
     return std::map<std::string, std::string>{
       { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
       { "summary", "if a, terminate core" },
+    };
+  }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "intrinsic",
+      "flow",
+      "op",
     };
   }
 

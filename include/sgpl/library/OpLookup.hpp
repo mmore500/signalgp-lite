@@ -169,6 +169,34 @@ public:
 
   }
 
+  template< typename Instruction >
+  static auto GetOpCategories(
+    const size_t op_code, const Instruction& instruction
+  ) {
+
+    #define SGPL_OP_GET_CATEGORIES(N) \
+      case N: \
+        if constexpr (N < Library::GetSize()) { \
+          using Operation = typename Library::template Operation<N>; \
+          return Operation::categories( instruction ); \
+        } \
+      break;
+
+    static_assert( Library::GetSize() < 256 );
+
+    switch( op_code ) {
+
+      EMP_WRAP_EACH(
+        SGPL_OP_GET_CATEGORIES, SGPL_BYTE_ENUMERATION
+      )
+
+    }
+
+    emp_always_assert(false, "bad op code", op_code);
+    __builtin_unreachable();
+
+  }
+
 };
 
 } // namespace sgpl

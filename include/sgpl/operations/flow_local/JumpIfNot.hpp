@@ -3,6 +3,7 @@
 #define SGPL_OPERATIONS_FLOW_LOCAL_JUMPIFNOT_HPP_INCLUDE
 
 #include <map>
+#include <set>
 #include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/hash_namify.hpp"
@@ -45,6 +46,17 @@ struct JumpIfNot {
       { "summary", "if !a, goto tag match local anchor" },
     };
   }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "flow",
+      "local flow",
+      "intrinsic",
+      "op",
+    };
+  }
+
 };
 
 } // namespace local

@@ -3,6 +3,7 @@
 #define SGPL_OPERATIONS_BINARY_SUBTRACT_HPP_INCLUDE
 
 #include <map>
+#include <set>
 #include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
@@ -40,6 +41,16 @@ struct Subtract {
       { "summary", "a = b - c" },
     };
   }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "calculation",
+      "intrinsic",
+      "op",
+    };
+  }
+
 };
 
 } // namespace sgpl

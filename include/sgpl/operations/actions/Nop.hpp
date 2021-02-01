@@ -3,6 +3,7 @@
 #define SGPL_OPERATIONS_ACTIONS_NOP_HPP_INCLUDE
 
 #include <map>
+#include <set>
 #include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
@@ -40,6 +41,14 @@ struct Nop {
       { "summary", "perform no operation" },
     };
   }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "nop",
+    };
+  }
+
 
 };
 

@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstddef>
 #include <map>
+#include <set>
 #include <string>
 #include <tuple>
 
@@ -75,6 +76,10 @@ struct Instruction {
 
   auto GetDescriptors() const {
     return library_t::template GetOpDescriptors< Instruction >(op_code, *this);
+  }
+
+  auto GetCategories() const {
+    return library_t::template GetOpCategories< Instruction >(op_code, *this);
   }
 
   // human-readable output

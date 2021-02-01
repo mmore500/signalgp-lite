@@ -91,6 +91,15 @@ struct OpLibrary : public std::tuple<Ops...> {
     );
   }
 
+  template< typename Instruction >
+  static auto GetOpCategories(
+    const size_t op_code, const Instruction& instruction
+  ) {
+    return decltype( lookup_table )::GetOpCategories(
+      op_code, instruction
+    );
+  }
+
 };
 
 } // namespace sgpl

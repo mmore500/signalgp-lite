@@ -3,6 +3,7 @@
 #define SGPL_OPERATIONS_UNARY_NEGATE_HPP_INCLUDE
 
 #include <map>
+#include <set>
 #include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
@@ -37,6 +38,15 @@ struct Negate {
     return std::map<std::string, std::string>{
       { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
       { "summary", "a = -a" },
+    };
+  }
+
+  template<typename Spec>
+  static std::set<std::string> categories(const sgpl::Instruction<Spec>&) {
+    return {
+      "calculation",
+      "intrinsic",
+      "op",
     };
   }
 
