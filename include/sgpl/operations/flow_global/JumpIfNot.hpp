@@ -27,8 +27,8 @@ struct JumpIfNot {
   ) {
     if ( !core.registers[ inst.args[0] ] ) {
       core.JumpToGlobalAnchorMatch( inst.tag );
+      if ( !core.registers[ inst.args[1] ] ) core.ResetRegisters();
     }
-    if ( !core.registers[ inst.args[1] ] ) core.ResetRegisters();
   }
 
   static std::string name() { return "Global Jump If Not"; }
