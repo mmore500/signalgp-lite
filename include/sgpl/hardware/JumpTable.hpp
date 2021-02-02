@@ -65,7 +65,7 @@ struct JumpTable {
       ++pos %= prog_len
     ) {
       const auto& instruction = prog[pos];
-      if ( library_t::IsAnchorLocalOpCode( prog[pos].op_code ) ) {
+      if ( library_t::IsAnchorLocalOpCode( instruction.op_code ) ) {
         match_bin.Put( pos, instruction.tag );
       }
 
@@ -76,7 +76,6 @@ struct JumpTable {
     const sgpl::Program<Spec>& program, const size_t inclusion_mod=1
   ) {
     Clear();
-    if ( program.empty() ) return;
     for (size_t pos{}; pos < program.size(); ++pos) {
       const auto& instruction = program[pos];
       if (
