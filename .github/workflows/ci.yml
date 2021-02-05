@@ -47,32 +47,6 @@ jobs:
       - run: docker build -t mmore500/signalgp-lite .
       - run: docker ps -a
       - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
-  unit-clang-fulldebug:
-    runs-on: ubuntu-18.04
-    name: Unit Tests (clang, full debug mode)
-    env:
-      CXX: clang++
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
-  unit-gcc-fulldebug:
-    runs-on: ubuntu-18.04
-    name: Unit Tests (gcc, full debug mode)
-    env:
-      CXX: g++
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-clang-opt:
     runs-on: ubuntu-18.04
     name: Unit Tests (clang, opt mode)
@@ -85,7 +59,7 @@ jobs:
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker build -t mmore500/signalgp-lite .
       - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
   unit-gcc-opt:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, opt mode)
@@ -98,7 +72,7 @@ jobs:
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker build -t mmore500/signalgp-lite .
       - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
   coverage:
     runs-on: ubuntu-18.04
     name: Coverage
