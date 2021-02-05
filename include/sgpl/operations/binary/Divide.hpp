@@ -3,8 +3,8 @@
 #define SGPL_OPERATIONS_BINARY_DIVIDE_HPP_INCLUDE
 
 #include <map>
-#include <string>
 #include <set>
+#include <string>
 
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
 
