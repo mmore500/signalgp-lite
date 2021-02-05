@@ -145,8 +145,6 @@ jobs:
       - misc
       - unit-clang-debug
       - unit-gcc-debug
-      - unit-clang-fulldebug
-      - unit-gcc-fulldebug
       - unit-clang-opt
       - unit-gcc-opt
       - coverage
