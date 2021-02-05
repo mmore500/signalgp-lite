@@ -53,15 +53,17 @@ inline void advance_core(
 
 template<typename Spec>
 
-inline void execute_core(
+size_t execute_core(
   sgpl::Core<Spec>& state,
   const sgpl::Program<Spec>& program,
   typename Spec::peripheral_t& peripheral
 ) {
 
-  for (size_t i{}; i < Spec::switch_steps && !state.HasTerminated(); ++i) {
+  size_t i;
+  for (i = 0; i < Spec::switch_steps && !state.HasTerminated(); ++i) {
     advance_core<Spec>(state, program, peripheral);
   }
+  return i;
 
 };
 

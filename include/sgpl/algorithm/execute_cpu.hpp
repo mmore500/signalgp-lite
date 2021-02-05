@@ -26,7 +26,8 @@ void execute_cpu(
   for (size_t i{}; i < cycles && state.HasActiveCore(); ++i) {
 
     auto& core = state.GetActiveCore();
-    execute_core<Spec>(core, program, peripheral);
+    const size_t num_cycles = execute_core<Spec>(core, program, peripheral);
+    state.AdvanceCycleClock( num_cycles );
     if ( core.HasTerminated() ) state.KillActiveCore();
 
     state.TryActivateNextCore();

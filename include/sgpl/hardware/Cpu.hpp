@@ -30,6 +30,9 @@ class Cpu {
     emp::array<global_jump_table_t, Spec::num_global_jump_tables>
       global_jump_tables{};
 
+    // total number of instructions executed over the lifetime of the object
+    size_t lifetime_cycle_clock{};
+
   } data;
 
   using tag_t = typename Spec::tag_t;
@@ -187,6 +190,12 @@ public:
     for ( size_t i{}; i < data.scheduler.GetSize(); ++i) {
       data.scheduler.Get( i ).DecayRegulators();
     }
+  }
+
+  void AdvanceCycleClock(const size_t amt) { data.lifetime_cycle_clock += amt; }
+
+  size_t GetCyclesSinceConstruction() const {
+    return data.lifetime_cycle_clock;
   }
 
 };
