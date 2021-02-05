@@ -29,8 +29,6 @@ public:
 
   std::byte GetByte() {
 
-    emp_assert( false );
-
     if ( cache_pos == sizeof( cache ) ) {
       cache_pos %= sizeof( cache );
       cache = Get().GetUInt();
