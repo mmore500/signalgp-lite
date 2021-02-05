@@ -45,6 +45,8 @@ public:
     // seed <= 0 non-deterministic (uses system time and memory address)
     emp_assert( seed > 0 );
 
+    cache_pos = sizeof( cache );
+
     Get() = emp::Random{ seed };
 
   }
