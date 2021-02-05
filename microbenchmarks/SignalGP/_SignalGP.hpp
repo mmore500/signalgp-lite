@@ -1,5 +1,11 @@
 #pragma once
 
+#include <ratio>
+
+#include "Empirical/include/emp/matching/matchbin_metrics.hpp"
+#include "Empirical/include/emp/matching/MatchDepository.hpp"
+#include "Empirical/include/emp/matching/regulators/PlusCountdownRegulator.hpp"
+#include "Empirical/include/emp/matching/selectors_static/RankedSelector.hpp"
 #include "SignalGP/source/hardware/SignalGP/EventLibrary.h"
 #include "SignalGP/source/hardware/SignalGP/impls/SignalGPLinearFunctionsProgram.h"
 #include "SignalGP/source/hardware/SignalGP/impls/SignalGPLinearProgram.h"
@@ -15,13 +21,13 @@
 using mem_model_t = sgp::SimpleMemoryModel;
 using signalgp_t = sgp::LinearFunctionsProgramSignalGP<
   mem_model_t,
-  emp::BitSet<32>,
+  emp::BitSet<64>,
   int,
   emp::MatchBin<
     size_t,
-    emp::HammingMetric<32>,
-    emp::RankedSelector<std::ratio<16+8, 16>>,
-    emp::AdditiveCountdownRegulator<>
+    emp::OptimizedApproxDualStreakMetric<64>,
+    emp::RankedSelector<std::ratio<1, 10>>,
+    emp::PlusCountdownRegulator<>,
   >,
   sgp::DefaultCustomComponent
 >;
