@@ -87,7 +87,7 @@ int main() {
   cpu.InitializeAnchors( program ); // load program onto CPU
 
   // generate random signals to launch available virtual cores
-  while ( cpu.TryLaunchCore( emp::BitSet<32>(rng) ) ) ;
+  while ( cpu.TryLaunchCore( emp::BitSet<64>(rng) ) ) ;
 
   // execute up to one thousand instructions
   sgpl::execute_cpu<spec_t>( std::kilo::num, cpu, program, peripheral );
