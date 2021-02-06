@@ -1,5 +1,5 @@
-#include "sgpl/config/Spec.hpp"
 #include "sgpl/library/prefab/prefab.hpp"
+#include "sgpl/spec/Spec.hpp"
 
 #define OP_LIBRARY Arithmetic
 

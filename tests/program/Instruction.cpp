@@ -3,8 +3,8 @@
 
 #include "Empirical/include/emp/math/Random.hpp"
 
-#include "sgpl/config/Spec.hpp"
 #include "sgpl/program/Instruction.hpp"
+#include "sgpl/spec/Spec.hpp"
 
 using spec_t = sgpl::Spec<>;
 

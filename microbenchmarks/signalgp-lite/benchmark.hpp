@@ -4,7 +4,7 @@
 #include "Empirical/include/emp/tools/string_utils.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
-#include "sgpl/config/Spec.hpp"
+#include "sgpl/spec/Spec.hpp"
 
 #define STRINGIFY(s) STRINGIFY_(s)
 #define STRINGIFY_(s) #s

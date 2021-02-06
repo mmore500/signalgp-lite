@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SGPL_CONFIG_SPEC_HPP_INCLUDE
-#define SGPL_CONFIG_SPEC_HPP_INCLUDE
+#ifndef SGPL_SPEC_SPEC_HPP_INCLUDE
+#define SGPL_SPEC_SPEC_HPP_INCLUDE
 
 #include <array>
 #include <ratio>
@@ -86,4 +86,4 @@ struct Spec {
 
 } // namespace sgpl
 
-#endif // #ifndef SGPL_CONFIG_SPEC_HPP_INCLUDE
+#endif // #ifndef SGPL_SPEC_SPEC_HPP_INCLUDE

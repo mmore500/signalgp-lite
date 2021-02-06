@@ -4,9 +4,9 @@
 
 #include <tuple>
 
-#include "../config/Spec.hpp"
 #include "../hardware/Cpu.hpp"
 #include "../program/Program.hpp"
+#include "../spec/Spec.hpp"
 #include "../utility/EmptyType.hpp"
 
 #include "execute_core.hpp"

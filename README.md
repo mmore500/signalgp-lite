@@ -36,7 +36,7 @@ This "hello world" example throws together
 #include "Empirical/include/emp/math/Random.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
-#include "sgpl/config/Spec.hpp"
+#include "sgpl/spec/Spec.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/library/OpLibraryCoupler.hpp"
 #include "sgpl/library/prefab/ControlFlowOpLibrary.hpp"

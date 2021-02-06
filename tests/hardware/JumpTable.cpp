@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/config/Spec.hpp"
 #include "sgpl/hardware/JumpTable.hpp"
+#include "sgpl/spec/Spec.hpp"
 
 using spec_t = sgpl::Spec<>;
 

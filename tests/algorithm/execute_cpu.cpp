@@ -7,9 +7,9 @@
 #include "Empirical/include/emp/math/Random.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
-#include "sgpl/config/Spec.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/program/Program.hpp"
+#include "sgpl/spec/Spec.hpp"
 
 using spec_t = sgpl::Spec<>;
 
