@@ -27,11 +27,11 @@ struct JumpTable {
     return match_bin.MatchRegulated(query);
   }
 
-  inline void SetRegulator( const uid_t uid, const double set ) {
+  inline void SetRegulator( const uid_t uid, const float set ) {
     match_bin.SetRegulator(uid, set);
   }
 
-  inline void AdjRegulator( const uid_t uid, const double set ) {
+  inline void AdjRegulator( const uid_t uid, const float set ) {
     match_bin.AdjRegulator(uid, set);
   }
 
