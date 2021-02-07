@@ -6,6 +6,7 @@
 #include "JumpIf.hpp"
 #include "JumpIfNot.hpp"
 #include "RegulatorAdj.hpp"
+#include "RegulatorDecay.hpp"
 #include "RegulatorGet.hpp"
 #include "RegulatorSet.hpp"
 

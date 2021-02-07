@@ -35,7 +35,11 @@ struct JumpTable {
     match_bin.AdjRegulator(uid, set);
   }
 
-  inline double ViewRegulator(const uid_t uid) const {
+  inline void DecayRegulator( const uid_t uid, const float amt ) {
+    match_bin.DecayRegulator(uid, amt);
+  }
+
+  inline float ViewRegulator(const uid_t uid) const {
     return match_bin.ViewRegulator(uid);
   }
 
