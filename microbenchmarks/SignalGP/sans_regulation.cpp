@@ -106,7 +106,7 @@ program_t MakeProgram() {
 
   emp::Random rand;
 
-  return sgp::GenRandLinearFunctionsProgram<signalgp_t, 32>(
+  return sgp::GenRandLinearFunctionsProgram<signalgp_t, 64>(
     rand,
     inst_lib,
     {1, 1}, // num functions

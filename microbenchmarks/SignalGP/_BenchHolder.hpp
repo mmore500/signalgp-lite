@@ -24,11 +24,11 @@ struct BenchHolder {
 
     size_t agent{};
 
-    emp::vector< emp::BitSet<32> > tags;
+    emp::vector< emp::BitSet<64> > tags;
     std::generate_n(
       std::back_inserter(tags),
       20,
-      [&]{ return emp::BitSet<32>(rand); }
+      [&]{ return emp::BitSet<64>(rand); }
     );
     size_t tag{};
 

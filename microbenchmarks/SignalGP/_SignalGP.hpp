@@ -26,8 +26,8 @@ using signalgp_t = sgp::LinearFunctionsProgramSignalGP<
   emp::MatchBin<
     size_t,
     emp::OptimizedApproxDualStreakMetric<64>,
-    emp::RankedSelector<std::ratio<1, 10>>,
-    emp::PlusCountdownRegulator<>,
+    emp::RankedSelector<std::deci>,
+    emp::PlusCountdownRegulator<>
   >,
   sgp::DefaultCustomComponent
 >;

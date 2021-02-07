@@ -24,7 +24,7 @@ struct SetupA {
 
     emp::Random rand;
 
-    program = sgp::GenRandLinearFunctionsProgram<signalgp_t, 32>(
+    program = sgp::GenRandLinearFunctionsProgram<signalgp_t, 64>(
       rand,
       inst_lib,
       {1, 1}, // num functions
