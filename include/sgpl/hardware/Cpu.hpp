@@ -185,11 +185,8 @@ public:
     return data.global_jump_tables[ idx ];
   }
 
-  void DecayRegulators() {
+  void DecayGlobalRegulators() {
     for ( auto& gjt : data.global_jump_tables ) gjt.DecayRegulators();
-    for ( size_t i{}; i < data.scheduler.GetSize(); ++i) {
-      data.scheduler.Get( i ).DecayRegulators();
-    }
   }
 
   void AdvanceCycleClock(const size_t amt) { data.lifetime_cycle_clock += amt; }
