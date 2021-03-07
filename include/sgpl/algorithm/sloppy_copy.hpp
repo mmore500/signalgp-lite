@@ -4,6 +4,7 @@
 
 #include <limits>
 #include <tuple>
+#include <utility>
 
 #include "../../../third-party/conduit/include/uitsl/debug/audit_cast.hpp"
 #include "../../../third-party/Empirical/include/emp/base/vector.hpp"
@@ -23,7 +24,7 @@ namespace sgpl {
   sgpl::sloppy_copy_res_t<T> sloppy_copy(
     const emp::vector<T>& original,
     const float p_defect,
-    const size_t defect_bound,
+    const std::pair<size_t, size_t> defect_bounds,
     const size_t res_size_limit=std::numeric_limits<size_t>::max()
   ) {
 
@@ -55,7 +56,7 @@ namespace sgpl {
 
       if (--defect_countdown == 0) {
         const int defect = sgpl::tlrand.Get().GetInt(
-          -defect_bound, defect_bound
+          defect_bounds.first, defect_bounds.second
         );
         idx += defect;
         cumulative_insertion_deletion += std::abs( defect );
@@ -72,6 +73,23 @@ namespace sgpl {
     }
 
     return res;
+
+  }
+
+  template< typename T , size_t TemplatedInstance=0 >
+  sgpl::sloppy_copy_res_t<T> sloppy_copy(
+    const emp::vector<T>& original,
+    const float p_defect,
+    const size_t defect_bound,
+    const size_t res_size_limit=std::numeric_limits<size_t>::max()
+  ) {
+
+    return sgpl::sloppy_copy<T, TemplatedInstance>(
+      original,
+      p_defect,
+      { -defect_bound, defect_bound },
+      res_size_limit
+    );
 
   }
 
