@@ -62,9 +62,13 @@ public:
 
       EMP_WRAP_EACH( SGPL_OP_NAME_PAYLOAD, SGPL_BYTE_ENUMERATION )
 
+      default:
+        emp_assert( false, op_code );
+        __builtin_unreachable();
+
     }
 
-    emp_always_assert(false, "bad op code", op_code);
+    emp_assert(false, op_code);
     __builtin_unreachable();
 
   }
@@ -86,9 +90,13 @@ public:
 
       EMP_WRAP_EACH( SGPL_OP_NUM_RNG_TOUCHES_PAYLOAD, SGPL_BYTE_ENUMERATION )
 
+      default:
+        emp_assert(false, op_code);
+        __builtin_unreachable();
+
     }
 
-    emp_always_assert(false, "bad op code", op_code);
+    emp_assert(false, op_code);
     __builtin_unreachable();
 
   }
@@ -111,9 +119,13 @@ public:
 
       EMP_WRAP_EACH( SGPL_NOP_OP_CODE_PAYLOAD, SGPL_BYTE_ENUMERATION )
 
+      default:
+        emp_assert(false, num_rng_touches);
+        __builtin_unreachable();
+
     }
 
-    emp_always_assert(false, "bad num rng touches", num_rng_touches);
+    emp_assert(false, num_rng_touches);
     __builtin_unreachable();
 
   }
@@ -134,9 +146,13 @@ public:
 
       EMP_WRAP_EACH( SGPL_OP_PREVALENCE_PAYLOAD, SGPL_BYTE_ENUMERATION )
 
+      default:
+        emp_assert(false, op_code);
+        __builtin_unreachable();
+
     }
 
-    emp_always_assert(false, "bad op code", op_code);
+    emp_assert(false, op_code);
     __builtin_unreachable();
 
   }
@@ -162,9 +178,13 @@ public:
         SGPL_OP_GET_DESCRIPTORS, SGPL_BYTE_ENUMERATION
       )
 
+      default:
+        emp_assert(false, op_code);
+        __builtin_unreachable();
+
     }
 
-    emp_always_assert(false, "bad op code", op_code);
+    emp_assert(false, op_code);
     __builtin_unreachable();
 
   }
@@ -190,9 +210,13 @@ public:
         SGPL_OP_GET_CATEGORIES, SGPL_BYTE_ENUMERATION
       )
 
+      default:
+        emp_assert(false, op_code);
+        __builtin_unreachable();
+
     }
 
-    emp_always_assert(false, "bad op code", op_code);
+    emp_assert(false, op_code);
     __builtin_unreachable();
 
   }

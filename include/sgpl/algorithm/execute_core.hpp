@@ -4,6 +4,7 @@
 
 #include <tuple>
 
+#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
 #include "../../../third-party/Empirical/include/emp/base/macros.hpp"
 
 #include "../hardware/Core.hpp"
@@ -44,6 +45,10 @@ inline void advance_core(
   switch( instruction.op_code ) {
 
     EMP_WRAP_EACH( SGPL_CASE_PAYLOAD, SGPL_BYTE_ENUMERATION )
+
+    default:
+      emp_assert( false, instruction.op_code );
+      __builtin_unreachable();
 
   }
 
