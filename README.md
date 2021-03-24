@@ -61,7 +61,7 @@ struct SayHello {
     typename Spec::peripheral_t& peripheral
   ) {
     std::cout << "for the " << peripheral.greet_count++ << "th time... ";
-    std::cout << "hello there " << peripheral.name << std::endl;
+    std::cout << "hello there " << peripheral.name << '\n';
   }
 
   static std::string name() { return "SayHello"; }

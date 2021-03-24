@@ -13,6 +13,6 @@ UI::Document doc("emp_base");
 int main()
 {
   doc << "<h1>Hello, browser!</h1>";
-  std::cout << "Hello, console!" << std::endl;
+  std::cout << "Hello, console!" << '\n';
   return 0;
 }
