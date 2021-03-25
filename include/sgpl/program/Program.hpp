@@ -127,7 +127,7 @@ public:
       n_muts
     );
 
-    Rectify();
+    Rectify(rectifier);
 
     return n_muts;
 
