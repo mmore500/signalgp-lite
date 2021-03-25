@@ -30,10 +30,6 @@ class Program : public emp::vector<sgpl::Instruction<Spec>> {
     return this->size() * sizeof( typename parent_t::value_type );
   }
 
-  void Rectify(const rectifier_t& rectifier=rectifier_t{}) {
-    for (auto& inst : *this) inst.Rectify(rectifier);
-  }
-
 public:
 
   /// Default constructor.
@@ -150,6 +146,11 @@ public:
     );
 
   }
+
+  void Rectify(const rectifier_t& rectifier=rectifier_t{}) {
+    for (auto& inst : *this) inst.Rectify(rectifier);
+  }
+
 
 };
 

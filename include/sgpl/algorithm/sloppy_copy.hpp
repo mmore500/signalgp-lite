@@ -16,13 +16,13 @@ namespace sgpl {
 
   template <typename T>
   using sloppy_copy_res_t = std::tuple<
-    emp::vector<T>,
+    T,
     size_t // cumulative num sites inserted and/or deleted
   >;
 
-  template< typename T , size_t TemplatedInstance=0 >
+  template< typename T , bool Scramble=false, size_t TemplatedInstance=0 >
   sgpl::sloppy_copy_res_t<T> sloppy_copy(
-    const emp::vector<T>& original,
+    const T& original,
     const float p_defect,
     const std::pair<size_t, size_t> defect_bounds,
     const size_t res_size_limit=std::numeric_limits<size_t>::max()
@@ -52,6 +52,8 @@ namespace sgpl {
     // then we would draw this from [0, original.size())
     const size_t offset{};
 
+    int scramble_countdown{};
+
     for (int idx{}; idx < uitsl::audit_cast<int>( original.size() ); ++idx) {
 
       if (--defect_countdown == 0) {
@@ -63,28 +65,45 @@ namespace sgpl {
         defect_countdown = neg_bino.PickRandom(
           sgpl::tlrand.Get()
         );
+
+        // scramble insertion mutations
+        if constexpr ( Scramble ) {
+          scramble_countdown += -defect;
+          scramble_countdown = std::max( scramble_countdown, 0 );
+        }
+
       }
 
       res_vector.push_back( original[ (idx + offset) % original.size() ] );
+
+      if ( scramble_countdown ) {
+        --scramble_countdown;
+        sgpl::tlrand.Get().RandFill(
+          reinterpret_cast<unsigned char*>( &res_vector.back() ),
+          sizeof( res_vector.back() )
+        );
+      }
 
       // enforce maximum result size
       if ( res_vector.size() >= res_size_limit ) break;
 
     }
 
+    if constexpr ( Scramble ) res_vector.Rectify();
+
     return res;
 
   }
 
-  template< typename T , size_t TemplatedInstance=0 >
+  template< typename T, bool Scramble=false, size_t TemplatedInstance=0 >
   sgpl::sloppy_copy_res_t<T> sloppy_copy(
-    const emp::vector<T>& original,
+    const T& original,
     const float p_defect,
     const size_t defect_bound,
     const size_t res_size_limit=std::numeric_limits<size_t>::max()
   ) {
 
-    return sgpl::sloppy_copy<T, TemplatedInstance>(
+    return sgpl::sloppy_copy<T, Scramble, TemplatedInstance>(
       original,
       p_defect,
       { -defect_bound, defect_bound },
