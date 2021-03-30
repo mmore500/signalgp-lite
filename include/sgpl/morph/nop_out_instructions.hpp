@@ -11,7 +11,7 @@ namespace sgpl {
 template< typename Spec >
 sgpl::Program<Spec> nop_out_instructions(
   sgpl::Program<Spec> program,
-  emp::vector< char > should_nop
+  const emp::vector< char >& should_nop
 ) {
 
   emp_assert( should_nop.size() == program.size() );
