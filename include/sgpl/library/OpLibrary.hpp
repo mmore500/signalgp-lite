@@ -52,6 +52,12 @@ struct OpLibrary : public std::tuple<Ops...> {
 
   }
 
+  static bool IsNopOpCode(const size_t op_code) {
+
+    return GetOpName( op_code ).rfind("Nop-", 0) == 0;
+
+  }
+
   constexpr static bool IsAnchorOpCode( const size_t op_code ) {
     return IsAnchorLocalOpCode( op_code ) || IsAnchorGlobalOpCode( op_code );
   }

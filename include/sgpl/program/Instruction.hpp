@@ -56,6 +56,10 @@ struct Instruction {
     if ( !library_t::IsAnchorOpCode( op_code ) ) NopOut();
   }
 
+  bool IsNop() const { return library_t::IsNopOpCode( op_code ); }
+
+  bool IsOp() const { return !IsNop(); }
+
   bool operator==(const Instruction& other) const {
     return (
       std::tuple{ op_code, args, tag }
