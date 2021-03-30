@@ -53,6 +53,9 @@ public:
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return Operation::name(); \
+        } else { \
+          emp_assert( false, N ); \
+          __builtin_unreachable(); \
         } \
       break;
 
@@ -81,6 +84,9 @@ public:
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return sgpl::count_operation_random_touches< Operation, Spec >(); \
+        } else { \
+          emp_assert( false, N ); \
+          __builtin_unreachable(); \
         } \
       break;
 
@@ -111,6 +117,10 @@ public:
         else if constexpr ( \
           uitsl::tuple_has_type< sgpl::Nop<N, 0>, library_parent_t >::value \
         )  return uitsl::tuple_index<sgpl::Nop<N, 0>, library_parent_t>::value; \
+        else { \
+          emp_assert( false, N ); \
+          __builtin_unreachable(); \
+        } \
       break;
 
     emp_assert( num_rng_touches < 256 );
@@ -137,6 +147,9 @@ public:
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return Operation::prevalence(); \
+        } else { \
+          emp_assert( false, N ); \
+          __builtin_unreachable(); \
         } \
       break;
 
@@ -167,6 +180,9 @@ public:
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return Operation::descriptors( instruction ); \
+        } else { \
+          emp_assert( false, N ); \
+          __builtin_unreachable(); \
         } \
       break;
 
@@ -199,6 +215,9 @@ public:
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return Operation::categories( instruction ); \
+        } else { \
+          emp_assert( false, N ); \
+          __builtin_unreachable(); \
         } \
       break;
 

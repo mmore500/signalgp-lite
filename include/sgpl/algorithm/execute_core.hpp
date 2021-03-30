@@ -37,6 +37,9 @@ inline void advance_core(
       if constexpr (N < library_t::GetSize()) { \
         using Functor = typename library_t::template Operation<N>; \
         Functor::template run<Spec>(state, instruction, program, peripheral);\
+      } else { \
+        emp_assert( false, N ); \
+        __builtin_unreachable(); \
       } \
     break;
 
