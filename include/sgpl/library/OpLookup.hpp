@@ -2,6 +2,7 @@
 #ifndef SGPL_LIBRARY_OPLOOKUP_HPP_INCLUDE
 #define SGPL_LIBRARY_OPLOOKUP_HPP_INCLUDE
 
+#include <cassert>
 #include <unordered_map>
 
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_has_type.hpp"
@@ -48,13 +49,14 @@ public:
 
   static std::string GetOpName(const size_t op_code) {
 
+    // can't use emp_assert due to obsucre macro error
     #define SGPL_OP_NAME_PAYLOAD(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return Operation::name(); \
         } else { \
-          emp_assert( false, N ); \
+          assert( false && N ); \
           __builtin_unreachable(); \
         } \
       break;
@@ -79,13 +81,14 @@ public:
   template< typename Spec >
   static size_t GetOpNumRngTouches(const size_t op_code) {
 
+    // can't use emp_assert due to obsucre macro error
     #define SGPL_OP_NUM_RNG_TOUCHES_PAYLOAD(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return sgpl::count_operation_random_touches< Operation, Spec >(); \
         } else { \
-          emp_assert( false, N ); \
+          assert( false && N ); \
           __builtin_unreachable(); \
         } \
       break;
@@ -109,6 +112,7 @@ public:
 
   static size_t GetNopOpCode( const size_t num_rng_touches ) {
 
+    // can't use emp_assert due to obsucre macro error
     #define SGPL_NOP_OP_CODE_PAYLOAD(N) \
       case N: \
         if constexpr ( \
@@ -118,7 +122,7 @@ public:
           uitsl::tuple_has_type< sgpl::Nop<N, 0>, library_parent_t >::value \
         )  return uitsl::tuple_index<sgpl::Nop<N, 0>, library_parent_t>::value; \
         else { \
-          emp_assert( false, N ); \
+          assert( false && N ); \
           __builtin_unreachable(); \
         } \
       break;
@@ -142,13 +146,14 @@ public:
 
   static size_t GetOpPrevalence(const size_t op_code) {
 
+    // can't use emp_assert due to obsucre macro error
     #define SGPL_OP_PREVALENCE_PAYLOAD(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return Operation::prevalence(); \
         } else { \
-          emp_assert( false, N ); \
+          assert( false && N ); \
           __builtin_unreachable(); \
         } \
       break;
@@ -175,13 +180,14 @@ public:
     const size_t op_code, const Instruction& instruction
   ) {
 
+    // can't use emp_assert due to obsucre macro error
     #define SGPL_OP_GET_DESCRIPTORS(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return Operation::descriptors( instruction ); \
         } else { \
-          emp_assert( false, N ); \
+          assert( false && N ); \
           __builtin_unreachable(); \
         } \
       break;
@@ -210,13 +216,14 @@ public:
     const size_t op_code, const Instruction& instruction
   ) {
 
+    // can't use emp_assert due to obsucre macro error
     #define SGPL_OP_GET_CATEGORIES(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
           using Operation = typename Library::template Operation<N>; \
           return Operation::categories( instruction ); \
         } else { \
-          emp_assert( false, N ); \
+          assert( false && N ); \
           __builtin_unreachable(); \
         } \
       break;

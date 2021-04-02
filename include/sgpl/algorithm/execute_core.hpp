@@ -2,6 +2,7 @@
 #ifndef SGPL_ALGORITHM_EXECUTE_CORE_HPP_INCLUDE
 #define SGPL_ALGORITHM_EXECUTE_CORE_HPP_INCLUDE
 
+#include <cassert>
 #include <tuple>
 
 #include "../../../third-party/Empirical/include/emp/base/assert.hpp"
@@ -32,13 +33,14 @@ inline void advance_core(
 
   emp_assert( instruction.op_code < library_t::GetSize() );
 
+  // can't use emp_assert due to obsucre macro error
   #define SGPL_CASE_PAYLOAD(N) \
     case N: \
       if constexpr (N < library_t::GetSize()) { \
         using Functor = typename library_t::template Operation<N>; \
         Functor::template run<Spec>(state, instruction, program, peripheral);\
       } else { \
-        emp_assert( false, N ); \
+        assert( false && N ); \
         __builtin_unreachable(); \
       } \
     break;
