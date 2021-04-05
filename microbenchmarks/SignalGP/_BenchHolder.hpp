@@ -13,6 +13,7 @@ struct BenchHolder {
 
     emp::Random rand;
     emp::vector<signalgp_t> collection;
+    collection.reserve( NUM_AGENTS );
 
     for (size_t i = 0; i < NUM_AGENTS; ++i) {
       collection.emplace_back(rand, inst_lib_, event_lib_);
@@ -25,6 +26,7 @@ struct BenchHolder {
     size_t agent{};
 
     emp::vector< emp::BitSet<64> > tags;
+    tags.reserve( 20 );
     std::generate_n(
       std::back_inserter(tags),
       20,

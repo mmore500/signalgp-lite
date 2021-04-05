@@ -32,6 +32,7 @@ static void DoBench(benchmark::State& state) {
   size_t agent{};
 
   emp::vector< emp::BitSet<64> > tags;
+  tags.reserve( 20 );
   std::generate_n(
     std::back_inserter(tags),
     20,
