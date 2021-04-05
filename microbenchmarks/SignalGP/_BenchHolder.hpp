@@ -44,7 +44,7 @@ struct BenchHolder {
 
         while ( cpu.GetUnusedThreadIDs().size() ) {
           cpu.SpawnThreadWithTag( tags[tag] );
-          ++tag %= 20;
+          ++tag %= tags.size();
         }
         cpu.SingleProcess();
       } else {

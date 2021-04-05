@@ -47,7 +47,7 @@ static void DoBench(benchmark::State& state) {
 
     // This code gets timed
     if constexpr (fill_cores) {
-      while ( cpu.TryLaunchCore( tags[tag] ) ) ++tag %= 20;
+      while ( cpu.TryLaunchCore( tags[tag] ) ) ++tag %= tags.size();
 
       sgpl::execute_cpu<spec_t>( 16, cpu, program );
     } else {
