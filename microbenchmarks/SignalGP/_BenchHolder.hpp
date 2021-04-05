@@ -11,7 +11,7 @@ struct BenchHolder {
 
   void Run(benchmark::State& state) {
 
-    emp::Random rand;
+    emp::Random rand{ 1 };
     emp::vector<signalgp_t> collection;
     collection.reserve( NUM_AGENTS );
 

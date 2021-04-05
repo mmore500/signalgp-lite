@@ -30,6 +30,7 @@ public:
     // fill the rest of the op codes according to prevalence
     unsigned char op_code{};
     size_t rep_countdown{};
+    bool first_time_thru{ true };
     for (
       size_t mapper_idx = Library::GetSize();
       mapper_idx < mapper.size();
@@ -37,10 +38,12 @@ public:
     ) {
 
       if (rep_countdown == 0) {
-        ++op_code %= Library::GetSize();
+        ++op_code;
+        if (op_code == Library::GetSize()) first_time_thru = false;
+        op_code %= Library::GetSize();
         emp_assert( Library::GetOpPrevalence( op_code ) );
-        rep_countdown = Library::GetOpPrevalence( op_code ) - 1;
-        if ( rep_countdown == 0 ) { --mapper_idx; continue; }
+        rep_countdown = Library::GetOpPrevalence( op_code ) - first_time_thru;
+        if ( rep_countdown == 0 ) { mapper_idx -= first_time_thru; continue; }
       }
 
       mapper[ mapper_idx ] = op_code;
