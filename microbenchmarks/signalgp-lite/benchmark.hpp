@@ -1,10 +1,11 @@
+#include <utility>
+
 #include <benchmark/benchmark.h>
 
 #include "conduit/include/uitsl/debug/benchmark_utils.hpp"
 #include "Empirical/include/emp/tools/string_utils.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
-#include "sgpl/spec/Spec.hpp"
 
 #define STRINGIFY(s) STRINGIFY_(s)
 #define STRINGIFY_(s) #s
@@ -18,7 +19,7 @@
 template<size_t NUM_AGENTS>
 static void DoBench(benchmark::State& state) {
 
-  emp::Random rand;
+  emp::Random rand{1};
 
   sgpl::Program<spec_t> program{ 100 };
 
