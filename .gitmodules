@@ -1,6 +1,3 @@
-[submodule "third-party/force-cover"]
-  path = third-party/force-cover
-  url = https://github.com/emilydolson/force-cover.git
 [submodule "third-party/SignalGP"]
   path = third-party/SignalGP
   url = https://github.com/mmore500/SignalGP.git
