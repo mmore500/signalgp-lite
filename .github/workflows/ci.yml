@@ -127,32 +127,6 @@ jobs:
       - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
   demos:
     runs-on: ubuntu-18.04
-    name: Demos
-    env:
-      CXX: g++
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
-  source-gcc:
-    runs-on: ubuntu-18.04
-    name: Source (gcc)
-    env:
-      CXX: g++
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
-  demos:
-    runs-on: ubuntu-18.04
     name: Run demos (clang)
     env:
       CXX: clang++
@@ -163,7 +137,7 @@ jobs:
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker build -t mmore500/signalgp-lite .
       - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/demos && make test"
+      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
   deploy-github-pages:
     runs-on: ubuntu-18.04
     name: Deploy to GitHub Pages
