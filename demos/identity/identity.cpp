@@ -12,7 +12,9 @@
 #include "../include/sgpl/library/OpLibraryCoupler.hpp"
 
 struct Peripheral {
-  int output{};
+    int output{};
+    Peripheral() = default;
+    Peripheral(int p) : output(p) { ; }
 };
 
 struct Identity {
@@ -37,14 +39,14 @@ using library_t = sgpl::OpLibraryCoupler<sgpl::CompleteOpLibrary, Identity>;
 using spec_t = sgpl::Spec<library_t, Peripheral>;
 
 struct Organism {
-    mutable Peripheral per;
+    mutable Peripheral peripheral;
 
     mutable sgpl::Cpu<spec_t> cpu;
 
     mutable sgpl::Program<spec_t> program{100};
 
     Organism() : Organism(0) { ; }
-    Organism(int t) : per(t) {
+    Organism(int t) : peripheral(t) {
         cpu.InitializeAnchors(program);
         while (cpu.TryLaunchCore(emp::BitSet<64>(sgpl::tlrand.Get())));
     }
@@ -53,18 +55,18 @@ struct Organism {
         cpu.InitializeAnchors(program);
         while (cpu.TryLaunchCore(emp::BitSet<64>(sgpl::tlrand.Get())));
 
-        sgpl::execute_cpu<spec_t>(std::kilo::num, cpu, program, per);
+        sgpl::execute_cpu<spec_t>(std::kilo::num, cpu, program, peripheral);
 
-        return per.output;
+        return peripheral.output;
     }
     bool DoMutations(emp::Random&) {
         program.ApplyPointMutations( 0.005f );
         return true;
     }
 
-    std::weak_ordering operator<=> (const Organism& rhs) {
-        return per.output <=> rhs.per.output;
-    }
+    bool operator== (const Organism& rhs) { return peripheral.output == rhs.peripheral.output; }
+    bool operator!= (const Organism& rhs) { return !operator==(rhs); }
+    bool operator< (const Organism& rhs) { return peripheral.output < rhs.peripheral.output; }
 };
 
 int main() {
