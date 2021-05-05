@@ -77,7 +77,7 @@ coverage:
 	cd tests && make coverage
 
 demos:
-	cd demos && make
+	cd demos && make opt
 
 install-test-dependencies:
 	git submodule update --init && cd third-party && bash ./install_emsdk.sh && bash ./install_force_cover.sh
