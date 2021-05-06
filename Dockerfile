@@ -1,4 +1,4 @@
-FROM mmore500/conduit
+FROM mmore500/conduit@sha256:b1590176a947b3d3887470c3dee6d81243c7f05c9f81388bffd67b903586037f
 
 USER root
 
