@@ -179,7 +179,7 @@ public:
   size_t ApplyMutations(const Config& config) {
     size_t num_muts = 0;
     if (sgpl::tlrand.Get().P( config.SGPL_MUTATION_OCCURENCE_RATE() )) {
-      num_muts += ApplyPointMutation( config.SGPL_POINT_MUTATION_RATE() );
+      num_muts += ApplyPointMutations( config.SGPL_POINT_MUTATION_RATE() );
       num_muts += ApplySequenceMutations( config );
     }
     return num_muts;
