@@ -45,6 +45,17 @@ struct SetState {
     static std::string name() { return "SetState"; }
 
     static size_t prevalence() { return config.ENVIROMENT_STATES(); }
+
+    template<typename Spec>
+    static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
+        using tag_t = typename Spec::tag_t;
+        tag_t tag = inst.GetTag();
+        size_t hash = std::hash<tag_t>{}(tag);
+
+        return std::map<std::string, std::string>{
+            { "state idx", emp::to_string( static_cast<int>( hash % prevalence() ) ) }
+        };
+    }
 };
 
 using library_t = sgpl::OpLibraryCoupler<sgpl::CompleteOpLibrary, SetState>;
@@ -121,9 +132,9 @@ struct Organism {
         return true;
     }
 
-    bool operator== (const Organism& rhs) { return peripheral.output == rhs.peripheral.output; }
-    bool operator!= (const Organism& rhs) { return !operator==(rhs); }
-    bool operator< (const Organism& rhs) { return peripheral.output < rhs.peripheral.output; }
+    bool operator==(const Organism& rhs) { return peripheral.output == rhs.peripheral.output; }
+    bool operator!=(const Organism& rhs) { return !operator==(rhs); }
+    bool operator<(const Organism& rhs) { return peripheral.output < rhs.peripheral.output; }
 
 };
 
