@@ -150,9 +150,12 @@ int main(int argc, char* argv[]) {
     // print config
     config.Write(std::cout);
 
-std::cout << "\nPost-Tourney Size = " << ea_world.GetSize() << std::endl;
-for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
-std::cout << std::endl;
+    emp::World<Organism> ea_world;
+    ea_world.SetPopStruct_Mixed(true);
+
+    if (config.LOGGING()) ea_world.SetupFitnessFile().SetTimingRepeat(10);
+
+    for (int i = 0; i < 100; i++) ea_world.Inject(i);
 
     auto get_best_fit_individual = [&ea_world]() -> Organism {
         // select best-fit individual
