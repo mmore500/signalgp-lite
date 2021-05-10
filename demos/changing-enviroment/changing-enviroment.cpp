@@ -181,4 +181,13 @@ int main(int argc, char* argv[]) {
         std::cout << std::endl;
     };
 
+    for (size_t t = 0; t < config.UPDATES(); ++t) {
+        print_fitness();
+        ea_world.DoMutations();
+        EliteSelect(ea_world);
+        TournamentSelect(ea_world, 4, 99);
+        ea_world.Update();
+
+    }
+    print_fitness();
 }
