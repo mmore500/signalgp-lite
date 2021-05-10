@@ -2,6 +2,7 @@
 #include <iostream>
 #include <limits>
 
+#include "../third-party/Empirical/include/emp/config/ArgManager.hpp"
 #include "../third-party/Empirical/include/emp/math/Random.hpp"
 #include "../third-party/Empirical/include/emp/Evolve/World.hpp"
 
@@ -126,16 +127,14 @@ struct Organism {
 
 };
 
-int main() {
+int main(int argc, char* argv[]) {
 
-  emp::World<Organism> ea_world;
-  ea_world.SetPopStruct_Mixed(true);
+    // make argmanager specs from config
+    auto specs = emp::ArgManager::make_builtin_specs(&config);
 
-  for (int i = 0; i < 100; i++) ea_world.Inject(i);
+    emp::ArgManager arg_manager{argc, argv, specs};
 
-  std::cout << "\nStart Size = " << ea_world.GetSize() << std::endl;
-  for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
-  std::cout << std::endl;
+    arg_manager.UseCallbacks();
 
     // print config
     config.Write(std::cout);
