@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstddef>
 
+#include "../../../third-party/cereal/include/cereal/archives/json.hpp"
 #include "../../../third-party/cereal/include/cereal/types/vector.hpp"
 #include "../../../third-party/Empirical/include/emp/base/vector.hpp"
 #include "../../../third-party/Empirical/include/emp/datastructs/hash_utils.hpp"
@@ -204,6 +205,11 @@ public:
 
   void Rectify(const rectifier_t& rectifier=rectifier_t{}) {
     for (auto& inst : *this) inst.Rectify(rectifier);
+  }
+
+  void Print(std::ostream& os) {
+    cereal::JSONOutputArchive archive(os);
+    archive( *this );
   }
 
 
