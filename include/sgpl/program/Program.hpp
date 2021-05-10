@@ -174,6 +174,16 @@ public:
     return num_muts;
   }
 
+  template <typename Config>
+  size_t ApplyMutations(const Config& config) {
+    size_t num_muts = 0;
+    if (sgpl::tlrand.Get().P( config.SGPL_MUTATION_OCCURENCE_RATE() )) {
+      num_muts += ApplyPointMutation( config.SGPL_POINT_MUTATION_RATE() );
+      num_muts += ApplySequenceMutations( config );
+    }
+    return num_muts;
+  }
+
   void RotateGlobalAnchorToFront() {
 
     const auto first_anchor = std::find_if(
