@@ -136,7 +136,6 @@ struct Organism {
 };
 
 int main(int argc, char* argv[]) {
-
     // make argmanager specs from config
     auto specs = emp::ArgManager::make_builtin_specs(&config);
 
@@ -147,6 +146,10 @@ int main(int argc, char* argv[]) {
     // print config
     config.Write(std::cout);
 
+    // reseed random number generator
+    sgpl::tlrand.Reseed(config.SEED());
+
+    // create world
     emp::World<Organism> ea_world;
     ea_world.SetPopStruct_Mixed(true);
 
@@ -179,12 +182,11 @@ int main(int argc, char* argv[]) {
     };
 
     for (size_t t = 0; t < config.UPDATES(); ++t) {
-        print_fitness();
         ea_world.DoMutations();
+        print_fitness();
         EliteSelect(ea_world);
         TournamentSelect(ea_world, 4, 99);
         ea_world.Update();
-
     }
     print_fitness();
 }
