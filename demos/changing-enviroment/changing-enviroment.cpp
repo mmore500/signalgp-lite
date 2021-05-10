@@ -13,12 +13,14 @@
 #include "../include/sgpl/utility/ThreadLocalRandom.hpp"
 #include "../include/sgpl/library/OpLibraryCoupler.hpp"
 
-const size_t K = 8;
+#include "config.hpp"
+
+static Config config{};
 
 struct Peripheral {
     int output{};
 
-    Peripheral() = default;
+    Peripheral() : output(-1) { ; }
     Peripheral(int x) : output(x) { ; }
 };
 
@@ -41,8 +43,7 @@ struct SetState {
 
     static std::string name() { return "SetState"; }
 
-    // we start with K = 4
-    static size_t prevalence() { return K; }
+    static size_t prevalence() { return config.ENVIROMENT_STATES(); }
 };
 
 using library_t = sgpl::OpLibraryCoupler<sgpl::CompleteOpLibrary, SetState>;
@@ -69,10 +70,10 @@ struct Organism {
         // initialize tag lookup with K random tags
         const static std::vector<tag_t> lookup = [](){
             std::vector<tag_t> ret;
-            ret.reserve(K);
+            ret.reserve(config.ENVIROMENT_STATES());
             std::generate_n(
                 std::back_inserter(ret),
-                K,
+                config.ENVIROMENT_STATES(),
                 [](){ return tag_t(sgpl::tlrand.Get()); }
             );
             return ret;
@@ -97,7 +98,7 @@ struct Organism {
                 // matched the environment state during evaluation.
 
                 // set enviroment to tag
-                const size_t index = sgpl::tlrand.Get().GetUInt(K);
+                const size_t index = t % config.ENVIROMENT_STATES();
                 cpu.TryLaunchCore(lookup[index]);
 
                 // execute up to 1k instructions
@@ -112,7 +113,10 @@ struct Organism {
         return static_cast<double>(min_fitness);
     }
     bool DoMutations(emp::Random&) {
-        program.ApplyPointMutations( 0.005f );
+        program.ApplyPointMutations( 0.0002f );
+
+        program.ApplySequenceMutations(config);
+
         return true;
     }
 
@@ -133,15 +137,8 @@ int main() {
   for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
   std::cout << std::endl;
 
-  for (int t = 0; t < 100; t++) {
-    ea_world.DoMutations();
-    EliteSelect(ea_world);
-    TournamentSelect(ea_world, 4, 99);
-    ea_world.Update();
-    for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
-    std::cout << std::endl;
-    std::cout << std::endl;
-  }
+    // print config
+    config.Write(std::cout);
 
 std::cout << "\nPost-Tourney Size = " << ea_world.GetSize() << std::endl;
 for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
