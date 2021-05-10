@@ -12,6 +12,7 @@
 #include "../../../third-party/Empirical/include/emp/polyfill/span.hpp"
 
 #include "../algorithm/mutate_bits.hpp"
+#include "../algorithm/sloppy_copy.hpp"
 #include "../utility/ThreadLocalRandom.hpp"
 
 #include "Instruction.hpp"
@@ -127,6 +128,50 @@ public:
 
     return n_muts;
 
+  }
+
+  template <
+    typename Config
+  >
+  size_t ApplySequenceMutations(const Config& cfg) {
+    const bool is_severe = sgpl::tlrand.Get().P(
+      cfg.SGPL_SEVERE_SEQUENCE_MUTATION_RATE()
+    );
+
+    const size_t defect_bound = (
+      is_severe
+      ? parent_t::size()
+      : cfg.SGPL_MINOR_SEQUENCE_MUTATION_BOUND()
+    );
+
+    const double defect_rate
+      = cfg.SGPL_SEQUENCE_DEFECT_RATE();
+
+    size_t num_muts = 0;
+
+    // do severe sequence mutation with scrambling
+    auto [copy1, muts1] = sgpl::sloppy_copy<Program, true>(
+      *this,
+      defect_rate,
+      { -defect_bound, defect_bound },
+      cfg.SGPL_PROGRAM_MAX_SIZE()
+    );
+
+    num_muts += muts1;
+
+    // do severe sequence mutation without scrambling
+    auto [copy2, muts2] = sgpl::sloppy_copy<Program, false>(
+      copy1,
+      defect_rate,
+      { -defect_bound, defect_bound },
+      cfg.SGPL_PROGRAM_MAX_SIZE()
+    );
+
+    num_muts += muts2;
+
+    *this = std::move(copy2);
+
+    return num_muts;
   }
 
   void RotateGlobalAnchorToFront() {
