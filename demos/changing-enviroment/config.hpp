@@ -12,5 +12,6 @@ EMP_BUILD_CONFIG(
     VALUE(SGPL_MUTATION_OCCURENCE_RATE, float, 0.5, "How often should mutations happen?"),
     VALUE(ENVIROMENT_STATES, size_t, 4, "TODO"),
     VALUE(UPDATES, size_t, 50, "TODO"),
-    VALUE(LOGGING, bool, false, "Should we log fitness data?")
+    VALUE(LOGGING, bool, false, "Should we log fitness data?"),
+    VALUE(SEED, size_t, 1, "PRNG Seed")
 )
