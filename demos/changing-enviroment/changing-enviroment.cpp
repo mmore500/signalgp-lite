@@ -125,10 +125,7 @@ struct Organism {
         return static_cast<double>(min_fitness);
     }
     bool DoMutations(emp::Random&) {
-        program.ApplyPointMutations( 0.0002f );
-
-        program.ApplySequenceMutations(config);
-
+        program.ApplyMutations(config);
         return true;
     }
 
