@@ -154,4 +154,21 @@ std::cout << "\nPost-Tourney Size = " << ea_world.GetSize() << std::endl;
 for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
 std::cout << std::endl;
 
+    auto get_best_fit_individual = [&ea_world]() -> Organism {
+        // select best-fit individual
+        std::multimap<double, size_t> fit_map;
+        for (size_t id = 0; id < ea_world.GetSize(); id++) {
+            if (ea_world.IsOccupied(id)) {
+                const double cur_fit = ea_world.CalcFitnessID(id);
+                fit_map.insert( std::make_pair(cur_fit, id) );
+            }
+        }
+
+        // Grab the top fitnesses and move them into the next generation.
+        auto m = fit_map.rbegin();
+
+        const size_t repro_id = m->second;
+        return ea_world.GetGenomeAt(repro_id);
+    };
+
 }
