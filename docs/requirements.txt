@@ -1,1 +1,1 @@
-third-party/requirements.txt
+../third-party/requirements.txt
