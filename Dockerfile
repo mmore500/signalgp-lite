@@ -5,9 +5,9 @@ USER root
 COPY . /opt/signalgp-lite
 
 RUN \
-  pip3 install -r /opt/signalgp-lite/docs/requirements.txt \
+  pip3 install -r /opt/signalgp-lite/third-party/requirements.txt \
     && \
-  echo "installed documentation build requirements"
+  echo "installed build requirements"
 
 # make sure unprivileged user has access to new files in opt
 # adapted from https://stackoverflow.com/a/27703359
