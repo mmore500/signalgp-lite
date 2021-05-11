@@ -3,16 +3,16 @@
 #include <limits>
 
 #include "../third-party/Empirical/include/emp/config/ArgManager.hpp"
-#include "../third-party/Empirical/include/emp/math/Random.hpp"
 #include "../third-party/Empirical/include/emp/Evolve/World.hpp"
+#include "../third-party/Empirical/include/emp/math/Random.hpp"
 
-#include "../include/sgpl/spec/Spec.hpp"
-#include "../include/sgpl/library/prefab/CompleteOpLibrary.hpp"
-#include "../include/sgpl/hardware/Cpu.hpp"
-#include "../include/sgpl/program/Program.hpp"
 #include "../include/sgpl/algorithm/execute_cpu.hpp"
-#include "../include/sgpl/utility/ThreadLocalRandom.hpp"
+#include "../include/sgpl/hardware/Cpu.hpp"
 #include "../include/sgpl/library/OpLibraryCoupler.hpp"
+#include "../include/sgpl/library/prefab/CompleteOpLibrary.hpp"
+#include "../include/sgpl/program/Program.hpp"
+#include "../include/sgpl/spec/Spec.hpp"
+#include "../include/sgpl/utility/ThreadLocalRandom.hpp"
 
 #include "config.hpp"
 
