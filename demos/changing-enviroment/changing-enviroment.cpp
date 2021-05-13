@@ -153,7 +153,9 @@ int main(int argc, char* argv[]) {
     emp::World<Organism> ea_world;
     ea_world.SetPopStruct_Mixed(true);
 
-    if (config.LOGGING()) ea_world.SetupFitnessFile().SetTimingRepeat(10);
+    if (config.LOGGING()) ea_world.SetupFitnessFile(
+        emp::to_string(config.LOGGING_FILENAME(), ".csv")
+    );
 
     for (int i = 0; i < config.POPULATION_SIZE(); i++) ea_world.Inject(i);
 
