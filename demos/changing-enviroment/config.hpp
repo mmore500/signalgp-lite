@@ -14,6 +14,7 @@ EMP_BUILD_CONFIG(
     VALUE(UPDATES, size_t, 50, "TODO"),
     VALUE(LOGGING, bool, false, "Should we log fitness data?"),
     VALUE(SEED, size_t, 1, "PRNG Seed")
+    VALUE(THRESHOLD_FITNESS, size_t, 256, "Minimim fitness required for a full solution"),
     VALUE(LOGGING_FILENAME, size_t, 1, "TODO"),
     VALUE(POPULATION_SIZE, size_t, 1000, "TODO")
 )

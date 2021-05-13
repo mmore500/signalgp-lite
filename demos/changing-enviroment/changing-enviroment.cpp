@@ -159,6 +159,11 @@ int main(int argc, char* argv[]) {
 
     for (int i = 0; i < config.POPULATION_SIZE(); i++) ea_world.Inject(i);
 
+    auto get_max_fitness = [&ea_world]() -> double {
+        double max_fitness = 0;
+        for (size_t i = 0; i < ea_world.GetSize(); i++) max_fitness = std::max(ea_world[i].GetFitness(), max_fitness);
+        return max_fitness;
+    };
 
     auto get_best_fit_individual = [&ea_world]() -> Organism {
         // select best-fit individual
@@ -185,6 +190,13 @@ int main(int argc, char* argv[]) {
     };
 
     for (size_t t = 0; t < config.UPDATES(); ++t) {
+        // check whether an organism has reached threshold fitness
+        // if so, we exit early, as elite selection will make sure
+        // it takes of the whole population eventually
+        const double max_fitness = get_max_fitness();
+        if (max_fitness >= config.THRESHOLD_FITNESS()) break;
+
+        // usual loop
         ea_world.DoMutations();
         print_fitness();
         EliteSelect(ea_world);
