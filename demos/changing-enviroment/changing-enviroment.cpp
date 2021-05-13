@@ -192,17 +192,17 @@ int main(int argc, char* argv[]) {
     };
 
     for (size_t t = 0; t < config.UPDATES(); ++t) {
-        // check whether an organism has reached threshold fitness
-        // if so, we exit early, as elite selection will make sure
-        // it takes of the whole population eventually
-        const double max_fitness = get_max_fitness();
-        if (max_fitness >= config.THRESHOLD_FITNESS()) break;
-
         // usual loop
         ea_world.DoMutations();
         print_fitness(t);
         EliteSelect(ea_world);
         TournamentSelect(ea_world, 4, config.POPULATION_SIZE() - 1);
         ea_world.Update();
+
+        // check whether an organism has reached threshold fitness
+        // if so, we exit early, as elite selection will make sure
+        // it takes of the whole population eventually
+        const double max_fitness = get_max_fitness();
+        if (max_fitness >= config.THRESHOLD_FITNESS()) break;
     }
 }
