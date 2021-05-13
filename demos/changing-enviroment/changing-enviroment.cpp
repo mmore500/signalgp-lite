@@ -182,11 +182,13 @@ int main(int argc, char* argv[]) {
         return ea_world.GetGenomeAt(repro_id);
     };
 
-    auto print_fitness = [&ea_world, get_best_fit_individual](){
-        for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
-        std::cout << std::endl;
-        std::cout << "Best fitness: " << get_best_fit_individual().GetFitness() << std::endl;
-        std::cout << std::endl;
+    auto print_fitness = [&ea_world, get_best_fit_individual](size_t time = -1){
+        std::cout << "Update: " << time << std::endl;
+
+        //for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
+        //std::cout << std::endl;
+        //std::cout << "Best fitness: " << get_best_fit_individual().GetFitness() << std::endl;
+        //std::cout << std::endl;
     };
 
     for (size_t t = 0; t < config.UPDATES(); ++t) {
@@ -198,10 +200,9 @@ int main(int argc, char* argv[]) {
 
         // usual loop
         ea_world.DoMutations();
-        print_fitness();
+        print_fitness(t);
         EliteSelect(ea_world);
         TournamentSelect(ea_world, 4, config.POPULATION_SIZE() - 1);
         ea_world.Update();
     }
-    print_fitness();
 }
