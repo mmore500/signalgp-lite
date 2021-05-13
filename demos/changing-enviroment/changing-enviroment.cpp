@@ -18,8 +18,6 @@
 
 static Config config{};
 
-const size_t PopulationSize = 1000;
-
 struct Peripheral {
     int output{};
 
@@ -157,7 +155,8 @@ int main(int argc, char* argv[]) {
 
     if (config.LOGGING()) ea_world.SetupFitnessFile().SetTimingRepeat(10);
 
-    for (int i = 0; i < PopulationSize; i++) ea_world.Inject(i);
+    for (int i = 0; i < config.POPULATION_SIZE(); i++) ea_world.Inject(i);
+
 
     auto get_best_fit_individual = [&ea_world]() -> Organism {
         // select best-fit individual
@@ -187,7 +186,7 @@ int main(int argc, char* argv[]) {
         ea_world.DoMutations();
         print_fitness();
         EliteSelect(ea_world);
-        TournamentSelect(ea_world, 4, PopulationSize - 1);
+        TournamentSelect(ea_world, 4, config.POPULATION_SIZE() - 1);
         ea_world.Update();
     }
     print_fitness();
