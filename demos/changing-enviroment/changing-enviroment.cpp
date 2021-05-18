@@ -183,7 +183,7 @@ int main(int argc, char* argv[]) {
     };
 
     auto print_fitness = [&ea_world, get_best_fit_individual](size_t time = -1){
-        std::cout << "Update: " << time << std::endl;
+        if (time != -1) std::cout << "Update: " << time << std::endl;
 
         //for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
         //std::cout << std::endl;
