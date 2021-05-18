@@ -164,6 +164,13 @@ jobs:
       - run: docker build -t mmore500/signalgp-lite .
       - run: docker ps -a
       - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
+
+  binder:
+    name: Notebooks
+    runs-on: ubuntu-16.04
+    steps:
+      - run: /opt/signalgp-lite/binder/execute_notebooks.sh
+
   deploy-github-pages:
     runs-on: ubuntu-18.04
     name: Deploy to GitHub Pages
@@ -180,6 +187,7 @@ jobs:
       - source-gcc
       - demos-clang
       - demos-gcc
+      - binder
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
