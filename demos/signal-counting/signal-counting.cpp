@@ -184,7 +184,13 @@ int main(int argc, char* argv[]) {
 
     if (config.LOGGING()) ea_world.SetupFitnessFile().SetTimingRepeat(10);
 
-    for (int i = 0; i < 100; i++) ea_world.Inject(i);
+    for (int i = 0; i < 1000; i++) ea_world.Inject(i);
+
+    auto get_max_fitness = [&ea_world]() -> double {
+        double max_fitness = 0;
+        for (size_t i = 0; i < ea_world.GetSize(); i++) max_fitness = std::max(ea_world[i].GetFitness(), max_fitness);
+        return max_fitness;
+    };
 
     auto get_best_fit_individual = [&ea_world]() -> Organism {
         // select best-fit individual
@@ -203,18 +209,24 @@ int main(int argc, char* argv[]) {
         return ea_world.GetGenomeAt(repro_id);
     };
 
-    auto print_fitness = [&ea_world, get_best_fit_individual](){
-        for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
-        std::cout << std::endl;
-        std::cout << "Best fitness: " << get_best_fit_individual().GetFitness() << std::endl;
-        std::cout << std::endl;
+    auto print_fitness = [&ea_world, get_best_fit_individual](const size_t time = -1){
+        if (time != -1) std::cout << "Update: " << time << std::endl;
+        //for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
+        //std::cout << std::endl;
+        //std::cout << "Best fitness: " << get_best_fit_individual().GetFitness() << std::endl;
+        //std::cout << std::endl;
     };
 
     for (size_t t = 0; t < config.UPDATES(); ++t) {
-        print_fitness();
+        // loop normally
+        print_fitness(t);
         ea_world.DoMutations();
         LexicaseSelect(ea_world, GetFitFuns(), 100);
         ea_world.Update();
+
+        // check for early exit
+        const double max_fitness = get_max_fitness();
+        if (max_fitness >- config.THRESHOLD_FITNESS()) break;
     }
 
     print_fitness();

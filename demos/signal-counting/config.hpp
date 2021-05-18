@@ -13,5 +13,6 @@ EMP_BUILD_CONFIG(
     VALUE(ENVIROMENT_STATES, size_t, 4, "TODO"),
     VALUE(NUMBER_RESPONSES, size_t, 4, "TODO"),
     VALUE(UPDATES, size_t, 100, "TODO"),
-    VALUE(LOGGING, bool, false, "Should we log fitness data?")
+    VALUE(LOGGING, bool, false, "Should we log fitness data?"),
+    VALUE(THRESHOLD_FITNESS, size_t, 16, "TODO")
 )
