@@ -28,3 +28,5 @@ node_modules/
 coverage_include/
 
 demos/*/*.csv
+
+binder/results/changing-enviroment/teeplots/*
