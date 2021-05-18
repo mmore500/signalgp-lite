@@ -6,8 +6,28 @@ on:
     branches:
       - '**'
 jobs:
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+          fetch-depth: 0 # fetch all history for all branches and tags
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          push: true
+          tags: "GITHUB_ACTION_${{ github.run_number }}"
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: mmore500/signalgp-lite
+          add_git_labels: true
+
   misc:
     runs-on: ubuntu-18.04
+    needs:
+      - docker-build
     name: Docs, Miscellaneous
     steps:
       - name: Cancel Previous Runs
@@ -17,90 +37,104 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && python3 ci/test_readme_snippets.py && make docs"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && python3 ci/test_readme_snippets.py && make docs"
+
   unit-clang-debug:
     runs-on: ubuntu-18.04
     name: Unit Tests (clang, debug mode)
+    needs:
+      - docker-build
     env:
       CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-gcc-debug:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, debug mode)
+    needs:
+      - docker-build
     env:
       CXX: g++
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-clang-opt:
     runs-on: ubuntu-18.04
     name: Unit Tests (clang, opt mode)
+    needs:
+      - docker-build
     env:
       CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
   unit-gcc-opt:
     runs-on: ubuntu-18.04
     name: Unit Tests (gcc, opt mode)
+    needs:
+      - docker-build
     env:
       CXX: g++
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
   coverage:
     runs-on: ubuntu-18.04
     name: Coverage
+    needs:
+      - docker-build
     env:
       CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: ci_env=`bash <(curl -s https://codecov.io/env)`
-      - run: sudo docker run $ci_env -e CXX=$CXX mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
   fuzzing:
     runs-on: ubuntu-18.04
     name: Fuzzing
+    needs:
+      - docker-build
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -e CXX=$CXX -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/fuzzing && make && make opt"
+      - run: docker run --cap-add=SYS_ADMIN --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/fuzzing && make && make opt"
   microbenchmarks:
     runs-on: ubuntu-18.04
     name: Microbenchmarks
+    needs:
+      - docker-build
     env:
       CXX: clang++
       OSF_PASSWORD: ${{ secrets.OSF_PASSWORD }}
@@ -108,73 +142,103 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run -e CXX=$CXX -e OSF_PASSWORD=$OSF_PASSWORD -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
   source-clang:
     runs-on: ubuntu-18.04
     name: Source (clang)
+    needs:
+      - docker-build
     env:
       CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && make test"
   source-gcc:
     runs-on: ubuntu-18.04
     name: Source (gcc)
+    needs:
+      - docker-build
     env:
       CXX: g++
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && make test"
   demos-clang:
     runs-on: ubuntu-18.04
     name: Run demos (clang)
+    needs:
+      - docker-build
     env:
       CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
   demos-gcc:
     runs-on: ubuntu-18.04
     name: Run demos (gcc)
+    needs:
+      - docker-build
     env:
       CXX: g++
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
+      - run: docker run --cap-add=SYS_ADMIN --security-opt -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
 
   binder:
     name: Notebooks
     runs-on: ubuntu-18.04
+    needs:
+      - docker-build
+    container:
+      # github actions requires root to access mounted volumes
+      options: --user root
     steps:
       - run: /opt/signalgp-lite/binder/execute_notebooks.sh
+      - run: git init
+      - uses: fregante/setup-git-user@v1
+      - run: git commit --allow-empty -m "Initial commit"
+      - run: cp -r /opt/dishtiny/ deploy/
+      - uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: binder # The branch the action should deploy to.
+          folder: deploy # The folder the action should deploy.
 
   deploy-github-pages:
     runs-on: ubuntu-18.04
     name: Deploy to GitHub Pages
+    container:
+      image: mmore500/conduit:GITHUB_ACTION_${{ github.run_number }}
+      env:
+        OSF_PASSWORD: ${{ secrets.OSF_PASSWORD }}
+        OSF_USERNAME: ${{ secrets.OSF_USERNAME }}
+      # github actions requires root to access mounted volumes
+      options: --user root
+    if: github.ref == 'refs/heads/master'
     needs:
+      - docker-build
       - misc
       - unit-clang-debug
       - unit-gcc-debug
@@ -191,10 +255,43 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
+      - run: make -C /opt/conduit/ web
+      - run: cp -r /opt/conduit/web/ web/
+      - uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: web # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
+
+  deploy-dockerhub:
+    name: Deploy to Dockerhub
+    runs-on: ubuntu-18.04
+    needs:
+      - docker-build
+      - misc
+      - unit-clang-debug
+      - unit-gcc-debug
+      - unit-clang-opt
+      - unit-gcc-opt
+      - coverage
+      - fuzzing
+      - microbenchmarks
+      - source-clang
+      - source-gcc
+      - demos-clang
+      - demos-gcc
+      - binder
+    steps:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker build -t mmore500/signalgp-lite .
-      - run: docker ps -a
-      - run: docker run -e GH_TOKEN=$GH_TOKEN -e GITHUB_RUN_ID mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && source third-party/emsdk/emsdk_env.sh && make web && make badges && ./ci/deploy_gh_pages.sh"
+      - name: Push to DockerHub
+        uses: docker/build-push-action@v1
+        with:
+          push: true
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: mmore500/signalgp-lite
+          tag_with_ref: true
+          tag_with_sha: true
