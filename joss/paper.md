@@ -110,6 +110,11 @@ and referenced from text using \autoref{fig:example}.
 Figure sizes can be customized by adding an optional second parameter:
 ![Caption for example figure.](figure.png){ width=20% } -->
 
+![Maximum fitness wrt. updates, with standard deviation confidence intervals.\nThis is because, due to large number of datapoints, computing 95% CI takes a non-insignificant amount of time.\label{fig:max-fitness-sd}](figures/max-fitness-sd.png)
+
+![Filtered maximum fitness wrt. updates, with 95% confidence intervals.\nData has been filtered logarithmically,\label{fig:max-fitness-sd}](figures/max-fitness-log2.png)
+
+
 # Acknowledgements
 
 We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
