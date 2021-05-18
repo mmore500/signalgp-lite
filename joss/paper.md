@@ -81,6 +81,12 @@ You can also use plain \LaTeX for equations
 \end{equation}
 and refer to \autoref{eq:fourier} from text.
 
+# Results
+
+## Replication Results
+
+## Benchmarking Results
+
 # Citations
 
 Citations to entries in paper.bib should be in
