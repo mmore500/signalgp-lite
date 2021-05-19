@@ -117,7 +117,7 @@ jobs:
 
   source:
     runs-on: ubuntu-18.04
-    name: Source (clang)
+    name: Source
     needs:
       - docker-build
     strategy:
@@ -134,7 +134,7 @@ jobs:
 
   demos:
     runs-on: ubuntu-18.04
-    name: Run demos (clang)
+    name: Run demos
     needs:
       - docker-build
     strategy:
