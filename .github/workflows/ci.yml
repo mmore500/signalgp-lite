@@ -41,13 +41,15 @@ jobs:
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && python3 ci/test_readme_snippets.py && make docs"
 
-  unit-clang-debug:
+  unit-tests:
     runs-on: ubuntu-18.04
-    name: Unit Tests (clang, debug mode)
+    name: Unit Tests
     needs:
       - docker-build
-    env:
-      CXX: clang++
+    strategy:
+      matrix:
+        cxx: [clang++, g++]
+        mode: [opt, test]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -55,52 +57,8 @@ jobs:
       # Adapted from https://askubuntu.com/a/524368
       - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
-  unit-gcc-debug:
-    runs-on: ubuntu-18.04
-    name: Unit Tests (gcc, debug mode)
-    needs:
-      - docker-build
-    env:
-      CXX: g++
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
-  unit-clang-opt:
-    runs-on: ubuntu-18.04
-    name: Unit Tests (clang, opt mode)
-    needs:
-      - docker-build
-    env:
-      CXX: clang++
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
-  unit-gcc-opt:
-    runs-on: ubuntu-18.04
-    name: Unit Tests (gcc, opt mode)
-    needs:
-      - docker-build
-    env:
-      CXX: g++
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
+      - run: docker run --cap-add=SYS_ADMIN -e CXX=${{ matrix.cxx }} -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make {{ matrix.mode }}"
+
   coverage:
     runs-on: ubuntu-18.04
     name: Coverage
@@ -116,6 +74,7 @@ jobs:
       - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
+
   fuzzing:
     runs-on: ubuntu-18.04
     name: Fuzzing
@@ -129,6 +88,7 @@ jobs:
       - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker run --cap-add=SYS_ADMIN --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/fuzzing && make && make opt"
+
   microbenchmarks:
     runs-on: ubuntu-18.04
     name: Microbenchmarks
@@ -145,13 +105,15 @@ jobs:
       - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
-  source-clang:
+
+  source:
     runs-on: ubuntu-18.04
     name: Source (clang)
     needs:
       - docker-build
-    env:
-      CXX: clang++
+    strategy:
+      matrix:
+        cxx: [clang++, g++]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -159,29 +121,16 @@ jobs:
       # Adapted from https://askubuntu.com/a/524368
       - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && make test"
-  source-gcc:
-    runs-on: ubuntu-18.04
-    name: Source (gcc)
-    needs:
-      - docker-build
-    env:
-      CXX: g++
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && make test"
-  demos-clang:
+      - run: docker run --cap-add=SYS_ADMIN -e CXX=${{ matrix.cxx }} -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && make test"
+
+  demos:
     runs-on: ubuntu-18.04
     name: Run demos (clang)
     needs:
       - docker-build
-    env:
-      CXX: clang++
+    strategy:
+      matrix:
+        cxx: [clang++, g++]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -189,22 +138,7 @@ jobs:
       # Adapted from https://askubuntu.com/a/524368
       - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
-  demos-gcc:
-    runs-on: ubuntu-18.04
-    name: Run demos (gcc)
-    needs:
-      - docker-build
-    env:
-      CXX: g++
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
+      - run: docker run --cap-add=SYS_ADMIN -e CXX=${{ matrix.cxx }} -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
 
   binder:
     name: Notebooks
@@ -240,17 +174,12 @@ jobs:
     needs:
       - docker-build
       - misc
-      - unit-clang-debug
-      - unit-gcc-debug
-      - unit-clang-opt
-      - unit-gcc-opt
+      - unit-tests
       - coverage
       - fuzzing
       - microbenchmarks
-      - source-clang
-      - source-gcc
-      - demos-clang
-      - demos-gcc
+      - source
+      - demos
       - binder
     env:
       GH_TOKEN: ${{ github.token }}
@@ -270,17 +199,12 @@ jobs:
     needs:
       - docker-build
       - misc
-      - unit-clang-debug
-      - unit-gcc-debug
-      - unit-clang-opt
-      - unit-gcc-opt
+      - unit-tests
       - coverage
       - fuzzing
       - microbenchmarks
-      - source-clang
-      - source-gcc
-      - demos-clang
-      - demos-gcc
+      - source
+      - demos
       - binder
     steps:
       - uses: actions/checkout@v2
