@@ -41,14 +41,14 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - run: |
-        cd /opt/signalgp-lite
-        ./ci/test_trailing_whitespace.sh
-        ./ci/test_tabs.sh
-        ./ci/test_missing_newlines.sh
-        ./ci/test_headerguards.sh
-        ./ci/test_alphabetize_includes.sh
-        python3 ci/test_readme_snippets.py
-        make docs
+          cd /opt/signalgp-lite
+          ./ci/test_trailing_whitespace.sh
+          ./ci/test_tabs.sh
+          ./ci/test_missing_newlines.sh
+          ./ci/test_headerguards.sh
+          ./ci/test_alphabetize_includes.sh
+          python3 ci/test_readme_snippets.py
+          make docs
 
   unit-tests:
     runs-on: ubuntu-18.04
