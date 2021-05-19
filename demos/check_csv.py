@@ -2,8 +2,9 @@ import sys
 import pandas as pd
 
 expected = int(sys.argv[1])
+filename = sys.argv[2]
 
-df = pd.read_csv("fitness.csv")
+df = pd.read_csv(filename)
 
 max_fitness = df["max_fitness"].max()
 
