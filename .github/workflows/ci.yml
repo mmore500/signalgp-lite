@@ -28,18 +28,26 @@ jobs:
     needs:
       - docker-build
     name: Docs, Miscellaneous
+    container:
+      image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
+      # github actions requires root to access mounted volumes
+      options: --user root --cap-add=SYS_ADMIN
+      env:
+        CXX: clang++
+        CONTEXT: travis
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
         with:
           access_token: ${{ github.token }}
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && python3 ci/test_readme_snippets.py && make docs"
+      - run: cd /opt/signalgp-lite
+      - run: ./ci/test_trailing_whitespace.sh
+      - run: ./ci/test_tabs.sh
+      - run: ./ci/test_missing_newlines.sh
+      - run: ./ci/test_headerguards.sh
+      - run: ./ci/test_alphabetize_includes.sh
+      - run: python3 ci/test_readme_snippets.py
+      - run: make docs
 
   unit-tests:
     runs-on: ubuntu-18.04
