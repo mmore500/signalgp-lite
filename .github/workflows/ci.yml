@@ -57,7 +57,7 @@ jobs:
       # Adapted from https://askubuntu.com/a/524368
       - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
       - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=${{ matrix.cxx }} -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make {{ matrix.mode }}"
+      - run: docker run --cap-add=SYS_ADMIN -e CXX=${{ matrix.cxx }} -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make ${{ matrix.mode }}"
 
   coverage:
     runs-on: ubuntu-18.04
