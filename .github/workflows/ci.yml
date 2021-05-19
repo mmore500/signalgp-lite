@@ -40,14 +40,15 @@ jobs:
         uses: styfle/cancel-workflow-action@0.6.0
         with:
           access_token: ${{ github.token }}
-      - run: cd /opt/signalgp-lite
-      - run: ./ci/test_trailing_whitespace.sh
-      - run: ./ci/test_tabs.sh
-      - run: ./ci/test_missing_newlines.sh
-      - run: ./ci/test_headerguards.sh
-      - run: ./ci/test_alphabetize_includes.sh
-      - run: python3 ci/test_readme_snippets.py
-      - run: make docs
+      - run: |
+        cd /opt/signalgp-lite
+        ./ci/test_trailing_whitespace.sh
+        ./ci/test_tabs.sh
+        ./ci/test_missing_newlines.sh
+        ./ci/test_headerguards.sh
+        ./ci/test_alphabetize_includes.sh
+        python3 ci/test_readme_snippets.py
+        make docs
 
   unit-tests:
     runs-on: ubuntu-18.04
