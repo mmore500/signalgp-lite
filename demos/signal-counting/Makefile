@@ -1,6 +1,6 @@
 TEST_NAMES += signal-counting
 
-EXPECTED_FITNESS := 4
+EXPECTED_FITNESS := 3
 
 TO_ROOT := $(shell git rev-parse --show-cdup)
 
