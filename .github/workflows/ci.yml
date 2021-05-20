@@ -59,61 +59,73 @@ jobs:
       matrix:
         cxx: [clang++, g++]
         mode: [opt, test]
+    container:
+      image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
+      # github actions requires root to access mounted volumes
+      options: --user root --cap-add=SYS_ADMIN
+      env:
+        CXX: ${{ matrix.cxx }}
+        CONTEXT: travis
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=${{ matrix.cxx }} -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make ${{ matrix.mode }}"
+      - run: |
+          set -x
+          cd /opt/signalgp-lite/tests
+          make ${{ matrix.mode }
 
   coverage:
     runs-on: ubuntu-18.04
     name: Coverage
     needs:
       - docker-build
-    env:
-      CXX: clang++
+    container:
+      image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
+      # github actions requires root to access mounted volumes
+      options: --user root --cap-add=SYS_ADMIN
+      env:
+        CXX: clang++
+        CONTEXT: travis
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
+      - run: |
+          cd /opt/signalgp-lite
+          make coverage
+          bash <(curl -s https://codecov.io/bash)
 
   fuzzing:
     runs-on: ubuntu-18.04
     name: Fuzzing
     needs:
       - docker-build
+    container:
+      image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
+      # github actions requires root to access mounted volumes
+      options: --user root --cap-add=SYS_ADMIN --cap-add=SYS_PTRACE --security-opt seccomp=unconfined
+      env:
+        CXX: clang++
+        CONTEXT: travis
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/fuzzing && make && make opt"
+      - run: |
+          cd /opt/signalgp-lite/fuzzing
+          make
+          make opt
 
   microbenchmarks:
     runs-on: ubuntu-18.04
     name: Microbenchmarks
     needs:
       - docker-build
-    env:
-      CXX: clang++
-      OSF_PASSWORD: ${{ secrets.OSF_PASSWORD }}
+    container:
+      image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
+      # github actions requires root to access mounted volumes
+      options: --user root --cap-add=SYS_ADMIN
+      env:
+        CXX: clang++
+        CONTEXT: travis
+        OSF_USERNAME: ${{ secrets.OSF_USERNAME }}
+        OSF_PASSWORD: ${{ secrets.OSF_PASSWORD }}
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
+      - run: |
+          cd /opt/signalgp-lite/microbenchmarks
+          make
 
   source:
     runs-on: ubuntu-18.04
@@ -123,14 +135,17 @@ jobs:
     strategy:
       matrix:
         cxx: [clang++, g++]
+    container:
+      image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
+      # github actions requires root to access mounted volumes
+      options: --user root --cap-add=SYS_ADMIN
+      env:
+        CXX: ${{ matrix.cxx }}
+        CONTEXT: travis
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=${{ matrix.cxx }} -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite && make test"
+      - run: |
+          cd /opt/signalgp-lite
+          make test
 
   demos:
     runs-on: ubuntu-18.04
@@ -140,14 +155,17 @@ jobs:
     strategy:
       matrix:
         cxx: [clang++, g++]
+    container:
+      image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
+      # github actions requires root to access mounted volumes
+      options: --user root --cap-add=SYS_ADMIN
+      env:
+        CXX: ${{ matrix.cxx }}
+        CONTEXT: travis
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      # Adapted from https://askubuntu.com/a/524368
-      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
-      - uses: docker-practice/actions-setup-docker@v1
-      - run: docker run --cap-add=SYS_ADMIN -e CXX=${{ matrix.cxx }} -e CONTEXT=travis -i "mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}" /bin/bash -c "cd /opt/signalgp-lite/demos && make opt"
+      - run: |
+          cd /opt/signalgp-lite/demos
+          make opt
 
   binder:
     name: Notebooks
