@@ -90,7 +90,7 @@ jobs:
         with:
           fail_ci_if_error: true
           verbose: true
-          directory: /opt/dishtiny
+          directory: /opt/signalgp-lite
 
   fuzzing:
     runs-on: ubuntu-18.04
