@@ -85,10 +85,12 @@ jobs:
         CXX: clang++
         CONTEXT: travis
     steps:
-      - run: |
-          cd /opt/signalgp-lite
-          make coverage
-          bash <(curl -s https://codecov.io/bash)
+      - run: cd /opt/signalgp-lite && make coverage
+      - uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+          verbose: true
+          directory: /opt/dishtiny
 
   fuzzing:
     runs-on: ubuntu-18.04
