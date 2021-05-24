@@ -16,17 +16,9 @@ date: 31 May 2021
 bibliography: paper.bib
 ---
 
-# Summary
+# Abstract
 
-The forces on stars, galaxies, and dark matter under external gravitational
-fields lead to the dynamical evolution of structures in the universe. The orbits
-of these bodies are therefore key to understanding the formation, history, and
-future state of galaxies. The field of "galactic dynamics," which aims to model
-the gravitating components of galaxies to study their structure and evolution,
-is now well-established, commonly taught, and frequently used in astronomy.
-Aside from toy problems and demonstrations, the majority of problems require
-efficient numerical tools, many of which require the same base code (e.g., for
-performing numerical orbit integration).
+Event-driven genetic programming has been shown to outperform traditional methods of
 
 # Statement of need
 
@@ -70,6 +62,10 @@ and refer to \autoref{eq:fourier} from text.
 # Results
 
 ## Replication Results
+
+Three experiments from the original SignalGP paper were replicated [1].
+The first one (the "Changing Enviroment" problem) consisted of K number of enviromental signals (2, 4, 8, 16) that organisms had to learn to call a unique signaling instruction for. signalgp-lite managed 100% of the results, even suprassing SignalGP in signal reproduction in the K=16 case (100% vs 32% average).
+This is hypothesised to be due to a difference in how mutation parameters are defined and not due to an implementation difference.zoo
 
 ## Benchmarking Results
 
