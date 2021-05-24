@@ -9,6 +9,9 @@ authors:
   - name: Matthew Andres Moreno
     orcid: 0000-0003-4726-4479
     affiliation: 1
+  - name: Santiago Rodriguez Papa
+    orcid: 0000-0002-6028-2105
+    affiliation: 1
 affiliations:
  - name: Michigan State University
    index: 1
