@@ -21,6 +21,8 @@
 
 static Config config{};
 
+const size_t PopulationSize = 1000;
+
 struct Peripheral {
     int output{};
 
@@ -184,7 +186,7 @@ int main(int argc, char* argv[]) {
 
     if (config.LOGGING()) ea_world.SetupFitnessFile().SetTimingRepeat(10);
 
-    for (int i = 0; i < 1000; i++) ea_world.Inject(i);
+    for (int i = 0; i < PopulationSize; i++) ea_world.Inject(i);
 
     auto get_max_fitness = [&ea_world]() -> double {
         double max_fitness = 0;
@@ -221,7 +223,7 @@ int main(int argc, char* argv[]) {
         // loop normally
         print_fitness(t);
         ea_world.DoMutations();
-        LexicaseSelect(ea_world, GetFitFuns(), 100);
+        LexicaseSelect(ea_world, GetFitFuns(), PopulationSize);
         ea_world.Update();
 
         // check for early exit
