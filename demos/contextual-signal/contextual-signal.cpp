@@ -181,6 +181,9 @@ int main(int argc, char* argv[]) {
     // print config
     config.Write(std::cout);
 
+    // reseed random number generator
+    sgpl::tlrand.Reseed(config.SEED());
+
     emp::World<Organism> ea_world;
     ea_world.SetPopStruct_Mixed(true);
 
