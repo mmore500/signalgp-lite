@@ -1,4 +1,4 @@
-TEST_NAMES += signal-counting
+TEST_NAMES += contextual-signal
 
 EXPECTED_FITNESS := 3
 
