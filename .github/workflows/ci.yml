@@ -139,8 +139,7 @@ jobs:
         cxx: [clang++, g++]
     container:
       image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
-      # github actions requires root to access mounted volumes
-      options: --user root --cap-add=SYS_ADMIN
+      options: --cap-add=SYS_ADMIN
       env:
         CXX: ${{ matrix.cxx }}
         CONTEXT: travis
