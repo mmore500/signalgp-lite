@@ -137,16 +137,31 @@ jobs:
     strategy:
       matrix:
         cxx: [clang++, g++]
-    container:
-      image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
-      options: --cap-add=SYS_ADMIN
-      env:
-        CXX: ${{ matrix.cxx }}
-        CONTEXT: travis
+    env:
+      CXX: ${{ matrix.cxx }}
+      CONTEXT: travis
     steps:
-      - run: |
-          cd /opt/signalgp-lite
-          make test
+      - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }} /bin/bash -c "cd /opt/signalgp-lite && make test"
+
+  # https://github.community/t/eacces-permission-denied-how-to-solve/16549
+  # source:
+  #   runs-on: ubuntu-18.04
+  #   name: Source
+  #   needs:
+  #     - docker-build
+  #   strategy:
+  #     matrix:
+  #       cxx: [clang++, g++]
+  #   container:
+  #     image: mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}
+  #     options: --cap-add=SYS_ADMIN
+  #     env:
+  #       CXX: ${{ matrix.cxx }}
+  #       CONTEXT: travis
+  #   steps:
+  #     - run: |
+  #         cd /opt/signalgp-lite
+  #         make test
 
   demos:
     runs-on: ubuntu-18.04
