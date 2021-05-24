@@ -21,7 +21,12 @@ bibliography: paper.bib
 
 # Abstract
 
-Event-driven genetic programming has been shown to outperform traditional methods of
+* Event-driven genetic programming has been shown to outperform traditional traditional imperative representations on signal-heavy problems.
+* SignalGP is an existing implementation that is focused on extending tag-based referencing by applying event-driven techiques.
+* Our goal is to provide a performance benefit in large-scale experiments (such as those undertaken in Artificial Life).
+* By removing some of the GP related overhead (call stack) and trading runtime configurability for compile-time optimization, we achieved a XXX% speedup.
+* The software is unit- and integration-tested, achieving equivalent solution quality on benchmark problems originally developed for SignalGP.
+* signalgp-lite is currently used in dishtiny, and our intention is for it to be useful in other Artifical Life projects.
 
 # Statement of need
 
@@ -67,8 +72,12 @@ and refer to \autoref{eq:fourier} from text.
 ## Replication Results
 
 Three experiments from the original SignalGP paper were replicated [1].
-The first one (the "Changing Enviroment" problem) consisted of K number of enviromental signals (2, 4, 8, 16) that organisms had to learn to call a unique signaling instruction for. signalgp-lite managed 100% of the results, even suprassing SignalGP in signal reproduction in the K=16 case (100% vs 32% average).
-This is hypothesised to be due to a difference in how mutation parameters are defined and not due to an implementation difference.zoo
+The first one (the "Changing Enviroment problem") consisted of K number of enviromental signals (2, 4, 8, 16) that organisms had to learn to call a unique signaling instruction for. signalgp-lite managed 100% of the results, even suprassing SignalGP in signal reproduction in the K=16 case (100% vs 32% average).
+This is hypothesised to be due to a difference in how mutation parameters are defined and not due to an implementation difference.
+The second experiment (the "Contextual-Signal problem") involves evolving programs capable of responding to a signal depending on what signal they previously detected.
+A total of 16 input signal pairs and 4 response signals were tested.
+The input signal pairs were assigned
+You can refer to table 2 in the original SignalGP problem for a visual representation of this sequence.
 
 ## Benchmarking Results
 
