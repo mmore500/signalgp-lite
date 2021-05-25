@@ -30,7 +30,7 @@ bibliography: paper.bib
 
 # Summary
 
-* signalgp-lite allows is a lightweight genetic programming framework that allows for event-based development.
+* signalgp-lite is a lightweight genetic programming framework that allows for an event-based development paradigm.
 * event-based programming has been shown to outperform imperative programming on certain problems, such as those in which many interactions with the enviroment or other organisms occur.
 * this allows for a better modeling of artificial life simulations, among other things.
 * signalgp-lite offers a speedup over the original event-driven framework (SignalGP) by forgoing some runtime-customizability.
@@ -40,7 +40,7 @@ bibliography: paper.bib
 * signalgp-lite is a C++ library for event-driven genetic programming. C++ was chosen due to its low-level customizability as well as runtime performance. Most alife packages are written in C++.
 * signalgp-lite fills a niche for event-driven applications that do not require a high level of customizability at runtime, but instead benefit from a considerable speed-up.
 * Despite being able to simulate evolution at scales that greately exceed real-life experiements, the performance of artifical life simulations greatly suffers as population size increases.
-* A large population size is required to replicate ecological effects of interest (transition to multicelularity, ??)
+* A large population size is required to replicate ecological effects of interest (transition to multicelularity, role of rare events in evolution)
 * signalgp-lite allows for a considerable speedup in performance, allowing users to replicate a greater variety of alife situations.
 * signalgp-lite is the framework of choice in DISHTINY due to its combination of performance, flexibility, and ability to be compiled into javascript.
 
