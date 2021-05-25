@@ -28,44 +28,21 @@ bibliography: paper.bib
 * The software is unit- and integration-tested, achieving equivalent solution quality on benchmark problems originally developed for SignalGP.
 * signalgp-lite is currently used in dishtiny, and our intention is for it to be useful in other Artifical Life projects.
 
+# Summary
+
+* signalgp-lite allows is a lightweight genetic programming framework that allows for event-based development.
+* event-based programming has been shown to outperform imperative programming on certain problems, such as those in which many interactions with the enviroment or other organisms occur.
+* this allows for a better modeling of artificial life simulations, among other things.
+* signalgp-lite offers a speedup over the original event-driven framework (SignalGP) by forgoing some runtime-customizability.
+
 # Statement of need
 
-`Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
-enables wrapping low-level languages (e.g., C) for speed without losing
-flexibility or ease-of-use in the user-interface. The API for `Gala` was
-designed to provide a class-based and user-friendly interface to fast (C or
-Cython-optimized) implementations of common operations such as gravitational
-potential and force evaluation, orbit integration, dynamical transformations,
-and chaos indicators for nonlinear dynamics. `Gala` also relies heavily on and
-interfaces well with the implementations of physical units and astronomical
-coordinate systems in the `Astropy` package [@astropy] (`astropy.units` and
-`astropy.coordinates`).
-
-`Gala` was designed to be used by both astronomical researchers and by
-students in courses on gravitational dynamics or astronomy. It has already been
-used in a number of scientific publications [@Pearson:2017] and has also been
-used in graduate courses on Galactic dynamics to, e.g., provide interactive
-visualizations of textbook material [@Binney:2008]. The combination of speed,
-design, and support for Astropy functionality in `Gala` will enable exciting
-scientific explorations of forthcoming data releases from the *Gaia* mission
-[@gaia] by students and experts alike.
-
-# Mathematics
-
-Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
-
-Double dollars make self-standing equations:
-
-$$\Theta(x) = \left\{\begin{array}{l}
-0\textrm{ if } x < 0\cr
-1\textrm{ else}
-\end{array}\right.$$
-
-You can also use plain \LaTeX for equations
-\begin{equation}\label{eq:fourier}
-\hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
-\end{equation}
-and refer to \autoref{eq:fourier} from text.
+* signalgp-lite is a C++ library for event-driven genetic programming. C++ was chosen due to its low-level customizability as well as runtime performance. Most alife packages are written in C++.
+* signalgp-lite fills a niche for event-driven applications that do not require a high level of customizability at runtime, but instead benefit from a considerable speed-up.
+* Despite being able to simulate evolution at scales that greately exceed real-life experiements, the performance of artifical life simulations greatly suffers as population size increases.
+* A large population size is required to replicate ecological effects of interest (transition to multicelularity, ??)
+* signalgp-lite allows for a considerable speedup in performance, allowing users to replicate a greater variety of alife situations.
+* signalgp-lite is the framework of choice in DISHTINY due to its combination of performance, flexibility, and ability to be compiled into javascript.
 
 # Results
 
