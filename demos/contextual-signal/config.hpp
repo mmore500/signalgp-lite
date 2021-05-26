@@ -18,3 +18,5 @@ EMP_BUILD_CONFIG(
     VALUE(LOGGING_FILENAME, size_t, 1, "TODO"),
     VALUE(THRESHOLD_FITNESS, size_t, 16, "TODO")
 )
+
+static Config config{};

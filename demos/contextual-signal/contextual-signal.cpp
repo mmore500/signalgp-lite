@@ -19,7 +19,6 @@
 
 #include "config.hpp"
 
-static Config config{};
 
 const size_t PopulationSize = 1000;
 
