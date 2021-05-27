@@ -241,7 +241,7 @@ int main(int argc, char* argv[]) {
 
         // check for early exit
         const double max_fitness = get_max_fitness();
-        if (max_fitness >- config.THRESHOLD_FITNESS()) break;
+        if (max_fitness >= config.THRESHOLD_FITNESS()) break;
     }
 
     print_fitness();
