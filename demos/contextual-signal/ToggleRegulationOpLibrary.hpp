@@ -25,7 +25,7 @@ using ToggleRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::BitwiseShift,
   sgpl::BitwiseXor,
   sgpl::CountOnes,
-  sgpl::RandomFill,
+  // sgpl::RandomFill,
   sgpl::Equal,
   sgpl::GreaterThan,
   sgpl::LessThan,
@@ -50,8 +50,8 @@ using ToggleRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::Increment,
   sgpl::Negate,
   sgpl::Not,
-  sgpl::RandomBool,
-  sgpl::RandomDraw,
+  // sgpl::RandomBool,
+  // sgpl::RandomDraw,
   sgpl::Terminal
 >;
 
