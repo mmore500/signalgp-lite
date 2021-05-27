@@ -21,37 +21,45 @@ bibliography: paper.bib
 
 # Abstract
 
-* Event-driven genetic programming has been shown to outperform traditional traditional imperative representations on signal-heavy problems.
-* SignalGP is an existing implementation that is focused on extending tag-based referencing by applying event-driven techiques.
-* Our goal is to provide a performance benefit in large-scale experiments (such as those undertaken in Artificial Life).
-* By removing some of the GP related overhead (call stack) and trading runtime configurability for compile-time optimization, we achieved a XXX% speedup.
-* The software is unit- and integration-tested, achieving equivalent solution quality on benchmark problems originally developed for SignalGP.
-* signalgp-lite is currently used in dishtiny, and our intention is for it to be useful in other Artifical Life projects.
+Event-driven genetic programming has been shown to outperform traditional traditional imperative representations on signal-heavy problems [cite].
+SignalGP is an existing implementation that is focused on extending tag-based referencing by applying event-driven techiques to genetic programming.
+With signalgp-lite, our goal is to provide a performance increase in large-scale experiments, such as those undertaken in Artificial Life.
+By removing some of the Genetic Programming related overhead (e.g. the call stack) and employing compile-time configuration in exchange of run-time flexibility, we achieved a XXX% speedup.
+signalgp-lite is unit- and integration-tested, achieving equivalent solution quality on three benchmark problems originally developed for SignalGP.
+The library is currently used in dishtiny, and our expectation is that it will be useful in future Artifical Life projects.
 
 # Summary
 
-* signalgp-lite is a lightweight genetic programming framework that allows for an event-based development paradigm.
-* event-based programming has been shown to outperform imperative programming on certain problems, such as those in which many interactions with the enviroment or other organisms occur.
-* this allows for a better modeling of artificial life simulations, among other things.
-* signalgp-lite offers a speedup over the original event-driven framework (SignalGP) by forgoing some runtime-customizability.
+signalgp-lite is a lightweight genetic programming framework that allows for an event-based development paradigm.
+This development style has been shown to outperform imperative programming on certain problems, such as those in which many interactions with the enviroment or other organisms occur. [cite]
+One example of such situation is the case of a large-scale digital evolution experiment, as well as various other artifical life simulations.
+signalgp-lite offers a speedup over the original event-driven framework (SignalGP) by forgoing some run-time customizability, such as the ability to xxxxx on the flu=y.
 
 # Statement of need
 
-* signalgp-lite is a C++ library for event-driven genetic programming. C++ was chosen due to its low-level customizability as well as runtime performance. Most alife packages are written in C++.
-* signalgp-lite fills a niche for event-driven applications that do not require a high level of customizability at runtime, but instead benefit from a considerable speed-up.
-* Despite being able to simulate evolution at scales that greately exceed real-life experiements, the performance of artifical life simulations greatly suffers as population size increases.
-* A large population size is required to replicate ecological effects of interest (transition to multicelularity, role of rare events in evolution)
-* signalgp-lite allows for a considerable speedup in performance, allowing users to replicate a greater variety of alife situations.
-* signalgp-lite is the framework of choice in DISHTINY due to its combination of performance, flexibility, and ability to be compiled into javascript.
+signalgp-lite is a C++ library for event-driven genetic programming.
+C++ was chosen due to its low-level customizability as well as runtime performance.
+Due to these features, C++ is the language of choice for most artificial life and genetic programming utilities.
+signalgp-lite fills a niche for event-driven applications that do not require a high level of customizability at runtime, but instead benefit from a considerable speed-up.
+Despite being able to simulate evolution at scales that greately exceed real-life experiements, the performance of artifical life simulations greatly suffers as population size increases.
+A large population size is required to replicate ecological effects of interest, such as the transition to multicelularity, or the role of rare events in evolution.
+Our genetic programming libary allows for a considerable speedup in performance, allowing users to replicate a greater variety of artificial life situations.
+In light of the above, signalgp-lite is the framework of choice in DISHTINY due to its combination of performance, flexibility, and ability to be compiled into javascript.
 
 # Results
 
 ## Replication Results
 
 Three experiments from the original SignalGP paper were replicated [1].
-The first one (the "Changing Enviroment problem") consisted of K number of enviromental signals (2, 4, 8, 16) that organisms had to learn to call a unique signaling instruction for. signalgp-lite managed 100% of the results, even suprassing SignalGP in signal reproduction in the K=16 case (100% vs 32% average).
+
+### Changing Enviroment Problem
+
+The Changing Enviroment Problem consisted of K number of enviromental signals (2, 4, 8, 16) that organisms had to learn to call a unique signaling instruction for. signalgp-lite managed 100% of the results, even suprassing SignalGP in signal reproduction in the K=16 case (100% vs 32% average).
 This is hypothesised to be due to a difference in how mutation parameters are defined and not due to an implementation difference.
-The second experiment (the "Contextual-Signal problem") involves evolving programs capable of responding to a signal depending on what signal they previously detected.
+
+### Contextual Signal Problem
+
+The Contextual Signal Problem involves evolving programs capable of responding to a signal depending on what signal they previously detected.
 A total of 16 input signal pairs and 4 response signals were tested.
 The input signal pairs were assigned
 You can refer to table 2 in the original SignalGP problem for a visual representation of this sequence.
