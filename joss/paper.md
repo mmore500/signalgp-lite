@@ -54,8 +54,8 @@ Three experiments from the original SignalGP paper were replicated [1].
 
 ### Changing Enviroment Problem
 
-The Changing Enviroment Problem consisted of K number of enviromental signals (2, 4, 8, 16) that organisms had to learn to call a unique signaling instruction for. `signalgp-lite` managed 100% of the results, even suprassing SignalGP in signal reproduction in the K=16 case (100% vs 32% average).
-This is hypothesised to be due to a difference in how mutation parameters are defined and not due to an implementation difference.
+The Changing Enviroment Problem consisted of K number of enviromental signals (2, 4, 8, 16) that organisms had to learn to call a unique signaling instruction for. `signalgp-lite` managed 100% of the results, even suprassing SignalGP in signal reproduction in the `K=16` case (100% vs 32% average).
+This is hypothesised to be caused by differences in how mutation parameters are defined across both libraries, and not due to implementation discrepancies.
 
 ### Contextual Signal Problem
 
@@ -91,8 +91,13 @@ Figure sizes can be customized by adding an optional second parameter:
 
 ![Maximum fitness wrt. updates, with standard deviation confidence intervals. This is because, due to large number of datapoints, computing 95% CI takes a non-insignificant amount of time.\label{fig:max-fitness-sd}](figures/max-fitness-sd.png)
 
-![Filtered maximum fitness wrt. updates, with 95% confidence intervals. Data has been filtered logarithmically,\label{fig:max-fitness-sd}](figures/max-fitness-log2.png)
+![Filtered maximum fitness wrt. updates, with 95% confidence intervals. Data has been filtered logarithmically.\label{fig:max-fitness-sd}](figures/max-fitness-log2.png)
 
+![Time to solution for the Changing Enviroment problem.\label{fig:tts-changing}](figures/solution-time-swarmplot.png)
+
+<!-- benchmarking results -->
+
+![Benchmarking results of 20 replicates shown as a times-speedup of wall time.\label{fig:bench-wall}](figures/wall-time-speedup.jpeg)
 
 # Acknowledgements
 
