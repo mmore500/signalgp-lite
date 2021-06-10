@@ -43,7 +43,7 @@ static void DoBench(benchmark::State& state) {
 
   // Perform setup here
   for (auto _ : state) {
-
+#if OP_LIBRARY != Control
     auto& cpu = collection[agent];
 
     // This code gets timed
@@ -56,6 +56,7 @@ static void DoBench(benchmark::State& state) {
     }
 
     ++agent %= NUM_AGENTS;
+#endif // OP_LIBRARY != Control
   }
 
   // prevent work from being optimized away
