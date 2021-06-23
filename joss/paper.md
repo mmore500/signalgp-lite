@@ -159,6 +159,8 @@ Oh, and support from Kathryn Johnston during the genesis of this project.
 
 # References
 
+<div id="refs"></div>
+
 \pagebreak
 \appendix
 
