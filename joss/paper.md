@@ -143,10 +143,6 @@ and referenced from text using \autoref{fig:example}.
 Figure sizes can be customized by adding an optional second parameter:
 ![Caption for example figure.](figure.png){ width=20% } -->
 
-![Maximum fitness wrt. updates, with standard deviation confidence intervals. This is because, due to large number of datapoints, computing 95% CI takes a non-insignificant amount of time.\label{fig:max-fitness-sd}](figures/max-fitness-sd.png)
-
-![Filtered maximum fitness wrt. updates, with 95% confidence intervals. Data has been filtered logarithmically.\label{fig:max-fitness-sd}](figures/max-fitness-log2.png)
-
 ![Number of generations elapsed before a perfect solution was observed on the Changing Enviroment problem.\label{fig:tts-changing}](figures/solution-time-swarmplot.png)
 
 ![Number of generations elapsed before a perfect solution was observed on the Contextual Signal problem.\label{fig:tts-context}](figures/solution-time-contextual-signal.png)
@@ -155,8 +151,6 @@ Figure sizes can be customized by adding an optional second parameter:
 
 ![Benchmarking results of 20 replicates shown as a times-speedup of wall time. "Library" refers to the set of instructions tested (see Benchmarking Results section).\label{fig:bench-wall}](figures/wall-time-speedup.jpeg)
 
-\pagebreak
-\appendix
 
 # Acknowledgements
 
@@ -164,3 +158,12 @@ We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
 Oh, and support from Kathryn Johnston during the genesis of this project.
 
 # References
+
+\pagebreak
+\appendix
+
+# Supplementary Material
+
+![Maximum fitness wrt. updates, with standard deviation confidence intervals. This is because, due to large number of datapoints, computing 95% CI takes a non-insignificant amount of time.\label{fig:max-fitness-sd}](figures/max-fitness-sd.png)
+
+![Filtered maximum fitness wrt. updates, with 95% confidence intervals. Data has been filtered logarithmically.\label{fig:max-fitness-sd}](figures/max-fitness-log2.png)
