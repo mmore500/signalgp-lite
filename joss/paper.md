@@ -149,11 +149,11 @@ Figure sizes can be customized by adding an optional second parameter:
 
 ![Number of generations elapsed before a perfect solution was observed on the Changing Enviroment problem.\label{fig:tts-changing}](figures/solution-time-swarmplot.png)
 
-![Time to solution for the Contextual Signal problem.\label{fig:tts-context}](figures/solution-time-contextual-signal.png)
+![Number of generations elapsed before a perfect solution was observed on the Contextual Signal problem.\label{fig:tts-context}](figures/solution-time-contextual-signal.png)
 
 <!-- benchmarking results -->
 
-![Benchmarking results of 20 replicates shown as a times-speedup of wall time.\label{fig:bench-wall}](figures/wall-time-speedup.jpeg)
+![Benchmarking results of 20 replicates shown as a times-speedup of wall time. "Library" refers to the set of instructions tested (see Benchmarking Results section).\label{fig:bench-wall}](figures/wall-time-speedup.jpeg)
 
 # Acknowledgements
 
