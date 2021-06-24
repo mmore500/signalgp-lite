@@ -45,14 +45,63 @@ C++ is the language of choice for many artificial life and genetic programming u
 
 # Statement of need
 
-`signalgp-lite` fills a niche for event-driven applications that do not require a high level of customizability at runtime, but instead benefit from a considerable speed-up.
-Despite being able to simulate evolution at generation rates that greately exceed real-life experiements, the scale of artifical life simulations is profoundly limited by available computational resources.
-A large population size is required to study ecological effects, the transition to multicelularity, and the role of rare events in evolution.
+`signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading a high level of customizability at runtime for a considerable speed-up.
+Despite being able to simulate evolution at generation rates that greately exceed biological experiements, the scale of artifical life simulations is profoundly limited by available computational resources.
+Large population sizes are essential to studying ecological effects, the transition to multicelularity, and the role of rare events in evolution.
+In addition to leveraging parallel and distributed computing resources,
 Our genetic programming framework allows for a considerable speedup, allowing users to perform larger-scale artificial life situations.
+
+## Benchmarking Results
+
+The main goal of this library is to accelerate execution of event-driven genetic programs.
+We performed a set of microbenchmarks to quantify the effectiveness of `signalgp-lite`'s optimizations.
+
+Cache size limitations profoundly affect memory access time, which is key to performance [cite?].
+In order to determine how the libary performs at different caching levels, benchmarks were performed across different orders of magnitude of memory usages.
+We altered memory usage through agent counts, ranging from 1 to 32768.
+\autoref{fig:bench-wall} shows wall-clock times measured using Google Benchmark version x.y.z.
+
+We performed five microbenchmark experiments, overviewed below.
+
+### control
+
+This experiemnt verifies the validity of our benchmarking process.
+While there is some uncertainty inherent to the benchmarking enviroment, the 1x wall speedup means that our results are not directly affected by our experimental aparatus, so that any differences in other experiments stem solely from differences between SignalGP and `signalgp-lite`.
+
+### nop
+
+Benchmarking the `nop` instruction alone isolates the performance impact of executing `signalgp-lite`'s byte-code interpreter compared to SignalGP's lamda-based instructions.
+
+We observe a 10 to 30 times speedup based on this change.
+
+### arithmetic
+
+The arithmetic benchmark adds to the prior improvements the performance effect of `signalgp-lite`'s registers being fixed-length arrays compared to SignalGP variable-length vectors. [TODO: FIX THIS SENTENCE]
+This compares the effects of compile-time optimizations that streamline register access at the cost of the ability to change the number of registers on the fly.
+
+This trade-off results in a 20 to 50 times speed-up.
+
+### `complete`
+
+In order to improve performance, `signalgp-lite` omits a function stack and implements inner while-loops in terms of `jump` instructions.
+The complete benchmark adds tag matching and complex control flow to the prior benchmarks' instruction set.
+Tag-based referencing is used to toggle module activation.
+This in turn allows for complex regulation mechanics and control flow.
+
+Given the stripped-down control flow of `signalgp-lite`'s instructions, we can observe a 30 to 55 times speed-up compared to the vanilla SignalGP lambda-based operators.
+
+### `sans_regulation`
+
+Since regulation hinders tag-match caching, we wanted to measure changes both with and without regulation,
+This benchmark measures the complete instruction set without regulation-specific instructions ([list them here]).
+
+
+This introduces a 35 to 47 times speedup.
+We can conclude that `signalgp-lite` offers significant performance improvements even on simulations that do not heavily depend on regulation.
 
 # Replication Results
 
-Since `signalgp-lite` is intended to be a replacement for the original SignalGP in artifical life situations, it is important to quantitatively determine how accurately it can replicate its results.
+Since `signalgp-lite` is intended to be a replacement for the original SignalGP in artifical life situations, it is important to verify how accurately it can replicate its results.
 Two experiments from the original SignalGP paper were replicated [1].
 
 ## Changing Enviroment Problem
@@ -74,51 +123,6 @@ You can refer to table 2 in the original SignalGP problem for a visual represent
 
 TODO: explain how `signalgp-lite` compared in this problem.
 
-## Benchmarking Results
-
-The main goal of this library is to accelerate execution of event-driven genetic programs for more rapid evaluation.
-As such, benchmarking is essential to determining whether `signalgp-lite`'s optimizations work as intended.
-
-Cache size limitations profoundly affect memory access time [cite?], which is key to performance [cite?].
-In order to determine how the libary performs at different caching levels, benchmarks were performed over a variety of memory usages.
-We altered memory usage via the different agent counts.
-\autoref{fig:bench-wall} shows wall-clock times measured using Google Benchmark version x.y.z.
-
-Each of the five treatments serve a different purpose.
-
-### `control`
-
-The control ensures our benchmarking process is valid.
-While there is some uncertainty inherent to the benchmarking enviroment, the near-zero wall speedup means that our results are not directly affected by the chosen library, and that any resulting difference will stem from implementation choices.
-As such, our analysis can be considered fair.
-
-### `NOP`
-
-Benchmarking the NOP instruction alone isolates the performance impact of executing `signalgp-lite`'s byte-code interpreter compared to SignalGP's lamda-based instructions.
-We observe a 10 to 30 times speedup based on this change.
-
-### `arithmetic`
-
-The arithmetic benchmark adds to the prior improvements the performance effect of `signalgp-lite`'s registers being fixed-length arrays compared to SignalGP variable-length vectors. [TODO: FIX THIS SENTENCE]
-This compares the effects of compile-time optimizations versus the runtime flexibility of being able to change the number of registers on the fly.
-This trade-off results in a 20 to 50 times speed-up.
-
-### `complete`
-
-In order to improve performance compared to SignalGP, `signalgp-lite` lacks a function stack and implements inner while-loops in terms of `JUMP` instructions.
-Since a paramount part of benchmarking `signalgp-lite` involves the complex control flow that occurs within and in-between modules, we wanted to test these changes both with and without regulation.
-Performance can be affected by enabling regulation because tag-matching causes caching to underperform.
-
-The complete benchmark adds tag matching and complex control flow to the prior benchmarks' instruction set.
-Tag-based referencing is used to toggle module activation.
-This in turn allows for complex regulation mechanics and control flow.
-Given the striped-down control flow of `signalgp-lite`'s instructions, we can observe a 30 to 55 times speed-up compared to the vanilla SignalGP lambda-based operators.
-
-### `sans_regulation`
-
-Finally, sans_regulation measures the previous instruction set without regulation-specific instructions ([list them here]).
-This introduces a 35 to 47 times speedup.
-We can conclude that `signalgp-lite` offers significant performance improvements even on simulations that do not heavily depend on regulation.
 
 # Experimental Materials
 
@@ -143,9 +147,9 @@ and referenced from text using \autoref{fig:example}.
 Figure sizes can be customized by adding an optional second parameter:
 ![Caption for example figure.](figure.png){ width=20% } -->
 
-![Number of generations elapsed before a perfect solution was observed on the Changing Enviroment problem.\label{fig:tts-changing}](figures/solution-time-swarmplot.png)
+![Number of generations elapsed before a perfect solution was observed on the Changing Enviroment problem. All replicates found a perfect solution.\label{fig:tts-changing}](figures/solution-time-swarmplot.png)
 
-![Number of generations elapsed before a perfect solution was observed on the Contextual Signal problem.\label{fig:tts-context}](figures/solution-time-contextual-signal.png)
+![Number of generations elapsed before a perfect solution was observed on the Contextual Signal problem. Replicates that did not find a solution are on a dashed line at 10,000 generations.\label{fig:tts-context}](figures/solution-time-contextual-signal.png)
 
 <!-- benchmarking results -->
 
@@ -154,8 +158,9 @@ Figure sizes can be customized by adding an optional second parameter:
 
 # Acknowledgements
 
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+This research was supported in part by NSF grants DEB-1655715 and DBI-0939454 as well as by Michigan State University through the computational resources provided by the Institute for Cyber-Enabled Research.
+This material is based upon work supported by the National Science Foundation Graduate Research Fellowship under Grant No. DGE-1424871, and by the Michigan State University BEACON Center Luminaries program.
+Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
 
 # References
 
