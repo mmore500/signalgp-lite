@@ -54,7 +54,7 @@ Also, parallel and distributed computing resources are ultimately key to increas
 To accelerating execution of event-driven genetic programs. [????]
 We performed a set of microbenchmarks to quantify the effectiveness of `signalgp-lite`'s optimizations.
 Cache size limitations profoundly affect memory access time, which is key to performance [@skadron1999branch].
-In order to determine how the libary performs across cache levels, we benchmarked over different orders of magnitude of memory loads, by varying agent counts between from 1 and 32768. [addfig](raw timings)
+In order to determine how the libary performs across cache levels, we benchmarked over different orders of magnitude of memory loads, by varying agent counts between from 1 and 32768 \ref{raw-timings-table}.
 \autoref{fig:bench-wall} shows wall-clock times measured using Google Benchmark version 1.5.2-1.
 
 We performed five microbenchmark experiments, overviewed below, in order to understand how different aspects of the library influenced performance.
@@ -167,6 +167,7 @@ Any opinions, findings, and conclusions or recommendations expressed in this mat
 
 ![Wall time benchmarking results of 20 replicates. The x-axis represents different agent counts.\label{fig:raw-timings}](figures/raw-timings.png)
 
+Table: (Raw benchmark timings, also available as a .csv file in the supplement repository.) \label{raw-timings-table}
 
 | Library | Implementation | Wall Nanoseconds | CPU Nanoseconds | num agents |
 |-|-|-|-|-|
