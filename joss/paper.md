@@ -22,9 +22,11 @@ bibliography: paper.bib
 # Abstract
 
 Event-driven genetic programming representations have been shown to outperform traditional traditional imperative representations on interaction-heavy problems.
+Traditional programming paradigms struggle on these tasks due to the need to drive the simulation procedurally, making their design and development an arduous task.
+Event-driven computing addresses these problems by abstracting away signal triggering and hanlding, simplifying program design and implementation.
+
 Existing work uses the SignalGP library, which caters to traditional program synthesis applications.
 However, large-scale artificial life applications require a different set of implementation priorities.
-SignalGP is an existing implementation that is focused on extending tag-based referencing by applying event-driven techiques to genetic programming.
 With signalgp-lite, our goal is to increase performance to enable large-scale experiments, such as those undertaken in Artificial Life, by removing control-flow overhead (e.g., the call stack) and trading run-time flexibility for better-performing compile-time configuration.
 Here, we report benchmarking experiments that show an 8x to 30x speedup.
 We also report solution quality equivalent to SignalGP on two benchmark problems originally developed for that implementation.
@@ -32,13 +34,9 @@ The library is currently used in Artificial Life experiments studying the evolut
 
 # Summary
 
-`signalgp-lite` is a software framework for event-driven genetic programming.
-Unlike the traditional imperative paradigm, where a single chain of execution must actively pull XXX, event-driven simulations trigger event-handlers (i.e., program modules) in response to enviromental, self-generated, and cohabitant-generated signals.
+`signalgp-lite` is a software framework for event-driven genetic programming written in C++.
+Unlike the traditional imperative paradigm, where a single chain of execution actively controls every aspect of the program, event-driven simulations trigger event-handlers (i.e., program modules) in response to enviromental, self-generated, and cohabitant-generated signals.
 This representation outperforms imperative programming on interaction intensive problems, where inputs from the enviroment or other organisms ocmust be handled [cite], as is the case in large-scale digital evolution experiments as well as various other artifical life simulations.
-
-`signalgp-lite` is written in C++.
-It was chosen due to its low-level control over runtime performance.
-C++ is the language of choice for many artificial life and genetic programming utilities.
 
 # Statement of need
 
@@ -46,16 +44,16 @@ Despite being able to simulate evolution with faster generations than possible i
 Large population sizes are essential to studying essential topics such as ecologies, the transition to multicelularity, and the role of rare events in evolution.
 Also, parallel and distributed computing resources are ultimately key to increasing scale. [join these] Computational efficiency is crucial to enabling larger-scale artificial life situations.]
 
-[add transition] `signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading a high level of customizability at runtime for a considerable speed-up.
+In comparison to SignalGP, which was designed with generic genetic programming in mind, `signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading a high level of customizability at runtime for a considerable speed-up.
+Since the simulation parameters of artificial life experiments need not change during execution, they are a clear candidate for using `signalgp-lite`.
 
 
 ## Execution Speed
 
-To accelerating execution of event-driven genetic programs. [????]
-We performed a set of microbenchmarks to quantify the effectiveness of `signalgp-lite`'s optimizations.
+We performed a set of microbenchmarks to quantify the effectiveness of `signalgp-lite`'s optimizations in accelerating execution of event-driven genetic programs.
 Cache size limitations profoundly affect memory access time, which is key to performance [@skadron1999branch].
 In order to determine how the libary performs across cache levels, we benchmarked over different orders of magnitude of memory loads, by varying agent counts between from 1 and 32768 (Supplementary Table \ref{raw-timings-table}).
-\autoref{fig:bench-wall} shows wall-clock times measured using Google Benchmark version 1.5.2-1.
+\autoref{fig:bench-wall} shows raw wall-clock timings measured using Google Benchmark version 1.5.2-1.
 
 We performed five microbenchmark experiments, overviewed below, in order to understand how different aspects of the library influenced performance.
 
@@ -101,29 +99,38 @@ Two experiments from the original SignalGP paper were replicated [@lalejini2018e
 
 The Changing Enviroment Problem consisted of K mutually-exclusive enviromental signals (2, 4, 8, 16). Organisms were tasked to respond to each with a particular signaling instruction.
 
-\autoref{fig:tts-changing} shows the number of generations elapsed before a full solution was found [add](population size and selection scheme).
-`signalgp-lite` evolved fill solutions to each problem within 3500 updates in all 100 tested replicates.
+A total of 100 replicates were evolved for up to 10000 generations.
+On each update, 100 organisms were chosen based on the elite and roulette selection schemes.
+\autoref{fig:tts-changing} shows the number of generations elapsed before a full solution was found.
+`signalgp-lite` evolved full solutions to each problem within 3500 updates in all 100 tested replicates.
 
-In the `K=16` case, we achieved a 100% signal reproduction rate compared to an average of 32% on the vanilla implementation  (Figure 2 in @lalejini2018evolving).
+In the `K=16` case, we achieved a 100% signal reproduction rate compared to an average of 32% on the vanilla implementation  (Figure 2 in [@lalejini2018evolving]).
 We suspect this occured due to differences in how default mutation parameters and program initialization are performed.
 
 ## Contextual Signal Problem
 
-This problem tests regulation by evolving programs that maintain memory of previously encountered signals.
-A total of 16 input signal pairs and 4 response signals were tested.
+This problem tests regulation by evolving programs that must maintain memory of previously encountered signals.
+Programs must remember an initial signal (i.e., the "context") in order to respond appropiately to the second signal.
 The unordered input signal pairs were assigned a response signal that then had to be replicated by the organism.
-Table 2 in @lalejini2018evolving provides a visual representation of this sequence.
+A total of 16 input signal pairs and 4 response signals were tested.
+Table 2 in [@lalejini2018evolving] provides a visual representation of these sequences.
 
-TODO: expand more on the problem
-TODO: explain how `signalgp-lite` compared in this problem.
+A total of XX replicates were evolved for up to 10000 generations.
+Programs were reproduced based on a 16-way lexicase selection scheme, with each of the input signal pairs being a test case.
+Each program was sent the first signal of each test case and given 128 updates to process it.
+After this, their internal CPU state was reset, and the second signal was sent.
+After another 128 updates, their response was evaluated.
+In order to save resources and computing time, as soon as a replicate evolved a fully-correct solution, their evolution was halted.
+\autoref{fig:tts-context} shows the number of generations elapsed before a full solution was found.
 
+`signalgp-lite` evolved full solutions in half as many updates compared to SignalGP.
+Moreover, less programs were unable to reach a full solution in 10000 updates under `signalgp-lite`.
+
+MAYBE TODO: talk about mutation rates maybe?
 
 # Projects Using the Sofrware
 
-In light of the above, `signalgp-lite` is the framework of choice in DISHTINY.
-
-TODO: talk more about it
-
+`signalgp-lite` is the framework of choice in DISHTINY, a framework for studying digital organism multicelularity.
 
 # Experimental Materials
 
@@ -167,7 +174,7 @@ Any opinions, findings, and conclusions or recommendations expressed in this mat
 
 ![Wall time benchmarking results of 20 replicates. The x-axis represents different agent counts.\label{fig:raw-timings}](figures/raw-timings.png)
 
-Table: (Raw benchmark timings, also available as a .csv file in the supplement repository.) \label{raw-timings-table}
+Table: Raw benchmark timings, also available as a CSV file in the supplement repository. \label{raw-timings-table}
 
 | Library | Implementation | Wall Nanoseconds | CPU Nanoseconds | num agents |
 |-|-|-|-|-|
