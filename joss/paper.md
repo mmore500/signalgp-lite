@@ -21,70 +21,71 @@ bibliography: paper.bib
 
 # Abstract
 
-Event-driven genetic programming representations have been shown to outperform traditional traditional imperative representations on interaction-heavy problems.
-Traditional programming paradigms struggle on these tasks due to the need to drive the simulation procedurally, making their design and development an arduous task.
-Event-driven computing addresses these problems by abstracting away signal triggering and hanlding, simplifying program design and implementation.
+Event-driven genetic programming representations have been shown to outperform traditional traditional imperative representations on interaction-intensive problems.
+Traditional programming paradigms struggle on these tasks due to the need to poll a large number of sensors procedurally, making the design and development of complex evolutionary simulations an arduous task.
+Event-driven genetic programming representations address these problems by organizing genome content into modules and triggering these modules in response to enviromental signals, simplifying simulation design and implementation.
 
-Existing work uses the SignalGP library, which caters to traditional program synthesis applications.
+Existing work developing event-driven Genetic Programming methodology uses the SignalGP library. This library caters to traditional program synthesis applications.
 However, large-scale artificial life applications require a different set of implementation priorities.
-With signalgp-lite, our goal is to increase performance to enable large-scale experiments, such as those undertaken in Artificial Life, by removing control-flow overhead (e.g., the call stack) and trading run-time flexibility for better-performing compile-time configuration.
+With signalgp-lite, our goal is to increase performance to enable large-scale experiments by removing control-flow overhead (e.g., the call stack) and trading run-time flexibility for better-performing compile-time configuration.
 Here, we report benchmarking experiments that show an 8x to 30x speedup.
 We also report solution quality equivalent to SignalGP on two benchmark problems originally developed for that implementation.
-The library is currently used in Artificial Life experiments studying the evolution of multicelularity, and our expectation is that it will be useful in future Artifical Life and Genetic Programming projects.
+The library has enabled order-of-magnitude scale-up of existing Artificial Life experiments studying the evolution of multicelularity; we anticipate it will enable novel work in other Artificial Life and Genetic Programming contexts.
 
 # Summary
 
-`signalgp-lite` is a software framework for event-driven genetic programming written in C++.
-Unlike the traditional imperative paradigm, where a single chain of execution actively controls every aspect of the program, event-driven simulations trigger event-handlers (i.e., program modules) in response to enviromental, self-generated, and cohabitant-generated signals.
-This representation outperforms imperative programming on interaction intensive problems, where inputs from the enviroment or other organisms ocmust be handled [cite], as is the case in large-scale digital evolution experiments as well as various other artifical life simulations.
+`signalgp-lite` is a C++ software library for event-driven genetic programming.
+Unlike the traditional imperative paradigm, where a single chain of execution directly manages every aspect of the program, event-driven simulations trigger event handlers (i.e., program modules) in response to enviromental, self-generated, and cohabitant-generated signals.
+This representation outperforms imperative programming on interaction intensive problems, where inputs from the enviroment or other organisms must be handled [cite], as is the case in some genetic programming contexts and many artifical life simulations.
 
 # Statement of need
 
-Despite being able to simulate evolution with faster generations than possible in biological experiements [cite avida paper], the scale of artifical life populations is profoundly limited by available computational resources [cite blog].
-Large population sizes are essential to studying essential topics such as ecologies, the transition to multicelularity, and the role of rare events in evolution.
-Also, parallel and distributed computing resources are ultimately key to increasing scale. [join these] Computational efficiency is crucial to enabling larger-scale artificial life situations.]
+Despite being able to simulate evolution with much faster generational turnover than is possible in biological experiements [cite avida paper], the scale of artifical life populations is profoundly limited by available computational resources [cite blog].
+Large population sizes are essential to studying key biological topics such as ecologies, the transition to multicelularity, and the role of rare events in evolution.
+In conjunction with parallel and distributied computing, computational efficiency is crucial to enabling larger-scale artificial life situations.
 
-In comparison to SignalGP, which was designed with generic genetic programming in mind, `signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading a high level of customizability at runtime for a considerable speed-up.
-Since the simulation parameters of artificial life experiments need not change during execution, they are a clear candidate for using `signalgp-lite`.
+In comparison to SignalGP [introduce this before], which was designed to target generic genetic programming problems, `signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading a high level of customizability at runtime for a considerable speedup.
+Since the simulation parameters of artificial life experiments need not change during execution, they are a clear candidate for using `signalgp-lite`. [focus more on control flow]
 
 
-## Execution Speed
+## Execution Speed Benchmarking
 
 We performed a set of microbenchmarks to quantify the effectiveness of `signalgp-lite`'s optimizations in accelerating execution of event-driven genetic programs.
-Cache size limitations profoundly affect memory access time, which is key to performance [@skadron1999branch].
-In order to determine how the libary performs across cache levels, we benchmarked over different orders of magnitude of memory loads, by varying agent counts between from 1 and 32768 (Supplementary Table \ref{raw-timings-table}).
-\autoref{fig:bench-wall} shows raw wall-clock timings measured using Google Benchmark version 1.5.2-1.
 
-We performed five microbenchmark experiments, overviewed below, in order to understand how different aspects of the library influenced performance.
+Hardware caching size profoundly affects memory access time, which is key to performance [@skadron1999branch].
+In order to determine the relative perfomance of the libraries across cache levels, we benchmarked over different orders of magnitude of memory loads, by varying agent counts between from 1 and 32768 (Supplementary Table \ref{raw-timings-table}).
+Supplementary \autoref{fig:raw-timings} shows raw wall-clock timings measured using Google Benchmark version 1.5.2-1.
+
+We performed five microbenchmark experiments, reported below, in order to isolate how different aspects of the library design influenced performance.
 
 ### control
 
-This experiemnt verifies the validity of our benchmarking process.
-The 1x wall speedup (\autoref{fig:bench-wall}) confirms that our results are not directly affected by the experimental aparatus, so that any speedups in other experiments stem solely from differences between SignalGP and `signalgp-lite`.
+[mention what the experiment is] This experiemnt verifies the validity of our benchmarking process.
+The 1x wall speedup (\autoref{fig:bench-wall}) confirms that furthers results are not unduely skewed by our experimental aparatus.
 
 ### nop
 
-Benchmarking the `nop` instruction in isolation denotes the relative performance impact of `signalgp-lite`'s byte-code interpreter compared to SignalGP's lamda-based instructions.
+[mention what the experiment is] Benchmarking the `nop` instruction isolates the relative performance impact of `signalgp-lite`'s byte-code interpreter compared to SignalGP's lamda-based instructions.
 
-We observe a 10x to 30x speedup under `signalgp-lite` (\autoref{fig:bench-wall}).
+We observe an 8x to 30x speedup under `signalgp-lite` (\autoref{fig:bench-wall}).
 
 ### arithmetic
 
-Benchmarking arithmetic operations aids in measuring the performance effect of `signalgp-lite`'s fixed-length array registers compared to SignalGP's variable-length vectors.
-This compares the effects of compile-time optimizations that streamline register access at the cost of the ability to change the number of registers on the fly.
+Benchmarking arithmetic operations incorporates the performance effect of `signalgp-lite`'s fixed-length array registers compared to SignalGP's variable-length vector registers.
+This compile-time optimization strimlines register access at the cost of the ability to change the number of registers on the fly.
 
-\autoref{fig:bench-wall} shows this trade-off results in a 20x to 50x speed-up.
+\autoref{fig:bench-wall} shows that incorporating this trade-off increases speedup to 20x to 50x.
 
 ### `complete`
 
-In order to improve performance, `signalgp-lite` omits a function stack and implements inner while-loops in terms of `jump` instructions.
+In order to improve performance, `signalgp-lite` omits a function stack and implements inner loops and conditionals in terms of tagged `jump` instructions.
 The complete benchmark adds control flow to the prior benchmarks' instruction set.
 
- `signalgp-lite`'s stripped-down control flow modele nables a 30x to 55x speed-up compared to vanilla SignalGP.
+`signalgp-lite`'s stripped-down control flow model increases speedup to 30x to 55x compared to vanilla SignalGP.
 
 ### `sans_regulation`
 
-Since regulation hinders tag-match caching, we wanted to measure changes both with and without regulation,
+Since regulation [what is regulation?] hinders tag-match caching, we wanted to measure changes both with and without regulation,
 This benchmark measures the complete instruction set without regulation-specific instructions ([list them here]).
 
 As shown on \autoref{fig:bench-wall}, this yields a 35x to 47x speed-up.
@@ -132,9 +133,6 @@ MAYBE TODO: talk about mutation rates maybe?
 
 `signalgp-lite` is the framework of choice in DISHTINY, a framework for studying digital organism multicelularity.
 
-# Experimental Materials
-
-
 # Figures
 
 <!-- Figures can be included like this:
@@ -172,7 +170,7 @@ Any opinions, findings, and conclusions or recommendations expressed in this mat
 
 ![Filtered maximum fitness wrt. updates, with 95% confidence intervals. Data has been filtered logarithmically.\label{fig:max-fitness-sd}](figures/max-fitness-log2.png)
 
-![Wall time benchmarking results of 20 replicates. The x-axis represents different agent counts.\label{fig:raw-timings}](figures/raw-timings.png)
+![Wall time benchmarking results of 20 replicates. The x-axis represents different agent counts. Supplementary Table \ref{raw-timings-table} shows raw benchmark data.\label{fig:raw-timings}](figures/raw-timings.png)
 
 Table: Raw benchmark timings, also available as a CSV file in the supplement repository. \label{raw-timings-table}
 
