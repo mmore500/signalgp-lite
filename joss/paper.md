@@ -30,7 +30,7 @@ However, large-scale artificial life applications require a different set of imp
 With signalgp-lite, our goal is to increase performance to enable large-scale experiments by removing control-flow overhead (e.g., the call stack) and trading run-time flexibility for better-performing compile-time configuration.
 Here, we report benchmarking experiments that show an 8x to 30x speedup.
 We also report solution quality equivalent to SignalGP on two benchmark problems originally developed for that implementation.
-The library has enabled order-of-magnitude scale-up of existing Artificial Life experiments studying the evolution of multicelularity; we anticipate it will enable novel work in other Artificial Life and Genetic Programming contexts.
+The library has enabled order-of-magnitude scale-up of existing Artificial Life experiments studying the evolution of multicelularity; we anticipate it will also enable novel work in other Artificial Life and Genetic Programming contexts.
 
 # Summary
 
