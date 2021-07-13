@@ -2,7 +2,7 @@
 
 #include "_SignalGP.hpp"
 
-template<size_t NUM_AGENTS>
+template<size_t NUM_AGENTS, bool Control = false>
 struct BenchHolder {
 
   std::function<program_t()> make_program;
@@ -38,20 +38,24 @@ struct BenchHolder {
     for (auto _ : state) {
       // This code gets timed
 
-      auto& cpu = collection[agent];
+      if constexpr (!Control) {
 
-      if constexpr ( fill_cores ) {
+        auto& cpu = collection[agent];
 
-        while ( cpu.GetUnusedThreadIDs().size() ) {
-          cpu.SpawnThreadWithTag( tags[tag] );
-          ++tag %= tags.size();
+        if constexpr ( fill_cores ) {
+
+          while ( cpu.GetUnusedThreadIDs().size() ) {
+            cpu.SpawnThreadWithTag( tags[tag] );
+            ++tag %= tags.size();
+          }
+          cpu.SingleProcess();
+        } else {
+          for (size_t i{}; i < 16; ++i) cpu.SingleProcess();
         }
-        cpu.SingleProcess();
-      } else {
-        for (size_t i{}; i < 16; ++i) cpu.SingleProcess();
-      }
 
-      ++agent %= NUM_AGENTS;
+        ++agent %= NUM_AGENTS;
+
+      }
 
     }
 

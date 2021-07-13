@@ -1,5 +1,6 @@
 TARGET_NAMES += arithmetic
 TARGET_NAMES += complete
+TARGET_NAMES += control
 TARGET_NAMES += nop
 TARGET_NAMES += sans_regulation
 
