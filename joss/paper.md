@@ -12,6 +12,8 @@ authors:
   - name: Santiago Rodriguez Papa
     orcid: 0000-0002-6028-2105
     affiliation: 1
+  - name: Charles Ofria
+    orcid: 0000-0003-2924-1732
 affiliations:
  - name: Michigan State University
    index: 1
@@ -22,30 +24,29 @@ bibliography: paper.bib
 # Abstract
 
 Event-driven genetic programming representations have been shown to outperform traditional traditional imperative representations on interaction-intensive problems.
-Traditional programming paradigms struggle on these tasks due to the need to poll a large number of sensors procedurally, making the design and development of complex evolutionary simulations an arduous task.
-Event-driven genetic programming representations address these problems by organizing genome content into modules and triggering these modules in response to enviromental signals, simplifying simulation design and implementation.
-
-Existing work developing event-driven Genetic Programming methodology uses the SignalGP library. This library caters to traditional program synthesis applications.
+Traditional imperative genetic programming paradigms struggle on these tasks due to the need to poll a large number of sensors procedurally.
+Event-driven genetic programming representations address these problems by organizing genome content into modules and triggering these modules in response to enviromental signals, simplifying simulation design and implementation. Existing work developing event-driven genetic programming methodology uses the SignalGP library. This library caters to traditional program synthesis applications.
 However, large-scale artificial life applications require a different set of implementation priorities.
-With signalgp-lite, our goal is to increase performance to enable large-scale experiments by removing control-flow overhead (e.g., the call stack) and trading run-time flexibility for better-performing compile-time configuration.
+With signalgp-lite, our goal is to increase performance to enable large-scale experiments by removing control-flow overhead and trading run-time flexibility for better-performing compile-time configuration.
 Here, we report benchmarking experiments that show an 8x to 30x speedup.
-We also report solution quality equivalent to SignalGP on two benchmark problems originally developed for that implementation.
-The library has enabled order-of-magnitude scale-up of existing Artificial Life experiments studying the evolution of multicelularity; we anticipate it will also enable novel work in other Artificial Life and Genetic Programming contexts.
+We also report solution quality equivalent to SignalGP on two benchmark problems originally developed to test execution speed and validity of results.
 
 # Summary
 
 `signalgp-lite` is a C++ software library for event-driven genetic programming.
 Unlike the traditional imperative paradigm, where a single chain of execution directly manages every aspect of the program, event-driven simulations trigger event handlers (i.e., program modules) in response to enviromental, self-generated, and cohabitant-generated signals.
-This representation outperforms imperative programming on interaction intensive problems, where inputs from the enviroment or other organisms must be handled [cite], as is the case in some genetic programming contexts and many artifical life simulations.
+This representation outperforms imperative programming on interaction intensive problems, where the simulation must handle inputs from the enviroment or other organisms, as is the case in some genetic programming contexts and many artifical life simulations.
 
 # Statement of need
 
-Despite being able to simulate evolution with much faster generational turnover than is possible in biological experiements [cite avida paper], the scale of artifical life populations is profoundly limited by available computational resources [cite blog].
+Despite being able to simulate evolution with much faster generational turnover than is possible in biological experiements [@ofria2004avida], the scale of artifical life populations is profoundly limited by available computational resources [@Moreno_2020].
 Large population sizes are essential to studying key biological topics such as ecologies, the transition to multicelularity, and the role of rare events in evolution.
 In conjunction with parallel and distributied computing, computational efficiency is crucial to enabling larger-scale artificial life situations.
 
 In comparison to SignalGP [introduce this before], which was designed to target generic genetic programming problems, `signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading a high level of customizability at runtime for a considerable speedup.
-Since the simulation parameters of artificial life experiments need not change during execution, they are a clear candidate for using `signalgp-lite`. [focus more on control flow]
+Since the simulation parameters of artificial life experiments need not change during execution, they are a clear candidate for using `signalgp-lite`.
+
+The library has enabled order-of-magnitude scale-up of existing Artificial Life experiments studying the evolution of multicelularity; we anticipate it will also enable novel work in other Artificial Life and Genetic Programming contexts.
 
 
 ## Execution Speed Benchmarking
@@ -60,12 +61,12 @@ We performed five microbenchmark experiments, reported below, in order to isolat
 
 ### control
 
-[mention what the experiment is] This experiemnt verifies the validity of our benchmarking process.
-The 1x wall speedup (\autoref{fig:bench-wall}) confirms that furthers results are not unduely skewed by our experimental aparatus.
+The control involves importing the library to benchmark and measuring an empty loop. This experiemnt verifies the validity of our benchmarking process.
+The 1x wall speedup (\autoref{fig:bench-wall}) confirms that further results are not unduely skewed by our experimental aparatus.
 
 ### nop
 
-[mention what the experiment is] Benchmarking the `nop` instruction isolates the relative performance impact of `signalgp-lite`'s byte-code interpreter compared to SignalGP's lamda-based instructions.
+The `nop` instruction is benchmarked directly, being the only call measured inside the benchmarking loop. This isolates the relative performance impact of `signalgp-lite`'s byte-code interpreter compared to SignalGP's lamda-based instructions.
 
 We observe an 8x to 30x speedup under `signalgp-lite` (\autoref{fig:bench-wall}).
 
@@ -76,62 +77,59 @@ This compile-time optimization strimlines register access at the cost of the abi
 
 \autoref{fig:bench-wall} shows that incorporating this trade-off increases speedup to 20x to 50x.
 
-### `complete`
+### complete
 
 In order to improve performance, `signalgp-lite` omits a function stack and implements inner loops and conditionals in terms of tagged `jump` instructions.
 The complete benchmark adds control flow to the prior benchmarks' instruction set.
 
 `signalgp-lite`'s stripped-down control flow model increases speedup to 30x to 55x compared to vanilla SignalGP.
 
-### `sans_regulation`
+### sans_regulation
 
-Since regulation [what is regulation?] hinders tag-match caching, we wanted to measure changes both with and without regulation,
+Regulation is the process by which genetic programming programs can adjust which program modules they express. Since this hinders tag-match caching, we wanted to measure changes both with and without regulation.
 This benchmark measures the complete instruction set without regulation-specific instructions ([list them here]).
 
-As shown on \autoref{fig:bench-wall}, this yields a 35x to 47x speed-up.
-Thus, `signalgp-lite` offers performance improvements even on simulations that do not heavily depend on regulation.
+As shown on \autoref{fig:bench-wall}, this yields a 35x to 47x speed-up, meaning that `signalgp-lite` offers performance improvements even on simulations that do not heavily depend on regulation.
 
 # Test Problem Benchmarking
 
-Since `signalgp-lite` is intended to be a specialized alternative to the original SignalGP in artifical life situations, it must match SignalGP performance on benchmarks measuring responsitivy and plasticity.
-Two experiments from the original SignalGP paper were replicated [@lalejini2018evolving].
+Since `signalgp-lite` is intended to serve as a specialized alternative to the original SignalGP in artifical life situations, it must match SignalGP performance on benchmarks measuring responsitivy and plasticity.
+To test whether this is the case, we replicated two experiments from the original SignalGP paper, reported below [@lalejini_tag-based_2021].
 
 ## Changing Enviroment Problem
 
-The Changing Enviroment Problem consisted of K mutually-exclusive enviromental signals (2, 4, 8, 16). Organisms were tasked to respond to each with a particular signaling instruction.
+The Changing Enviroment Problem consisted of K (2, 4, 8, or 16) mutually-exclusive enviromental signals. Organisms were tasked to respond to each with a particular signaling instruction.
 
 A total of 100 replicates were evolved for up to 10000 generations.
-On each update, 100 organisms were chosen based on the elite and roulette selection schemes.
+100 organisms were chosen using the elite and roulette selection schemes.
 \autoref{fig:tts-changing} shows the number of generations elapsed before a full solution was found.
 `signalgp-lite` evolved full solutions to each problem within 3500 updates in all 100 tested replicates.
 
-In the `K=16` case, we achieved a 100% signal reproduction rate compared to an average of 32% on the vanilla implementation  (Figure 2 in [@lalejini2018evolving]).
-We suspect this occured due to differences in how default mutation parameters and program initialization are performed.
+In the `K=16` case, we achieved a superior signal reproduction rate compared to an average of 32% on the vanilla implementation  (Figure 2 in @lalejini2018evolving).
+We suspect this improvement occured due to differences in how default mutation parameters, tag matching, and program initialization were performed, rather than an intrinsic difference between the libraries.
 
 ## Contextual Signal Problem
 
-This problem tests regulation by evolving programs that must maintain memory of previously encountered signals.
-Programs must remember an initial signal (i.e., the "context") in order to respond appropiately to the second signal.
+This problem tests the ability of evolving programs to maintain memory of previously encountered signals.
+Programs must remember an initial signal (i.e., the "context") in order to respond appropiately to the second signal.  
+
 The unordered input signal pairs were assigned a response signal that then had to be replicated by the organism.
 A total of 16 input signal pairs and 4 response signals were tested.
-Table 2 in [@lalejini2018evolving] provides a visual representation of these sequences.
+Table 2 in @lalejini2018evolving provides a visual representation of these sequences.
 
-A total of XX replicates were evolved for up to 10000 generations.
-Programs were reproduced based on a 16-way lexicase selection scheme, with each of the input signal pairs being a test case.
-Each program was sent the first signal of each test case and given 128 updates to process it.
+A total of XX replicates were evolved for up to 10000 generations using a 16-way lexicase selection scheme, with each of the input signal pairs serving as a test case.
+To evaluate the specific test case, each program was sent the first signal of each test case and given 128 updates to process it.
 After this, their internal CPU state was reset, and the second signal was sent.
 After another 128 updates, their response was evaluated.
 In order to save resources and computing time, as soon as a replicate evolved a fully-correct solution, their evolution was halted.
 \autoref{fig:tts-context} shows the number of generations elapsed before a full solution was found.
 
-`signalgp-lite` evolved full solutions in half as many updates compared to SignalGP.
-Moreover, less programs were unable to reach a full solution in 10000 updates under `signalgp-lite`.
-
-MAYBE TODO: talk about mutation rates maybe?
+`signalgp-lite` evolved full solutions in half as many generations compared to SignalGP when regulation was enabled.
+Moreover, fewer programs were unable to reach a full solution in 10000 generations under `signalgp-lite`. With regulation disabled, however, the performance of both libraries was similar.
 
 # Projects Using the Sofrware
 
-`signalgp-lite` is the framework of choice in DISHTINY, a framework for studying digital organism multicelularity.
+`signalgp-lite` is used in DISHTINY, a framework for studying digital organism multicelularity.
 
 # Figures
 
