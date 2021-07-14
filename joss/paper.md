@@ -27,7 +27,7 @@ Event-driven genetic programming representations have been shown to outperform t
 These representations organize genome content into modules that are triggered in response to enviromental signals, simplifying simulation design and implementation. Existing work developing event-driven genetic programming methodology has largely used the SignalGP library, which caters to traditional program synthesis applications.
 The signalgp-lite library enables larger-scale artificial life experiments with similar agents by removing control flow overhead and trading run-time flexibility for better-performing compile-time configuration.
 Here, we report benchmarking experiments that show an 8x to 30x speedup.
-We also report solution quality equivalent to SignalGP on two benchmark problems originally developed to test library performance and solution quality.
+We also report solution quality equivalent to SignalGP on two benchmark problems originally developed to test the ability of evolved programs to respond to a large number of signals and to understand signals contextually.
 
 # Summary
 
