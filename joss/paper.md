@@ -23,19 +23,17 @@ bibliography: paper.bib
 
 # Abstract
 
-Event-driven genetic programming representations have been shown to outperform traditional traditional imperative representations on interaction-intensive problems.
-Traditional imperative genetic programming paradigms struggle on these tasks due to the need to poll a large number of sensors procedurally.
-Event-driven genetic programming representations address these problems by organizing genome content into modules and triggering these modules in response to enviromental signals, simplifying simulation design and implementation. Existing work developing event-driven genetic programming methodology uses the SignalGP library. This library caters to traditional program synthesis applications.
-However, large-scale artificial life applications require a different set of implementation priorities.
-With signalgp-lite, our goal is to increase performance to enable large-scale experiments by removing control-flow overhead and trading run-time flexibility for better-performing compile-time configuration.
+Event-driven genetic programming representations have been shown to outperform traditional imperative representations on interaction-intensive problems.
+These representations organize genome content into modules that are triggered in response to enviromental signals, simplifying simulation design and implementation. Existing work developing event-driven genetic programming methodology has largely used the SignalGP library, which caters to traditional program synthesis applications.
+The signalgp-lite library enables larger-scale artificial life experiments with similar agents by removing control flow overhead and trading run-time flexibility for better-performing compile-time configuration.
 Here, we report benchmarking experiments that show an 8x to 30x speedup.
-We also report solution quality equivalent to SignalGP on two benchmark problems originally developed to test execution speed and validity of results.
+We also report solution quality equivalent to SignalGP on two benchmark problems originally developed to test library performance and solution quality.
 
 # Summary
 
-`signalgp-lite` is a C++ software library for event-driven genetic programming.
-Unlike the traditional imperative paradigm, where a single chain of execution directly manages every aspect of the program, event-driven simulations trigger event handlers (i.e., program modules) in response to enviromental, self-generated, and cohabitant-generated signals.
-This representation outperforms imperative programming on interaction intensive problems, where the simulation must handle inputs from the enviroment or other organisms, as is the case in some genetic programming contexts and many artifical life simulations.
+`signalgp-lite` is a C++ library for event-driven genetic programming.
+Unlike the traditional imperative genetic programming paradigm, where a single chain of execution directly manages every aspect of the program, event-driven simulations trigger event handlers (i.e., program modules) in response to enviromental, self-generated, and cohabitant-generated signals.
+This representation outperforms traditional imperative genetic programming on interaction intensive problems, where the simulation must handle inputs from the enviroment or other organisms, as is the case in some genetic programming contexts and many artifical life simulations.
 
 # Statement of need
 
@@ -43,7 +41,7 @@ Despite being able to simulate evolution with much faster generational turnover 
 Large population sizes are essential to studying key biological topics such as ecologies, the transition to multicelularity, and the role of rare events in evolution.
 In conjunction with parallel and distributied computing, computational efficiency is crucial to enabling larger-scale artificial life situations.
 
-In comparison to SignalGP [introduce this before], which was designed to target generic genetic programming problems, `signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading a high level of customizability at runtime for a considerable speedup.
+In comparison to SignalGP, which was designed to target generic genetic programming problems, `signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading a high level of customizability at runtime for a considerable speedup.
 Since the simulation parameters of artificial life experiments need not change during execution, they are a clear candidate for using `signalgp-lite`.
 
 The library has enabled order-of-magnitude scale-up of existing Artificial Life experiments studying the evolution of multicelularity; we anticipate it will also enable novel work in other Artificial Life and Genetic Programming contexts.
