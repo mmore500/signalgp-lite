@@ -59,6 +59,7 @@ struct Organism {
 
         return peripheral.output;
     }
+
     bool DoMutations(emp::Random&) {
         program.ApplyPointMutations( 0.005f );
         return true;
