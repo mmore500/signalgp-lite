@@ -58,7 +58,7 @@ Supplementary \autoref{fig:raw-timings} shows raw wall-clock timings.
 
 We performed five microbenchmark experiments, reported below, in order to isolate how different aspects of the library design influenced performance.
 
-All benchmarks in this section were measured using Google Benchmark version 1.5.2-1.
+All benchmarks in this section were realized using Google Benchmark version 1.5.2-1.
 
 ### control
 
