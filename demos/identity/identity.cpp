@@ -59,6 +59,7 @@ struct Organism {
 
         return peripheral.output;
     }
+
     bool DoMutations(emp::Random&) {
         program.ApplyPointMutations( 0.005f );
         return true;
@@ -87,7 +88,7 @@ int main() {
     for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
   }
 
-std::cout << "\nPost-Tourney Size = " << ea_world.GetSize() << std::endl;
+std::cout << "\nPost-Tourney Size = " << ea_world.GetSize() << "\n";
 for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
 std::cout << std::endl;
 

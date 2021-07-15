@@ -97,25 +97,34 @@ struct Organism {
             return ret;
         }();
 
-        // reinitialize CPU
-        cpu.Reset();
-        cpu.InitializeAnchors(program);
+        int fit_count = 0;
 
-        // launch cpu with first tag
-        cpu.TryLaunchCore(signals[first]);
+        // evaluate fitness four times to weed out RNG
+        for (size_t i = 0; i < 4; ++i) {
 
-        // execute up to 128 instructions
-        sgpl::execute_cpu<spec_t>(128, cpu, program, peripheral);
+            // reinitialize CPU
+            cpu.Reset();
+            cpu.InitializeAnchors(program);
 
-        // launch cpu with second tag
-        cpu.TryLaunchCore(signals[second]);
+            // launch cpu with first tag
+            cpu.TryLaunchCore(signals[first]);
 
-        // execute up to 128 instructions
-        sgpl::execute_cpu<spec_t>(128, cpu, program, peripheral);
+            // execute up to 128 instructions
+            sgpl::execute_cpu<spec_t>(128, cpu, program, peripheral);
 
-        // if correct response is observed, increment fitness
-        const size_t answer = (first + second) % config.NUMBER_RESPONSES();
-        return peripheral.output == answer;
+            // launch cpu with second tag
+            cpu.TryLaunchCore(signals[second]);
+
+            // execute up to 128 instructions
+            sgpl::execute_cpu<spec_t>(128, cpu, program, peripheral);
+
+            // if correct response is observed, increment fitness
+            const size_t answer = (first + second) % config.NUMBER_RESPONSES();
+
+            fit_count += (peripheral.output == answer);
+
+        }
+        return fit_count == 4;
     }
 
     double GetFitness() const {
@@ -232,7 +241,7 @@ int main(int argc, char* argv[]) {
 
         // check for early exit
         const double max_fitness = get_max_fitness();
-        if (max_fitness >- config.THRESHOLD_FITNESS()) break;
+        if (max_fitness >= config.THRESHOLD_FITNESS()) break;
     }
 
     print_fitness();

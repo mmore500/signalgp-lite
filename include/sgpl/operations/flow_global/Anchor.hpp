@@ -25,6 +25,10 @@ struct Anchor {
     const sgpl::Program<Spec>& program,
     typename Spec::peripheral_t& peripheral
   ) noexcept {
+    // when launching a new core, local anchors won't be present
+    // when reaching a global anchor
+    // without encountering local anchors yet,
+    // local anchors will also still be empty
     if ( core.HasLocalAnchors() ) core.Terminate();
     else core.LoadLocalAnchors( program );
   }

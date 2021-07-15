@@ -24,6 +24,7 @@ struct ForkIf {
     const sgpl::Program<Spec>& program,
     typename Spec::peripheral_t&
   ) noexcept {
+    // TODO allow registers to be preserved during fork
     if ( core.registers[ inst.args[0] ] ) core.RequestFork( inst.tag );
   }
 
