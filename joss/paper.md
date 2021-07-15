@@ -1,5 +1,6 @@
+
 ---
-title: 'signalgp-lite: Event Driven Genetic Programming Library for Large-Scale Artificial Life Applications'
+title: 'SignalGP-Lite: Event Driven Genetic Programming Library for Large-Scale Artificial Life Applications'
 tags:
   - C++
   - artificial life
@@ -24,16 +25,19 @@ bibliography: paper.bib
 # Abstract
 
 Event-driven genetic programming representations have been shown to outperform traditional imperative representations on interaction-intensive problems.
-These representations organize genome content into modules that are triggered in response to enviromental signals, simplifying simulation design and implementation. Existing work developing event-driven genetic programming methodology has largely used the SignalGP library, which caters to traditional program synthesis applications.
-The signalgp-lite library enables larger-scale artificial life experiments with streamlined agents by removing control flow overhead and trading run-time flexibility for better-performing compile-time configuration.
+These representations organize genome content into modules that are triggered in response to enviromental signals, simplifying simulation design and implementation.
+Existing work developing event-driven genetic programming methodology has largely used the SignalGP library, which caters to traditional program synthesis applications.
+The signalgp-lite library enables larger-scale artificial life experiments with streamlined agents by reducing control flow overhead and trading run-time flexibility for better performance due to compile-time configuration.
 Here, we report benchmarking experiments that show an 8x to 30x speedup.
 We also report solution quality equivalent to SignalGP on two benchmark problems originally developed to test the ability of evolved programs to respond to a large number of signals and to modulate signal response based on context.
 
 # Summary
 
 `signalgp-lite` is a C++ library for event-driven genetic programming.
-Unlike the traditional imperative genetic programming paradigm, where a single chain of execution directly manages every aspect of the program, event-driven genetic programs trigger event handlers (i.e., program modules) in response to signals from enviromental, self-generated, and cohabitant-generated.
+Unlike the traditional imperative genetic programming paradigm, where a single chain of execution directly manages every aspect of the program, event-driven genetic programs trigger event handlers (i.e., program modules) in response to signals that are generated internally, externally from other agents, or externally from the environment.
 Event-driven representation outperforms traditional imperative genetic programming on interaction intensive problems where the simulation must handle inputs from the enviroment or other organisms, as is the case in some genetic programming contexts and many artifical life simulations.
+
+<!-- add signalgp citation -->
 
 # Statement of need
 
