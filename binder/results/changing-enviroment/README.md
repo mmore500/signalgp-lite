@@ -1,0 +1,1 @@
+The data inside `./86bf42` was generated on 2021-05-14 by running the `changing-enviroment` demo with the arguments `-LOGGING 1 -UPDATES 10001 -ENVIROMENT_STATES {k} -SEED {n} -LOGGING_FILENAME {n}`, where {k} is 2, 4, 8, and 16 and corresponds to the number of enviroment states in the problem, and {n} is the sequence of numbers 1...100 and corresponds to the pRNG seed.
