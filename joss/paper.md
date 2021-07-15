@@ -41,7 +41,8 @@ Despite being able to simulate evolution with much faster generational turnover 
 Large population sizes are essential to studying phenomena such as ecologies, the transition to multicelularity, and rare events in evolution.
 In conjunction with parallel and distributied computing, computational efficiency is crucial to enabling larger-scale artificial life situations.
 
-[introduce SGP] In comparison to SignalGP, which was designed to target generic genetic programming problems, `signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading flexible customization at runtime for a considerable speedup.
+SignalGP is a genetic programming framework that sets out to simplify and streamline genetic programming development by the use  of an event-driven paradigm where program modules are triggered in response to signals from the enviroment.
+In comparison to SignalGP, which was designed to target generic genetic programming problems, `signalgp-lite` fills a niche for interaction-heavy genetic programming applications that can tolerate trading flexible customization at runtime for a considerable speedup.
 Since the simulation parameters of many artificial life experiments need not change during execution, they are a clear candidate for using `signalgp-lite`.
 
 The library has enabled order-of-magnitude scale-up of existing artificial life experiments studying the evolution of multicelularity; we anticipate it will also enable novel work in other artificial life and Genetic Programming contexts.
@@ -53,9 +54,11 @@ We performed a set of microbenchmarks to quantify the effectiveness of `signalgp
 
 Hardware caching size profoundly affects memory access time, which is key to computational performance [@skadron1999branch].
 In order to determine the relative perfomance of the SignalGP and `signalgp-lite` across cache levels, we benchmarked over different orders of magnitude of memory loads by varying agent counts between from 1 and 32768 (Supplementary Table \ref{raw-timings-table}).
-Supplementary \autoref{fig:raw-timings} shows raw wall-clock timings measured using Google Benchmark version 1.5.2-1. [move somewhere else] [where?]
+Supplementary \autoref{fig:raw-timings} shows raw wall-clock timings.
 
 We performed five microbenchmark experiments, reported below, in order to isolate how different aspects of the library design influenced performance.
+
+All benchmarks in this section were measured using Google Benchmark version 1.5.2-1.
 
 ### control
 
@@ -92,7 +95,7 @@ As shown on \autoref{fig:bench-wall}, this yields a 35x to 47x speed-up. This me
 # Test Problem Benchmarking
 
 Since `signalgp-lite` is intended to serve as a specialized alternative to the original SignalGP for certain artifical life applications, it must match SignalGP performance on benchmarks measuring responsitivy and plasticity.
-To verify `signalgp-lite`'s aptitude, we replicated two experiments from the original SignalGP paper [add regulation paper], reported below [@lalejini_tag-based_2021].
+To verify `signalgp-lite`'s aptitude, we replicated two experiments from two SignalGP papers, reported below [@lalejini2018evolving][@lalejini_tag-based_2021].
 
 ## Changing Enviroment Problem
 
@@ -120,7 +123,7 @@ To evaluate the specific test case, each program was sent the first signal of ea
 After this, their internal running modules were reset and the second signal was sent.
 After another 128 updates, their response was evaluated.
 In order to save resources and computing time, as soon as a replicate evolved a fully-correct solution, their evolution was halted.
-[explain how we made sure they werent lucky]
+All RNG instructions were disabled to ensure that a solution was not reached by chance.
 \autoref{fig:tts-context} shows the number of generations elapsed before a full solution was found.
 
 `signalgp-lite` evolved full solutions in half as many generations compared to SignalGP when regulation was enabled.
