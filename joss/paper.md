@@ -48,7 +48,7 @@ SignalGP is a genetic programming framework that sets out to simplify and stream
 In comparison to SignalGP, which was designed to target generic genetic programming problems, SignalGP-Lite fills a niche for interaction-heavy genetic programming applications that can tolerate trading flexible customization at runtime for a considerable speedup.
 Since the simulation parameters of many artificial life experiments need not change during execution, they are a clear candidate for using SignalGP-Lite.
 
-The library has enabled order-of-magnitude scale-up of existing artificial life experiments studying the evolution of multicelularity; we anticipate it will also enable novel work in other artificial life and Genetic Programming contexts.
+The library has enabled order-of-magnitude scale-up of existing artificial life experiments studying the evolution of multicelularity; we anticipate it will also enable novel work in other artificial life and genetic programming contexts.
 
 
 ## Execution Speed Benchmarking
