@@ -108,7 +108,7 @@ As such, SignalGP-Lite offers performance improvements even on simulations that 
 # Test Problem Benchmarking
 
 In order to successfully server as a specialized alternative to the original SignalGP for certain artificial life applications, SignalGP-Lite must match SignalGP's performance on benchmarks measuring responsivity and plasticity.
-To verify SignalGP-Lite's aptitude on these tests, we replicated two canonical SignalGP experiments, reported below [@lalejini2018evolving, @lalejini_tag-based_2021].
+To verify SignalGP-Lite's aptitude on these tests, we replicated two canonical SignalGP experiments, reported below [@lalejini2018evolving; @lalejini_tag-based_2021].
 
 ## Changing Environment Problem
 
