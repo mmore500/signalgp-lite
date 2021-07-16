@@ -140,11 +140,14 @@ We excluded RNG operations from the instruction set to ensure that solutions wer
 \autoref{fig:tts-context} shows the number of generations elapsed before a full solution was found.
 
 SignalGP-Lite evolved full solutions in half as many generations compared to SignalGP when regulation was enabled.
-Moreover, fewer replicates failed to reach a full solution in 10000 generations under SignalGP-Lite. With regulation disabled, however, the performance of both libraries was similar.
+Moreover, fewer replicates failed to reach a full solution in 10000 generations under SignalGP-Lite.
+With regulation disabled, however, the performance of both libraries was similar.
+These results mean that SignalGP-Lite is a valid alternative to SignalGP when it comes to artificial life applications.
+
 
 # Projects Using the Software
 
-SignalGP-Lite is used in DISHTINY, a digital framework for studying organism multicelularity. [cite]
+SignalGP-Lite is used in DISHTINY, a digital framework for studying organism multicelularity [@moreno2019toward].
 
 # Figures
 
