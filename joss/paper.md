@@ -24,7 +24,7 @@ bibliography: paper.bib
 # Abstract
 
 Event-driven genetic programming representations have been shown to outperform traditional imperative representations on interaction-intensive problems.
-These representations organize genome content into modules that are triggered in response to enviromental signals, simplifying simulation design and implementation.
+These representations organize genome content into modules that are triggered in response to environmental signals, simplifying simulation design and implementation.
 Existing work developing event-driven genetic programming methodology has largely used the SignalGP library, which caters to traditional program synthesis applications.
 The SignalGP-Lite library enables larger-scale artificial life experiments with streamlined agents by reducing control flow overhead and trading run-time flexibility for better performance due to compile-time configuration.
 Here, we report benchmarking experiments that show an 8x to 30x speedup.
@@ -61,7 +61,7 @@ Supplementary \autoref{fig:raw-timings} shows raw wall-clock timings.
 
 We performed five microbenchmark experiments, reported below, in order to isolate how different aspects of the library design influenced performance.
 
-All benchmarks in this section were realized using Google Benchmark version 1.5.2-1.
+All benchmarks in this section were performed using Google Benchmark version 1.5.2-1.
 
 ### control
 
