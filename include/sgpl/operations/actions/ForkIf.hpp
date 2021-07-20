@@ -15,6 +15,12 @@
 
 namespace sgpl {
 
+/**
+ * If \texttt{reg[arg\_0]} is nonzero, registers a request to activate a new core with the module best-matching the current instruction's tag.
+ *
+ * These fork requests are only handled when the current core terminates. Each
+ * core may only register 3 fork requests.
+ */
 struct ForkIf {
 
   template<typename Spec>

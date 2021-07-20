@@ -14,6 +14,9 @@
 
 namespace sgpl {
 
+/**
+ * Terminates current core if `reg[arg_0]` is nonzero.
+ */
 struct TerminateIf {
 
   template<typename Spec>
