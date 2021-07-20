@@ -26,9 +26,9 @@ struct Nop {
 
   template<typename Spec>
   static void run(
-    sgpl::Core<Spec>& core,
-    const sgpl::Instruction<Spec>& inst,
-    const sgpl::Program<Spec>& program,
+    sgpl::Core<Spec>&,
+    const sgpl::Instruction<Spec>&,
+    const sgpl::Program<Spec>&,
     typename Spec::peripheral_t&
   ) noexcept {
     for (size_t i{}; i < NumRngTouches; ++i ) {

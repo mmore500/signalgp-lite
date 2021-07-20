@@ -39,7 +39,7 @@ struct Anchor {
   template<typename Spec>
   static void run(
     sgpl::Core<Spec>& core,
-    const sgpl::Instruction<Spec>& inst,
+    const sgpl::Instruction<Spec>&,
     const sgpl::Program<Spec>& program,
     typename Spec::peripheral_t& peripheral
   ) noexcept {

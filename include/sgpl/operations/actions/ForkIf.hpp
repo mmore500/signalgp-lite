@@ -27,7 +27,7 @@ struct ForkIf {
   static void run(
     sgpl::Core<Spec>& core,
     const sgpl::Instruction<Spec>& inst,
-    const sgpl::Program<Spec>& program,
+    const sgpl::Program<Spec>&,
     typename Spec::peripheral_t&
   ) noexcept {
     // TODO allow registers to be preserved during fork

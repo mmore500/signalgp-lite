@@ -23,7 +23,7 @@ struct TerminateIf {
   static void run(
     sgpl::Core<Spec>& core,
     const sgpl::Instruction<Spec>& inst,
-    const sgpl::Program<Spec>& program,
+    const sgpl::Program<Spec>&,
     typename Spec::peripheral_t&
   ) noexcept {
     if ( core.registers[ inst.args[0] ] ) core.Terminate();
