@@ -15,9 +15,9 @@ abstract: >-
   on two benchmark problems originally developed to test the ability of evolved
   programs to respond to a large number of signals and to modulate signal
   response based on context.
-date-released: 2021-07-28T00:00:00.000Z
+date-released: 2021-07-28
 license: MIT
-version: 0.0.2
+version: 0.2.0
 authors:
   - affiliation: Michigan State University
     family-names: Moreno
