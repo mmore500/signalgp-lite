@@ -14,7 +14,7 @@ authors:
     affiliation: 1
   - name: Alexander Lalejini
     orcid: 0000-0003-0994-2718
-    affiliation: 1
+    affiliation: 2
   - name: Charles Ofria
     orcid: 0000-0003-2924-1732
 affiliations:
