@@ -152,7 +152,7 @@ We assigned each possible unordered input signal pair a unique response to then 
 We tested with 16 input signal pairs and 4 output responses.
 Table 2 in @lalejini_tag-based_2021 enumerates these sequences and responses.
 
-A total of XX replicates were evolved for up to 10,000 generations using a 16-way lexicase selection scheme [@spector2012assessment], with each of the input signal pairs serving as a test case.
+A total of 20 replicates were evolved for up to 10,000 generations using a 16-way lexicase selection scheme [@spector2012assessment], with each of the input signal pairs serving as a test case.
 To evaluate each test case, programs were sent the first signal of each test case and given 128 virtual CPU cycles to process it.
 After this, their internal running modules were killed and the second signal was sent.
 After another 128 virtual CPU cycles, their response was recorded.
@@ -204,6 +204,7 @@ Any opinions, findings, and conclusions or recommendations expressed in this mat
 # Supplementary Material
 
 All benchmarks reported in this section were performed using Google Benchmark version 1.5.2-1.
+<!-- TODO where is data available? -->
 
 ![Maximum fitness wrt. updates, with standard deviation confidence intervals. This is because, due to large number of datapoints, computing 95% CI takes a non-insignificant amount of time.\label{fig:max-fitness-sd}](figures/max-fitness-sd.png)
 
