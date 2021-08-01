@@ -12,11 +12,16 @@ authors:
   - name: Santiago Rodriguez Papa
     orcid: 0000-0002-6028-2105
     affiliation: 1
+  - name: Alexander Lalejini
+    orcid: 0000-0003-0994-2718
+    affiliation: 1
   - name: Charles Ofria
     orcid: 0000-0003-2924-1732
 affiliations:
  - name: Michigan State University
    index: 1
+ - name: University of Michigan
+   index: 2
 date: 31 May 2021
 bibliography: paper.bib
 ---
