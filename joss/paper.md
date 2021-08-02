@@ -37,7 +37,7 @@ We also report solution quality equivalent to SignalGP on two benchmark problems
 
 # Summary
 
-SignalGP is an existing event-driven genetic programming C++ library well-suited for interaction-heavy program synthesis problems.
+SignalGP is an existing event-driven genetic programming C++ library well-suited for interaction-heavy program synthesis problems [@lalejini2018evolving].
 SignalGP was instrumental in introducing the event-driven genetic programming paradigm where program modules are triggered in response to signals from the environment.
 
 Unlike the traditional imperative genetic programming paradigm, where a single chain of execution directly manages every aspect of the program, event-driven genetic programs trigger event handlers (i.e., program modules) in response to signals that are generated internally, externally from other agents, or externally from the environment.
@@ -50,9 +50,6 @@ Here, we present the compute time and solution quality comparison of SignalGP-Li
 
 In "Execution Speed Benchmarking," we report compute times for both SignalGP and SignalGP-Lite using synthetic benchmarks---benchmarks that designed with reproducibility and accuracy in mind, but that might not reflect real-world problems.
 In "Test Problem Benchmarking," we compare solution quality of SignalGP and SignalGP-Lite on synthetic genetic programming problems designed to test responsivity and plasticity.
-
-
-<!-- add signalgp citation -->
 
 # Statement of need
 
