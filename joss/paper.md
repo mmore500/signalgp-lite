@@ -53,8 +53,13 @@ In "Test Problem Benchmarking," we compare solution quality of SignalGP and Sign
 
 # Statement of need
 
-<!-- [introduce artificial life; Adami] -->
-Despite being able to simulate evolution with much faster generational turnover than is possible in biological experiments [@ofria2004avida], the scale of artificial life populations is profoundly limited by available computational resources [@Moreno_2020].
+Mathematical and computational constructs devised to depict hypothesised biological reality play a critical role in advancing our by translating assumptions underlying those hypotheses into falsifiable predictions [@gunawardena2014models].
+Such models traditionally represent mechanisms of biology in direct, often physical, sense --- explicitly modeling, for example, biochemical oscillations or population counts within a species [@mogilner2006quantitative, @schuster2011mathematical]. 
+In contrast, artificial life systems ply unfamiliar substrates such as genetic programs or set-theoretic artificial chemistries that lack a direct analog in the natural world [@ofria2004avida; @dittrich2001artificial].
+Although artificial life substrates are not directly descriptive of physical reality *per se*, research interest stems instead from their capacities to instantiate fundamental abstract processes core to biological life, such as evolution, and their capacity to exhibit fundamental abstract properties ofy biological life, such as plasticity.
+(Whether artificial life systems are best conceived of as models or as alternate instances of "life as it could be" haunts perennial philosophical interest [@shanken1998life; @pennock2007models].)
+
+Despite being able to simulate evolution with much faster generational turnover than is possible in biological experiments [@ofria2004avida], the scale of digital artificial life populations is profoundly limited by available computational resources [@Moreno_2020].
 Large population sizes are essential to studying fundamental evolutionary phenomena such as ecologies, the transition to multicelularity, and rare events.
 In conjunction with parallel and distributed computing, computational efficiency is crucial to achieving larger-scale artificial life situations.
 
