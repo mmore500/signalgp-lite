@@ -165,7 +165,7 @@ These results mean that SignalGP-Lite is a valid alternative to SignalGP when it
 
 # Projects Using the Software
 
-SignalGP-Lite is used in DISHTINY, a digital framework for studying organism multicelularity [@moreno2019toward].
+SignalGP-Lite is used in DISHTINY, a digital framework for studying organism multicelularity [@moreno2019toward; @moreno2021exploring; @moreno2021case].
 
 # Figures
 
