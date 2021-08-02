@@ -167,10 +167,18 @@ Moreover, fewer replicates failed to reach a full solution in 10000 generations 
 With regulation disabled, however, the performance of both libraries was similar.
 These results mean that SignalGP-Lite is a valid alternative to SignalGP when it comes to artificial life applications.
 
-
 # Projects Using the Software
 
-SignalGP-Lite is used in DISHTINY, a digital framework for studying organism multicelularity [@moreno2019toward; @moreno2021exploring; @moreno2021case].
+SignalGP-Lite is used in DISHTINY, a digital framework for studying evolution of multicelularity [@moreno2019toward; @moreno2021exploring; @moreno2021case].
+
+# Conclusion
+
+In this work, we introduced a specialized reimplementation of the SignalGP library for event-driven genetic programming called SignalGP-Lite.
+Designed to cater to artificial life applications, the SignalGP-Lite streamlines agents by reducing control flow overhead and trading run-time flexibility for better performance due to compile-time configuration.
+We showed through benchmarking experiments how these distinctions, stemming from fundamental aspects of the re-implementation, enable an order-of-magnitude speedup.
+Further, through two benchmark problems from foundational work with SignalGP, we demonstrate solution quality equivalent to SignalGP.
+SignalGP-Lite has already been adopted in an ongoing artificial life project, the DISHTINY digital multicellularity framework.
+Because of its distinctive capabilities, free distribution of this software enables new opportunities within artificial life and other specialized applications of genetic programming.
 
 # Figures
 
