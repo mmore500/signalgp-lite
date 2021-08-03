@@ -215,7 +215,7 @@ Any opinions, findings, and conclusions or recommendations expressed in this mat
 
 # Supplementary Material
 
-All benchmarks reported in this section were performed using Google Benchmark version 1.5.2-1.
+All benchmarks reported were performed using Google Benchmark version 1.5.2-1.
 <!-- TODO where is data available? -->
 <!-- TODO where is code available? -->
 
