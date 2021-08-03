@@ -79,6 +79,7 @@ In order to determine the relative performance of SignalGP and SignalGP-Lite at 
 We performed five microbenchmark experiments, reported below, to isolate how specific aspects of the library design influenced performance.
 Analysis below focuses on wall time speedup.
 However, supplementary \autoref{fig:raw-timings} shows raw wall-clock timings for these experiments.
+For each microbenchmark experiment, the Google Benchmark library used an insturmented burn-in process to dynamically determine the number of successive calls to the focal code snippet necessary to take a stable measurement of its run time.
 
 ## control
 
@@ -216,6 +217,7 @@ Any opinions, findings, and conclusions or recommendations expressed in this mat
 
 All benchmarks reported in this section were performed using Google Benchmark version 1.5.2-1.
 <!-- TODO where is data available? -->
+<!-- TODO where is code available? -->
 
 ![Maximum fitness wrt. updates, with standard deviation confidence intervals. This is because, due to large number of datapoints, computing 95% CI takes a non-insignificant amount of time.\label{fig:max-fitness-sd}](figures/max-fitness-sd.png)
 
