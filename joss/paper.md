@@ -30,45 +30,47 @@ bibliography: paper.bib
 
 Event-driven genetic programming representations have been shown to outperform traditional imperative representations on interaction-intensive problems.
 The event-driven approach organizes genome content into modules that are triggered in response to environmental signals, simplifying simulation design and implementation.
-Existing work developing event-driven genetic programming methodology has largely used the SignalGP library, which caters to traditional program synthesis applications.
-The SignalGP-Lite library enables larger-scale artificial life experiments with streamlined agents by reducing control flow overhead and trading run-time flexibility for better performance due to compile-time configuration.
-Here, we report benchmarking experiments that show an 8x to 30x speedup.
+Existing work developing event-driven genetic programming methodology has largely used the SignalGP framework, which caters to traditional program synthesis applications.
+The SignalGP-Lite library provides a new, [developer friendly/usable/well documented/etc] implementation of the SignalGP framework, targeting artificial life and [multi-agent/computational evolution] applications.
+SignalGP-Lite enables larger-scale artificial life experiments with streamlined agents by reducing control flow overhead and trading run-time flexibility for better performance due to compile-time configuration.
+Here, we report benchmarking experiments that show an 8x to 30x speedup over original SignalGP implementations.
 We also report solution quality equivalent to SignalGP on two benchmark problems originally developed to test the ability of evolved programs to respond to a large number of signals and to modulate signal response based on context.
 
 # Summary
 
-SignalGP is an existing event-driven genetic programming C++ library well-suited for interaction-heavy program synthesis problems [@lalejini2018evolving].
-SignalGP was instrumental in introducing the event-driven genetic programming paradigm where program modules are triggered in response to signals from the environment.
-
-Unlike the traditional imperative genetic programming paradigm, where a single chain of execution directly manages every aspect of the program, event-driven genetic programs trigger event handlers (i.e., program modules) in response to signals that are generated internally, externally from other agents, or externally from the environment.
-Event-driven representation outperforms traditional imperative genetic programming on interaction intensive problems where the programs must handle inputs from the environment or other organisms, as is the case in some traditional genetic programming contexts and many artificial life simulations.
+Genetic programming applies the principles of evolution to automatically synthesize computer programs rather than writing them by hand [CITE (a nice introduction to GP)].
+Often genetic programming is used to synthesize _imperative_ programs where a single chain of execution directly manages every aspect of the program.
+SignalGP is an existing genetic programming framework for evolving _event-driven_ computer programs where programs trigger event handlers (i.e., program modules) in response to signals that are generated internally, externally from other agents, or externally from the environment [@lalejini2018evolving].
+Such event-driven representations outperform traditional imperative genetic programming on interaction intensive problems where the evolved programs must handle inputs from the environment or from other agents, as is the case in distributed computing problem domains and many artificial life simulations.
 
 SignalGP-Lite is a C++ library for event-driven genetic programming.
-In comparison to SignalGP, which is intended for general event-driven genetic programming, SignalGP-Lite is tailored for use in artificial life experiments.
+In comparison to existing implementations of SignalGP, which are intended for general event-driven genetic programming, SignalGP-Lite is tailored for use in artificial life experiments.
 
-Here, we present the compute time and solution quality comparison of SignalGP-Lite and SignalGP on some scenarios where the original implementation has the edge.
+Here, we benchmark the compute time and solution quality of SignalGP-Lite on some scenarios where the original implementation has the edge. <!-- @AML: Not sure what is meant by "original implementation has the edge>
 
 In "Execution Speed Benchmarking," we report compute times for both SignalGP and SignalGP-Lite using synthetic benchmarks---benchmarks that designed with reproducibility and accuracy in mind, but that might not reflect real-world problems.
-In "Test Problem Benchmarking," we compare solution quality of SignalGP and SignalGP-Lite on synthetic genetic programming problems designed to test responsivity and plasticity.
+In "Test Problem Benchmarking," we compare solution quality of SignalGP and SignalGP-Lite on simple genetic programming problems designed to test responsivity and plasticity.
 
 # Statement of need
 
-Mathematical and computational constructs devised to depict hypothesised biological reality play a critical role in advancing our by translating assumptions underlying those hypotheses into falsifiable predictions [@gunawardena2014models].
-Such models traditionally represent mechanisms of biology in direct, often physical, sense --- explicitly modeling, for example, biochemical oscillations or population counts within a species [@mogilner2006quantitative, @schuster2011mathematical]. 
-In contrast, artificial life systems ply unfamiliar substrates such as genetic programs or set-theoretic artificial chemistries that lack a direct analog in the natural world [@ofria2004avida; @dittrich2001artificial].
-Although artificial life substrates are not directly descriptive of physical reality *per se*, research interest stems instead from their capacities to instantiate fundamental abstract processes core to biological life, such as evolution, and their capacity to exhibit fundamental abstract properties ofy biological life, such as plasticity.
+Mathematical and computational constructs devised to depict hypothesized biological reality play a critical role in advancing our [??] by translating assumptions underlying those hypotheses into falsifiable predictions [@gunawardena2014models].
+Such models traditionally represent mechanisms of biology in a direct, often physical, sense --- explicitly modeling, for example, biochemical oscillations or population counts within a species [@mogilner2006quantitative, @schuster2011mathematical].
+In contrast, artificial life systems ply unfamiliar substrates such as self-replicating computer programs or set-theoretic artificial chemistries that lack a direct analog in the natural world [@ofria2004avida; @dittrich2001artificial].
+Although artificial life substrates are not directly descriptive of physical reality *per se*, research interest stems instead from their capacities to instantiate fundamental abstract processes core to biological life, such as evolution, and their capacity to exhibit fundamental abstract properties of biological life, such as plasticity.
 (Whether artificial life systems are best conceived of as models or as alternate instances of "life as it could be" haunts perennial philosophical interest [@shanken1998life; @pennock2007models].)
 
 Despite being able to simulate evolution with much faster generational turnover than is possible in biological experiments [@ofria2004avida], the scale of digital artificial life populations is profoundly limited by available computational resources [@Moreno_2020].
-Large population sizes are essential to studying fundamental evolutionary phenomena such as ecologies, the transition to multicelularity, and rare events.
-In conjunction with parallel and distributed computing, computational efficiency is crucial to achieving larger-scale artificial life situations.
+Large population sizes are essential to studying fundamental evolutionary phenomena such as ecologies, the transition to multicellularity, and rare events.
+In conjunction with parallel and distributed computing, computational efficiency is crucial to achieving larger-scale artificial life situations. <!-- @AML: situations => studies? experiments? systems? -->
 
-SignalGP-Lite is the first implementation of SignalGP accessible to the general public.
-Its simplified API is complemented by extensive documentation, continuous integration tests, and benchmarks that measure both real-world workloads as well as individual instructions.
+The existing C++ implementation of SignalGP (hereafter, referred to as SignalGP) is proof-of-concept, lacking substantial documentation, rigorous software testing, and optimizations for large-scale use.
+The SignalGP-Lite library addresses these issues, providing the first easily accessible implementation of the SignalGP framework.
+<!-- SignalGP-Lite is the first implementation of SignalGP accessible to the general public. @AML: the general public doesn't read quite right (still need very specialized knowledge for the SGP-Lite library to be of use); outside/not-us developers? -->
+SignalGP-Lite's simplified API is complemented by extensive documentation, continuous integration tests, and benchmarks that measure both real-world workloads as well as individual instructions.
 In comparison to SignalGP---which was designed to target generic genetic programming problems---SignalGP-Lite fills a niche for interaction-heavy genetic programming applications that can tolerate less runtime configuration flexibility, and pared-back control flow.
 SignalGP-Lite is designed with artificial life experiments in mind, where simulation parameters need not change during execution and a more rudimentary approach to control flow can often be tolerated.
 
-The library has enabled order-of-magnitude scale-up of existing artificial life experiments studying the evolution of multicelularity; we anticipate it will also enable novel work in other artificial life and genetic programming contexts.
+The library has enabled order-of-magnitude scale-up of existing artificial life experiments studying the evolution of multicellularity (e.g., [CITATIONS]); we anticipate it will also enable novel work in other artificial life and genetic programming contexts.
 
 
 # Execution Speed Benchmarking
@@ -118,7 +120,9 @@ The greatest speedup occurred at a light memory footprint of 32 agents.
 
 ## sans_regulation
 
-Regulation operations allow SignalGP and SignalGP-Lite programs to adjust which program modules are expressed in response to environmental signals. Since this invalidates tag-match caches (which help lower the performance impact of tag-matching), we wanted to measure timings without regulation enabled.
+Regulation operations allow SignalGP and SignalGP-Lite programs to adjust which program modules are expressed in response to environmental signals.
+Since regulation can invalidate some of SignalGP-Lite's caching optimizations, we wanted to measure timings without regulation enabled.
+<!-- Since this invalidates tag-match caches (which help lower the performance impact of tag-matching), we wanted to measure timings without regulation enabled. -->
 
 This benchmark measures the complete instruction set with regulation-related instructions excluded.
 
@@ -128,18 +132,18 @@ From this, we can conclude that SignalGP-Lite offers performance improvements ev
 
 # Test Problem Benchmarking
 
-In order to viably serve as a specialized alternative to the original SignalGP for certain artificial life applications, SignalGP-Lite must match SignalGP's performance on benchmarks measuring responsivity and plasticity (the ability of organisms to adapt to changes in their environment).
+In order to viably serve as a specialized alternative to the original SignalGP for certain artificial life applications, SignalGP-Lite must match SignalGP's performance on benchmarks measuring responsivity and plasticity (the ability of programs to adapt to changes in their environment).
 To verify SignalGP-Lite's aptitude on these tests, we replicated two canonical SignalGP experiments, reported below [@lalejini2018evolving; @lalejini_tag-based_2021].
 
 ## Changing Environment Problem
 
 The Changing Environment Problem dispatched K = 2, 4, 8, or 16 mutually-exclusive environmental signals with randomly generated labels.
-Organisms were tasked to respond to each signal with a unique response instruction [@lalejini2018evolving].
+Programs were tasked to respond to each signal with a unique response instruction [@lalejini2018evolving].
 
 A total of 100 replicate populations of 100 individuals were evolved for up to 10,000 generations.
 Elite selection was used to choose the best-fit individual; roulette selection was used for the other 99.
 \autoref{fig:tts-changing} shows the number of generations elapsed before a full solution was found.
-SignalGP-Lite evolved full solutions to each problem within 3,500 updates in all 100 tested replicates.
+SignalGP-Lite evolved full solutions to each problem within 3,500 generations in all 100 tested replicates.
 
 In the `K=16` case, we achieved a superior 100% signal reproduction rate compared to an average of 32% on the original SignalGP  implementation  (@lalejini2018evolving Figure 2).
 We suspect this improvement occurred due to differences in how mutation, tag matching, and program initialization were performed, rather than an intrinsic difference between the libraries.
@@ -159,13 +163,13 @@ To evaluate each test case, programs were sent the first signal of each test cas
 After this, their internal running modules were killed and the second signal was sent.
 After another 128 virtual CPU cycles, their response was recorded.
 In order to save resources and computing time, as soon as a replicate evolved a fully-correct solution, their evolution was halted.
-We excluded RNG operations from the instruction set to ensure that solutions were not reached by chance.
+We excluded RNG operations from the instruction set to ensure that programs could not solve the Contextual Signal Problem by chance.
 \autoref{fig:tts-context} shows the number of generations elapsed before a full solution was found.
 
 SignalGP-Lite evolved full solutions in half as many generations compared to SignalGP when regulation was enabled.
-Moreover, fewer replicates failed to reach a full solution in 10000 generations under SignalGP-Lite.
+Moreover, fewer replicates failed to reach a full solution in 10,000 generations under SignalGP-Lite.
 With regulation disabled, however, the performance of both libraries was similar.
-These results mean that SignalGP-Lite is a valid alternative to SignalGP when it comes to artificial life applications.
+These results suggest that SignalGP-Lite is a valid alternative to SignalGP when it comes to artificial life applications.
 
 # Projects Using the Software
 
@@ -174,7 +178,7 @@ SignalGP-Lite is used in DISHTINY, a digital framework for studying evolution of
 # Conclusion
 
 In this work, we introduced a specialized reimplementation of the SignalGP library for event-driven genetic programming called SignalGP-Lite.
-Designed to cater to artificial life applications, the SignalGP-Lite streamlines agents by reducing control flow overhead and trading run-time flexibility for better performance due to compile-time configuration.
+Designed to cater to artificial life applications, the SignalGP-Lite library streamlines agents by reducing control flow overhead and trading run-time flexibility for better performance due to compile-time configuration.
 We showed through benchmarking experiments how these distinctions, stemming from fundamental aspects of the re-implementation, enable an order-of-magnitude speedup.
 Further, through two benchmark problems from foundational work with SignalGP, we demonstrate solution quality equivalent to SignalGP.
 SignalGP-Lite has already been adopted in an ongoing artificial life project, the DISHTINY digital multicellularity framework.
