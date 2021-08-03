@@ -76,7 +76,8 @@ We performed a set of microbenchmarks --- a type of synthetic benchmark that mea
 Hardware caching size profoundly affects memory access time, which is key to computational performance [@skadron1999branch].
 In order to determine the relative performance of SignalGP and SignalGP-Lite at different cache levels, we benchmarked over different orders of magnitude of memory load by varying the number of virtual CPUs (agent counts) between from 1 and 32768 (Supplementary Table \ref{raw-timings-table}).
 
-We performed five microbenchmark experiments, reported below, to isolate how specific aspects of the library design influenced performance. Analysis below focuses on wall time speedup.
+We performed five microbenchmark experiments, reported below, to isolate how specific aspects of the library design influenced performance.
+Analysis below focuses on wall time speedup.
 However, supplementary \autoref{fig:raw-timings} shows raw wall-clock timings for these experiments.
 
 ## control
@@ -87,8 +88,8 @@ The 1x wall speedup (\autoref{fig:bench-wall}) confirms that further results are
 ## nop
 
 A program consisting of 100 `nop` instructions is randomly generated.
-None of these instructions advance the pRNG engine.
-This benchmarks the instruction directly, as it is the only call measured inside the benchmarking loop.
+(Although some `nop` operation variants advance the random number generator engine in order to minimize unintended side effects when substituted for another operation that itself advances the random number generator, no `nop` instructions used in this experiment did so.)
+This benchmarks instruction execution overhead directly, as it successive `nop`'ss are the only call measured inside the benchmarking loop.
 With this approach, the relative performance impact of SignalGP-Lite's byte-code interpreter can be compared to SignalGP's lambda-based instructions.
 
 We observe an 8x to 30x speedup under SignalGP-Lite (\autoref{fig:bench-wall}).
@@ -107,7 +108,7 @@ The greatest speedup increase occurred at a relatively light memory footprint of
 ## complete
 
 The complete benchmark adds control flow instructions to the prior benchmarks' instruction set.
-Bitwise and logical operators, comparison instructions, and RNG operations, are also included.
+Bitwise and logical operators, comparison instructions, and random number generation operations, are also included.
 From this complete instruction set, a 100-instruction program is randomly generated.
 
 The main goal of this benchmark is to determine the performance impact of omitting a function stack and implementing inner loops and conditionals in terms of `jump` instructions instead of nested code blocks.
@@ -159,7 +160,7 @@ To evaluate each test case, programs were sent the first signal of each test cas
 After this, their internal running modules were killed and the second signal was sent.
 After another 128 virtual CPU cycles, their response was recorded.
 In order to save resources and computing time, as soon as a replicate evolved a fully-correct solution, their evolution was halted.
-We excluded RNG operations from the instruction set to ensure that programs could not solve the Contextual Signal Problem by chance.
+We excluded random number generating operations from the instruction set to ensure that programs could not solve the Contextual Signal Problem by chance.
 \autoref{fig:tts-context} shows the number of generations elapsed before a full solution was found.
 
 SignalGP-Lite evolved full solutions in half as many generations compared to SignalGP when regulation was enabled.
