@@ -8,11 +8,15 @@ import sys
 from iterpop import iterpop as ip
 
 def facet(df):
+    df['Benchmark'] = df['Library']
+    df['Num Agents'] = df['num agents']
+
     return sns.FacetGrid(
         df,
-        col='Library',
+        col='Benchmark',
         margin_titles="true",
         sharey=False,
+        col_wrap=3,
     )
 
 
@@ -20,7 +24,7 @@ def draw_plots(measurement, df):
 
     facet(df).map(
         sns.barplot,
-        'num agents',
+        'Num Agents',
         measurement,
         'Implementation',
         hue_order=sorted(df['Implementation'].unique()),
@@ -41,7 +45,7 @@ def draw_plots(measurement, df):
     for showfliers in True, False:
         facet(df).map(
             sns.boxplot,
-            'num agents',
+            'Num Agents',
             measurement,
             'Implementation',
             hue_order=sorted(df['Implementation'].unique()),

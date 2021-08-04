@@ -19,18 +19,21 @@ for k, v in kn.unpack(filename).items():
 
 df = df.astype({ 'num agents' : int })
 
+df['Benchmark'] = df['Library']
+df['Num Agents'] = df['num agents']
+
 df = df.groupby([
-    'Library',
+    'Benchmark',
     'Implementation',
-    'num agents',
+    'Num Agents',
 ]).mean().reset_index()
 
 vanilla = df[df['Implementation'] == 'vanilla']
 lite = df[df['Implementation'] == 'lite']
 
 ratio = pd.DataFrame()
-ratio['Library'] = vanilla['Library']
-ratio['num agents'] = vanilla['num agents']
+ratio['Benchmark'] = vanilla['Benchmark']
+ratio['Num Agents'] = vanilla['Num Agents']
 
 ratio['Wall Speedup'] = (
     np.array( vanilla['Wall Nanoseconds'] )
@@ -44,9 +47,9 @@ ratio['CPU Speedup'] = (
 
 sns.barplot(
     data=ratio,
-    x='num agents',
+    x='Num Agents',
     y='Wall Speedup',
-    hue='Library',
+    hue='Benchmark',
 )
 
 plt.savefig(
@@ -62,9 +65,9 @@ plt.clf()
 
 sns.barplot(
     data=ratio,
-    x='num agents',
+    x='Num Agents',
     y='CPU Speedup',
-    hue='Library',
+    hue='Benchmark',
 )
 
 plt.savefig(
