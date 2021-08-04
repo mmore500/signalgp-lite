@@ -209,7 +209,7 @@ Figure sizes can be customized by adding an optional second parameter:
 
 <!-- benchmarking results -->
 
-![Benchmarking results of 20 replicates shown as a times-speedup of wall time. "Library" refers to the set of instructions tested (see Benchmarking Results section).\label{fig:bench-wall}](figures/wall-time-speedup.jpeg)
+![Benchmarking results of 20 replicates shown as a times-speedup of wall time. "Library" refers to the set of instructions tested (see Benchmarking Results section).\label{fig:bench-wall}](figures/wall-time-speedup.png)
 
 
 # Acknowledgements
