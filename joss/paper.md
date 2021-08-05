@@ -207,9 +207,11 @@ Figure sizes can be customized by adding an optional second parameter:
 
 ![Number of generations elapsed before a perfect solution was observed on the Contextual Signal problem. Replicates that did not find a solution are on a dashed line at 10,000 generations.\label{fig:tts-context}](figures/solution-time-contextual-signal.png)
 
+<!-- need to remake these graphs (figure above) after verifying validity of data with original HPCC files -->
+
 <!-- benchmarking results -->
 
-![Benchmarking results of 20 replicates shown as a times-speedup of wall time. "Library" refers to the set of instructions tested (see Benchmarking Results section).\label{fig:bench-wall}](figures/wall-time-speedup.png)
+![Benchmarking results of 20 replicates shown as a times-speedup of wall time. "Benchmark" refers to the set of instructions tested (see Benchmarking Results section).\label{fig:bench-wall}](figures/wall-time-speedup.png)
 
 
 # Acknowledgements
