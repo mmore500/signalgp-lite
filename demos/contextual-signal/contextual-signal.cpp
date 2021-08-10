@@ -201,10 +201,19 @@ int main(int argc, char* argv[]) {
 
     for (int i = 0; i < PopulationSize; i++) ea_world.Inject(i);
 
-    auto get_max_fitness = [&ea_world]() -> double {
+    auto get_max_fitness = [&ea_world]() -> std::pair<double, Organism> {
         double max_fitness = 0;
-        for (size_t i = 0; i < ea_world.GetSize(); i++) max_fitness = std::max(ea_world[i].GetFitness(), max_fitness);
-        return max_fitness;
+        const Organism* most_fit = nullptr;
+
+        for (size_t i = 0; i < ea_world.GetSize(); i++) {
+            const double curr_fitness = ea_world[i].GetFitness();
+            if (curr_fitness > max_fitness) {
+                max_fitness = curr_fitness;
+                most_fit = &ea_world[i];
+            }
+        }
+
+        return {max_fitness, *most_fit};
     };
 
     auto get_best_fit_individual = [&ea_world]() -> Organism {
@@ -232,6 +241,54 @@ int main(int argc, char* argv[]) {
         //std::cout << std::endl;
     };
 
+    auto do_nopout = [](Organism& org) -> size_t {
+        std::cout << "###### Initiating NopOut ######\n";
+
+        const size_t prog_length = org.program.size();
+        const double initial_fitness = org.GetFitness();
+
+        std::cout << "Program length: " << prog_length << "\n";
+        std::cout << "Initial fitness: " << initial_fitness << std::endl;
+
+        // number of times we nopped out an instruction that mattered
+        size_t inutile_count = 0;
+
+        // for every instruction in the program...
+        for (size_t i = 0; i < prog_length; ++i) {
+            // ...make a backup of the program...
+            const auto curr_program = org.program;
+
+            std::cout << "nopping out " << i << "\n";
+            // ...nop out instruction...
+            org.program[i].NopOut();
+
+            // ...and reevaluate fitness.
+            const double new_fitness = org.GetFitness();
+
+            std::cout << "new fitness: " << new_fitness << "\n";
+
+            // if fitness has changed,
+            if (initial_fitness != new_fitness) {
+                // then this instruction matters, so roll back the program
+                org.program = curr_program;
+            }
+            else {
+                // otherwise, count it as inutile
+                inutile_count++;
+            }
+        }
+
+        return inutile_count;
+    };
+
+    auto nopout_until_fully_utile = [&do_nopout](Organism& org) {
+        size_t inutile_count = 0;
+        do {
+            inutile_count = do_nopout(org);
+            std::cout << " ##### Ineffectual count: " << inutile_count << "#####" << std::endl;
+        } while (inutile_count);
+    };
+
     for (size_t t = 0; t < config.UPDATES(); ++t) {
         // loop normally
         print_fitness(t);
@@ -240,8 +297,20 @@ int main(int argc, char* argv[]) {
         ea_world.Update();
 
         // check for early exit
-        const double max_fitness = get_max_fitness();
-        if (max_fitness >= config.THRESHOLD_FITNESS()) break;
+        auto res = get_max_fitness();
+
+        std::cout << "Max fitness: " << res.first << std::endl;
+
+        if (res.first >= config.THRESHOLD_FITNESS()) {
+            Organism organism = res.second;
+            organism.program.Print(std::cout);
+
+            do_nopout(organism);
+
+            organism.program.Print(std::cout);
+
+            break;
+        }
     }
 
     print_fitness();
