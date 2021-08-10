@@ -18,4 +18,4 @@ To solve this problem, programs must remember an initial signal (i.e., its "cont
 # Identity
 
 This simple demo selects for a programs with large output values.
-(The fitness function is the identical of the output).
+(The fitness function is the identical of the output.)
