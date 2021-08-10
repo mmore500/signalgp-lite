@@ -1,4 +1,4 @@
-TARGET_NAMES += evolve
+TARGET_NAMES += hello-world
 TARGET_NAMES += identity
 TARGET_NAMES += changing-enviroment
 TARGET_NAMES += contextual-signal

@@ -15,6 +15,10 @@ To solve this problem, programs must remember an initial signal (i.e., its "cont
 
 > Lalejini, Alexander, Matthew Andres Moreno, and Charles Ofria. "Tag-based regulation of modules in genetic programming improves context-dependent problem solving." Genetic Programming and Evolvable Machines (2021): 1-31.
 
+# Hello World
+
+Implements a custom instruction that prints "hello world" and runs it on SignalGP-Lite virtual hardware.
+
 # Identity
 
 This simple demo selects for a programs with large output values.
