@@ -1,4 +1,5 @@
 Example mini-projects using SignalGP-Lite.
+Several are used as solution quality benchmarks in [our JOSS Paper](../joss/paper.md).
 
 # Changing Environment Problem
 
