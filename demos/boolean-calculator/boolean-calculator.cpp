@@ -184,7 +184,7 @@
 
 int main(int argc, char* argv[]) {
 
-    emp::vector<sgpl::demos::TestCase> training_test_cases(1);
+    emp::vector<bc::TestCase> training_test_cases;
 
     std::ifstream ifs("testing_set_postfix.json");
     cereal::JSONInputArchive archive( ifs );
