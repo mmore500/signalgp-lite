@@ -1,0 +1,10480 @@
+{
+  "value0": [
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 544186734
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3750780561
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 146896290
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4148071005
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 110689630
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4184277665
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 512881291
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3782086004
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 292902824
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4002064471
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 830909332
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3464057963
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 652223112
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3642744183
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 771679806
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3523287489
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 96343563
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4198623732
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 248468804
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4046498491
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 387261809
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3907705486
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 751746576
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3543220719
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 452852044
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3842115251
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 119518662
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4175448633
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 274367407
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4020599888
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 947738823
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3347228472
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 243955506
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4051011789
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 722345886
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3572621409
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 336796918
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3958170377
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 623571431
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3671395864
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 218030778
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4076936517
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 645746268
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3649221027
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 566785355
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3728181940
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 636278896
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3658688399
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 784034059
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3510933236
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 44657151
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4250310144
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 763141834
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3531825461
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 582108766
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3712858529
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 427478144
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3867489151
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 127102002
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4167865293
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 600233008
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3694734287
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 546865679
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3748101616
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 114833754
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4180133541
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 333892463
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3961074832
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 214008888
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4080958407
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 232382196
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4062585099
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 362031458
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3932935837
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 251965896
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4043001399
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 755701143
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3539266152
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 459579075
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3835388220
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 441210926
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 441210926
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 691768614
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 691768614
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 45348322
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 45348322
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 357572132
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 357572132
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 790757573
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 790757573
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 469271799
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 469271799
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 542773950
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 542773950
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 766399113
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 766399113
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 694543203
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 694543203
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 101323285
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 101323285
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 318473862
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 318473862
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 524815938
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 524815938
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 819400253
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 819400253
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 333877984
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 333877984
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 746577733
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 746577733
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 143703440
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 143703440
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 695257506
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 695257506
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 16898573
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 16898573
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 711238073
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 711238073
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 103182727
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 103182727
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 915138603
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 915138603
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 858768925
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 858768925
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 785057667
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 785057667
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 411765917
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 411765917
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 590719204
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 590719204
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 432476124
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 432476124
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 927064746
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 927064746
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 88569677
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 88569677
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 487697243
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 487697243
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 536692790
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 536692790
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 202034096
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 202034096
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 508764889
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 508764889
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 193189878
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 193189878
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 313455913
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 313455913
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 678170904
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 678170904
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 718537592
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 718537592
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 996964531
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 996964531
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 961864870
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 961864870
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 214098434
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 214098434
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 524719392
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 524719392
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 4975340
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 19368286
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 23880626
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 73521573
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 516834874
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 447717279
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 73832017
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 996567048
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1057029721
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 87619628
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 369185668
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 322546600
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 100585828
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 54185889
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 113516229
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 105315755
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 427925709
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 533159270
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 148726684
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 998627629
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 861452977
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 152755924
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 349680754
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 500001446
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 171635242
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 585661042
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 684886104
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 202018980
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 557509849
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 758152317
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 204882071
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 746492374
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 541643073
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 205597499
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 682087061
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 619116974
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 275035439
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 666404376
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 937177911
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 289462085
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 675282125
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 964635528
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 312284705
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 414780883
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 170138610
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 329863436
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 706743282
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 965303038
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 333770007
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 863730980
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 547328051
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 388511602
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 829806687
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 643690285
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 400803939
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 71493397
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 329330550
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 451367624
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 122797222
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 498527854
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 474184351
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 871652274
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 800530733
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 475487964
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 527555623
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 52855547
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 502790541
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 490703197
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 13136080
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 515128810
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 353943302
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 195855084
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 579816738
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 956695547
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 461983449
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 585120425
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 505195092
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1023185149
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 594744386
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 324306976
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 807902306
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 618403076
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 533140726
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 991625714
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 642700953
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 755242009
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 189448832
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 669756163
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 244245428
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 694503607
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 692113656
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 986112106
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 327561362
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 733335093
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 110012200
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 758868253
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 761261828
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 45400780
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 803941832
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 781956896
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 586018280
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 209083080
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 822895559
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 812603368
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 23278639
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 840788700
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 921802542
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 82640370
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 857263733
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 532604406
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 749087619
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 939528462
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 276759803
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 679417333
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 948453046
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 2125724
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 950554922
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 956692098
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 505467150
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 656746380
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 730107070
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 730107070
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 63826919
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 63826919
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 195000447
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 195000447
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 17845433
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "XOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 17845433
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 15915410
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 316344019
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3976470572
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 74604275
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 837776403
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3389030668
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 76804721
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 304791597
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3913551234
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 80169990
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 886088729
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3408401376
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 95484601
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 292641656
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3926787078
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 113564992
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 602367738
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3625451525
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 162293642
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 630324307
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3527540772
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 165416929
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 264710243
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4028682268
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 185438709
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 512737395
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3765448200
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 308550968
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 740690864
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3248087111
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 327393556
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 694592804
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3289930443
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 360776264
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 464027490
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3763765397
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 404659384
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 8868653
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3881836610
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 419747980
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 186803840
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3839426931
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 474326773
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 870611745
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3222929418
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 483592403
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 51675945
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3760747524
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 496088706
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 877773709
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3257796720
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 510276966
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 116649704
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3775135761
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 515845581
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 587022981
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3238039602
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 518989736
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 722480321
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3221278742
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 580035305
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 965060637
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3295171842
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 603489442
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 157392396
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3557187921
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 604829639
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 993044932
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3234005048
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 616019199
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 622943543
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3662152192
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 643764116
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 916916482
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3372281961
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 648975168
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 201047044
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3489677499
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 692722743
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 560451032
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3599770112
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 697625592
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 796278231
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3490250752
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 756441089
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 930498704
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3230242670
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 765993546
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 755221905
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3528726564
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 783771443
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 681405120
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3510669324
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 858031146
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 636705402
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3355976069
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 861498609
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 649918019
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3355574540
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 883551643
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 710734908
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3238134336
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 897020490
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 302571434
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3363831829
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 898538132
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 615420621
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3394331938
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 930899794
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 610616510
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3364001793
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 939551777
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 573603288
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3318710790
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 977151124
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 917359050
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3242201633
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 998091840
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 686512221
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3288335266
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 886037460
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3408929835
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 539387517
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3755579778
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 433296729
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3861670566
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 901653887
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NOR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3393313408
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 5708492
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 929250106
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1310916
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 21219224
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 619938610
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 16794760
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 27673031
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 677558960
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 25444679
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 31376091
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 25190131
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 6193160
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 47005577
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 895745210
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 42730241
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 92607996
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 112986516
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 16847976
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 110680657
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 82705794
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 34603601
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 163596680
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 681079950
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 20973824
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 163739730
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 827408591
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 142751760
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 182522202
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 928415371
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 144769360
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 194424144
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 560806582
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 177374528
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 194439298
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 224963859
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 43401344
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 198869689
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 488112450
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 46301881
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 202163437
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 37941013
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 202113256
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 214510861
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 798232678
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4795657
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 289052025
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 671683631
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 288522576
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 323847534
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 108950507
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 285312004
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 387714245
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 391783830
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 264257
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 396949995
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 253984431
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 277381440
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 450385369
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 932711473
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 138432968
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 459868069
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 753101479
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 319292672
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 490219449
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 169072369
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 354951432
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 495344862
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 728784868
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 344326170
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 497900588
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 917604682
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 151802916
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 509206787
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 836860636
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 236486915
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 526082762
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 337611245
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 188768770
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 558068830
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 575567778
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 16842844
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 584200951
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 153725014
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 584192673
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 627186502
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 428425490
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 610409028
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 683176385
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 104517634
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 679485889
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 738634676
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 530228836
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 537135504
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 753878850
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 648320009
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 139150146
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 790939803
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 370862899
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 690225288
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 798521649
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 65844493
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 739264560
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 857733887
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 423084842
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 570964181
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 871602395
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 697600289
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 308482266
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 907947750
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 352221325
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 570426978
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 929526425
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 925882718
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4203137
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 944530858
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 529775436
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 541869218
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 947269294
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 562119710
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 410397344
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 984733087
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 446982740
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 200347855
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 200347855
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 886890706
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "ANDNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 886890706
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 75645800
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 33373411
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 100630507
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 77781858
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 446163218
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 515373938
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 121723054
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 504745638
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 525721262
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 130665484
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 953590026
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1071639822
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 142208837
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 237004986
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 242872319
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 155079914
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 593063126
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 729775358
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 166023680
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 96945805
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 233264781
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 179640378
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 35858126
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 179781374
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 181574561
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 684058530
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 718798755
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 208037884
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 204307338
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 208633854
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 224322406
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 535930191
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 536864623
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 308300998
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 755983342
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1064267758
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 321402501
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 669463639
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 938424023
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 350565085
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 289964062
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 367899359
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 395526851
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 544766281
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 939228107
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 444933971
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 89634047
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 534231039
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 457045114
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 451726618
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 469630330
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 476735524
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 87917502
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 494922686
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 504451582
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 815892613
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1051843071
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 548583643
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 508029809
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1056439291
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 552256980
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 378275395
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 921618391
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 565929230
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 541546645
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 570391967
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 590337007
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 131640009
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 671087599
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 612207330
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 871056797
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 939511807
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 645327098
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 370289981
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 913763839
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 685662404
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 859381291
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1006599919
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 692434296
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 815388805
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 970849789
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 723510857
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 522747237
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1061158765
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 725048103
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 285212687
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 993483567
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 763194315
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 97180042
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 771750859
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 781317022
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 20348258
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 800587774
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 797563884
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 158800103
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 805297135
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 835726245
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 909676177
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 939044789
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 867477710
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 851480793
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 871676127
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 885481322
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 211004762
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1020788602
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 895253871
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 880501306
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 897548159
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 905519436
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 461298595
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1073740783
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 935001662
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 683036454
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1069481790
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 941352090
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 693072685
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 962590655
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 962341201
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 617406823
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1037887863
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 254591950
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 254591950
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 733677685
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 733677685
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 377066717
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 377066717
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 460350455
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "OR",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 460350455
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 8744145
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 973984679
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 344193
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 30956601
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 380597793
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 8934433
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 43242625
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 924691515
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 34702337
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 113366735
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 557004837
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 69637
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 159996004
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 313072707
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 8984640
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 175872725
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 18512575
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1710741
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 190268050
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 446176996
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 168821376
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 197948688
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 482930142
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 147350800
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 222040471
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 730939510
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 152043542
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 255530918
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 640550882
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 103417762
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 255990528
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 942026946
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 134352896
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 281819712
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 651538717
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 12857344
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 286040567
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 489161293
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 285737029
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 297842695
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 126126374
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 25200646
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 311369131
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 154198675
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 131
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 387564303
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 137400842
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 1081866
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 423570793
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 738998079
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 135013673
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 436019121
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 15263379
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 15206033
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 447277909
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 100400022
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 11070228
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 447338734
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 619949695
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 10586222
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 473430780
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 27694025
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 2527944
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 478132501
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 998103162
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 410884112
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 528845207
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 89146559
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 83886231
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 533098639
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 51214922
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 50622474
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 535038816
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 346306103
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 346292768
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 544752492
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 217279652
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 7356452
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 567530264
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 839695085
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 536908296
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 608154843
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 989554188
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 540746760
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 678004477
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 137220618
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 136937992
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 717483365
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 347307312
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 8613152
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 735617127
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 654288017
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 584622081
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 741629413
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 91929706
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 70261856
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 762544744
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 169021513
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 135462984
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 780897038
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 234315077
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 209914116
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 847254773
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 255379537
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 33554513
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 862338571
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 452327356
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 308557320
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 908509730
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 281591497
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 268468736
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 911872929
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 450495245
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 307888897
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 915449744
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 628150453
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 605061264
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 930962652
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 291008839
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 291000388
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 273382949
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 232687585
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 573439881
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 469033323
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "AND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 0
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 35812345
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 885213683
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3409901565
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 73198095
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 985505822
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3311337455
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 98079295
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 579544190
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3724336063
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 145633210
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 321797091
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3976196030
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 156332032
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 640301758
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3654677825
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 174719110
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 978585266
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3488348623
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 223869921
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 443250029
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3990354931
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 227957796
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 494322091
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4020207220
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 283674849
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 804475806
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3505171681
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 295715755
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 119268083
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4192493487
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 305238513
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 126017740
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4202536947
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 312271084
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 199531930
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4137673453
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 347770486
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 836761174
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3736768511
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 367877211
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 458602603
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4126105567
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 421717458
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 702343728
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3743675871
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 435317618
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 265719893
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4194004986
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 491311682
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 973841617
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3724335982
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 528292363
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 368870759
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4286544539
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 531842446
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 84743584
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294176735
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 561030413
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 30250400
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4285722463
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 566898911
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 620676480
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4224400127
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 567033965
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 182525592
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4125024623
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 614437412
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 122903144
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4240422839
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 632765341
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 175785102
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4122459133
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 641158690
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 630431490
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4269764351
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 647438898
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 129458568
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4276076151
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 703816470
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 854654834
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3992937375
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 732495789
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 275816501
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4021288943
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 735642612
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 464861942
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4024158205
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 745414434
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 454424199
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3975028602
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 795510204
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 74367362
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294688765
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 828349919
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 410830994
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4158636031
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 848367948
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 202328235
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4092704604
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 851626011
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 280584050
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4291225759
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 854767413
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 366813238
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4210229245
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 884108645
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 225215457
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4138958207
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 899453218
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 272203752
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4292776247
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 917218732
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 561794420
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4272666543
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 974930948
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 27148599
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4269670092
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 987055929
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 120183334
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4208420857
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 3518766
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4291448529
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 251901939
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4043065356
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 888676771
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 566303568
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "ORNOT",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 31559704
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 479215581
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3800977466
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 78170058
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 869384631
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3364288898
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 89245735
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 613355616
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3726714808
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 129743761
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 503996928
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3863881326
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 133456287
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 128972277
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4288965525
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 140118344
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 603033577
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3562305886
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 141763706
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 89246248
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4074574253
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 168869186
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 788543576
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3673127653
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 181679529
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 286911749
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3828492115
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 202210035
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 306104187
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3788259959
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 207287659
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 414321565
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3944153353
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 215081233
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 669586143
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3569814577
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 216386973
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 325670145
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3765659491
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 224994441
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 891437661
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3350501675
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 248487723
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 350192734
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3857704074
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 285961794
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 304411768
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4241515973
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 286275510
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 541138478
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3467564647
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 391660460
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 663831176
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3476487899
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 446739168
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 217687317
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3920029706
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 448156022
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 749850943
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3388506038
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 449290551
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 449772793
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294353457
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 452988468
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 966003842
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3714841929
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 465745235
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 682110955
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3432342855
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 476400827
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 550843433
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3276769133
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 496598785
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 543712767
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3255756033
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 504234468
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 446059235
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4217875704
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 530524771
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 371759321
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4131933509
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 562158008
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 659823733
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4180294194
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 691800158
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 935329124
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3783002821
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 706693378
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 669148774
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4060270747
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 774148739
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 833050310
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3766238138
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 789404027
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 366392650
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3307475918
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 824086289
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 973618665
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4108930311
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 867805580
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 62206864
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3488835043
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 877316350
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 348392876
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3748739757
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 891667523
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 840788985
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4173811781
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 917104002
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 397936843
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3740144310
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 949852270
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 962671025
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4261631520
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 972305652
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 707928911
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3963217988
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 999804784
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 431393507
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3722361452
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 274204997
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4020762298
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 239235645
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4055731650
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 47283750
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4247683545
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 62095112
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "EQU",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4232872183
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 13333777
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 228707719
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4286495486
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 15235934
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 76569233
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4286555631
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 16163410
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 29797548
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4281950207
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 23002712
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 609192436
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4289820591
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 39481634
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 491172960
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4290629599
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 45498866
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 221217363
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4292476845
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 69183214
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 587056730
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4293032373
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 220259613
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 501406304
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4074717183
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 263972319
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 556195701
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4275911338
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 270135613
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 599924909
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294959058
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 307941260
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 617252260
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4290083451
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 317363403
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 298220112
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4013813695
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 318921085
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 179030160
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4261263343
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 365279399
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 278802937
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4017868638
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 366000973
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 247747968
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4215271167
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 374206945
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 912951696
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3921116799
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 411310854
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 810935504
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4026269695
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 462154371
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 887623720
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4017618943
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 497302256
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 344398310
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3950765855
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 500934354
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 337217842
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3957751789
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 565439000
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 266548283
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4267499495
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 592831540
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 308377528
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4257127375
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 597790241
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 374978326
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4261313023
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 598282865
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 603842985
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3696689118
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 639477668
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 798392648
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3656089343
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 682072904
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 932598025
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3749310199
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 721107712
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 792707243
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3586457599
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 734767107
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 926875056
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3707066367
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 746931424
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 418251856
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4152097727
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 760450816
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 956001759
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3618435839
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 775763909
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 449754237
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4126395322
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 778668048
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 396080691
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4193681391
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 834952240
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 753736894
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3745244111
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 857084380
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 309713325
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3991662195
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 876828766
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 318091159
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4022269929
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 883303004
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 757856924
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3688750563
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 894382722
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 788007302
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3686268797
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 942393399
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 423362552
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3889444815
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 985330099
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 639519829
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 3722821614
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 985737245
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 355890548
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4026523627
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 238706399
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 971753353
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 965547403
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    },
+    {
+      "prompts": [
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 87536080
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 0
+          }
+        },
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        }
+      ],
+      "response": 4294967295
+    }
+  ]
+}
