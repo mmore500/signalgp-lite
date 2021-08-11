@@ -1,6 +1,12 @@
 Example mini-projects using SignalGP-Lite.
 Several are used as solution quality benchmarks in [our JOSS Paper](../joss/paper.md).
 
+# Boolean Calculator Problem
+
+This program synthesis problem requires programs to perform Boolean logic computations in response to a sequence of input events that represent button presses on a simple calculator.
+
+> Lalejini, Alexander, Matthew Andres Moreno, and Charles Ofria. "Tag-based regulation of modules in genetic programming improves context-dependent problem solving." Genetic Programming and Evolvable Machines (2021): 1-31.
+
 # Changing Environment Problem
 
 The Changing Environment Problem dispatches `n` mutually-exclusive environmental signals with randomly generated labels.

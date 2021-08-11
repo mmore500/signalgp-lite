@@ -1,3 +1,4 @@
+TARGET_NAMES += boolean-calculator
 TARGET_NAMES += changing-enviroment
 TARGET_NAMES += contextual-signal
 TARGET_NAMES += hello-world

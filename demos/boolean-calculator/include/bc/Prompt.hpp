@@ -8,13 +8,11 @@
 
 namespace bc {
 
-class Prompt {
+struct Prompt {
 
   bc::PromptEnum which;
 
   emp::optional<uint32_t> val;
-
-public:
 
   // binary input/output
   template<typename Archive>
