@@ -25,7 +25,6 @@ struct Identity {
         const sgpl::Program<Spec>&,
         typename Spec::peripheral_t& peripheral
     ) {
-        // hash instruction bitset tag, mod it by # of possible responses, and set this output to that
         peripheral.output = core.registers[0];
     }
 
