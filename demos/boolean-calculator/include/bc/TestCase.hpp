@@ -1,15 +1,15 @@
 #pragma once
 
-#include "../third-party/cereal/include/cereal/types/vector.hpp"
-#include "../third-party/Empirical/include/emp/base/vector.hpp"
+#include "cereal/include/cereal/types/vector.hpp"
+#include "Empirical/include/emp/base/vector.hpp"
 
 #include "Prompt.hpp"
 
-namespace sgpl::demos {
+namespace bc {
 
 class TestCase {
 
-  emp::vector<sgpl::demos::Prompt> prompts;
+  emp::vector<bc::Prompt> prompts;
 
   uint32_t response;
 
@@ -26,4 +26,4 @@ public:
 
 };
 
-} // namespace sgpl::demos
+} // namespace bc

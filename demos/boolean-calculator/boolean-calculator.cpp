@@ -4,26 +4,24 @@
 #include <iostream>
 #include <limits>
 
+#include "cereal/include/cereal/archives/json.hpp"
+#include "Empirical/include/emp/base/vector.hpp"
+#include "Empirical/include/emp/config/ArgManager.hpp"
+#include "Empirical/include/emp/datastructs/hash_utils.hpp"
+#include "Empirical/include/emp/Evolve/World.hpp"
+#include "Empirical/include/emp/math/Random.hpp"
 
-#include "../third-party/cereal/include/cereal/archives/json.hpp"
-#include "../third-party/Empirical/include/emp/base/vector.hpp"
-#include "../third-party/Empirical/include/emp/config/ArgManager.hpp"
-#include "../third-party/Empirical/include/emp/datastructs/hash_utils.hpp"
-#include "../third-party/Empirical/include/emp/Evolve/World.hpp"
-#include "../third-party/Empirical/include/emp/math/Random.hpp"
 
+#include "sgpl/algorithm/execute_cpu.hpp"
+#include "sgpl/hardware/Cpu.hpp"
+#include "sgpl/library/OpLibraryCoupler.hpp"
+#include "sgpl/program/Program.hpp"
+#include "sgpl/spec/Spec.hpp"
+#include "sgpl/utility/ThreadLocalRandom.hpp"
 
-#include "../include/sgpl/algorithm/execute_cpu.hpp"
-#include "../include/sgpl/hardware/Cpu.hpp"
-#include "../include/sgpl/library/OpLibraryCoupler.hpp"
-#include "../include/sgpl/program/Program.hpp"
-#include "../include/sgpl/spec/Spec.hpp"
-#include "../include/sgpl/utility/ThreadLocalRandom.hpp"
-
-#include "config.hpp"
-
-#include "TestCase.hpp"
-#include "ToggleRegulationOpLibrary.hpp"
+#include "include/bc/config.hpp"
+#include "include/bc/TestCase.hpp"
+#include "include/bc/ToggleRegulationOpLibrary.hpp"
 
 
 // const size_t PopulationSize = 1000;

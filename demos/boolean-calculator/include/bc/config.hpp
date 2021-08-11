@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../third-party/Empirical/include/emp/config/config.hpp"
+#include "Empirical/include/emp/config/config.hpp"
+
+namespace bc {
 
 EMP_BUILD_CONFIG(
     Config,
@@ -21,3 +23,5 @@ EMP_BUILD_CONFIG(
 )
 
 static Config config{};
+
+} // namespace bc
