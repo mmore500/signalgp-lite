@@ -1,8 +1,8 @@
 #pragma once
 
-#include "third-party/magic_enum/include/magic_enum.hpp"
+#include "magic_enum/include/magic_enum.hpp"
 
-namespace sgpl::demos {
+namespace bc {
 
 enum class PromptEnum {
   AND,
@@ -18,14 +18,14 @@ enum class PromptEnum {
   XOR
 };
 
-} // namespace sgpl::demos
+} // namespace bc
 
 // adapted from https://stackoverflow.com/a/40006041
 namespace cereal {
 
   template <class Archive> inline
   std::string save_minimal(
-    Archive const &, sgpl::demos::PromptEnum const & t
+    Archive const &, bc::PromptEnum const & t
   ) {
     return std::string(
       magic_enum::enum_name(t)
@@ -34,9 +34,9 @@ namespace cereal {
 
   template <class Archive> inline
   void load_minimal(
-    Archive const &, sgpl::demos::PromptEnum & t, std::string const & value
+    Archive const &, bc::PromptEnum & t, std::string const & value
   ) {
-    t = *magic_enum::enum_cast<sgpl::demos::PromptEnum>( value );
+    t = *magic_enum::enum_cast<bc::PromptEnum>( value );
   }
 
 } // namespace cereal

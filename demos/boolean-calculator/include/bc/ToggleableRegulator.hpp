@@ -2,7 +2,7 @@
 
 #include "config.hpp"
 
-namespace sgpl::demos {
+namespace bc {
 
 template <typename Operation>
 struct ToggleableRegulator {
@@ -15,7 +15,7 @@ struct ToggleableRegulator {
         const sgpl::Program<Spec>& prog,
         typename Spec::peripheral_t& peri
     ) noexcept {
-        if (config.DO_REGULATION()) op.run(core, inst, prog, peri);
+        if (bc::config.DO_REGULATION()) op.run(core, inst, prog, peri);
     }
 
     static std::string name() { return op.name(); }
@@ -33,4 +33,4 @@ struct ToggleableRegulator {
     }
 };
 
-}; // sgpl::demos
+} // namespace bc

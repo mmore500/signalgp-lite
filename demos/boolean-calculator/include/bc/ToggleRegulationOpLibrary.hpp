@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../include/sgpl/library/OpLibrary.hpp"
-#include "../include/sgpl/operations/operations.hpp"
+#include "sgpl/library/OpLibrary.hpp"
+#include "sgpl/operations/operations.hpp"
 
 #include "ToggleableRegulator.hpp"
 
-namespace sgpl {
+namespace bc {
 
 using ToggleRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::ForkIf,
@@ -34,17 +34,17 @@ using ToggleRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::global::Anchor,
   sgpl::global::JumpIf,
   sgpl::global::JumpIfNot,
-  sgpl::demos::ToggleableRegulator<sgpl::global::RegulatorAdj<>>,
-  sgpl::demos::ToggleableRegulator<sgpl::global::RegulatorDecay<>>,
-  sgpl::demos::ToggleableRegulator<sgpl::global::RegulatorGet<>>,
-  sgpl::demos::ToggleableRegulator<sgpl::global::RegulatorSet<>>,
+  bc::ToggleableRegulator<sgpl::global::RegulatorAdj<>>,
+  bc::ToggleableRegulator<sgpl::global::RegulatorDecay<>>,
+  bc::ToggleableRegulator<sgpl::global::RegulatorGet<>>,
+  bc::ToggleableRegulator<sgpl::global::RegulatorSet<>>,
   sgpl::local::Anchor,
   sgpl::local::JumpIf,
   sgpl::local::JumpIfNot,
-  sgpl::demos::ToggleableRegulator<sgpl::local::RegulatorAdj>,
-  sgpl::demos::ToggleableRegulator<sgpl::local::RegulatorDecay>,
-  sgpl::demos::ToggleableRegulator<sgpl::local::RegulatorGet>,
-  sgpl::demos::ToggleableRegulator<sgpl::local::RegulatorSet>,
+  bc::ToggleableRegulator<sgpl::local::RegulatorAdj>,
+  bc::ToggleableRegulator<sgpl::local::RegulatorDecay>,
+  bc::ToggleableRegulator<sgpl::local::RegulatorGet>,
+  bc::ToggleableRegulator<sgpl::local::RegulatorSet>,
   sgpl::Decrement,
   sgpl::Increment,
   sgpl::Negate,
@@ -54,4 +54,4 @@ using ToggleRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::Terminal
 >;
 
-} // namespace sgpl
+} // namespace bc
