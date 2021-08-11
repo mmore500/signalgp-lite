@@ -7,13 +7,11 @@
 
 namespace bc {
 
-class TestCase {
+struct TestCase {
 
   emp::vector<bc::Prompt> prompts;
 
   uint32_t response;
-
-public:
 
   // binary input/output
   template<typename Archive>
