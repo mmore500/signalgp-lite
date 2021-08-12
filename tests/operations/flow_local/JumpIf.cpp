@@ -3,9 +3,80 @@
 
 #include "sgpl/operations/flow_local/JumpIf.hpp"
 
-TEST_CASE("Test JumpIf") {
+#include "sgpl/hardware/Core.hpp"
+#include "sgpl/program/Program.hpp"
 
-  // TODO flesh out stub test
-  sgpl::local::JumpIf{};
+#include "sgpl/algorithm/execute_core.hpp"
 
+#include "sgpl/spec/Spec.hpp"
+
+#include "sgpl/utility/EmptyType.hpp"
+
+// define libray and spec
+using library_t = sgpl::OpLibrary<sgpl::Nop<1>, sgpl::local::Anchor, sgpl::local::JumpIf>;
+
+using spec_t = sgpl::Spec<library_t>;
+
+// create peripheral
+spec_t::peripheral_t peripheral;
+
+TEST_CASE("Test true JumpIf") {
+  sgpl::Program<spec_t> program;
+
+  std::ifstream is("assets/JumpIf.json");
+
+  { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  is.close();
+
+  sgpl::Core<spec_t> core;
+
+  // load all anchors manually
+  core.LoadLocalAnchors(program);
+
+  // set up values to operate on in register
+  core.registers[0] = true;
+
+  // set up what registers to operate on
+  program[0].args[0] = 0;
+
+  // check initial state
+  REQUIRE(core.GetProgramCounter() == 0);
+
+  // execute single instruction
+  sgpl::advance_core(core, program, peripheral);
+
+  // make sure we jumped
+  REQUIRE(core.GetProgramCounter() != 1);
+}
+
+
+TEST_CASE("Test false JumpIf") {
+  sgpl::Program<spec_t> program;
+
+  std::ifstream is("assets/JumpIf.json");
+
+  { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  is.close();
+
+  sgpl::Core<spec_t> core;
+
+  // load all anchors manually
+  core.LoadLocalAnchors(program);
+
+  // set up values to operate on in register
+  core.registers[0] = false;
+
+  // set up what registers to operate on
+  program[0].args[0] = 0;
+
+  // check initial state
+  REQUIRE(core.GetProgramCounter() == 0);
+
+  // execute single instruction
+  sgpl::advance_core(core, program, peripheral);
+
+  // make sure we didnt jump
+  REQUIRE(core.GetProgramCounter() == 1);
 }
