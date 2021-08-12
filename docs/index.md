@@ -7,6 +7,7 @@
 self
 installation
 usage
+demos
 citing
 publications
 api/library_root
