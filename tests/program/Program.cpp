@@ -33,7 +33,7 @@ void DoSerializationTest(const std::string& filename) {
 
   REQUIRE( reconstituted == original );
 
-  os.close();
+  is.close();
 }
 
 TEST_CASE("Test Program Binary Serialization") {
