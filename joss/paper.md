@@ -165,7 +165,7 @@ In order to save resources and computing time, as soon as a replicate evolved a 
 We excluded random number generating operations from the instruction set to ensure that programs could not solve the Contextual Signal Problem by chance.
 \autoref{fig:tts-context} shows the number of generations elapsed before a full solution was found.
 SignalGP-Lite evolved full solutions in half as many generations compared to SignalGP when regulation was enabled.
-Moreover, fewer replicates failed to reach a full solution in 10,000 generations under SignalGP-Lite.
+Moreover---as opposed to SignalGP---no replicates failed to reach a full solution in 10,000 generations.
 This may be due to the original SignalGP experiment purging running modules between signals, while our replication did not.
 
 The primary object of interest this benchmark, however, is the extent to which each library's problem solving capability improves with the enablement of regulation instructions.
@@ -205,7 +205,7 @@ Figure sizes can be customized by adding an optional second parameter:
 
 ![Number of generations elapsed before a perfect solution was observed on the Changing Enviroment problem. All replicates found a perfect solution.\label{fig:tts-changing}](figures/solution-time-swarmplot.png)
 
-![Number of generations elapsed before a perfect solution was observed on the Contextual Signal problem. Replicates that did not find a solution are on a dashed line at 10,000 generations.\label{fig:tts-context}](figures/solution-time-contextual-signal.png)
+![Number of generations elapsed before a perfect solution was observed on the Contextual Signal problem.\label{fig:tts-context}](figures/solution-time-contextual-signal.png)
 
 <!-- need to remake these graphs (figure above) after verifying validity of data with original HPCC files -->
 
