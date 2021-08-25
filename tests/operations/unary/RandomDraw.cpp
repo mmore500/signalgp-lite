@@ -64,15 +64,12 @@ TEST_CASE("Test RandomDraw") {
   REQUIRE(sgpl::tlrand.Get().GetUInt() == rand.GetUInt());
 
   // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
   // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{map_draw(rand), 0, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{map_draw(rand_r), 0, 0, 0, 0, 0, 0, 0});
+
 }

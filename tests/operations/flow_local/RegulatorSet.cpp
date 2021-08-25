@@ -48,16 +48,12 @@ TEST_CASE("Test RegulatorSet") {
   core.registers[0] = 0;
 
   // check that registers were cleared
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorGet
   sgpl::advance_core(core, program, peripheral);
 
   // check to make sure value was retrieved
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
 
 }

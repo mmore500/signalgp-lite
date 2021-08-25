@@ -43,16 +43,12 @@ TEST_CASE("Test BitwiseAnd") {
   program[0].args[2] = 1;
 
   // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{val1, val2, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{val1, val2, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
   std::cout << sizeof(float) * 8 << std::endl;
   // check final state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{val1, val2, val3, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{val1, val2, val3, 0, 0, 0, 0, 0});
 }

@@ -36,16 +36,12 @@ TEST_CASE("Test Increment") {
   program[0].args[0] = 0;
 
   // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{100, 0, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{100, 0, 0, 0, 0, 0, 0, 0});
 
 }

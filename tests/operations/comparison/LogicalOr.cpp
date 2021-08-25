@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/operations/comparison/GreaterThan.hpp"
+#include "sgpl/operations/comparison/LogicalOr.hpp"
 
 #include "sgpl/hardware/Core.hpp"
 #include "sgpl/program/Program.hpp"
@@ -13,25 +13,22 @@
 #include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::GreaterThan>;
+using library_t = sgpl::OpLibrary<sgpl::LogicalOr>;
 
 using spec_t = sgpl::Spec<library_t>;
 
 // create peripheral
 spec_t::peripheral_t peripheral;
 
-TEST_CASE("Test Not GreaterThan") {
+TEST_CASE("Test true LogicalOr") {
 
   sgpl::Program<spec_t> program{1};
 
   sgpl::Core<spec_t> core;
 
-  // set up false check
-
   // set up values to operate on in register
-  core.registers[0] = 7;
-  core.registers[1] = 99;
-  core.registers[2] = -1; // random int
+  core.registers[0] = true;
+  core.registers[1] = true;
 
   // set up what registers to operate on
   program[0].args[0] = 2;
@@ -39,26 +36,29 @@ TEST_CASE("Test Not GreaterThan") {
   program[0].args[2] = 1;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{7, 99, -1, 0, 0, 0, 0, 0});
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{true, true, 0, 0, 0, 0, 0, 0}
+  ));
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{7, 99, 0, 0, 0, 0, 0, 0});
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{true, true, true, 0, 0, 0, 0, 0}
+  ));
 
 }
 
-TEST_CASE("Test GreaterThan") {
+TEST_CASE("Test false LogicalOr") {
 
   sgpl::Program<spec_t> program{1};
 
   sgpl::Core<spec_t> core;
 
   // set up values to operate on in register
-  core.registers[0] = 99;
-  core.registers[1] = 7;
-  core.registers[2] = -1; // random int
+  core.registers[0] = false;
+  core.registers[1] = false;
 
   // set up what registers to operate on
   program[0].args[0] = 2;
@@ -66,12 +66,16 @@ TEST_CASE("Test GreaterThan") {
   program[0].args[2] = 1;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 7, -1, 0, 0, 0, 0, 0});
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{false, false, 0, 0, 0, 0, 0, 0}
+  ));
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 7, 1, 0, 0, 0, 0, 0});
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{false, false, false, 0, 0, 0, 0, 0}
+  ));
 
 }

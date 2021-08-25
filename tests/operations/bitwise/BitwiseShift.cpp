@@ -40,17 +40,13 @@ TEST_CASE("Test Left BitwiseShift") {
   program[0].args[2] = 1;
 
   // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{std::bit_cast<float>(0b001001), 3.0, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), 3.0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{std::bit_cast<float>(0b001001), 3.0, std::bit_cast<float>(0b001001000), 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), 3.0, std::bit_cast<float>(0b001001000), 0, 0, 0, 0, 0});
 }
 
 
@@ -72,15 +68,11 @@ TEST_CASE("Test Right BitwiseShift") {
   program[0].args[2] = 1;
 
   // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{std::bit_cast<float>(0b001001), -3.0, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), -3.0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{std::bit_cast<float>(0b001001), -3.0, std::bit_cast<float>(0b000001), 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), -3.0, std::bit_cast<float>(0b000001), 0, 0, 0, 0, 0});
 }
