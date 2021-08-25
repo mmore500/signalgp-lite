@@ -76,8 +76,8 @@ int main(int argc, char* argv[]) {
 
   auto print_fitness = [&ea_world, get_best_fit_individual](const size_t time = -1){
     if (time != -1) std::cout << "Update: " << time << std::endl;
-    //for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
-    //std::cout << std::endl;
+    for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
+    std::cout << std::endl;
     //std::cout << "Best fitness: " << get_best_fit_individual().GetFitness() << std::endl;
     //std::cout << std::endl;
   };
