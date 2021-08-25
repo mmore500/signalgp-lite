@@ -9,6 +9,7 @@
 
 #include "config.hpp"
 #include "load_training_set.hpp"
+#include "load_testing_set.hpp"
 #include "Peripheral.hpp"
 #include "PromptEnum.hpp"
 #include "TestCase.hpp"
@@ -59,9 +60,7 @@ struct Organism {
     return peripheral.output == case_.response;
 
   }
-
-  double GetFitness() const {
-
+  double GetTrainingFitness() const {
     const size_t num_tests = 20;
     const size_t num_passed = std::accumulate(
       sgpl::CountingIterator{},
@@ -76,8 +75,22 @@ struct Organism {
     );
 
     return num_passed / static_cast<double>(num_tests);
-
   }
+  double GetTestingFitness() const {
+    const auto& cases = load_testing_set();
+    const size_t num_passed = std::accumulate(
+      cases.begin(),
+      cases.end(),
+      size_t{},
+      [this](const auto& running_sum, const auto& test_case){
+        return running_sum + Evaluate( test_case );
+      }
+    );
+
+    return num_passed / static_cast<double>(cases.size());
+  }
+
+  double GetFitness() const { return GetTrainingFitness(); }
 
   bool DoMutations(emp::Random&) {
     program.ApplyMutations(bc::config);
