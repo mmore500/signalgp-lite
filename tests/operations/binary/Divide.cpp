@@ -38,9 +38,7 @@ TEST_CASE("Test Divide") {
   program[0].args[2] = 1;
 
   // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{99, 2, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{99, 2, 0, 0, 0, 0, 0, 0});
 
   for (auto reg : core.registers) std::cout << reg << " ";
   std::cout << std::endl;
@@ -49,9 +47,7 @@ TEST_CASE("Test Divide") {
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{99, 2, 49.5, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{99, 2, 49.5, 0, 0, 0, 0, 0});
 
   for (auto reg : core.registers) std::cout << reg << " ";
   std::cout << std::endl;

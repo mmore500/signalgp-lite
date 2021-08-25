@@ -27,7 +27,7 @@ flow_local
     Anchor #
     JumpIf #
     JumpIfNot #
-    RegulatorAdj
-    RegulatorDecay
+    RegulatorAdj #
+    RegulatorDecay #
     RegulatorGet #
     RegulatorSet #
