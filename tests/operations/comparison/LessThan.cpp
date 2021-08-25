@@ -3,9 +3,84 @@
 
 #include "sgpl/operations/comparison/LessThan.hpp"
 
+
+#include "sgpl/hardware/Core.hpp"
+#include "sgpl/program/Program.hpp"
+
+#include "sgpl/algorithm/execute_core.hpp"
+
+#include "sgpl/spec/Spec.hpp"
+
+#include "sgpl/utility/EmptyType.hpp"
+
+// define libray and spec
+using library_t = sgpl::OpLibrary<sgpl::LessThan>;
+
+using spec_t = sgpl::Spec<library_t>;
+
+// create peripheral
+spec_t::peripheral_t peripheral;
+
 TEST_CASE("Test LessThan") {
 
-  // TODO flesh out stub test
-  sgpl::LessThan{};
+  sgpl::Program<spec_t> program{1};
+
+  sgpl::Core<spec_t> core;
+
+  // set up false check
+
+  // set up values to operate on in register
+  core.registers[0] = 7;
+  core.registers[1] = 99;
+  core.registers[2] = -1; // random int
+
+  // set up what registers to operate on
+  program[0].args[0] = 2;
+  program[0].args[1] = 0;
+  program[0].args[2] = 1;
+
+  // check initial state
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{7, 99, -1, 0, 0, 0, 0, 0}
+  ));
+
+  // execute single instruction
+  sgpl::advance_core(core, program, peripheral);
+
+  // check final state
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{7, 99, 1, 0, 0, 0, 0, 0}
+  ));
+
+}
+
+TEST_CASE("Test Not LessThan") {
+
+  sgpl::Program<spec_t> program{1};
+
+  sgpl::Core<spec_t> core;
+
+  // set up values to operate on in register
+  core.registers[0] = 99;
+  core.registers[1] = 7;
+  core.registers[2] = -1; // random int
+
+  // set up what registers to operate on
+  program[0].args[0] = 2;
+  program[0].args[1] = 0;
+  program[0].args[2] = 1;
+
+  // check initial state
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{99, 7, -1, 0, 0, 0, 0, 0}
+  ));
+
+  // execute single instruction
+  sgpl::advance_core(core, program, peripheral);
+
+  // check final state
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{99, 7, 0, 0, 0, 0, 0, 0}
+  ));
 
 }
