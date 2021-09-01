@@ -151,6 +151,18 @@ public:
     for (auto& inst : *this) inst.Rectify(rectifier);
   }
 
+  bool HasGlobalAnchor() const {
+    const auto first_anchor = std::find_if(
+      this->begin(),
+      this->end(),
+      []( const auto& instruction ) {
+        return library_t::IsAnchorGlobalOpCode( instruction.op_code );
+      }
+    );
+
+    return first_anchor != this->end();
+  }
+
 
 };
 
