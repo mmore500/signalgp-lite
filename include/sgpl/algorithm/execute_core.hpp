@@ -69,6 +69,13 @@ size_t execute_core(
   typename Spec::peripheral_t& peripheral
 ) {
 
+  emp_assert(
+    state.GetGlobalJumpTable().GetSize()
+    || !program.HasGlobalAnchor(),
+    "Global anchors not initialized! "
+    "Hint: call Cpu.InitializeAnchors()"
+  );
+
   size_t i;
   for (i = 0; i < Spec::switch_steps && !state.HasTerminated(); ++i) {
     advance_core<Spec>(state, program, peripheral);
