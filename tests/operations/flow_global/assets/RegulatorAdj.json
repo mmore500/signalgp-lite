@@ -47,7 +47,7 @@
             ]
         },
         {
-            "operation": "Global Anchor",
+            "operation": "Nop-0",
             "args": {
                 "value0": 2,
                 "value1": 2,

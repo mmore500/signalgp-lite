@@ -1,19 +1,19 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/operations/flow_global/RegulatorGet.hpp"
+#include "sgpl/operations/flow_global/flow_global.hpp"
 
-#include "sgpl/hardware/Core.hpp"
+#include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/program/Program.hpp"
 
-#include "sgpl/algorithm/execute_core.hpp"
+#include "sgpl/algorithm/execute_cpu.hpp"
 
 #include "sgpl/spec/Spec.hpp"
 
 #include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::global::RegulatorGet, sgpl::global::Anchor>;
+using library_t = sgpl::OpLibrary<sgpl::global::RegulatorGet<>, sgpl::global::Anchor>;
 
 using spec_t = sgpl::Spec<library_t>;
 
@@ -29,20 +29,21 @@ TEST_CASE("Test RegulatorGet") {
 
   is.close();
 
-  sgpl::Core<spec_t> core;
+  sgpl::Cpu<spec_t> cpu;
 
-  // load all anchors manually
-  // core.LoadLocalAnchors(program);
+  cpu.InitializeAnchors(program);
 
-  core.registers[0] = 1;
+  REQUIRE(cpu.TryLaunchCore());
+
+  cpu.GetActiveCore().registers[0] = 1;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{1, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{1, 0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // check final state (value is 0 by default)
-  REQUIRE(core.registers ==  emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers ==  emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
 
 }

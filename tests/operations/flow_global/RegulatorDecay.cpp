@@ -1,21 +1,24 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/operations/flow_global/RegulatorDecay.hpp"
+#include "sgpl/operations/flow_global/flow_global.hpp"
 
-#include "sgpl/hardware/Core.hpp"
+#include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/program/Program.hpp"
 
-#include "sgpl/algorithm/execute_core.hpp"
+#include "sgpl/algorithm/execute_cpu.hpp"
 
 #include "sgpl/spec/Spec.hpp"
 
 #include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::global::RegulatorDecay, sgpl::global::RegulatorSet, sgpl::global::RegulatorGet, sgpl::global::Anchor>;
+using library_t = sgpl::OpLibrary<sgpl::global::RegulatorDecay<>, sgpl::global::RegulatorSet<>, sgpl::global::RegulatorGet<>, sgpl::global::Anchor>;
 
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t>{
+  // this is here so that we can step through the operations properly
+  static constexpr inline size_t switch_steps{ 1 };
+};
 
 // create peripheral
 spec_t::peripheral_t peripheral;
@@ -29,32 +32,40 @@ TEST_CASE("Test Positive RegulatorDecay") {
 
   is.close();
 
-  sgpl::Core<spec_t> core;
+  sgpl::Cpu<spec_t> cpu;
 
-  core.registers[0] = 99;
+  cpu.InitializeAnchors(program);
+
+  REQUIRE(cpu.TryLaunchCore());
+
+  cpu.GetActiveCore().registers[0] = 99;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorSet
-  sgpl::advance_core(core, program, peripheral);
+  REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Set Global Regulator");
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // set register to a big number (amount to decay by)
-  core.registers[1] = 9999999;
+  cpu.GetActiveCore().registers[1] = 9999999;
 
-  REQUIRE(core.registers == emp::array<float, 8>{99, 9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 9999999, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorDecay
-  sgpl::advance_core(core, program, peripheral);
+  REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Decay Global Regulator");
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
-  // NOP
-  sgpl::advance_core(core, program, peripheral);
+  // NOP (Anchor)
+  REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Global Anchor");
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // execute RegulatorGet
-  sgpl::advance_core(core, program, peripheral);
+  REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Get Global Regulator");
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // check to make sure value was decayed
-  REQUIRE(core.registers == emp::array<float, 8>{0, 9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{0, 9999999, 0, 0, 0, 0, 0, 0});
 
 }
 
@@ -67,31 +78,35 @@ TEST_CASE("Test Negative RegulatorDecay") {
 
   is.close();
 
-  sgpl::Core<spec_t> core;
+  sgpl::Cpu<spec_t> cpu;
 
-  core.registers[0] = 99;
+  cpu.InitializeAnchors(program);
+
+  REQUIRE(cpu.TryLaunchCore());
+
+  cpu.GetActiveCore().registers[0] = 99;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorSet
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // set register to a small number (amount to decay by)
-  core.registers[1] = -9999999;
+  cpu.GetActiveCore().registers[1] = -9999999;
 
-  REQUIRE(core.registers == emp::array<float, 8>{99, -9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, -9999999, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorDecay
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // NOP
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // execute RegulatorGet
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // check to make sure value was decayed
-  REQUIRE(core.registers == emp::array<float, 8>{99, -9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, -9999999, 0, 0, 0, 0, 0, 0});
 
 }

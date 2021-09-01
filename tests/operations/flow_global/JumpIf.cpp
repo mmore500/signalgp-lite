@@ -31,9 +31,6 @@ TEST_CASE("Test true JumpIf") {
 
   sgpl::Core<spec_t> core;
 
-  // load all anchors manually
-  // core.LoadLocalAnchors(program);
-
   // set up values to operate on in register
   core.registers[0] = true;
 
@@ -61,9 +58,6 @@ TEST_CASE("Test false JumpIf") {
   is.close();
 
   sgpl::Core<spec_t> core;
-
-  // load all anchors manually
-  core.LoadLocalAnchors(program);
 
   // set up values to operate on in register
   core.registers[0] = false;
