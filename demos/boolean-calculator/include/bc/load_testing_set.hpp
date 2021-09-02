@@ -29,4 +29,4 @@ const emp::vector<bc::TestCase>& load_testing_set() {
 
 }
 
-} // namespace bc 
+} // namespace bc
