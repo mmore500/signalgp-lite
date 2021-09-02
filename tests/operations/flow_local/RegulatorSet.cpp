@@ -37,9 +37,7 @@ TEST_CASE("Test RegulatorSet") {
   core.registers[0] = 99;
 
   // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorSet
   sgpl::advance_core(core, program, peripheral);
