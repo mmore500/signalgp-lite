@@ -47,7 +47,7 @@ TEMPLATE_TEST_CASE_SIG("Test RandomBool", "[Nop]",
   REQUIRE(sgpl::tlrand.Get().GetUInt() == rand.GetUInt());
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
