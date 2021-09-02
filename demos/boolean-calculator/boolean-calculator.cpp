@@ -1,6 +1,6 @@
 #include <algorithm>
-#include <functional>
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <limits>
 

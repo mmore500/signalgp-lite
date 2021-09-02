@@ -8,8 +8,8 @@
 #include "sgpl/utility/CountingIterator.hpp"
 
 #include "config.hpp"
-#include "load_training_set.hpp"
 #include "load_testing_set.hpp"
+#include "load_training_set.hpp"
 #include "Peripheral.hpp"
 #include "PromptEnum.hpp"
 #include "TestCase.hpp"
