@@ -3,10 +3,10 @@
 
 #include "sgpl/operations/flow_global/JumpIfNot.hpp"
 
-#include "sgpl/hardware/Core.hpp"
+#include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/program/Program.hpp"
 
-#include "sgpl/algorithm/execute_core.hpp"
+#include "sgpl/algorithm/execute_cpu.hpp"
 
 #include "sgpl/spec/Spec.hpp"
 
@@ -15,7 +15,10 @@
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::Nop<1>, sgpl::global::Anchor, sgpl::global::JumpIfNot>;
 
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t>{
+  // this is here so that we can step through the operations properly
+  static constexpr inline size_t switch_steps{ 1 };
+};
 
 // create peripheral
 spec_t::peripheral_t peripheral;
@@ -29,25 +32,26 @@ TEST_CASE("Test false JumpIfNot") {
 
   is.close();
 
-  sgpl::Core<spec_t> core;
+  sgpl::Cpu<spec_t> cpu;
 
-  // load all anchors manually
-  // core.LoadLocalAnchors(program);
+  cpu.InitializeAnchors(program);
+
+  REQUIRE(cpu.TryLaunchCore());
 
   // set up values to operate on in register
-  core.registers[0] = false;
+  cpu.GetActiveCore().registers[0] = false;
 
   // set up what registers to operate on
   program[0].args[0] = 0;
 
   // check initial state
-  REQUIRE(core.GetProgramCounter() == 0);
+  REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // make sure we jumped
-  REQUIRE(core.GetProgramCounter() != 1);
+  REQUIRE(cpu.GetActiveCore().GetProgramCounter() != 1);
 }
 
 
@@ -60,23 +64,27 @@ TEST_CASE("Test true JumpIfNot") {
 
   is.close();
 
-  sgpl::Core<spec_t> core;
+  sgpl::Cpu<spec_t> cpu;
+
+  cpu.InitializeAnchors(program);
+
+  REQUIRE(cpu.TryLaunchCore());
 
   // load all anchors manually
-  core.LoadLocalAnchors(program);
+  cpu.GetActiveCore().LoadLocalAnchors(program);
 
   // set up values to operate on in register
-  core.registers[0] = true;
+  cpu.GetActiveCore().registers[0] = true;
 
   // set up what registers to operate on
   program[0].args[0] = 0;
 
   // check initial state
-  REQUIRE(core.GetProgramCounter() == 0);
+  REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // make sure we didnt jump
-  REQUIRE(core.GetProgramCounter() == 1);
+  REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 1);
 }
