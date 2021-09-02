@@ -19,6 +19,7 @@
 #include "include/bc/config.hpp"
 #include "include/bc/GetState.hpp"
 #include "include/bc/Organism.hpp"
+#include "include/bc/load_training_set.hpp"
 #include "include/bc/Peripheral.hpp"
 #include "include/bc/SetState.hpp"
 #include "include/bc/setup.hpp"
@@ -37,6 +38,29 @@ using library_t = sgpl::OpLibraryCoupler<
 using spec_t = sgpl::Spec<library_t, bc::Peripheral>;
 
 using tag_t = spec_t::tag_t;
+
+
+auto GetFitFuns() {
+    emp::vector< std::function<double(const bc::Organism&)> > fit_funs;
+
+    const auto& cases = bc::load_training_set();
+
+    for (const auto prompt : bc::prompts) {
+      // find test_case that matches prompt, randomly
+      while (true) {
+        const size_t case_idx = sgpl::tlrand.Get().GetUInt( cases.size() );
+        const auto _case = cases[case_idx];
+        if (_case.prompts)
+
+      }
+
+
+    }
+
+
+
+    return fit_funs;
+}
 
 int main(int argc, char* argv[]) {
 
@@ -75,18 +99,18 @@ int main(int argc, char* argv[]) {
   };
 
   auto print_fitness = [&ea_world, get_best_fit_individual](const size_t time = -1){
-    if (time != -1) std::cout << "Update: " << time << std::endl;
-    for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
+    // if (time != -1) std::cout << "Update: " << time << std::endl;
+    // for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
+    // std::cout << std::endl;
+    std::cout << "Best fitness: " << get_best_fit_individual().GetFitness() << std::endl;
     std::cout << std::endl;
-    //std::cout << "Best fitness: " << get_best_fit_individual().GetFitness() << std::endl;
-    //std::cout << std::endl;
   };
 
   for (size_t t = 0; t < bc::config.UPDATES(); ++t) {
     // loop normally
     print_fitness(t);
     ea_world.DoMutations();
-    emp::TournamentSelect(ea_world, 7, PopulationSize);
+    emp::LexicaseSelect(ea_world, GetFitFuns(), PopulationSize);
     ea_world.Update();
 
     // check for early exit

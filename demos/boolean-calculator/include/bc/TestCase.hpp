@@ -13,6 +13,8 @@ struct TestCase {
 
   uint32_t response;
 
+  bool HasPrompt(const bc::Prompt& prompt) {}
+
   // binary input/output
   template<typename Archive>
   void serialize( Archive& archive ) {
