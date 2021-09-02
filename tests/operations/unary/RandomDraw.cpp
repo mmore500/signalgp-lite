@@ -14,7 +14,7 @@
 
 #include "sgpl/utility/EmptyType.hpp"
 
-using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::RandomBool>>;
+using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::RandomDraw>>;
 
 
 auto map_between_plusminus_one = [](const typename spec_t::tag_t& tag) {
@@ -70,6 +70,6 @@ TEST_CASE("Test RandomDraw") {
   sgpl::advance_core(core, program, peripheral);
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{map_draw(rand_r), 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 8>{static_cast<float>(map_draw(rand)), 0, 0, 0, 0, 0, 0, 0});
 
 }
