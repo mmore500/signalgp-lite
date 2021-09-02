@@ -56,5 +56,5 @@ TEMPLATE_TEST_CASE_SIG("Test RandomBool", "[Nop]",
   const double p = map_to_unit(program[0].tag);
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{rand.P(p), 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 8>{static_cast<float>(rand.P(p)), 0, 0, 0, 0, 0, 0, 0});
 }
