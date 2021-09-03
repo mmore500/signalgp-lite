@@ -18,7 +18,7 @@ using library_t = sgpl::OpLibrary<sgpl::Nop<0>, sgpl::global::RegulatorAdj<>, sg
 
 struct spec_t : public sgpl::Spec<library_t>{
   // this is here so that we can step through the operations properly
-  static constexpr inline size_t switch_steps{ 1 };
+  static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
 };
 
 // create peripheral
