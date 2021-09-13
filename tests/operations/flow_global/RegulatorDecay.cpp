@@ -9,7 +9,12 @@
 #include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::global::RegulatorDecay<>, sgpl::global::RegulatorSet<>, sgpl::global::RegulatorGet<>, sgpl::global::Anchor>;
+using library_t = sgpl::OpLibrary<
+  sgpl::global::RegulatorDecay<>,
+  sgpl::global::RegulatorSet<>,
+  sgpl::global::RegulatorGet<>,
+  sgpl::global::Anchor
+>;
 
 struct spec_t : public sgpl::Spec<library_t>{
   // this is here so that we can step through the operations properly

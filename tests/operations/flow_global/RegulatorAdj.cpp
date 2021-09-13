@@ -10,7 +10,13 @@
 #include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::Nop<0>, sgpl::global::RegulatorAdj<>, sgpl::global::RegulatorSet<>, sgpl::global::RegulatorGet<>, sgpl::global::Anchor>;
+using library_t = sgpl::OpLibrary<
+  sgpl::Nop<0>,
+  sgpl::global::RegulatorAdj<>,
+  sgpl::global::RegulatorSet<>,
+  sgpl::global::RegulatorGet<>,
+  sgpl::global::Anchor
+>;
 
 struct spec_t : public sgpl::Spec<library_t>{
   // this is here so that we can step through the operations properly
@@ -44,7 +50,7 @@ TEST_CASE("Test RegulatorAdj") {
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Set Global Regulator");
   sgpl::execute_cpu(1, cpu, program, peripheral);
 
-  // set register to a big number (amount to decay by)
+  // set register to a big number (amount to adjust by)
   cpu.GetActiveCore().registers[1] = 100000;
 
   REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 100000, 0, 0, 0, 0, 0, 0});
@@ -61,7 +67,6 @@ TEST_CASE("Test RegulatorAdj") {
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Get Global Regulator");
   sgpl::execute_cpu(1, cpu, program, peripheral);
 
-  // check to make sure value was decayed
+  // check to make sure value was adjusted
   REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{100099, 100000, 0, 0, 0, 0, 0, 0});
-
 }
