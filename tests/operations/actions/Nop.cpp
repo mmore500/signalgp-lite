@@ -9,6 +9,11 @@
 #include "sgpl/utility/EmptyType.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
+/**
+ * This is a templated test case.
+ * This means that a unique test case will be created
+ * for each of the ints in the title, with K substituted in.
+*/
 TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
   ((int K), K), 1, 2, 3, 4, 5
 ) {
