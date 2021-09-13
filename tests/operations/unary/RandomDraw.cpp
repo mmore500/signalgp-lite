@@ -1,13 +1,13 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/operations/unary/RandomDraw.hpp"
-#include "sgpl/utility/ThreadLocalRandom.hpp"
-#include "sgpl/hardware/Core.hpp"
-#include "sgpl/program/Program.hpp"
 #include "sgpl/algorithm/execute_core.hpp"
+#include "sgpl/hardware/Core.hpp"
+#include "sgpl/operations/unary/RandomDraw.hpp"
+#include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 #include "sgpl/utility/EmptyType.hpp"
+#include "sgpl/utility/ThreadLocalRandom.hpp"
 
 using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::RandomDraw>>;
 

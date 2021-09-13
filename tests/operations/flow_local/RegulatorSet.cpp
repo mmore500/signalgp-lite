@@ -1,10 +1,10 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/operations/flow_local/RegulatorSet.hpp"
-#include "sgpl/hardware/Core.hpp"
-#include "sgpl/program/Program.hpp"
 #include "sgpl/algorithm/execute_core.hpp"
+#include "sgpl/hardware/Core.hpp"
+#include "sgpl/operations/flow_local/RegulatorSet.hpp"
+#include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 #include "sgpl/utility/EmptyType.hpp"
 
