@@ -2,14 +2,10 @@
 #include "Catch/single_include/catch2/catch.hpp"
 
 #include "sgpl/operations/flow_global/JumpIf.hpp"
-
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/program/Program.hpp"
-
 #include "sgpl/algorithm/execute_cpu.hpp"
-
 #include "sgpl/spec/Spec.hpp"
-
 #include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec

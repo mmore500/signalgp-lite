@@ -1,18 +1,15 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/operations/bitwise/BitwiseXor.hpp"
+#include "conduit/include/uitsl/polyfill/bit_cast.hpp"
 
+#include "sgpl/operations/bitwise/BitwiseXor.hpp"
 #include "sgpl/hardware/Core.hpp"
 #include "sgpl/program/Program.hpp"
-
 #include "sgpl/algorithm/execute_core.hpp"
-
 #include "sgpl/spec/Spec.hpp"
-
 #include "sgpl/utility/EmptyType.hpp"
 
-#include "conduit/include/uitsl/polyfill/bit_cast.hpp"
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::BitwiseXor>;

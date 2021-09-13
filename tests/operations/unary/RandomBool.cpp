@@ -2,16 +2,11 @@
 #include "Catch/single_include/catch2/catch.hpp"
 
 #include "sgpl/operations/unary/RandomBool.hpp"
-
 #include "sgpl/utility/ThreadLocalRandom.hpp"
-
 #include "sgpl/hardware/Core.hpp"
 #include "sgpl/program/Program.hpp"
-
 #include "sgpl/algorithm/execute_core.hpp"
-
 #include "sgpl/spec/Spec.hpp"
-
 #include "sgpl/utility/EmptyType.hpp"
 
 using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::RandomBool>>;

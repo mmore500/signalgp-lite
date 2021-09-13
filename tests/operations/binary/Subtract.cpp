@@ -2,14 +2,9 @@
 #include "Catch/single_include/catch2/catch.hpp"
 
 #include "sgpl/operations/binary/Subtract.hpp"
-
 #include "sgpl/hardware/Core.hpp"
 #include "sgpl/program/Program.hpp"
-
 #include "sgpl/algorithm/execute_core.hpp"
-
-#include "sgpl/spec/Spec.hpp"
-
 #include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec

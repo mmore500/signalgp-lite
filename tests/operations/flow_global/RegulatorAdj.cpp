@@ -3,14 +3,10 @@
 
 #include "sgpl/operations/actions/Nop.hpp"
 #include "sgpl/operations/flow_global/flow_global.hpp"
-
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/program/Program.hpp"
-
 #include "sgpl/algorithm/execute_cpu.hpp"
-
 #include "sgpl/spec/Spec.hpp"
-
 #include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec
