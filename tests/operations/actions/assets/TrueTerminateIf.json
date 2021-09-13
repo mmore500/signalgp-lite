@@ -1,0 +1,53 @@
+{
+    "value0": [
+        {
+            "operation": "Terminate If",
+            "args": {
+                "value0": 6,
+                "value1": 5,
+                "value2": 5
+            },
+            "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
+            "descriptors": [
+                {
+                    "key": "argument a",
+                    "value": "6"
+                },
+                {
+                    "key": "summary",
+                    "value": "if a, terminate core"
+                }
+            ]
+        },
+        {
+            "operation": "Nop-0",
+            "args": {
+                "value0": 7,
+                "value1": 6,
+                "value2": 4
+            },
+            "bitstring": "1100010010111011100100110111100101111110111100011100000000101000",
+            "descriptors": [
+                {
+                    "key": "summary",
+                    "value": "perform no operation"
+                }
+            ]
+        },
+        {
+            "operation": "Nop-0",
+            "args": {
+                "value0": 4,
+                "value1": 4,
+                "value2": 4
+            },
+            "bitstring": "1100111010101111011111100000100000100101100111011010001011010010",
+            "descriptors": [
+                {
+                    "key": "summary",
+                    "value": "perform no operation"
+                }
+            ]
+        }
+    ]
+}

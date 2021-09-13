@@ -9,7 +9,7 @@
 #include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::TerminateIf>;
+using library_t = sgpl::OpLibrary<sgpl::TerminateIf, sgpl::Nop<0>>;
 
 using spec_t = sgpl::Spec<library_t>;
 
@@ -18,7 +18,13 @@ spec_t::peripheral_t peripheral;
 
 TEST_CASE("Test TerminateIf") {
 
-  sgpl::Program<spec_t> program{1};
+  sgpl::Program<spec_t> program;
+
+  std::ifstream is("assets/TrueTerminateIf.json");
+
+  { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  is.close();
 
   sgpl::Core<spec_t> core;
 
@@ -36,4 +42,27 @@ TEST_CASE("Test TerminateIf") {
 
   // check final state
   REQUIRE(core.HasTerminated());
+}
+
+
+TEST_CASE("Test False TerminateIf") {
+
+  sgpl::Program<spec_t> program;
+
+  std::ifstream is("assets/FalseTerminateIf.json");
+
+  { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  is.close();
+
+  sgpl::Core<spec_t> core;
+
+  // check initial state
+  REQUIRE(!core.HasTerminated());
+
+  // execute single instruction
+  sgpl::advance_core(core, program, peripheral);
+
+  // check that it didnt terminate
+  REQUIRE(!core.HasTerminated());
 }
