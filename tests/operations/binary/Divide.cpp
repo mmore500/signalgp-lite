@@ -35,15 +35,10 @@ TEST_CASE("Test Divide") {
   // check initial state
   REQUIRE(core.registers == emp::array<float, 8>{99, 2, 0, 0, 0, 0, 0, 0});
 
-  for (auto reg : core.registers) std::cout << reg << " ";
-  std::cout << std::endl;
-
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
+  // expected: 99 / 2 == 49.5
   REQUIRE(core.registers == emp::array<float, 8>{99, 2, 49.5, 0, 0, 0, 0, 0});
-
-  for (auto reg : core.registers) std::cout << reg << " ";
-  std::cout << std::endl;
 }

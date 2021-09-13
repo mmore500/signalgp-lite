@@ -35,15 +35,10 @@ TEST_CASE("Test Add") {
   // check initial state
   REQUIRE(core.registers == emp::array<float, 8>{1, 2, 0, 0, 0, 0, 0, 0});
 
-  for (auto reg : core.registers) std::cout << reg << " ";
-  std::cout << std::endl;
-
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
+  // expected: 1 + 2 == 3
   REQUIRE(core.registers == emp::array<float, 8>{1, 2, 3, 0, 0, 0, 0, 0});
-
-  for (auto reg : core.registers) std::cout << reg << " ";
-  std::cout << std::endl;
 }

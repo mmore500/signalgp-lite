@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_MAIN
+ #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
@@ -39,5 +39,6 @@ TEST_CASE("Test Multiply") {
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
+  // expected: 99 * 7 == 693
   REQUIRE(core.registers == emp::array<float, 8>{99, 7, 693, 0, 0, 0, 0, 0});
 }

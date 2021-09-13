@@ -39,5 +39,6 @@ TEST_CASE("Test Modulo") {
   sgpl::advance_core(core, program, peripheral);
 
   // check final state
+  // expected: 99 % 7 == 1
   REQUIRE(core.registers == emp::array<float, 8>{99, 7, 1, 0, 0, 0, 0, 0});
 }
