@@ -23,6 +23,11 @@ struct spec_t : public sgpl::Spec<library_t>{
 // create peripheral
 spec_t::peripheral_t peripheral;
 
+/**
+ * RegulatorDecay should decay the regulator value
+ * by the positive value passed to it
+ * on the cycle following its call.
+*/
 TEST_CASE("Test Positive RegulatorDecay") {
   sgpl::Program<spec_t> program;
 
@@ -67,6 +72,11 @@ TEST_CASE("Test Positive RegulatorDecay") {
 
 }
 
+/**
+ * RegulatorDecay should reverse-decay (i.e. increment)
+ * the regulator value by the negative value passed to it
+ * on the cycle following its call.
+*/
 TEST_CASE("Test Negative RegulatorDecay") {
   sgpl::Program<spec_t> program;
 
