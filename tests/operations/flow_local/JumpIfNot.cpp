@@ -21,8 +21,6 @@ TEST_CASE("Test false JumpIfNot") {
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
 
-  is.close();
-
   sgpl::Core<spec_t> core;
 
   // load all anchors manually
@@ -51,8 +49,6 @@ TEST_CASE("Test true JumpIfNot") {
   std::ifstream is("assets/JumpIfNot.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
-
-  is.close();
 
   sgpl::Core<spec_t> core;
 

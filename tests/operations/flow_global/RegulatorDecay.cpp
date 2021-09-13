@@ -30,8 +30,6 @@ TEST_CASE("Test Positive RegulatorDecay") {
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
 
-  is.close();
-
   sgpl::Cpu<spec_t> cpu;
 
   cpu.InitializeAnchors(program);
@@ -75,8 +73,6 @@ TEST_CASE("Test Negative RegulatorDecay") {
   std::ifstream is("assets/RegulatorDecay.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
-
-  is.close();
 
   sgpl::Cpu<spec_t> cpu;
 

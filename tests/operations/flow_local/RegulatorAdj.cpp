@@ -21,8 +21,6 @@ TEST_CASE("Test RegulatorAdj") {
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
 
-  is.close();
-
   sgpl::Core<spec_t> core;
 
   // load all anchors manually

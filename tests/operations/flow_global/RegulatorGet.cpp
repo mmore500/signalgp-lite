@@ -24,8 +24,6 @@ TEST_CASE("Test RegulatorGet") {
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
 
-  is.close();
-
   sgpl::Cpu<spec_t> cpu;
 
   cpu.InitializeAnchors(program);

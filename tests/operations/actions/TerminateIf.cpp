@@ -22,8 +22,6 @@ TEST_CASE("Test TerminateIf") {
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
 
-  is.close();
-
   sgpl::Core<spec_t> core;
 
   // set register to true
@@ -50,8 +48,6 @@ TEST_CASE("Test False TerminateIf") {
   std::ifstream is("assets/FalseTerminateIf.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
-
-  is.close();
 
   sgpl::Core<spec_t> core;
 

@@ -25,8 +25,6 @@ TEST_CASE("Test false JumpIfNot") {
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
 
-  is.close();
-
   sgpl::Cpu<spec_t> cpu;
 
   cpu.InitializeAnchors(program);
@@ -56,8 +54,6 @@ TEST_CASE("Test true JumpIfNot") {
   std::ifstream is("assets/JumpIfNot.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
-
-  is.close();
 
   sgpl::Cpu<spec_t> cpu;
 
