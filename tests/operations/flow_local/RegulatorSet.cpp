@@ -6,7 +6,6 @@
 #include "sgpl/operations/flow_local/RegulatorSet.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
-#include "sgpl/utility/EmptyType.hpp"
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::local::RegulatorSet, sgpl::local::RegulatorGet, sgpl::local::Anchor>;

@@ -8,7 +8,6 @@
 #include "sgpl/operations/bitwise/CountOnes.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
-#include "sgpl/utility/EmptyType.hpp"
 
 
 // define libray and spec

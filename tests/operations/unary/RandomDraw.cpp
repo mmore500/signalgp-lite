@@ -6,7 +6,6 @@
 #include "sgpl/operations/unary/RandomDraw.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
-#include "sgpl/utility/EmptyType.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::RandomDraw>>;

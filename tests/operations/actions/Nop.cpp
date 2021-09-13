@@ -6,7 +6,6 @@
 #include "sgpl/operations/actions/Nop.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
-#include "sgpl/utility/EmptyType.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 /**
