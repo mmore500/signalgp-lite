@@ -25,7 +25,7 @@ TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
 
   emp::Random rand(1);
 
-  sgpl::Program<spec_t> program{1};
+  sgpl::Program<spec_t> program(1);
 
   sgpl::Core<spec_t> core;
 
