@@ -1,18 +1,13 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/operations/actions/Nop.hpp"
-
-#include "sgpl/utility/ThreadLocalRandom.hpp"
-
-#include "sgpl/hardware/Core.hpp"
-#include "sgpl/program/Program.hpp"
-
 #include "sgpl/algorithm/execute_core.hpp"
-
+#include "sgpl/hardware/Core.hpp"
+#include "sgpl/operations/actions/Nop.hpp"
+#include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
-
 #include "sgpl/utility/EmptyType.hpp"
+#include "sgpl/utility/ThreadLocalRandom.hpp"
 
 TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
   ((int K), K), 1, 2, 3, 4, 5
