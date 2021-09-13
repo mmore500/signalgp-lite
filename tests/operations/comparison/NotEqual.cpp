@@ -26,6 +26,7 @@ TEST_CASE("Test NotEqual") {
   // set up values to operate on in register
   core.registers[0] = 99;
   core.registers[1] = 7;
+  core.registers[2] = -1; // will be overwritten
 
   // set up what registers to operate on
   program[0].args[0] = 2;
@@ -33,7 +34,7 @@ TEST_CASE("Test NotEqual") {
   program[0].args[2] = 1;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 7, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 8>{99, 7, -1, 0, 0, 0, 0, 0});
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
@@ -52,6 +53,7 @@ TEST_CASE("Test Equal") {
   // set up values to operate on in register
   core.registers[0] = 99;
   core.registers[1] = 7;
+  core.registers[2] = -1; // will be overwritten
 
   // set up what registers to operate on
   program[0].args[0] = 2;
@@ -59,7 +61,7 @@ TEST_CASE("Test Equal") {
   program[0].args[2] = 0;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 7, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 8>{99, 7, -1, 0, 0, 0, 0, 0});
 
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);

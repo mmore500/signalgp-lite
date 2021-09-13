@@ -26,7 +26,7 @@ TEST_CASE("Test Not GreaterThan") {
   // set up values to operate on in register
   core.registers[0] = 7;
   core.registers[1] = 99;
-  core.registers[2] = -1; // random int
+  core.registers[2] = -1; // will be overwritten
 
   // set up what registers to operate on
   program[0].args[0] = 2;
@@ -53,7 +53,7 @@ TEST_CASE("Test GreaterThan") {
   // set up values to operate on in register
   core.registers[0] = 99;
   core.registers[1] = 7;
-  core.registers[2] = -1; // random int
+  core.registers[2] = -1; // will be overwritten
 
   // set up what registers to operate on
   program[0].args[0] = 2;
