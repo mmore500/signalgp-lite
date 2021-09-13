@@ -24,7 +24,7 @@ TEST_CASE("Test BitwiseNot") {
   sgpl::Core<spec_t> core;
 
   // set up initial state
-  const float val1 = std::bit_cast<float>(0b1001001);
+  const float val1 = std::bit_cast<float>(0b00000000000000000000000001001001);
   const float val2 = std::bit_cast<float>(0b11111111111111111111111110110110);
 
   // set up values to operate on in register
