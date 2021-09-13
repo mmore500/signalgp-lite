@@ -12,7 +12,6 @@
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::BitwiseNot>;
-
 using spec_t = sgpl::Spec<library_t>;
 
 // create peripheral

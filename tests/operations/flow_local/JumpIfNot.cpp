@@ -10,7 +10,6 @@
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::Nop<1>, sgpl::local::Anchor, sgpl::local::JumpIfNot>;
-
 using spec_t = sgpl::Spec<library_t>;
 
 // create peripheral

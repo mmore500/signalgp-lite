@@ -10,7 +10,6 @@
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::local::RegulatorSet, sgpl::local::RegulatorGet, sgpl::local::Anchor>;
-
 using spec_t = sgpl::Spec<library_t>;
 
 // create peripheral

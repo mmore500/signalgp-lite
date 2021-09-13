@@ -13,7 +13,6 @@
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::CountOnes>;
-
 using spec_t = sgpl::Spec<library_t>;
 
 // create peripheral

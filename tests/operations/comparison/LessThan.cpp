@@ -10,7 +10,6 @@
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::LessThan>;
-
 using spec_t = sgpl::Spec<library_t>;
 
 // create peripheral

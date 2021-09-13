@@ -9,7 +9,6 @@
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::Subtract>;
-
 using spec_t = sgpl::Spec<library_t>;
 
 // create peripheral
