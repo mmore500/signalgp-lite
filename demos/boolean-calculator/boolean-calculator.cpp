@@ -9,6 +9,7 @@
 #include "Empirical/include/emp/Evolve/World.hpp"
 #include "Empirical/include/emp/math/Random.hpp"
 
+#include "magic_enum/include/magic_enum.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
@@ -39,27 +40,47 @@ using spec_t = sgpl::Spec<library_t, bc::Peripheral>;
 
 using tag_t = spec_t::tag_t;
 
+namespace bc {
+  auto& load_grouped_training_set() {
+    thread_local std::unordered_map<bc::PromptEnum, emp::vector<bc::TestCase>> grouped_set;
+
+    const auto& cases = bc::load_training_set(); // vector<TestCase>
+
+    std::for_each(
+      cases.begin(),
+      cases.end(),
+      [](const auto _case){
+        grouped_set[_case.prompts.front().which].push_back(_case);
+      }
+    );
+
+    return grouped_set;
+  }
+};
+
 
 auto GetFitFuns() {
-    emp::vector< std::function<double(const bc::Organism&)> > fit_funs;
+  emp::vector< std::function<double(const bc::Organism<spec_t>&)> > fit_funs;
 
-    const auto& cases = bc::load_training_set();
+  auto& grouped_set = bc::load_grouped_training_set();
 
-    for (const auto prompt : bc::prompts) {
-      // find test_case that matches prompt, randomly
-      while (true) {
-        const size_t case_idx = sgpl::tlrand.Get().GetUInt( cases.size() );
-        const auto _case = cases[case_idx];
-        if (_case.prompts)
+  emp_assert(
+    grouped_set.size() == magic_enum::enum_count<bc::PromptEnum>() - 1, // ignore NUM
+    "Missing operations in test cases."
+  );
 
+  for (auto& [type, cases] : grouped_set) {
+    // shuffle the prompts
+    emp::Shuffle(sgpl::tlrand.Get(), cases);
+
+    fit_funs.push_back(
+      [&cases](const bc::Organism<spec_t>& org) -> double {
+        return org.Evaluate(cases.front());
       }
+    );
+  }
 
-
-    }
-
-
-
-    return fit_funs;
+  return fit_funs;
 }
 
 int main(int argc, char* argv[]) {

@@ -18,20 +18,6 @@ enum class PromptEnum {
   XOR
 };
 
-const emp::vector<PromptEnum> prompts{
-  PromptEnum::AND,
-  PromptEnum::ANDNOT,
-  PromptEnum::ECHO,
-  PromptEnum::EQU,
-  PromptEnum::NAND,
-  PromptEnum::NOT,
-  PromptEnum::NUM,
-  PromptEnum::NOR,
-  PromptEnum::OR,
-  PromptEnum::ORNOT,
-  PromptEnum::XOR
-};
-
 } // namespace bc
 
 // adapted from https://stackoverflow.com/a/40006041
