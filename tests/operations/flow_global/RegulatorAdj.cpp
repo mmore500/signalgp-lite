@@ -59,7 +59,7 @@ TEST_CASE("Test RegulatorAdj") {
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Adjust Global Regulator");
   sgpl::execute_cpu(1, cpu, program, peripheral);
 
-  // NOP
+  // NOP (give a cycle for regulator to be adjusted)
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Nop-0");
   sgpl::execute_cpu(1, cpu, program, peripheral);
 

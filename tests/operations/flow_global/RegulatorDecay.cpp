@@ -101,7 +101,7 @@ TEST_CASE("Test Negative RegulatorDecay") {
   // execute RegulatorDecay
   sgpl::execute_cpu(1, cpu, program, peripheral);
 
-  // NOP
+  // NOP (give a cycle for value to decay)
   sgpl::execute_cpu(1, cpu, program, peripheral);
 
   // execute RegulatorGet
