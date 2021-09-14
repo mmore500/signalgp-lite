@@ -21,12 +21,10 @@ RUN \
 
 USER user
 
+# Define default working directory.
+WORKDIR /opt/signalgp-lite
+
 RUN \
-  cd /opt/signalgp-lite \
-    && \
   make install-test-dependencies \
     && \
   echo "installed test dependencies"
-
-# Define default working directory.
-WORKDIR /opt/signalgp-lite
