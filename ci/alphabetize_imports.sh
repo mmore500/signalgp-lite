@@ -7,7 +7,7 @@ do
 
   # skip empty files
   # adapted from https://stackoverflow.com/a/27710284
-  [ -s file.name ] || continue
+  [ -s "${filename}" ] || continue
 
   printf "."
 
