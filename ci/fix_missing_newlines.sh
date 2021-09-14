@@ -4,5 +4,5 @@ TARGETS=$(find . -type f ! -path "./third-party/*" ! -path "./.git/*" ! -path "*
 
 for filename in $TARGETS
 do
-  sed -i -e '$a\' $filename
+  sed -i -e '$a\' "${filename}"
 done
