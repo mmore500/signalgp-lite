@@ -2,7 +2,7 @@
 
 ## Development Lead
 
-* Matthew Andres Moreno <m.more500@gmail.com>
+* Matthew Andres Moreno <mailto:m.more500@gmail.com>
 
 ## Contributors
 
