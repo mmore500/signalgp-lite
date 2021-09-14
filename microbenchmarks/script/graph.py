@@ -5,7 +5,6 @@ from keyname import keyname as kn
 from slugify import slugify
 import subprocess
 import sys
-from iterpop import iterpop as ip
 
 def facet(df):
     return sns.FacetGrid(
