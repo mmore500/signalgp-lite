@@ -1,11 +1,11 @@
+from keyname import keyname as kn
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
-from keyname import keyname as kn
 from slugify import slugify
 import subprocess
 import sys
-import numpy as np
 
 __, filename = sys.argv
 
