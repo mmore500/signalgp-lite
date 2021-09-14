@@ -5,6 +5,10 @@ TARGETS=$(find . -type f \( -name "*.py" -o -name "*.ipynb" \) ! -path "./third-
 for filename in $TARGETS
 do
 
+  # skip empty files
+  # adapted from https://stackoverflow.com/a/27710284
+  [ -s file.name ] || continue
+
   printf "."
 
   # adapted from https://stackoverflow.com/a/6970681
