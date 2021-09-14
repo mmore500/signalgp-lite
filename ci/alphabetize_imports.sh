@@ -2,7 +2,7 @@
 
 TARGETS=$(find . -type f \( -name "*.py" -o -name "*.ipynb" \) ! -path "./third-party/*")
 
-for filename in $TARGETS
+for filename in ${TARGETS}
 do
 
   # skip empty files
