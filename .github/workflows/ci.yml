@@ -7,7 +7,7 @@ on:
       - '**'
 jobs:
   misc:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Docs, Miscellaneous
     steps:
       - name: Cancel Previous Runs
@@ -22,7 +22,7 @@ jobs:
       - run: docker ps -a
       - run: sudo docker run mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && python3 ci/test_readme_snippets.py && make docs"
   unit-clang-debug:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Unit Tests (clang, debug mode)
     env:
       CXX: clang++
@@ -35,7 +35,7 @@ jobs:
       - run: docker ps -a
       - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-gcc-debug:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Unit Tests (gcc, debug mode)
     env:
       CXX: g++
@@ -48,7 +48,7 @@ jobs:
       - run: docker ps -a
       - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
   unit-clang-opt:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Unit Tests (clang, opt mode)
     env:
       CXX: clang++
@@ -61,7 +61,7 @@ jobs:
       - run: docker ps -a
       - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
   unit-gcc-opt:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Unit Tests (gcc, opt mode)
     env:
       CXX: g++
@@ -74,7 +74,7 @@ jobs:
       - run: docker ps -a
       - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i mmore500/signalgp-lite /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
   coverage:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Coverage
     env:
       CXX: clang++
@@ -88,7 +88,7 @@ jobs:
       - run: ci_env=`bash <(curl -s https://codecov.io/env)`
       - run: sudo docker run $ci_env -e CXX=$CXX mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
   fuzzing:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Fuzzing
     steps:
       - uses: actions/checkout@v2
@@ -99,7 +99,7 @@ jobs:
       - run: docker ps -a
       - run: sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -e CXX=$CXX -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/fuzzing && make && make opt"
   microbenchmarks:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Microbenchmarks
     env:
       CXX: clang++
@@ -113,7 +113,7 @@ jobs:
       - run: docker ps -a
       - run: sudo docker run -e CXX=$CXX -e OSF_PASSWORD=$OSF_PASSWORD -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
   source-clang:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Source (clang)
     env:
       CXX: clang++
@@ -126,7 +126,7 @@ jobs:
       - run: docker ps -a
       - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
   source-gcc:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Source (gcc)
     env:
       CXX: g++
@@ -139,7 +139,7 @@ jobs:
       - run: docker ps -a
       - run: sudo docker run --cap-add=SYS_ADMIN mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && make test"
   deploy-github-pages:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     name: Deploy to GitHub Pages
     needs:
       - misc
