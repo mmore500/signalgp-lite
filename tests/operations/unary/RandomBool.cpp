@@ -1,14 +1,22 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/algorithm/execute_core.hpp"
-#include "sgpl/hardware/Core.hpp"
+#include "conduit/include/uitsl/polyfill/bit_cast.hpp"
+
+#include "sgpl/algorithm/execute_cpu.hpp"
+#include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/operations/unary/RandomBool.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
-using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::RandomBool>>;
+using library_t = sgpl::OpLibrary<sgpl::RandomBool>;
+struct spec_t : public sgpl::Spec<>{
+  // this is here so that we can step through the operations properly
+  static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
+  // at least 20 cores are required
+  static constexpr inline size_t num_cores{ 20 }; // eslint-disable-line no-eval
+};
 
 auto map_to_unit = [](const typename spec_t::tag_t& tag) -> double {
 
@@ -18,37 +26,56 @@ auto map_to_unit = [](const typename spec_t::tag_t& tag) -> double {
 
 };
 
-TEMPLATE_TEST_CASE_SIG("Test RandomBool", "[Nop]",
-  ((int K), K), 1, 2, 3, 4, 5
-) {
+TEST_CASE("Test RandomBool") {
+  // define number of replicates
+  const size_t replicates = 100;
+
   // create peripheral
   typename spec_t::peripheral_t peripheral;
 
-  sgpl::Program<spec_t> program{1};
+  sgpl::Program<spec_t> program{replicates};
 
-  sgpl::Core<spec_t> core;
+  sgpl::Cpu<spec_t> cpu;
 
-  // set up what register to operate on
-  program[0].args[0] = 0;
-
-  // initialize rand
-  emp::Random rand(1);
+  // initialize cpu
+  for (size_t i{}; i < 20; ++i) cpu.TryLaunchCore();
 
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  // check that internal RNG is what we expect
-  REQUIRE(sgpl::tlrand.Get().GetUInt() == rand.GetUInt());
-
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
 
-  // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
 
-  // get p
-  const double p = map_to_unit(program[0].tag);
+  size_t count{};
+  // get 100 random bools
+  for (size_t i{}; i < replicates; i++) {
+    // set instruction's tag to max_double * 0.5
+    // this is so that RandomBool returns true with exactly 0.5 probability.
+    program[i].tag.SetUInt64(
+       0,
+       static_cast<uint64_t>(spec_t::tag_t::MaxDouble() * 0.5)
+    );
 
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{static_cast<float>(rand.P(p)), 0, 0, 0, 0, 0, 0, 0});
+    std::cout << "test: " << map_to_unit(
+      program[i].tag
+    ) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << cpu.GetActiveCore().GetProgramCounter() << " ";
+    // tell instruction to operate on 0th register
+    program[i].args[0] = 0;
+    // execute instruction
+    sgpl::execute_cpu(1, cpu, program, peripheral);
+    std::cout << cpu.GetActiveCore().GetProgramCounter() << std::endl;
+
+    // store result (either true or false!)
+    count += cpu.GetActiveCore().registers[0];
+  }
+
+  // check that result is within 25 "trues" of 50%
+  // this means that the instruction is (sufficiently) random
+  REQUIRE(count > 25);
+  REQUIRE(count < 75);
+
 }
