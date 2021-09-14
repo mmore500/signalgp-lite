@@ -29,10 +29,112 @@
 
 const size_t PopulationSize = 1000;
 
+
+namespace bc {
+
+struct SetGlobal {
+  template<typename Spec>
+  static void run(
+      sgpl::Core<Spec>& core,
+      const sgpl::Instruction<Spec>& inst,
+      const sgpl::Program<Spec>&,
+      typename Spec::peripheral_t& peripheral
+  ) {
+    const size_t a = inst.args[0];
+    const size_t b = inst.args[1];
+
+    peripheral.global_registers[a] = core.registers[b];
+  }
+
+  static std::string name() { return "SetGlobal"; }
+
+  static size_t prevalence() { return 1; }
+
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& ) {
+    return std::map<std::string, std::string>{};
+  }
+};
+
+struct GetGlobal {
+  template<typename Spec>
+  static void run(
+      sgpl::Core<Spec>& core,
+      const sgpl::Instruction<Spec>& inst,
+      const sgpl::Program<Spec>&,
+      typename Spec::peripheral_t& peripheral
+  ) {
+    const size_t a = inst.args[0];
+    const size_t b = inst.args[1];
+
+    peripheral.registers[a] = core.global_registers[b];
+  }
+
+  static std::string name() { return "GetGlobal"; }
+
+  static size_t prevalence() { return 1; }
+
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& ) {
+    return std::map<std::string, std::string>{};
+  }
+};
+
+struct SetAllGlobal {
+  template<typename Spec>
+  static void run(
+      sgpl::Core<Spec>& core,
+      const sgpl::Instruction<Spec>& inst,
+      const sgpl::Program<Spec>&,
+      typename Spec::peripheral_t& peripheral
+  ) {
+    peripheral.global_registers = core.registers;
+  }
+
+  static std::string name() { return "SetAllGlobal"; }
+
+  static size_t prevalence() { return 1; }
+
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& ) {
+    return std::map<std::string, std::string>{};
+  }
+};
+
+struct GetAllGlobal {
+  template<typename Spec>
+  static void run(
+      sgpl::Core<Spec>& core,
+      const sgpl::Instruction<Spec>& inst,
+      const sgpl::Program<Spec>&,
+      typename Spec::peripheral_t& peripheral
+  ) {
+    core.registers = peripheral.global_registers;
+  }
+
+  static std::string name() { return "GetAllGlobal"; }
+
+  static size_t prevalence() { return 1; }
+
+  template<typename Spec>
+  static auto descriptors( const sgpl::Instruction<Spec>& ) {
+    return std::map<std::string, std::string>{};
+  }
+};
+} // namespace bc
+
+struct Peripheral {
+  emp::array<float, 8> global_registers{};
+};
+
 using library_t = sgpl::OpLibraryCoupler<
   bc::ToggleRegulationOpLibrary,
   bc::GetState,
-  bc::SetState
+  bc::SetState,
+  bc::GetGlobal,
+  bc::SetGlobal,
+  bc::GetAllGlobal,
+  bc::SetAllGlobal
 >;
 
 // TODO: override spec and change line 34 to ratio<1,2>
