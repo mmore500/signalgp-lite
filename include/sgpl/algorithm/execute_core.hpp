@@ -88,10 +88,12 @@ size_t execute_core(
    * a more complex statement needs implemented.
    */
   emp_assert(
-    program.HasGlobalAnchor() !=
-    state.GetGlobalJumpTable().GetSize(),
+    state.GetGlobalJumpTable().GetSize()
+    || !program.HasGlobalAnchor(),
     "Global anchors not initialized! "
-    "Hint: call Cpu.InitializeAnchors()"
+    "Hint: call Cpu.InitializeAnchors()",
+    state.GetGlobalJumpTable().GetSize(),
+    program.HasGlobalAnchor()
   );
 
   size_t i;
