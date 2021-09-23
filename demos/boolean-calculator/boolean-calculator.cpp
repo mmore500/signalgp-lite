@@ -157,7 +157,7 @@ namespace bc {
 };
 
 
-auto GetFitFuns() {
+auto GetFitFuns(bool verbose = false) {
   emp::vector< std::function<double(const bc::Organism<spec_t>&)> > fit_funs;
 
   auto& grouped_set = bc::load_grouped_training_set();
@@ -172,8 +172,8 @@ auto GetFitFuns() {
     emp::Shuffle(sgpl::tlrand.Get(), cases);
 
     fit_funs.push_back(
-      [&cases](const bc::Organism<spec_t>& org) -> double {
-        return org.Evaluate(cases.front());
+      [&cases, verbose](const bc::Organism<spec_t>& org) -> double {
+        return org.Evaluate(cases.front(), verbose);
       }
     );
   }
@@ -231,6 +231,14 @@ int main(int argc, char* argv[]) {
     ea_world.DoMutations();
     emp::LexicaseSelect(ea_world, GetFitFuns(), PopulationSize);
     ea_world.Update();
+
+    //
+    auto best_fit = get_best_fit_individual();
+    best_fit.GetFitness(true);
+
+    // for (auto func : GetFitFuns(true)) {
+    //   func(best_fit);
+    // }
 
     // check for early exit
     const double max_fitness = get_max_fitness();
