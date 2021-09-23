@@ -4,6 +4,7 @@
 
 #include "actions/actions.hpp"
 #include "binary/binary.hpp"
+#include "unsigned_binary/unsigned_binary.hpp"
 #include "bitwise/bitwise.hpp"
 #include "comparison/comparison.hpp"
 #include "flow_global/flow_global.hpp"
