@@ -67,7 +67,7 @@ struct GetGlobal {
     const size_t a = inst.args[0];
     const size_t b = inst.args[1];
 
-    peripheral.registers[a] = core.global_registers[b];
+    core.registers[a] = peripheral.global_registers[b];
   }
 
   static std::string name() { return "GetGlobal"; }
@@ -122,10 +122,6 @@ struct GetAllGlobal {
   }
 };
 } // namespace bc
-
-struct Peripheral {
-  emp::array<float, 8> global_registers{};
-};
 
 using library_t = sgpl::OpLibraryCoupler<
   bc::ToggleRegulationOpLibrary,
