@@ -24,12 +24,14 @@ struct Organism {
 
   program_t program{256};
 
-  bool Evaluate(const bc::TestCase& case_) const {
+  bool Evaluate(const bc::TestCase& case_, bool verbose = false) const {
 
     bc::Peripheral peripheral;
     sgpl::Cpu<Spec> cpu;
 
     cpu.InitializeAnchors(program);
+
+    std::string case_name;
 
     const static emp::vector<tag_t> prompt_tags = [](){
       emp::vector<tag_t> res;
@@ -50,27 +52,31 @@ struct Organism {
       if ( did_launch && prompt.val.has_value() ) {
         auto& reg = cpu.GetFreshestCore().registers.front();
         reg = std::bit_cast<float>(*prompt.val);
+      } else {
+        // is an operation
+        case_name = magic_enum::enum_name( prompt.which );
       }
 
       // execute up to 128 instructions
       sgpl::execute_cpu<Spec>(128, cpu, program, peripheral);
 
     }
+    if (verbose) std::cout << case_name << ": " << static_cast<int>(peripheral.output == case_.response) << std::endl;
 
     return peripheral.output == case_.response;
 
   }
-  double GetTrainingFitness() const {
+  double GetTrainingFitness(bool verbose = false) const {
     const size_t num_tests = 20;
     const size_t num_passed = std::accumulate(
       sgpl::CountingIterator{},
       sgpl::CountingIterator{num_tests},
       size_t{},
-      [this](const auto& running_sum, const auto&){
+      [this, verbose](const auto& running_sum, const auto&){
         const auto& cases = load_training_set();
         const size_t case_idx = sgpl::tlrand.Get().GetUInt( cases.size() );
         const auto& case_ = cases[ case_idx ];
-        return running_sum + Evaluate( case_ );
+        return running_sum + Evaluate( case_, verbose );
       }
     );
 
@@ -90,7 +96,7 @@ struct Organism {
     return num_passed / static_cast<double>(cases.size());
   }
 
-  double GetFitness() const { return GetTrainingFitness(); }
+  double GetFitness(bool verbose = false) const { return GetTrainingFitness(verbose); }
 
   bool DoMutations(emp::Random&) {
     program.ApplyMutations(bc::config);
