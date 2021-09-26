@@ -20,7 +20,7 @@ jobs:
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker build -t mmore500/signalgp-lite .
       - run: docker ps -a
-      - run: sudo docker run mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_trailing_whitespace.sh && ./ci/test_tabs.sh && ./ci/test_missing_newlines.sh && ./ci/test_headerguards.sh && ./ci/test_alphabetize_includes.sh && ./ci/test_alphabetize_imports.sh && python3 ci/test_readme_snippets.py && make docs"
+      - run: sudo docker run mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_tidy.sh && python3 ci/test_readme_snippets.py && make docs"
   unit-clang-debug:
     runs-on: ubuntu-20.04
     name: Unit Tests (clang, debug mode)
