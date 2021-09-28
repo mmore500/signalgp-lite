@@ -11,15 +11,15 @@
 using library_t = sgpl::OpLibrary<sgpl::local::RegulatorAdj, sgpl::local::RegulatorSet, sgpl::local::RegulatorGet, sgpl::local::Anchor>;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test RegulatorAdj") {
   sgpl::Program<spec_t> program;
 
   std::ifstream is("assets/RegulatorAdj.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   sgpl::Core<spec_t> core;
 

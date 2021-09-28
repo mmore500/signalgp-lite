@@ -11,9 +11,6 @@
 using library_t = sgpl::OpLibrary<sgpl::Nop<1>, sgpl::local::Anchor, sgpl::local::JumpIfNot>;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test false JumpIfNot") {
   sgpl::Program<spec_t> program;
 
@@ -22,6 +19,9 @@ TEST_CASE("Test false JumpIfNot") {
   { cereal::JSONInputArchive archive( is ); archive( program ); }
 
   sgpl::Core<spec_t> core;
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   // load all anchors manually
   core.LoadLocalAnchors(program);
@@ -49,6 +49,9 @@ TEST_CASE("Test true JumpIfNot") {
   std::ifstream is("assets/JumpIfNot.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   sgpl::Core<spec_t> core;
 

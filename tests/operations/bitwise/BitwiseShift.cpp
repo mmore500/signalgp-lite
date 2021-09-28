@@ -14,14 +14,14 @@
 using library_t = sgpl::OpLibrary<sgpl::BitwiseShift>;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test Left BitwiseShift") {
 
   sgpl::Program<spec_t> program{1};
 
   sgpl::Core<spec_t> core;
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   // set up initial state
 

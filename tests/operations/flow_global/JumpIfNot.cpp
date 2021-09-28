@@ -15,15 +15,15 @@ struct spec_t : public sgpl::Spec<library_t>{
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
 };
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test false JumpIfNot") {
   sgpl::Program<spec_t> program;
 
   std::ifstream is("assets/JumpIfNot.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   sgpl::Cpu<spec_t> cpu;
 
@@ -54,6 +54,9 @@ TEST_CASE("Test true JumpIfNot") {
   std::ifstream is("assets/JumpIfNot.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   sgpl::Cpu<spec_t> cpu;
 

@@ -11,14 +11,14 @@
 using library_t = sgpl::OpLibrary<sgpl::Decrement>;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test Decrement") {
 
   sgpl::Program<spec_t> program{1};
 
   sgpl::Core<spec_t> core;
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   // set up values to operate on in register
   core.registers[0] = 99;

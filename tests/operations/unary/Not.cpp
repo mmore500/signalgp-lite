@@ -11,9 +11,6 @@
 using library_t = sgpl::OpLibrary<sgpl::Not>;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test Not") {
 
   sgpl::Program<spec_t> program{1};

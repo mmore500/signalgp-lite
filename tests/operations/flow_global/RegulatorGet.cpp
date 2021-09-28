@@ -14,15 +14,15 @@ using library_t = sgpl::OpLibrary<
 >;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test RegulatorGet") {
   sgpl::Program<spec_t> program;
 
   std::ifstream is("assets/RegulatorGet.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   sgpl::Cpu<spec_t> cpu;
 

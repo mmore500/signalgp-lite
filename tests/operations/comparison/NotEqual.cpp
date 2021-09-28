@@ -11,14 +11,14 @@
 using library_t = sgpl::OpLibrary<sgpl::NotEqual>;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test NotEqual") {
 
   sgpl::Program<spec_t> program{1};
 
   sgpl::Core<spec_t> core;
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   // set up false check
 

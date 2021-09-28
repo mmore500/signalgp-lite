@@ -20,9 +20,6 @@ struct spec_t : public sgpl::Spec<library_t>{
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
 };
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 /**
  * RegulatorDecay should decay the regulator value
  * by the positive value passed to it
@@ -34,6 +31,9 @@ TEST_CASE("Test Positive RegulatorDecay") {
   std::ifstream is("assets/RegulatorDecay.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
+
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   sgpl::Cpu<spec_t> cpu;
 
