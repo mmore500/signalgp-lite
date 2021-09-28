@@ -1,6 +1,8 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
+#include "../LoadProgram.hpp"
+
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/operations/actions/Nop.hpp"
@@ -23,11 +25,7 @@ struct spec_t : public sgpl::Spec<library_t>{
 };
 
 TEST_CASE("Test RegulatorAdj") {
-  sgpl::Program<spec_t> program;
-
-  std::ifstream is("assets/RegulatorAdj.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorAdj");
 
   // create peripheral
   spec_t::peripheral_t peripheral;

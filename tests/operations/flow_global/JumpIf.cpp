@@ -1,6 +1,8 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
+#include "../LoadProgram.hpp"
+
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/operations/flow_global/JumpIf.hpp"
@@ -49,11 +51,7 @@ TEST_CASE("Test true JumpIf") {
 
 
 TEST_CASE("Test false JumpIf") {
-  sgpl::Program<spec_t> program;
-
-  std::ifstream is("assets/JumpIf.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("JumpIf");
 
   // create peripheral
   spec_t::peripheral_t peripheral;

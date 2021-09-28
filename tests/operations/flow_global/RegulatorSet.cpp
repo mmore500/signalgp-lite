@@ -20,11 +20,7 @@ struct spec_t : public sgpl::Spec<library_t>{
 };
 
 TEST_CASE("Test RegulatorSet") {
-  sgpl::Program<spec_t> program;
-
-  std::ifstream is("assets/RegulatorSet.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorSet");
 
   // create peripheral
   spec_t::peripheral_t peripheral;

@@ -1,6 +1,8 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
+#include "../LoadProgram.hpp"
+
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
 #include "sgpl/operations/flow_local/RegulatorDecay.hpp"
@@ -12,11 +14,7 @@ using library_t = sgpl::OpLibrary<sgpl::local::RegulatorDecay, sgpl::local::Regu
 using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test Positive RegulatorDecay") {
-  sgpl::Program<spec_t> program;
-
-  std::ifstream is("assets/RegulatorDecay.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorDecay");
 
   // create peripheral
   spec_t::peripheral_t peripheral;
@@ -54,11 +52,10 @@ TEST_CASE("Test Positive RegulatorDecay") {
 }
 
 TEST_CASE("Test Negative RegulatorDecay") {
-  sgpl::Program<spec_t> program;
+  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorDecay");
 
-  std::ifstream is("assets/RegulatorDecay.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   sgpl::Core<spec_t> core;
 

@@ -1,6 +1,8 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
+#include "../LoadProgram.hpp"
+
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/operations/flow_global/flow_global.hpp"
@@ -26,11 +28,7 @@ struct spec_t : public sgpl::Spec<library_t>{
  * on the cycle following its call.
 */
 TEST_CASE("Test Positive RegulatorDecay") {
-  sgpl::Program<spec_t> program;
-
-  std::ifstream is("assets/RegulatorDecay.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorDecay");
 
   // create peripheral
   spec_t::peripheral_t peripheral;
@@ -78,11 +76,10 @@ TEST_CASE("Test Positive RegulatorDecay") {
  * on the cycle following its call.
 */
 TEST_CASE("Test Negative RegulatorDecay") {
-  sgpl::Program<spec_t> program;
+  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorDecay");
 
-  std::ifstream is("assets/RegulatorDecay.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+  // create peripheral
+  spec_t::peripheral_t peripheral;
 
   sgpl::Cpu<spec_t> cpu;
 
