@@ -33,6 +33,9 @@ TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
   // check that internal RNG is what we expect
   REQUIRE(sgpl::tlrand.Get().GetUInt() == comparison_rand.GetUInt());
 
+  // create copy of core
+  sgpl::Core<spec_t> core_copy = core;
+
   // execute single instruction
   sgpl::advance_core(core, program, peripheral);
 
@@ -41,4 +44,7 @@ TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
 
   // check that internal RNG has been advanced as we expect
   REQUIRE(sgpl::tlrand.Get().GetUInt() == comparison_rand.GetUInt());
+
+  // check that cores are equivalent
+  REQUIRE(core_copy = core);
 }
