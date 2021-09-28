@@ -1,7 +1,9 @@
 #define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "sgpl/algorithm/execute_core.hpp"
+#include "Empirical/include/emp/data/DataNode.hpp"
+
+#include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Core.hpp"
 #include "sgpl/operations/unary/RandomDraw.hpp"
 #include "sgpl/program/Program.hpp"
@@ -10,60 +12,42 @@
 
 using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::RandomDraw>>;
 
-
-auto map_between_plusminus_one = [](const typename spec_t::tag_t& tag) {
-  constexpr double max = 1.0;
-  constexpr double min = -1.0;
-  constexpr double max_double = spec_t::tag_t::MaxDouble();
-
-  return  (tag.GetDouble() / max_double) * (max - min) + min;
-};
-
-auto is_odd = [](const typename spec_t::tag_t& tag) {
-  return tag.Get(0);
-};
-
-auto map_up = [](const double plusminus_unit_val) {
-  return 1.0 / (
-    plusminus_unit_val * plusminus_unit_val * plusminus_unit_val
-  );
-};
-
-auto map_draw = [](emp::Random& rand) -> double {
-  const typename spec_t::tag_t tag( rand );
-  return is_odd( tag )
-    ? map_up( map_between_plusminus_one(tag) )
-    : map_between_plusminus_one( tag )
-  ;
-};
-
 TEST_CASE("Test RandomDraw") {
+  // define number of replicates
+  const size_t replicates = 100;
+
   // create peripheral
   typename spec_t::peripheral_t peripheral;
-
-  sgpl::Program<spec_t> program{1};
-
-  sgpl::Core<spec_t> core;
-
-  // set up what register to operate on
-  program[0].args[0] = 0;
-
-  // initialize rand
-  emp::Random rand(1);
 
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  // check that internal RNG is what we expect
-  REQUIRE(sgpl::tlrand.Get().GetUInt() == rand.GetUInt());
+  emp::DataNode<size_t, emp::data::Current, emp::data::Range, emp::data::Stats> data;
 
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
+  for (size_t i{}; i < replicates; i++) {
+    // create and initialize cpu
+    sgpl::Cpu<spec_t> cpu;
+    for (size_t i{}; i < 20; ++i) cpu.TryLaunchCore();
 
-  // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+    // make a program of length 1
+    sgpl::Program<spec_t> program{1};
+    // tell instruction to operate on 0th register
+    program[0].args[0] = 0;
 
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{static_cast<float>(map_draw(rand)), 0, 0, 0, 0, 0, 0, 0});
+    size_t replicate_count{};
+    for (size_t j{}; j < 100; j++) {
+      // execute instruction
+      sgpl::execute_cpu(1, cpu, program, peripheral);
+      // store result (either true or false!)
+      replicate_count += cpu.GetActiveCore().registers[0];
+    }
 
+    data.Add(replicate_count);
+  }
+
+  // check that standard deviation is sufficiently large
+  // and that the max and min bounds are proper
+  REQUIRE(data.GetStandardDeviation() > 1000);
+  REQUIRE(data.GetMax() > 100000);
+  REQUIRE(data.GetMin() < 10);
 }
