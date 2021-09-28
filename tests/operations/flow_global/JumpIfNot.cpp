@@ -76,6 +76,6 @@ TEST_CASE("Test true JumpIfNot") {
   // execute single instruction
   sgpl::execute_cpu(1, cpu, program, peripheral);
 
-  // make sure we didnt jump
+  // make sure we didn't jump
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 1);
 }
