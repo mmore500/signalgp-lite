@@ -32,7 +32,6 @@ TEST_CASE("Test RandomBool") {
 
   emp::DataNode<size_t, emp::data::Current, emp::data::Range, emp::data::Stats> data;
 
-  // get 100 random bools
   for (size_t i{}; i < replicates; i++) {
     // create and initialize cpu
     sgpl::Cpu<spec_t> cpu;
@@ -41,7 +40,7 @@ TEST_CASE("Test RandomBool") {
     // make a program of length 1
     sgpl::Program<spec_t> program{1};
     // tell instruction to operate on 0th register
-    program[i].args[0] = 0;
+    program[0].args[0] = 0;
 
     size_t replicate_count{};
     for (size_t j{}; j < 100; j++) {
@@ -56,7 +55,9 @@ TEST_CASE("Test RandomBool") {
 
   // check that result is within 25 "trues" of 50%
   // this means that the instruction is (sufficiently) random
-  std::cout << data.GetStandardDeviation() << std::endl;
-  std::cout << data.GetMin() << " " << data.GetMax() << std::endl;
+  REQUIRE(data.GetMean() < 75);
+  REQUIRE(25 < data.GetMean());
+  REQUIRE(data.GetMin() < 25);
+  REQUIRE(data.GetMax() > 75);
 
 }
