@@ -3,6 +3,7 @@
 #define SGPL_HARDWARE_CORE_HPP_INCLUDE
 
 #include <limits>
+#include <tuple>
 
 #include "../../../third-party/Empirical/include/emp/base/array.hpp"
 
@@ -120,6 +121,18 @@ public:
   }
 
   void DecayRegulators() noexcept { local_jump_table.DecayRegulators(); }
+
+  bool operator==(const Core& other) const {
+    return std::tuple{
+      program_counter,
+      local_jump_table,
+      global_jump_tables
+    } == std::tuple{
+      other.program_counter,
+      other.local_jump_table,
+      other.global_jump_tables
+    };
+  }
 
 };
 
