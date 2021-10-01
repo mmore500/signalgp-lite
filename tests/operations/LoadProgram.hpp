@@ -10,15 +10,15 @@ namespace sgpl::test {
 
 template <typename Spec>
 sgpl::Program<Spec> LoadProgram(const std::string& name) {
-    sgpl::Program<Spec> program;
+  sgpl::Program<Spec> program;
 
-    std::ifstream is("assets/" + name + ".json");
+  std::ifstream is("assets/" + name + ".json");
 
-    cereal::JSONInputArchive archive( is );
+  cereal::JSONInputArchive archive( is );
 
-    archive( program );
+  archive( program );
 
-    return program;
+  return program;
 }
 
 };
