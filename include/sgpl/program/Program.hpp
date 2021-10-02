@@ -4,8 +4,14 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <string>
+#include <sstream>
 
+#include "../../../third-party/cereal/include/cereal/archives/binary.hpp"
+#include "../../../third-party/cereal/include/cereal/archives/json.hpp"
 #include "../../../third-party/cereal/include/cereal/types/vector.hpp"
+#include "../../../third-party/conduit/include/uitsl/polyfill/filesystem.hpp"
+#include "../../../third-party/Empirical/include/emp/base/error.hpp"
 #include "../../../third-party/Empirical/include/emp/base/vector.hpp"
 #include "../../../third-party/Empirical/include/emp/datastructs/hash_utils.hpp"
 #include "../../../third-party/Empirical/include/emp/math/Random.hpp"
@@ -41,6 +47,30 @@ public:
       size_bytes()
     );
     Rectify();
+  }
+
+  /// Deserialize from JSON string.
+  explicit Program(const char* as_json) {
+    std::istringstream iss(as_json);
+    cereal::JSONInputArchive archive( iss );
+    archive( *this );
+  }
+
+  /// Deserialize from file.
+  explicit Program(const std::filesystem::path& path) {
+    if ( path.extension() == ".json" ) {
+      std::ifstream is(path);
+      cereal::JSONInputArchive archive( is );
+      archive( *this );
+    } else if ( path.extension() == ".bin" ) {
+      std::ifstream is(path);
+      cereal::BinaryInputArchive archive( is );
+      archive( *this );
+    } else emp_error(
+      "unknown sgpl::Program file format",
+      path.extension(),
+      path
+    );
   }
 
   /// Copy constructor.

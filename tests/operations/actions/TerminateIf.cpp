@@ -1,4 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
+#include "conduit/include/uitsl/polyfill/filesystem.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
@@ -8,16 +9,17 @@
 #include "sgpl/spec/Spec.hpp"
 
 // typedefs
-using library_t = sgpl::OpLibrary<sgpl::TerminateIf, sgpl::Nop<0>>;
+using library_t = sgpl::OpLibrary<
+  sgpl::Nop<>,
+  sgpl::TerminateIf
+>;
 using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test TerminateIf") {
 
-  sgpl::Program<spec_t> program;
-
-  std::ifstream is("assets/TrueTerminateIf.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/TrueTerminateIf.json"
+  });
 
   sgpl::Core<spec_t> core;
 
@@ -40,11 +42,9 @@ TEST_CASE("Test TerminateIf") {
 
 TEST_CASE("Test False TerminateIf") {
 
-  sgpl::Program<spec_t> program;
-
-  std::ifstream is("assets/FalseTerminateIf.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/FalseTerminateIf.json"
+  });
 
   sgpl::Core<spec_t> core;
 

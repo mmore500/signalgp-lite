@@ -3,11 +3,11 @@
         {
             "operation": "Nop-0",
             "args": {
-                "value0": 6,
-                "value1": 5,
-                "value2": 5
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
-            "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
+            "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
             "descriptors": [
                 {
                     "key": "argument a",
@@ -15,18 +15,18 @@
                 },
                 {
                     "key": "summary",
-                    "value": "perform no operation"
+                    "value": "if a, terminate core"
                 }
             ]
         },
         {
             "operation": "Nop-0",
             "args": {
-                "value0": 7,
-                "value1": 6,
-                "value2": 4
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
-            "bitstring": "1100010010111011100100110111100101111110111100011100000000101000",
+            "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
             "descriptors": [
                 {
                     "key": "summary",
@@ -37,11 +37,11 @@
         {
             "operation": "Nop-0",
             "args": {
-                "value0": 4,
-                "value1": 4,
-                "value2": 4
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
-            "bitstring": "1100111010101111011111100000100000100101100111011010001011010010",
+            "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
             "descriptors": [
                 {
                     "key": "summary",

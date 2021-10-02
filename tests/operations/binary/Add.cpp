@@ -9,32 +9,37 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::Add>;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
 
 TEST_CASE("Test Add") {
 
-  sgpl::Program<spec_t> program{1};
-
-  sgpl::Core<spec_t> core;
-
-  // set up initial state
+  sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Add",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
 
   // set up values to add in register
-  core.registers[0] = 1;
-  core.registers[1] = 2;
-
-  // set up what registers to operate on
-  program[0].args[0] = 2;
-  program[0].args[1] = 0;
-  program[0].args[2] = 1;
-
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{1, 2, 0, 0, 0, 0, 0, 0});
+  sgpl::Core<spec_t> core;
+  core.registers = emp::array<float, 4>{1.f, 2.f, {}, {}};
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
   // expected: 1 + 2 == 3
-  REQUIRE(core.registers == emp::array<float, 8>{1, 2, 3, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{1.f, 2.f, 1.f + 2.f, {}});
 }
