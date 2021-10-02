@@ -30,6 +30,11 @@ class Core {
 
 public:
 
+  using registers_t = emp::array<float, Spec::num_registers>;
+  registers_t registers{}; // value initialize
+
+  sgpl::CappedSet<tag_t, Spec::num_fork_requests> fork_requests{};
+
   Core() = default;
 
   Core(
@@ -37,10 +42,7 @@ public:
   ) : global_jump_tables(&global_jump_tables_)
   { ; }
 
-  using registers_t = emp::array<float, Spec::num_registers>;
-  registers_t registers{}; // value initialize
-
-  sgpl::CappedSet<tag_t, Spec::num_fork_requests> fork_requests{};
+  Core(const registers_t& registers_) : registers(registers_) { ; }
 
   inline void Terminate() noexcept {
     program_counter = std::numeric_limits<size_t>::max();

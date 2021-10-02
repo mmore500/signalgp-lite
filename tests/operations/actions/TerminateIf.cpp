@@ -13,7 +13,9 @@ using library_t = sgpl::OpLibrary<
   sgpl::Nop<>,
   sgpl::TerminateIf
 >;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 2 };
+};
 
 TEST_CASE("Test TerminateIf") {
 
@@ -21,13 +23,7 @@ TEST_CASE("Test TerminateIf") {
     "assets/TrueTerminateIf.json"
   });
 
-  sgpl::Core<spec_t> core;
-
-  // set register to true
-  core.registers[0] = true;
-
-  // tell terminateif to check inside the 0th register
-  program[0].args[0] = 0;
+  sgpl::Core<spec_t> core( {true, {}} );
 
   // check initial state
   REQUIRE(!core.HasTerminated());

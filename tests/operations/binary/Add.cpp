@@ -33,8 +33,8 @@ TEST_CASE("Test Add") {
   )");
 
   // set up values to add in register
-  sgpl::Core<spec_t> core;
-  core.registers = emp::array<float, 4>{1.f, 2.f, {}, {}};
+  sgpl::Core<spec_t> core( {1.f, 2.f, {}, {}} );
+  core.registers = emp::array<float, 4>;
 
   // execute single instruction
   sgpl::advance_core(core, program);
