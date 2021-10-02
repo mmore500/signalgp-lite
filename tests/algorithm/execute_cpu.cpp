@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <ratio>
 
-#define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
 #include "conduit/include/uitsl/polyfill/identity.hpp"
 #include "Empirical/include/emp/math/Random.hpp"
