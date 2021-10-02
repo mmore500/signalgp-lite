@@ -1,6 +1,4 @@
-#define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
-
 #include "conduit/include/uitsl/polyfill/bit_cast.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
