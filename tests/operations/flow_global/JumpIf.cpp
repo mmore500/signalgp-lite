@@ -9,10 +9,13 @@
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 
-// define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::Nop<1>, sgpl::global::Anchor, sgpl::global::JumpIf>;
-
-struct spec_t : public sgpl::Spec<library_t>{
+// typedefs
+using library_t = sgpl::OpLibrary<
+  sgpl::Nop<>,
+  sgpl::global::Anchor,
+  sgpl::global::JumpIf
+>;
+struct spec_t : public sgpl::Spec<library_t> {
   // this is here so that we can step through the operations properly
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
 };

@@ -10,15 +10,14 @@
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 
-// define libray and spec
+// typedefs
 using library_t = sgpl::OpLibrary<
-  sgpl::Nop<0>,
+  sgpl::Nop<>,
+  sgpl::global::Anchor,
   sgpl::global::RegulatorAdj<>,
-  sgpl::global::RegulatorSet<>,
   sgpl::global::RegulatorGet<>,
-  sgpl::global::Anchor
+  sgpl::global::RegulatorSet<>,
 >;
-
 struct spec_t : public sgpl::Spec<library_t>{
   // this is here so that we can step through the operations properly
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval

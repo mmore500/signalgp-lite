@@ -10,7 +10,9 @@
 #include "sgpl/spec/Spec.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
-using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::RandomFill>>;
+// typedefs
+using library_t = sgpl::OpLibrary<sgpl::RandomFill>
+using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test RandomFill") {
   // number of replicates

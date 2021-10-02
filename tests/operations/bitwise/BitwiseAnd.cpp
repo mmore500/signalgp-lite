@@ -8,7 +8,7 @@
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 
-// define libray and spec
+// typedefs
 using library_t = sgpl::OpLibrary<sgpl::BitwiseAnd>;
 using spec_t = sgpl::Spec<library_t>;
 

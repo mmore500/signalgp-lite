@@ -7,7 +7,7 @@
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 
-// define libray and spec
+// typdefs
 using library_t = sgpl::OpLibrary<sgpl::Decrement>;
 using spec_t = sgpl::Spec<library_t>;
 

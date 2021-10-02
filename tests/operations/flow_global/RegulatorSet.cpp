@@ -9,9 +9,9 @@
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<
-  sgpl::global::RegulatorSet<>,
+  sgpl::global::Anchor,
   sgpl::global::RegulatorGet<>,
-  sgpl::global::Anchor
+  sgpl::global::RegulatorSet<>,
 >;
 
 struct spec_t : public sgpl::Spec<library_t>{

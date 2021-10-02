@@ -9,6 +9,7 @@
 #include "sgpl/spec/Spec.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
+// typedefs
 using library_t = sgpl::OpLibrary<sgpl::RandomDraw>;
 using spec_t = sgpl::Spec<library_t>;
 

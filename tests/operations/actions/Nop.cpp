@@ -8,6 +8,12 @@
 #include "sgpl/spec/Spec.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
+// typedefs
+template<int K> using library_t = sgpl::OpLibrary<sgpl::Nop<K>>;
+template<int K> using spec_t = sgpl::Spec<library_t<K>>;
+template<int K> using core_t = sgpl::Core<spec_t<K>>;
+template<int K> using program_t = sgpl::Program<spec_t<K>>;
+
 /**
  * This is a templated test case.
  * This means that a unique test case will be created
@@ -16,15 +22,10 @@
 TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
   ((int K), K), 1, 2, 3, 4, 5
 ) {
-  // define spec
-  using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::Nop<K>>>;
 
-  // create peripheral
-  typename spec_t::peripheral_t peripheral;
+  program_t<K> program(1);
 
-  sgpl::Program<spec_t> program(1);
-
-  sgpl::Core<spec_t> core;
+  core_t<K> core;
 
   // initialize tlrand and comparison rand with the same seed
   sgpl::tlrand.Reseed(1);
@@ -34,7 +35,7 @@ TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
   REQUIRE(sgpl::tlrand.Get().GetUInt() == comparison_rand.GetUInt());
 
   // create copy of core
-  sgpl::Core<spec_t> core_copy = core;
+  core_t<K> core_copy = core;
 
   // execute single instruction
   sgpl::advance_core(core, program);

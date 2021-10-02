@@ -9,8 +9,13 @@
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 
-// define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::local::RegulatorAdj, sgpl::local::RegulatorSet, sgpl::local::RegulatorGet, sgpl::local::Anchor>;
+// typedefs
+using library_t = sgpl::OpLibrary<
+  sgpl::local::Anchor,
+  sgpl::local::RegulatorAdj,
+  sgpl::local::RegulatorGet,
+  sgpl::local::RegulatorSet
+>;
 using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test RegulatorAdj") {

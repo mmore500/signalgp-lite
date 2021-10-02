@@ -9,8 +9,12 @@
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 
-// define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::Nop<1>, sgpl::local::Anchor, sgpl::local::JumpIf>;
+// typedefs
+using library_t = sgpl::OpLibrary<
+  sgpl::Nop<>,
+  sgpl::local::Anchor,
+  sgpl::local::JumpIf
+>;
 using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test true JumpIf") {
