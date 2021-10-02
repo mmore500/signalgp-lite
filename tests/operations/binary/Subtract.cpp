@@ -2,8 +2,10 @@
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
+#include "sgpl/library/OpLibrary.hpp"
 #include "sgpl/operations/binary/Subtract.hpp"
 #include "sgpl/program/Program.hpp"
+#include "sgpl/spec/Spec.hpp"
 
 // define libray and spec
 using library_t = sgpl::OpLibrary<sgpl::Subtract>;

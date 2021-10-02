@@ -3,6 +3,7 @@
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
+#include "sgpl/library/OpLibrary.hpp"
 #include "sgpl/operations/bitwise/BitwiseNot.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"

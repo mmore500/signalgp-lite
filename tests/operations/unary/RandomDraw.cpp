@@ -3,6 +3,7 @@
 
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Core.hpp"
+#include "sgpl/library/OpLibrary.hpp"
 #include "sgpl/operations/unary/RandomDraw.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"

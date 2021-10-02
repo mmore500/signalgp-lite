@@ -4,6 +4,7 @@
 
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
+#include "sgpl/library/OpLibrary.hpp"
 #include "sgpl/operations/unary/RandomBool.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
