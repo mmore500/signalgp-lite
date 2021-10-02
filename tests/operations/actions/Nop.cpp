@@ -37,7 +37,7 @@ TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
   sgpl::Core<spec_t> core_copy = core;
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // advance our rand K times
   for (int i{}; i < K; ++i) comparison_rand.StepEngine();

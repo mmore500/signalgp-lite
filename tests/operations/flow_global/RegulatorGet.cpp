@@ -19,9 +19,6 @@ using spec_t = sgpl::Spec<library_t>;
 TEST_CASE("Test RegulatorGet") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorGet");
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   sgpl::Cpu<spec_t> cpu;
 
   cpu.InitializeAnchors(program);
@@ -34,7 +31,7 @@ TEST_CASE("Test RegulatorGet") {
   REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{1, 0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // check final state (value is 0 by default)
   REQUIRE(cpu.GetActiveCore().registers ==  emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});

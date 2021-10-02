@@ -27,9 +27,6 @@ struct spec_t : public sgpl::Spec<library_t>{
 TEST_CASE("Test RegulatorAdj") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorAdj");
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   sgpl::Cpu<spec_t> cpu;
 
   cpu.InitializeAnchors(program);
@@ -43,7 +40,7 @@ TEST_CASE("Test RegulatorAdj") {
 
   // execute RegulatorSet
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Set Global Regulator");
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // set register to a big number (amount to adjust by)
   cpu.GetActiveCore().registers[1] = 100000;
@@ -52,15 +49,15 @@ TEST_CASE("Test RegulatorAdj") {
 
   // execute RegulatorAdj
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Adjust Global Regulator");
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // NOP (give a cycle for regulator to be adjusted)
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Nop-0");
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // execute RegulatorGet
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Get Global Regulator");
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // check to make sure value was adjusted
   REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{100099, 100000, 0, 0, 0, 0, 0, 0});

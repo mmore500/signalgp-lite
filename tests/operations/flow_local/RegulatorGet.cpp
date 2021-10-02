@@ -10,14 +10,14 @@
 #include "sgpl/spec/Spec.hpp"
 
 // define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::local::RegulatorGet, sgpl::local::Anchor>;
+using library_t = sgpl::OpLibrary<
+  sgpl::local::Anchor,
+  sgpl::local::RegulatorGet
+>;
 using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test RegulatorGet") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorGet");
-
-  // create peripheral
-  spec_t::peripheral_t peripheral;
 
   sgpl::Core<spec_t> core;
 
@@ -30,7 +30,7 @@ TEST_CASE("Test RegulatorGet") {
   REQUIRE(core.registers == emp::array<float, 8>{1, 0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state (value is 0 by default)
   REQUIRE(core.registers == emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});

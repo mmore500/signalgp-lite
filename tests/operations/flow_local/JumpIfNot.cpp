@@ -18,9 +18,6 @@ TEST_CASE("Test false JumpIfNot") {
 
   sgpl::Core<spec_t> core;
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   // load all anchors manually
   core.LoadLocalAnchors(program);
 
@@ -34,7 +31,7 @@ TEST_CASE("Test false JumpIfNot") {
   REQUIRE(core.GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // make sure we jumped
   REQUIRE(core.GetProgramCounter() != 1);
@@ -43,9 +40,6 @@ TEST_CASE("Test false JumpIfNot") {
 
 TEST_CASE("Test true JumpIfNot") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("JumpIfNot");
-
-  // create peripheral
-  spec_t::peripheral_t peripheral;
 
   sgpl::Core<spec_t> core;
 
@@ -62,7 +56,7 @@ TEST_CASE("Test true JumpIfNot") {
   REQUIRE(core.GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // make sure we didn't jump
   REQUIRE(core.GetProgramCounter() == 1);

@@ -16,9 +16,6 @@ TEST_CASE("Test RandomFill") {
   // number of replicates
   const size_t replicates = 1000;
 
-  // create peripheral
-  typename spec_t::peripheral_t peripheral;
-
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
@@ -35,7 +32,7 @@ TEST_CASE("Test RandomFill") {
     // tell instruction to operate on 0th register
     program[0].args[0] = 0;
     // execute instruction
-    sgpl::execute_cpu(1, cpu, program, peripheral);
+    sgpl::execute_cpu(1, cpu, program);
 
     anded &= std::bit_cast<int>(cpu.GetActiveCore().registers[0]);
     ored |= std::bit_cast<int>(cpu.GetActiveCore().registers[0]);

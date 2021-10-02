@@ -16,9 +16,6 @@ using spec_t = sgpl::Spec<library_t>;
 TEST_CASE("Test RegulatorSet") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorSet");
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   sgpl::Core<spec_t> core;
 
   // load all anchors manually
@@ -30,7 +27,7 @@ TEST_CASE("Test RegulatorSet") {
   REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorSet
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // clear register
   core.registers[0] = 0;
@@ -39,7 +36,7 @@ TEST_CASE("Test RegulatorSet") {
   REQUIRE(core.registers == emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorGet
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check to make sure value was retrieved
   REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});

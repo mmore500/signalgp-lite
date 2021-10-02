@@ -9,14 +9,12 @@
 #include "sgpl/spec/Spec.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
-using spec_t = sgpl::Spec<sgpl::OpLibrary<sgpl::RandomDraw>>;
+using library_t = sgpl::OpLibrary<sgpl::RandomDraw>;
+using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test RandomDraw") {
   // define number of replicates
   const size_t replicates = 100;
-
-  // create peripheral
-  typename spec_t::peripheral_t peripheral;
 
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
@@ -36,7 +34,7 @@ TEST_CASE("Test RandomDraw") {
     size_t replicate_count{};
     for (size_t j{}; j < 100; j++) {
       // execute instruction
-      sgpl::execute_cpu(1, cpu, program, peripheral);
+      sgpl::execute_cpu(1, cpu, program);
       // store result (either true or false!)
       replicate_count += cpu.GetActiveCore().registers[0];
     }

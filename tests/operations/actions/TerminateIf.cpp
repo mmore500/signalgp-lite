@@ -11,9 +11,6 @@
 using library_t = sgpl::OpLibrary<sgpl::TerminateIf, sgpl::Nop<0>>;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test TerminateIf") {
 
   sgpl::Program<spec_t> program;
@@ -34,7 +31,7 @@ TEST_CASE("Test TerminateIf") {
   REQUIRE(!core.HasTerminated());
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.HasTerminated());
@@ -55,7 +52,7 @@ TEST_CASE("Test False TerminateIf") {
   REQUIRE(!core.HasTerminated());
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check that it didn't terminate
   REQUIRE(!core.HasTerminated());

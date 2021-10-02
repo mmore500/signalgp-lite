@@ -20,9 +20,6 @@ struct spec_t : public sgpl::Spec<library_t>{
 TEST_CASE("Test false JumpIfNot") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("JumpIfNot");
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   sgpl::Cpu<spec_t> cpu;
 
   cpu.InitializeAnchors(program);
@@ -39,7 +36,7 @@ TEST_CASE("Test false JumpIfNot") {
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // make sure we jumped
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() != 1);
@@ -52,9 +49,6 @@ TEST_CASE("Test true JumpIfNot") {
   std::ifstream is("assets/JumpIfNot.json");
 
   { cereal::JSONInputArchive archive( is ); archive( program ); }
-
-  // create peripheral
-  spec_t::peripheral_t peripheral;
 
   sgpl::Cpu<spec_t> cpu;
 
@@ -75,7 +69,7 @@ TEST_CASE("Test true JumpIfNot") {
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // make sure we didn't jump
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 1);

@@ -16,9 +16,6 @@ using spec_t = sgpl::Spec<library_t>;
 TEST_CASE("Test true JumpIf") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("JumpIf");
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   sgpl::Core<spec_t> core;
 
   // load all anchors manually
@@ -34,7 +31,7 @@ TEST_CASE("Test true JumpIf") {
   REQUIRE(core.GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // make sure we jumped
   REQUIRE(core.GetProgramCounter() != 1);
@@ -47,9 +44,6 @@ TEST_CASE("Test false JumpIf") {
   std::ifstream is("assets/JumpIf.json") = sgpl::test::LoadProgram<spec_t>("JumpIf");
 
   sgpl::Core<spec_t> core;
-
-  // create peripheral
-  spec_t::peripheral_t peripheral;
 
   // load all anchors manually
   core.LoadLocalAnchors(program);
@@ -64,7 +58,7 @@ TEST_CASE("Test false JumpIf") {
   REQUIRE(core.GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // make sure we didn't jump
   REQUIRE(core.GetProgramCounter() == 1);

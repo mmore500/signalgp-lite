@@ -12,17 +12,11 @@
 using library_t = sgpl::OpLibrary<sgpl::BitwiseNot>;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test BitwiseNot") {
 
   sgpl::Program<spec_t> program{1};
 
   sgpl::Core<spec_t> core;
-
-  // create peripheral
-  spec_t::peripheral_t peripheral;
 
   // set up initial state
   const float val1 = std::bit_cast<float>(0b00000000000000000000000001001001);
@@ -39,7 +33,7 @@ TEST_CASE("Test BitwiseNot") {
   REQUIRE(core.registers == emp::array<float, 8>{val1, 0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   std::cout << std::bitset<8>(core.registers[1]) << std::endl;
 

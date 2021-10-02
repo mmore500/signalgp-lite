@@ -62,7 +62,6 @@ inline void advance_core(
 };
 
 template<typename Spec>
-
 size_t execute_core(
   sgpl::Core<Spec>& state,
   const sgpl::Program<Spec>& program,
@@ -103,6 +102,33 @@ size_t execute_core(
   return i;
 
 };
+
+template<typename Spec>
+inline void advance_core(
+  sgpl::Core<Spec>& state,
+  const sgpl::Program<Spec>& program
+) {
+
+  using peripheral_t = typename Spec::peripheral_t;
+  peripheral_t peripheral;
+
+  advance_core<Spec>(state, program, peripheral);
+
+}
+
+template<typename Spec>
+inline size_t execute_core(
+  sgpl::Core<Spec>& state,
+  const sgpl::Program<Spec>& program
+) {
+
+  using peripheral_t = typename Spec::peripheral_t;
+  peripheral_t peripheral;
+
+  return execute_core<Spec>(state, program, peripheral);
+
+}
+
 
 } // namespace sgpl
 

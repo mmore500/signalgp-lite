@@ -16,9 +16,6 @@ using spec_t = sgpl::Spec<library_t>;
 TEST_CASE("Test RegulatorAdj") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorAdj");
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   sgpl::Core<spec_t> core;
 
   // load all anchors manually
@@ -30,7 +27,7 @@ TEST_CASE("Test RegulatorAdj") {
   REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorSet
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // set register to a big number (amount to decay by)
   core.registers[1] = 100000;
@@ -38,13 +35,13 @@ TEST_CASE("Test RegulatorAdj") {
   REQUIRE(core.registers == emp::array<float, 8>{99, 100000, 0, 0, 0, 0, 0, 0});
 
   // execute RegulatorAdj
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // NOP
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // execute RegulatorGet
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check to make sure value was decayed
   REQUIRE(core.registers == emp::array<float, 8>{100099, 100000, 0, 0, 0, 0, 0, 0});

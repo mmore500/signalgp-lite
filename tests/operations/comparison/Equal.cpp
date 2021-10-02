@@ -17,9 +17,6 @@ TEST_CASE("Test Not Equal") {
 
   sgpl::Core<spec_t> core;
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   // set up false check
 
   // set up values to operate on in register
@@ -36,7 +33,7 @@ TEST_CASE("Test Not Equal") {
   REQUIRE(core.registers == emp::array<float, 8>{99, 7, -1, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.registers == emp::array<float, 8>{99, 7, 0, 0, 0, 0, 0, 0});
@@ -63,7 +60,7 @@ TEST_CASE("Test Equal") {
   REQUIRE(core.registers == emp::array<float, 8>{99, 7, -1, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.registers == emp::array<float, 8>{99, 7, 1, 0, 0, 0, 0, 0});

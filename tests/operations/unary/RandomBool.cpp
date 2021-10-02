@@ -22,9 +22,6 @@ TEST_CASE("Test RandomBool") {
   // define number of replicates
   const size_t replicates = 100;
 
-  // create peripheral
-  typename spec_t::peripheral_t peripheral;
-
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
@@ -43,7 +40,7 @@ TEST_CASE("Test RandomBool") {
     size_t replicate_count{};
     for (size_t j{}; j < 100; j++) {
       // execute instruction
-      sgpl::execute_cpu(1, cpu, program, peripheral);
+      sgpl::execute_cpu(1, cpu, program);
       // store result (either true or false!)
       replicate_count += cpu.GetActiveCore().registers[0];
     }

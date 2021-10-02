@@ -26,9 +26,6 @@ TEST_CASE("Test true JumpIf") {
 
   sgpl::Cpu<spec_t> cpu;
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   cpu.InitializeAnchors(program);
 
   REQUIRE(cpu.TryLaunchCore());
@@ -43,7 +40,7 @@ TEST_CASE("Test true JumpIf") {
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // // make sure we jumped
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() != 1);
@@ -52,9 +49,6 @@ TEST_CASE("Test true JumpIf") {
 
 TEST_CASE("Test false JumpIf") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("JumpIf");
-
-  // create peripheral
-  spec_t::peripheral_t peripheral;
 
   sgpl::Cpu<spec_t> cpu;
 
@@ -72,7 +66,7 @@ TEST_CASE("Test false JumpIf") {
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);
 
   // execute single instruction
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // make sure we didn't jump
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 1);

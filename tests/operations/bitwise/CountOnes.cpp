@@ -18,9 +18,6 @@ TEST_CASE("Test CountOnes") {
 
   sgpl::Core<spec_t> core;
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   // set up initial state
   const float val1 = std::bit_cast<float>(0b001101);
 
@@ -35,7 +32,7 @@ TEST_CASE("Test CountOnes") {
   REQUIRE(core.registers == emp::array<float, 8>{val1, 0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.registers == emp::array<float, 8>{val1, 3, 0, 0, 0, 0, 0, 0});

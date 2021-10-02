@@ -18,9 +18,6 @@ TEST_CASE("Test Left BitwiseShift") {
 
   sgpl::Core<spec_t> core;
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   // set up initial state
 
   // set up values to operate on in register
@@ -36,7 +33,7 @@ TEST_CASE("Test Left BitwiseShift") {
   REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), 3.0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), 3.0, std::bit_cast<float>(0b001001000), 0, 0, 0, 0, 0});
@@ -64,7 +61,7 @@ TEST_CASE("Test Right BitwiseShift") {
   REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), -3.0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), -3.0, std::bit_cast<float>(0b000001), 0, 0, 0, 0, 0});

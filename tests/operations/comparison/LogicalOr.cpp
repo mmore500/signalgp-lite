@@ -17,9 +17,6 @@ TEST_CASE("Test true LogicalOr") {
 
   sgpl::Core<spec_t> core;
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   // set up values to operate on in register
   core.registers[0] = true;
   core.registers[1] = true;
@@ -33,7 +30,7 @@ TEST_CASE("Test true LogicalOr") {
   REQUIRE(core.registers == emp::array<float, 8>{true, true, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.registers == emp::array<float, 8>{true, true, true, 0, 0, 0, 0, 0});
@@ -59,7 +56,7 @@ TEST_CASE("Test false LogicalOr") {
   REQUIRE(core.registers == emp::array<float, 8>{false, false, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.registers == emp::array<float, 8>{false, false, false, 0, 0, 0, 0, 0});

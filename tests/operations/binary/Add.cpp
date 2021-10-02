@@ -7,20 +7,15 @@
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 
-// define libray and spec
+// typedefs
 using library_t = sgpl::OpLibrary<sgpl::Add>;
 using spec_t = sgpl::Spec<library_t>;
-
-
 
 TEST_CASE("Test Add") {
 
   sgpl::Program<spec_t> program{1};
 
   sgpl::Core<spec_t> core;
-
-  // create peripheral
-  spec_t::peripheral_t peripheral;
 
   // set up initial state
 
@@ -37,7 +32,7 @@ TEST_CASE("Test Add") {
   REQUIRE(core.registers == emp::array<float, 8>{1, 2, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   // expected: 1 + 2 == 3

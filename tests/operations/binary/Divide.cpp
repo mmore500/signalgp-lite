@@ -11,9 +11,6 @@
 using library_t = sgpl::OpLibrary<sgpl::Divide>;
 using spec_t = sgpl::Spec<library_t>;
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test Divide") {
 
   sgpl::Program<spec_t> program{1};
@@ -35,7 +32,7 @@ TEST_CASE("Test Divide") {
   REQUIRE(core.registers == emp::array<float, 8>{99, 2, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   // expected: 99 / 2 == 49.5

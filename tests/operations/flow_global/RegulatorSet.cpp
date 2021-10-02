@@ -22,9 +22,6 @@ struct spec_t : public sgpl::Spec<library_t>{
 TEST_CASE("Test RegulatorSet") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorSet");
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   sgpl::Cpu<spec_t> cpu;
 
   cpu.InitializeAnchors(program);
@@ -38,7 +35,7 @@ TEST_CASE("Test RegulatorSet") {
 
   // execute RegulatorSet
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Set Global Regulator");
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // clear register
   cpu.GetActiveCore().registers[0] = 0;
@@ -48,7 +45,7 @@ TEST_CASE("Test RegulatorSet") {
 
   // execute RegulatorGet
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Get Global Regulator");
-  sgpl::execute_cpu(1, cpu, program, peripheral);
+  sgpl::execute_cpu(1, cpu, program);
 
   // check to make sure value was retrieved
   REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});

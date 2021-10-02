@@ -18,9 +18,6 @@ TEST_CASE("Test BitwiseAnd") {
 
   sgpl::Core<spec_t> core;
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   // set up initial state
   const float val1 = std::bit_cast<float>(0b11010110);
   const float val2 = std::bit_cast<float>(0b10010101);
@@ -39,7 +36,7 @@ TEST_CASE("Test BitwiseAnd") {
   REQUIRE(core.registers == emp::array<float, 8>{val1, val2, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   std::cout << sizeof(float) * 8 << std::endl;
   // check final state

@@ -17,9 +17,6 @@ TEST_CASE("Test Increment") {
 
   sgpl::Core<spec_t> core;
 
-  // create peripheral
-  spec_t::peripheral_t peripheral;
-
   // set up false check
 
   // set up values to operate on in register
@@ -32,7 +29,7 @@ TEST_CASE("Test Increment") {
   REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.registers == emp::array<float, 8>{100, 0, 0, 0, 0, 0, 0, 0});
