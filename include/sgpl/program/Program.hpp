@@ -42,7 +42,7 @@ public:
   /// Default constructor.
   Program() = default;
 
-  Program( const size_t n ) : parent_t( n ) {
+  explicit Program( const size_t n ) : parent_t( n ) {
     sgpl::tlrand.Get().RandFill(
       reinterpret_cast<unsigned char*>( this->data() ),
       size_bytes()
@@ -214,6 +214,5 @@ struct hash<sgpl::Program<Spec>> {
 };
 
 } // namespace std
-
 
 #endif // #ifndef SGPL_PROGRAM_PROGRAM_HPP_INCLUDE
