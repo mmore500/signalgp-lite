@@ -4,8 +4,8 @@
 
 #include <algorithm>
 #include <cstddef>
-#include <string>
 #include <sstream>
+#include <string>
 
 #include "../../../third-party/cereal/include/cereal/archives/binary.hpp"
 #include "../../../third-party/cereal/include/cereal/archives/json.hpp"
