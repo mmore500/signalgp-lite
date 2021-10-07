@@ -47,5 +47,5 @@ TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
   REQUIRE(sgpl::tlrand.Get().GetUInt() == comparison_rand.GetUInt());
 
   // check that cores are equivalent
-  REQUIRE(core_copy == core);
+  REQUIRE(core == core_copy);
 }
