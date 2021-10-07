@@ -127,10 +127,14 @@ public:
   bool operator==(const Core& other) const {
     return std::tuple{
       program_counter,
+      registers,
+      fork_requests,
       local_jump_table,
       global_jump_tables
     } == std::tuple{
       other.program_counter,
+      other.registers,
+      other.fork_requests,
       other.local_jump_table,
       other.global_jump_tables
     };
