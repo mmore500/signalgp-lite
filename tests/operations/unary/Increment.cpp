@@ -11,9 +11,35 @@
 using library_t = sgpl::OpLibrary<sgpl::Increment>;
 using spec_t = sgpl::Spec<library_t>;
 
+auto make_program() {
+  sgpl::Program<spec_t> program;
+
+  std::stringstream ss(R"(
+    {
+      "value0": [
+          {
+              "operation": "Increment",
+              "args": {
+                  "value0": 0,
+                  "value1": 0,
+                  "value2": 0
+              },
+              "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+              "descriptors": []
+          }
+      ]
+    }
+  )");
+
+  cereal::JSONInputArchive archive( ss );
+  archive( program );
+
+  return program;
+}
+
 TEST_CASE("Test Increment") {
 
-  sgpl::Program<spec_t> program{1};
+  sgpl::Program<spec_t> program = make_program();
 
   sgpl::Core<spec_t> core;
 
@@ -21,9 +47,6 @@ TEST_CASE("Test Increment") {
 
   // set up values to operate on in register
   core.registers[0] = 99;
-
-  // set up what registers to operate on
-  program[0].args[0] = 0;
 
   // check initial state
   REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});

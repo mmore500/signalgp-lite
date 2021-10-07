@@ -1,5 +1,7 @@
 #include "Catch/single_include/catch2/catch.hpp"
 
+#include "../LoadProgram.hpp"
+
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/library/OpLibrary.hpp"
