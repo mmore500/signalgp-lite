@@ -17,6 +17,9 @@ TEST_CASE("Test Divide") {
 
   sgpl::Core<spec_t> core;
 
+  // create peripheral
+  spec_t::peripheral_t peripheral;
+
   // set up initial state
 
   // set up values to operate on in register
