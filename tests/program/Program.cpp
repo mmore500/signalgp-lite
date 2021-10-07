@@ -16,22 +16,21 @@ template<typename InArchive, typename OutArchive>
 void DoSerializationTest(const std::string& filename) {
 
   sgpl::Program<spec_t> original{ 100 };
-
-  std::ofstream os(filename);
-
-  { OutArchive archive( os ); archive( original ); }
-
-  os.close();
-
-  std::ifstream is(filename);
+  {
+    std::ofstream os(filename);
+    OutArchive archive( os );
+    archive( original );
+  }
 
   sgpl::Program<spec_t> reconstituted;
-
-  { InArchive archive( is ); archive( reconstituted ); }
+  {
+    std::ifstream is(filename);
+    InArchive archive( is );
+    archive( reconstituted );
+  }
 
   REQUIRE( reconstituted == original );
 
-  is.close();
 }
 
 TEST_CASE("Test Program Binary Serialization") {
