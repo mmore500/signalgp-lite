@@ -5,6 +5,18 @@ USER root
 COPY . /opt/signalgp-lite
 
 RUN \
+  apt-get update -qq \
+    && \
+  apt-get install -y --allow-downgrades --no-install-recommends \
+    rename \
+    && \
+  apt-get clean \
+    && \
+  rm -rf /var/lib/apt/lists/* \
+    && \
+  echo "installed apt packages"
+
+RUN \
   pip3 install --timeout 60 --retries 100 -r /opt/signalgp-lite/docs/requirements.txt \
     && \
   echo "installed Python packages"
