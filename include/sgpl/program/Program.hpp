@@ -90,13 +90,13 @@ public:
   Program& operator=(Program&& other) {
     parent_t::operator=( std::move(other) );
     return *this;
- }
+  }
 
   /// Raw move assignment operator.
   Program& operator=(parent_t&& other) {
     parent_t::operator=( std::move(other) );
     return *this;
- }
+  }
 
   size_t ApplyPointMutations(
     const float p_bit_toggle, const rectifier_t& rectifier=rectifier_t{}
