@@ -29,6 +29,8 @@ docutils==0.16
     #   breathe
     #   myst-parser
     #   sphinx
+editorconfig-checker==2.3.5
+    # via -r requirements.in
 exdown==0.7.1
     # via -r requirements.in
 exhale==0.2.3
@@ -58,7 +60,9 @@ pytz==2021.1
 pyyaml==5.4.1
     # via myst-parser
 requests==2.25.1
-    # via sphinx
+    # via
+    #   editorconfig-checker
+    #   sphinx
 six==1.15.0
     # via
     #   breathe
