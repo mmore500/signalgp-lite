@@ -61,6 +61,10 @@ badges: documentation-coverage-badge.json version-badge.json doto-badge.json
 
 clean:
 	rm -f $(PROJECT) web/$(PROJECT).js web/*.js.map web/*.js.map *~ source/*.o web/*.wasm web/*.wast
+	cd docs && make clean
+	cd fuzzing && make clean
+	cd microbenchmarks && make clean
+	cd tests && make clean
 
 test: debug debug-web
 	./signalgp-lite | grep -q 'Hello, world!' && echo 'matched!' || exit 1
