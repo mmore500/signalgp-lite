@@ -50,6 +50,6 @@ TEST_CASE("Test False TerminateIf") {
   // execute single instruction
   sgpl::advance_core(core, program);
 
-  // check that it didn't terminate
+  // check that it did not terminate
   REQUIRE(!core.HasTerminated());
 }

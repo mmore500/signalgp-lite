@@ -58,6 +58,6 @@ TEST_CASE("Test JumpIfNot, true value") {
   // execute single instruction
   sgpl::advance_core(core, program);
 
-  // make sure we didn't jump
+  // make sure we did not jump
   REQUIRE(core.GetProgramCounter() == 1);
 }

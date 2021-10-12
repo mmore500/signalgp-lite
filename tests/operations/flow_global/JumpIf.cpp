@@ -63,6 +63,6 @@ TEST_CASE("Test Global JumpIf, false value") {
   // execute single instruction
   sgpl::execute_cpu(1, cpu, program);
 
-  // make sure we didn't jump
+  // make sure we did not jump
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 1);
 }
