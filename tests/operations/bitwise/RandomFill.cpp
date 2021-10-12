@@ -11,7 +11,7 @@
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 // typedefs
-using library_t = sgpl::OpLibrary<sgpl::RandomFill>
+using library_t = sgpl::OpLibrary<sgpl::RandomFill>;
 using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test RandomFill") {
