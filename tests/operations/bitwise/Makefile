@@ -1,4 +1,4 @@
-TEST_NAMES += BitwiseAdd
+TEST_NAMES += BitwiseAnd
 TEST_NAMES += BitwiseNot
 TEST_NAMES += BitwiseOr
 TEST_NAMES += BitwiseShift
