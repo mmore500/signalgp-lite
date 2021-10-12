@@ -13,6 +13,13 @@
 using library_t = sgpl::OpLibrary<sgpl::RandomDraw>;
 using spec_t = sgpl::Spec<library_t>;
 
+/**
+ * This testcase is intended to check the behavior of RandomDraw.
+ * One hundred random RandomDraw operations are executed one hundred times each.
+ * The total sums of each replicate are tallied, and the test only passes if the overall
+ * standard deviation is sufficiently large (>1,000), the smallest sum is smaller than 10,
+ * and the largest sum is greater than 100,000.
+ */
 TEST_CASE("Test RandomDraw") {
   // define number of replicates
   constexpr size_t replicates = 100;

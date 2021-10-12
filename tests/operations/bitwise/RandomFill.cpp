@@ -14,6 +14,11 @@
 using library_t = sgpl::OpLibrary<sgpl::RandomFill>;
 using spec_t = sgpl::Spec<library_t>;
 
+/**
+ * RandomFill fills the 32 bits that represent a float with bits
+ * randomly chosen from a uniform distribution. This test checks this
+ * behavior by making sure that every bit gets set to both 0 and 1 at least once.
+ */
 TEST_CASE("Test RandomFill") {
   // number of replicates
   constexpr size_t replicates = 1000;

@@ -18,6 +18,12 @@ struct spec_t : public sgpl::Spec<library_t>{
   static constexpr inline size_t num_cores{ 20 }; // eslint-disable-line no-eval
 };
 
+/**
+ * This testcase is intended to check the behavior of RandomBool.
+ * One hundred random RandomBool operations are executed one hundred times each.
+ * The `true` results are tallied, and the test only passes if the overall
+ * mean, max, and min of successful flips is between 25% and 75%.
+ */
 TEST_CASE("Test RandomBool") {
   // define number of replicates
   constexpr size_t replicates = 100;
