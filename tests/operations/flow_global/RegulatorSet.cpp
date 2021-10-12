@@ -1,7 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "../LoadProgram.hpp"
-
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/library/OpLibrary.hpp"
@@ -24,7 +22,9 @@ struct spec_t : public sgpl::Spec<library_t>{
 };
 
 TEST_CASE("Test RegulatorSet") {
-  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorSet");
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/RegulatorSet.json"
+  });
 
   sgpl::Cpu<spec_t> cpu;
 

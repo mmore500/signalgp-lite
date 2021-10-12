@@ -3,15 +3,15 @@
         {
             "operation": "Local Jump If",
             "args": {
-                "value0": 6,
-                "value1": 5,
-                "value2": 5
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
             "descriptors": [
                 {
                     "key": "argument a",
-                    "value": "6"
+                    "value": "0"
                 },
                 {
                     "key": "summary",

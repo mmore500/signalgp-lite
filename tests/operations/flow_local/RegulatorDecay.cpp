@@ -1,7 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "../LoadProgram.hpp"
-
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
 #include "sgpl/library/OpLibrary.hpp"
@@ -21,6 +19,10 @@ struct spec_t : public sgpl::Spec<library_t>{
   static constexpr inline size_t num_registers{ 4 };
 };
 
+TEST_CASE("Test RegulatorDecay, positive value") {
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/RegulatorDecay.json"
+  });
 
   sgpl::Core<spec_t> core;
 
@@ -54,8 +56,10 @@ struct spec_t : public sgpl::Spec<library_t>{
 
 }
 
-TEST_CASE("Test Negative RegulatorDecay") {
-  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorDecay");
+TEST_CASE("Test RegulatorDecay, negative value") {
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/RegulatorDecay.json"
+  });
 
   sgpl::Core<spec_t> core;
 

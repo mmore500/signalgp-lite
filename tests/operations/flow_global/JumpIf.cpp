@@ -1,7 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "../LoadProgram.hpp"
-
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/library/OpLibrary.hpp"
@@ -20,12 +18,10 @@ struct spec_t : public sgpl::Spec<library_t> {
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
 };
 
-TEST_CASE("Test true JumpIf") {
-  sgpl::Program<spec_t> program;
-
-  std::ifstream is("assets/JumpIf.json");
-
-  { cereal::JSONInputArchive archive( is ); archive( program ); }
+TEST_CASE("Test Global JumpIf, true value") {
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/JumpIf.json"
+  });
 
   sgpl::Cpu<spec_t> cpu;
 
@@ -35,9 +31,6 @@ TEST_CASE("Test true JumpIf") {
 
   // set up values to operate on in register
   cpu.GetActiveCore().registers[0] = true;
-
-  // set up what registers to operate on
-  program[0].args[0] = 0;
 
   // check initial state
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);
@@ -50,8 +43,10 @@ TEST_CASE("Test true JumpIf") {
 }
 
 
-TEST_CASE("Test false JumpIf") {
-  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("JumpIf");
+TEST_CASE("Test Global JumpIf, false value") {
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/JumpIf.json"
+  });
 
   sgpl::Cpu<spec_t> cpu;
 
@@ -61,9 +56,6 @@ TEST_CASE("Test false JumpIf") {
 
   // set up values to operate on in register
   cpu.GetActiveCore().registers[0] = false;
-
-  // set up what registers to operate on
-  program[0].args[0] = 0;
 
   // check initial state
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);

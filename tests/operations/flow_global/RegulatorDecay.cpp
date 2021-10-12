@@ -1,7 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "../LoadProgram.hpp"
-
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/library/OpLibrary.hpp"
@@ -29,8 +27,10 @@ struct spec_t : public sgpl::Spec<library_t>{
  * by the positive value passed to it
  * on the cycle following its call.
 */
-TEST_CASE("Test Positive RegulatorDecay") {
-  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorDecay");
+TEST_CASE("Test RegulatorDecay, positive decay value") {
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/RegulatorDecay.json"
+  });
 
   sgpl::Cpu<spec_t> cpu;
 
@@ -74,8 +74,10 @@ TEST_CASE("Test Positive RegulatorDecay") {
  * the regulator value by the negative value passed to it
  * on the cycle following its call.
 */
-TEST_CASE("Test Negative RegulatorDecay") {
-  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorDecay");
+TEST_CASE("Test RegulatorDecay, negative decay value") {
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/RegulatorDecay.json"
+  });
 
   sgpl::Cpu<spec_t> cpu;
 

@@ -1,7 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "../LoadProgram.hpp"
-
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
 #include "sgpl/library/OpLibrary.hpp"
@@ -17,8 +15,10 @@ using library_t = sgpl::OpLibrary<
 >;
 using spec_t = sgpl::Spec<library_t>;
 
-TEST_CASE("Test false JumpIfNot") {
-  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("JumpIfNot");
+TEST_CASE("Test JumpIfNot, false value") {
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/JumpIfNot.json"
+  });
 
   sgpl::Core<spec_t> core;
 
@@ -27,9 +27,6 @@ TEST_CASE("Test false JumpIfNot") {
 
   // set up values to operate on in register
   core.registers[0] = false;
-
-  // set up what registers to operate on
-  program[0].args[0] = 0;
 
   // check initial state
   REQUIRE(core.GetProgramCounter() == 0);
@@ -42,8 +39,10 @@ TEST_CASE("Test false JumpIfNot") {
 }
 
 
-TEST_CASE("Test true JumpIfNot") {
-  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("JumpIfNot");
+TEST_CASE("Test JumpIfNot, true value") {
+  sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/JumpIfNot.json"
+  });
 
   sgpl::Core<spec_t> core;
 
@@ -52,9 +51,6 @@ TEST_CASE("Test true JumpIfNot") {
 
   // set up values to operate on in register
   core.registers[0] = true;
-
-  // set up what registers to operate on
-  program[0].args[0] = 0;
 
   // check initial state
   REQUIRE(core.GetProgramCounter() == 0);
