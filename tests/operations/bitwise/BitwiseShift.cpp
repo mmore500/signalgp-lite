@@ -10,7 +10,6 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::BitwiseShift>;
-using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test Left BitwiseShift") {
 
@@ -31,12 +30,16 @@ TEST_CASE("Test Left BitwiseShift") {
 
   // check initial state
   REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), 3.0, 0, 0, 0, 0, 0, 0});
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
+
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), 3.0, std::bit_cast<float>(0b001001000), 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, std::bit_cast<float>(0b001001000), {}});
 }
 
 
@@ -64,5 +67,5 @@ TEST_CASE("Test Right BitwiseShift") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{std::bit_cast<float>(0b001001), -3.0, std::bit_cast<float>(0b000001), 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, std::bit_cast<float>(0b000001), {}});
 }

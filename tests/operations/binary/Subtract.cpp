@@ -9,7 +9,9 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::Subtract>;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
 
 TEST_CASE("Test Subtract") {
 
@@ -36,5 +38,5 @@ TEST_CASE("Test Subtract") {
 
   // check final state
   // expected: 99 - 7 == 92
-  REQUIRE(core.registers == emp::array<float, 8>{99, 7, 92, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{99.f, 7.f, 99.f - 7.f, {}});
 }

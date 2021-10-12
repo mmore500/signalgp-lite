@@ -9,7 +9,6 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::GreaterThan>;
-using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test Not GreaterThan") {
 
@@ -31,12 +30,16 @@ TEST_CASE("Test Not GreaterThan") {
 
   // check initial state
   REQUIRE(core.registers == emp::array<float, 8>{7, 99, -1, 0, 0, 0, 0, 0});
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
+
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{7, 99, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, 1, {}});
 
 }
 
@@ -63,6 +66,5 @@ TEST_CASE("Test GreaterThan") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 7, 1, 0, 0, 0, 0, 0});
-
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, 0, {}});
 }

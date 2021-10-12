@@ -9,7 +9,9 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::Divide>;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
 
 TEST_CASE("Test Divide") {
 
@@ -32,12 +34,12 @@ TEST_CASE("Test Divide") {
   program[0].args[2] = 1;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 2, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{99.f, 2.f, 0.f, {}});
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
   // expected: 99 / 2 == 49.5
-  REQUIRE(core.registers == emp::array<float, 8>{99, 2, 49.5, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{99.f, 2.f, 99.f / 2.f,{}});
 }

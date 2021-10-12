@@ -9,9 +9,41 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::LogicalAnd>;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
+
+TEST_CASE("Test LogicalAnd, both operands true") {
+
+  sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Logical And",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
+
+  // define value constants
+  const float operand1 = true;
+  const float operand2 = true;
+
+  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
 
 TEST_CASE("Test true LogicalAnd") {
+
+  // check final state
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, true, {}});
+
+}
 
   sgpl::Program<spec_t> program{1};
 
@@ -33,7 +65,7 @@ TEST_CASE("Test true LogicalAnd") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{true, true, true, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, false, {}});
 
 }
 
@@ -59,6 +91,6 @@ TEST_CASE("Test false LogicalAnd") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{true, false, false, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, false, {}});
 
 }

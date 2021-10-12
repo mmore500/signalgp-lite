@@ -9,7 +9,6 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::Equal>;
-using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test Not Equal") {
 
@@ -31,12 +30,16 @@ TEST_CASE("Test Not Equal") {
 
   // check initial state
   REQUIRE(core.registers == emp::array<float, 8>{99, 7, -1, 0, 0, 0, 0, 0});
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
+
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 7, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, 0, {}});
 
 }
 
@@ -63,6 +66,6 @@ TEST_CASE("Test Equal") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 7, 1, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, 1, {}});
 
 }

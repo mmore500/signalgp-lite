@@ -9,7 +9,10 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::Increment>;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t>{
+  // lower number of registers, as 8 are not needed
+  static constexpr inline size_t num_registers{ 4 };
+};
 
 auto make_program() {
   sgpl::Program<spec_t> program;
@@ -55,6 +58,6 @@ TEST_CASE("Test Increment") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{100, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{100, 0, 0, 0});
 
 }

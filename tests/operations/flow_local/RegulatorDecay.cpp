@@ -16,10 +16,11 @@ using library_t = sgpl::OpLibrary<
   sgpl::local::RegulatorGet,
   sgpl::local::RegulatorSet
 >;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t>{
+  // lower number of registers, as 8 are not needed
+  static constexpr inline size_t num_registers{ 4 };
+};
 
-TEST_CASE("Test Positive RegulatorDecay") {
-  sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorDecay");
 
   sgpl::Core<spec_t> core;
 
@@ -29,7 +30,7 @@ TEST_CASE("Test Positive RegulatorDecay") {
   core.registers[0] = 99;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{99, 0, 0, 0});
 
   // execute RegulatorSet
   sgpl::advance_core(core, program);
@@ -37,7 +38,7 @@ TEST_CASE("Test Positive RegulatorDecay") {
   // set register to a big number (amount to decay by)
   core.registers[1] = 9999999;
 
-  REQUIRE(core.registers == emp::array<float, 8>{99, 9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{99, 9999999, 0, 0});
 
   // execute RegulatorDecay
   sgpl::advance_core(core, program);
@@ -49,7 +50,7 @@ TEST_CASE("Test Positive RegulatorDecay") {
   sgpl::advance_core(core, program);
 
   // check to make sure value was decayed
-  REQUIRE(core.registers == emp::array<float, 8>{0, 9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{0, 9999999, 0, 0});
 
 }
 
@@ -64,7 +65,7 @@ TEST_CASE("Test Negative RegulatorDecay") {
   core.registers[0] = 99;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{99, 0, 0, 0});
 
   // execute RegulatorSet
   sgpl::advance_core(core, program);
@@ -72,7 +73,7 @@ TEST_CASE("Test Negative RegulatorDecay") {
   // set register to a small number (amount to decay by)
   core.registers[1] = -9999999;
 
-  REQUIRE(core.registers == emp::array<float, 8>{99, -9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{99, -9999999, 0, 0});
 
   // execute RegulatorDecay
   sgpl::advance_core(core, program);
@@ -84,6 +85,6 @@ TEST_CASE("Test Negative RegulatorDecay") {
   sgpl::advance_core(core, program);
 
   // check to make sure value was decayed
-  REQUIRE(core.registers == emp::array<float, 8>{99, -9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{99, -9999999, 0, 0});
 
 }

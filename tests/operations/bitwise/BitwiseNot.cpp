@@ -10,7 +10,9 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::BitwiseNot>;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
 
 TEST_CASE("Test BitwiseNot") {
 
@@ -38,5 +40,5 @@ TEST_CASE("Test BitwiseNot") {
   std::cout << std::bitset<8>(core.registers[1]) << std::endl;
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{val1, val2, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, result, {}, {}});
 }

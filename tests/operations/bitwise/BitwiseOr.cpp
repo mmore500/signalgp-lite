@@ -10,7 +10,9 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::BitwiseOr>;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
 
 TEST_CASE("Test BitwiseOr") {
 
@@ -41,5 +43,5 @@ TEST_CASE("Test BitwiseOr") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{val1, val2, val3, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, val3, {}});
 }

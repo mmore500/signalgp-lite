@@ -20,6 +20,8 @@ using library_t = sgpl::OpLibrary<
 struct spec_t : public sgpl::Spec<library_t>{
   // this is here so that we can step through the operations properly
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
+  // lower number of registers, as 8 are not needed
+  static constexpr inline size_t num_registers{ 4 };
 };
 
 /**
@@ -39,7 +41,7 @@ TEST_CASE("Test Positive RegulatorDecay") {
   cpu.GetActiveCore().registers[0] = 99;
 
   // check initial state
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{99, 0, 0, 0});
 
   // execute RegulatorSet
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Set Global Regulator");
@@ -48,7 +50,7 @@ TEST_CASE("Test Positive RegulatorDecay") {
   // set register to a big number (amount to decay by)
   cpu.GetActiveCore().registers[1] = 9999999;
 
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{99, 9999999, 0, 0});
 
   // execute RegulatorDecay
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Decay Global Regulator");
@@ -63,7 +65,7 @@ TEST_CASE("Test Positive RegulatorDecay") {
   sgpl::execute_cpu(1, cpu, program);
 
   // check to make sure value was decayed
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{0, 9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{0, 9999999, 0, 0});
 
 }
 
@@ -84,7 +86,7 @@ TEST_CASE("Test Negative RegulatorDecay") {
   cpu.GetActiveCore().registers[0] = 99;
 
   // check initial state
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{99, 0, 0, 0});
 
   // execute RegulatorSet
   sgpl::execute_cpu(1, cpu, program);
@@ -92,7 +94,7 @@ TEST_CASE("Test Negative RegulatorDecay") {
   // set register to a small number (amount to decay by)
   cpu.GetActiveCore().registers[1] = -9999999;
 
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, -9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{99, -9999999, 0, 0});
 
   // execute RegulatorDecay
   sgpl::execute_cpu(1, cpu, program);
@@ -104,6 +106,6 @@ TEST_CASE("Test Negative RegulatorDecay") {
   sgpl::execute_cpu(1, cpu, program);
 
   // check to make sure value was decayed
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, -9999999, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{99, -9999999, 0, 0});
 
 }

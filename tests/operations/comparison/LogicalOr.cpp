@@ -12,6 +12,10 @@ using library_t = sgpl::OpLibrary<sgpl::LogicalOr>;
 using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test true LogicalOr") {
+  // check final state
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, true, {}});
+
+}
 
   sgpl::Program<spec_t> program{1};
 
@@ -33,7 +37,7 @@ TEST_CASE("Test true LogicalOr") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{true, true, true, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, true, {}});
 
 }
 
@@ -59,6 +63,6 @@ TEST_CASE("Test false LogicalOr") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 8>{false, false, false, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, false, {}});
 
 }

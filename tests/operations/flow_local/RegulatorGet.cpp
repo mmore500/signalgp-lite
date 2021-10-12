@@ -14,7 +14,10 @@ using library_t = sgpl::OpLibrary<
   sgpl::local::Anchor,
   sgpl::local::RegulatorGet
 >;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t>{
+  // lower number of registers, as 8 are not needed
+  static constexpr inline size_t num_registers{ 4 };
+};
 
 TEST_CASE("Test RegulatorGet") {
   sgpl::Program<spec_t> program = sgpl::test::LoadProgram<spec_t>("RegulatorGet");
@@ -27,12 +30,12 @@ TEST_CASE("Test RegulatorGet") {
   core.registers[0] = 1;
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{1, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{1, 0, 0, 0});
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state (value is 0 by default)
-  REQUIRE(core.registers == emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{0, 0, 0, 0});
 
 }

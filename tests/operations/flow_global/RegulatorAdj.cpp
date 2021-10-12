@@ -21,6 +21,8 @@ using library_t = sgpl::OpLibrary<
 struct spec_t : public sgpl::Spec<library_t>{
   // this is here so that we can step through the operations properly
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
+  // lower number of registers, as 8 are not needed
+  static constexpr inline size_t num_registers{ 4 };
 };
 
 TEST_CASE("Test RegulatorAdj") {
@@ -35,7 +37,7 @@ TEST_CASE("Test RegulatorAdj") {
   cpu.GetActiveCore().registers[0] = 99;
 
   // check initial state
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{99, 0, 0, 0});
 
   // execute RegulatorSet
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Set Global Regulator");
@@ -44,7 +46,7 @@ TEST_CASE("Test RegulatorAdj") {
   // set register to a big number (amount to adjust by)
   cpu.GetActiveCore().registers[1] = 100000;
 
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{99, 100000, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{99, 100000, 0, 0});
 
   // execute RegulatorAdj
   REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Adjust Global Regulator");
@@ -59,5 +61,5 @@ TEST_CASE("Test RegulatorAdj") {
   sgpl::execute_cpu(1, cpu, program);
 
   // check to make sure value was adjusted
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 8>{100099, 100000, 0, 0, 0, 0, 0, 0});
+  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{100099, 100000, 0, 0});
 }
