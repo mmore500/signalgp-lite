@@ -6,4 +6,3 @@ breathe==4.19.2
 myst-parser==0.12.9
 exdown==0.7.1
 sphinxemoji==0.1.8
-editorconfig-checker==2.3.5
