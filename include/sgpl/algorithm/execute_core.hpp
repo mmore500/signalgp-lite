@@ -69,22 +69,10 @@ size_t execute_core(
 ) {
 
   /**
-   * The truth table that follows is the justification behind using the not-equality operator.
-   *
-   * A = "has anchors"
-   * B = "anchors have been initialized"
-   *
-   * A B P
-   * 0 0 1
-   * 1 0 0
-   * 0 1 ?
-   * 1 1 1
-   *
-   * Third row is ? because we do not care whether it's true or false.
-   *
-   * The not-equality operator was chosen since it fulfills this truth table in a single
-   * operator. In case a more thorough check is required (i.e. third row to be false)
-   * a more complex statement needs implemented.
+   * We need to make sure that the GlobalJumpTable is populated
+   * /except/ when the program has no modules.
+   * In this case, when there are no GlobalAnchors within the program,
+   * it is acceptable for the GlobalJumpTable to be empty.
    */
   emp_assert(
     state.GetGlobalJumpTable().GetSize()
