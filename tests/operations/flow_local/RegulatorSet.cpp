@@ -14,6 +14,8 @@ using library_t = sgpl::OpLibrary<
   sgpl::local::RegulatorSet
 >;
 struct spec_t : public sgpl::Spec<library_t>{
+  // this is here so that we can step through the operations properly
+  static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
   // lower number of registers, as 8 are not needed
   static constexpr inline size_t num_registers{ 4 };
 };
