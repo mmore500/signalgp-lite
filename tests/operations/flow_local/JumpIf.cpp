@@ -9,7 +9,7 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<
-  sgpl::Nop<>,
+  sgpl::Nop<1>,
   sgpl::local::Anchor,
   sgpl::local::JumpIf
 >;
