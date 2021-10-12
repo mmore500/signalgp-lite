@@ -13,6 +13,7 @@ struct spec_t : public sgpl::Spec<library_t> {
   static constexpr inline size_t num_registers{ 4 };
 };
 
+TEST_CASE("Test LogicalOr, both operands true") {
 
   sgpl::Program<spec_t> program(R"(
     {
@@ -40,7 +41,6 @@ struct spec_t : public sgpl::Spec<library_t> {
   // execute single instruction
   sgpl::advance_core(core, program);
 
-TEST_CASE("Test true LogicalOr") {
   // check final state
   REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, true, {}});
 
@@ -80,7 +80,7 @@ TEST_CASE("Test LogicalOr, one operand true and one false") {
 
 }
 
-TEST_CASE("Test false LogicalOr") {
+TEST_CASE("Test LogicalOr, both operands false") {
 
   sgpl::Program<spec_t> program(R"(
     {

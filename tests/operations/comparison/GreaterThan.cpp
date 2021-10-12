@@ -9,11 +9,11 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::GreaterThan>;
-TEST_CASE("Test Not GreaterThan") {
 struct spec_t : public sgpl::Spec<library_t> {
   static constexpr inline size_t num_registers{ 4 };
 };
 
+TEST_CASE("Test GreaterThan, first operand greater than second") {
 
   sgpl::Program<spec_t> program(R"(
     {
@@ -46,7 +46,7 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 }
 
-TEST_CASE("Test GreaterThan") {
+TEST_CASE("Test GreaterThan, second operand greater than first") {
 
   sgpl::Program<spec_t> program(R"(
     {

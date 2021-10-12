@@ -10,11 +10,11 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::BitwiseShift>;
-TEST_CASE("Test Left BitwiseShift") {
 struct spec_t : public sgpl::Spec<library_t> {
   static constexpr inline size_t num_registers{ 4 };
 };
 
+TEST_CASE("Test BitwiseShift, left shift") {
 
   sgpl::Program<spec_t> program(R"(
     {
@@ -48,7 +48,7 @@ struct spec_t : public sgpl::Spec<library_t> {
 }
 
 
-TEST_CASE("Test Right BitwiseShift") {
+TEST_CASE("Test BitwiseShift, right shift") {
 
   sgpl::Program<spec_t> program(R"(
     {

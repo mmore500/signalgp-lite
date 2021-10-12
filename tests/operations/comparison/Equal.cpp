@@ -9,11 +9,11 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::Equal>;
-TEST_CASE("Test Not Equal") {
 struct spec_t : public sgpl::Spec<library_t> {
   static constexpr inline size_t num_registers{ 4 };
 };
 
+TEST_CASE("Test Equal, operands not equal") {
 
   sgpl::Program<spec_t> program(R"(
     {
@@ -46,7 +46,7 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 }
 
-TEST_CASE("Test Equal") {
+TEST_CASE("Test Equal, operands equal") {
 
   sgpl::Program<spec_t> program(R"(
     {

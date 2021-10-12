@@ -80,7 +80,7 @@ TEST_CASE("Test LogicalAnd, one operand true and one false") {
 
 }
 
-TEST_CASE("Test false LogicalAnd") {
+TEST_CASE("Test LogicalAnd, both operands false") {
 
   sgpl::Program<spec_t> program(R"(
     {
