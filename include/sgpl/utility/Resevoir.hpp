@@ -46,9 +46,9 @@ public:
   T& back() { emp_assert( size() ); return operator[](size() - 1); };
 
   const T& back() const {
-   emp_assert( size() );
-   return operator[](size() - 1);
- };
+    emp_assert( size() );
+    return operator[](size() - 1);
+  };
 
   T& front() { return buffer_.front(); };
 
