@@ -17,21 +17,21 @@ namespace sgpl {
 
 template <typename Spec>
 sgpl::Program<Spec> load_program(const std::filesystem::path& path) {
-    sgpl::Program<Spec> program;
+  sgpl::Program<Spec> program;
 
-    std::ifstream is(path);
+  std::ifstream is(path);
 
-    if (path.extension() == ".json") {
-        cereal::JSONInputArchive archive( is );
-    } else if (path.extension() == ".bin") {
-        cereal::BinaryInputArchive archive( is );
-    } else {
-        emp_error("Unknown extension.", path, path.extension());
-    }
+  if (path.extension() == ".json") {
+    cereal::JSONInputArchive archive( is );
+  } else if (path.extension() == ".bin") {
+    cereal::BinaryInputArchive archive( is );
+  } else {
+    emp_error("Unknown extension.", path, path.extension());
+  }
 
-    archive( program );
+  archive( program );
 
-    return program;
+  return program;
 }
 
 #endif // #ifndef SGPL_PROGRAM_LOAD_PROGRAM_HPP_INCLUDE
