@@ -9,31 +9,34 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::GreaterThan>;
-
 TEST_CASE("Test Not GreaterThan") {
-
-  sgpl::Program<spec_t> program{1};
-
-  sgpl::Core<spec_t> core;
-
-  // set up false check
-
-  // set up values to operate on in register
-  core.registers[0] = 7;
-  core.registers[1] = 99;
-  core.registers[2] = -1; // will be overwritten
-
-  // set up what registers to operate on
-  program[0].args[0] = 2;
-  program[0].args[1] = 0;
-  program[0].args[2] = 1;
-
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{7, 99, -1, 0, 0, 0, 0, 0});
 struct spec_t : public sgpl::Spec<library_t> {
   static constexpr inline size_t num_registers{ 4 };
 };
 
+
+  sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Greater Than",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
+
+  // define value constants
+  const float operand1 = 97.f;
+  const float operand2 = 3.f;
+
+  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);
@@ -45,22 +48,28 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 TEST_CASE("Test GreaterThan") {
 
-  sgpl::Program<spec_t> program{1};
+  sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Greater Than",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
 
-  sgpl::Core<spec_t> core;
+  // define value constants
+  const float operand1 = 3.f;
+  const float operand2 = 97.f;
 
-  // set up values to operate on in register
-  core.registers[0] = 99;
-  core.registers[1] = 7;
-  core.registers[2] = -1; // will be overwritten
-
-  // set up what registers to operate on
-  program[0].args[0] = 2;
-  program[0].args[1] = 0;
-  program[0].args[2] = 1;
-
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 7, -1, 0, 0, 0, 0, 0});
+  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);

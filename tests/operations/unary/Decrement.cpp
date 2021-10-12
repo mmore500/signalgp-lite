@@ -14,42 +14,26 @@ struct spec_t : public sgpl::Spec<library_t>{
   static constexpr inline size_t num_registers{ 4 };
 };
 
-auto make_program() {
-  sgpl::Program<spec_t> program;
+TEST_CASE("Test Decrement") {
 
-  std::stringstream ss(R"(
+  sgpl::Program<spec_t> program(R"(
     {
       "value0": [
-          {
-              "operation": "Decrement",
-              "args": {
-                  "value0": 0,
-                  "value1": 0,
-                  "value2": 0
-              },
-              "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
-              "descriptors": []
-          }
+        {
+          "operation": "Decrement",
+          "args": {
+            "value0": 0,
+            "value1": 0,
+            "value2": 0
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
       ]
     }
   )");
 
-  cereal::JSONInputArchive archive( ss );
-  archive( program );
-
-  return program;
-}
-
-TEST_CASE("Test Decrement") {
-  sgpl::Program<spec_t> program = make_program();
-
-  sgpl::Core<spec_t> core;
-
-  // set up values to operate on in register
-  core.registers = emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0};
-
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  sgpl::Core<spec_t> core( {99, 0, 0, 0} );
 
   // execute single instruction
   sgpl::advance_core(core, program);

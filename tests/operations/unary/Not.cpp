@@ -16,20 +16,24 @@ struct spec_t : public sgpl::Spec<library_t>{
 
 TEST_CASE("Test Not") {
 
-  sgpl::Program<spec_t> program{1};
+  sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Not",
+          "args": {
+            "value0": 0,
+            "value1": 0,
+            "value2": 0
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
 
-  sgpl::Core<spec_t> core;
-
-  // set up false check
-
-  // set up values to operate on in register
-  core.registers[0] = 99;
-
-  // set up what registers to operate on
-  program[0].args[0] = 0;
-
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{99, 0, 0, 0, 0, 0, 0, 0});
+  sgpl::Core<spec_t> core( {99, 0, 0, 0} );
 
   // execute single instruction
   sgpl::advance_core(core, program);

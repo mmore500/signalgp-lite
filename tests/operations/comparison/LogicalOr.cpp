@@ -9,7 +9,36 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::LogicalOr>;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 };
+};
+
+
+  sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Logical Or",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
+
+  // define value constants
+  const float operand1 = true;
+  const float operand2 = true;
+
+  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
+
+  // execute single instruction
+  sgpl::advance_core(core, program);
 
 TEST_CASE("Test true LogicalOr") {
   // check final state
@@ -17,21 +46,31 @@ TEST_CASE("Test true LogicalOr") {
 
 }
 
-  sgpl::Program<spec_t> program{1};
 
-  sgpl::Core<spec_t> core;
+TEST_CASE("Test LogicalOr, one operand true and one false") {
 
-  // set up values to operate on in register
-  core.registers[0] = true;
-  core.registers[1] = true;
+  sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Logical Or",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
 
-  // set up what registers to operate on
-  program[0].args[0] = 2;
-  program[0].args[1] = 0;
-  program[0].args[2] = 1;
+  // define value constants
+  const float operand1 = true;
+  const float operand2 = false;
 
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{true, true, 0, 0, 0, 0, 0, 0});
+  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);
@@ -43,21 +82,28 @@ TEST_CASE("Test true LogicalOr") {
 
 TEST_CASE("Test false LogicalOr") {
 
-  sgpl::Program<spec_t> program{1};
+  sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Logical Or",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
 
-  sgpl::Core<spec_t> core;
+  // define value constants
+  const float operand1 = false;
+  const float operand2 = false;
 
-  // set up values to operate on in register
-  core.registers[0] = false;
-  core.registers[1] = false;
-
-  // set up what registers to operate on
-  program[0].args[0] = 2;
-  program[0].args[1] = 0;
-  program[0].args[2] = 1;
-
-  // check initial state
-  REQUIRE(core.registers == emp::array<float, 8>{false, false, 0, 0, 0, 0, 0, 0});
+  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);
