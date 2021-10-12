@@ -38,7 +38,6 @@ TEST_CASE("Test BitwiseOr") {
   const float operand2 = std::bit_cast<float>(0b100101);
   const float val3 = std::bit_cast<float>(0b101101);
 
-  std::cout << val1 << " " << val2 << " " << val3 << std::endl;
   sgpl::Core<spec_t> core( {operand1, operand2, {}, {}} );
 
   // execute single instruction

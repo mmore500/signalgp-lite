@@ -44,7 +44,6 @@ TEST_CASE("Test BitwiseAnd") {
   // execute single instruction
   sgpl::advance_core(core, program);
 
-  std::cout << sizeof(float) * 8 << std::endl;
   // check final state
   REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, result, {}});
 }

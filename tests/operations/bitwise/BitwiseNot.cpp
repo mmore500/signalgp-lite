@@ -42,8 +42,6 @@ TEST_CASE("Test BitwiseNot") {
   // execute single instruction
   sgpl::advance_core(core, program);
 
-  std::cout << std::bitset<8>(core.registers[1]) << std::endl;
-
   // check final state
   REQUIRE(core.registers == emp::array<float, 4>{operand1, result, {}, {}});
 }
