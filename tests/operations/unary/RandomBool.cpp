@@ -31,12 +31,13 @@ TEST_CASE("Test RandomBool") {
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  emp::DataNode<size_t, emp::data::Current, emp::data::Range, emp::data::Stats> data;
+  // define datanode to track the successful "coin flip" (50/50) counts
+  emp::DataNode<size_t, emp::data::Current, emp::data::Range, emp::data::Stats> successful_flips;
 
-  for (size_t i{}; i < replicates; i++) {
+  for (size_t rep{}; rep < replicates; rep++) {
     // create and initialize cpu
     sgpl::Cpu<spec_t> cpu;
-    for (size_t i{}; i < 20; ++i) cpu.TryLaunchCore();
+    for (size_t core{}; core < 20; ++core) cpu.TryLaunchCore();
 
     // make a program of length 1
     sgpl::Program<spec_t> program{1};
@@ -44,21 +45,21 @@ TEST_CASE("Test RandomBool") {
     program[0].args[0] = 0;
 
     size_t replicate_count{};
-    for (size_t j{}; j < 100; j++) {
+    for (size_t flip_count{}; flip_count < 100; flip_count++) {
       // execute instruction
       sgpl::execute_cpu(1, cpu, program);
       // store result (either true or false!)
       replicate_count += cpu.GetActiveCore().registers[0];
     }
 
-    data.Add(replicate_count);
+    successful_flips.Add(replicate_count);
   }
 
   // check that result is within 25 "trues" of 50%
   // this means that the instruction is (sufficiently) random
-  REQUIRE(data.GetMean() < 75);
-  REQUIRE(25 < data.GetMean());
-  REQUIRE(data.GetMin() < 25);
-  REQUIRE(data.GetMax() > 75);
+  REQUIRE(successful_flips.GetMean() < 75);
+  REQUIRE(25 < successful_flips.GetMean());
+  REQUIRE(successful_flips.GetMin() < 25);
+  REQUIRE(successful_flips.GetMax() > 75);
 
 }

@@ -29,7 +29,7 @@ TEST_CASE("Test RandomFill") {
   int and_ed{};
   int or_ed{};
 
-  for (size_t i{}; i < replicates; i++) {
+  for (size_t rep{}; rep < replicates; rep++) {
     // create and initialize cpu
     sgpl::Cpu<spec_t> cpu;
     cpu.TryLaunchCore();

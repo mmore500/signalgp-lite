@@ -27,32 +27,33 @@ TEST_CASE("Test RandomDraw") {
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  emp::DataNode<size_t, emp::data::Current, emp::data::Range, emp::data::Stats> data;
+  // define a datanode to keep track of sums of draws across replicates
+  emp::DataNode<size_t, emp::data::Current, emp::data::Range, emp::data::Stats> draw_sums;
 
-  for (size_t i{}; i < replicates; i++) {
+  for (size_t rep{}; rep < replicates; rep++) {
     // create and initialize cpu
     sgpl::Cpu<spec_t> cpu;
-    for (size_t i{}; i < 20; ++i) cpu.TryLaunchCore();
+    for (size_t core{}; core < 20; ++core) cpu.TryLaunchCore();
 
     // make a program of length 1
     sgpl::Program<spec_t> program{1};
     // tell instruction to operate on 0th register
     program[0].args[0] = 0;
 
-    size_t replicate_count{};
-    for (size_t j{}; j < 100; j++) {
+    size_t sum{};
+    for (size_t draw{}; draw < 100; draw++) {
       // execute instruction
       sgpl::execute_cpu(1, cpu, program);
       // store result (either true or false!)
-      replicate_count += cpu.GetActiveCore().registers[0];
+      sum += cpu.GetActiveCore().registers[0];
     }
 
-    data.Add(replicate_count);
+    draw_sums.Add(sum);
   }
 
   // check that standard deviation is sufficiently large
   // and that the max and min bounds are proper
-  REQUIRE(data.GetStandardDeviation() > 1000);
-  REQUIRE(data.GetMax() > 100000);
-  REQUIRE(data.GetMin() < 10);
+  REQUIRE(draw_sums.GetStandardDeviation() > 1000);
+  REQUIRE(draw_sums.GetMax() > 100000);
+  REQUIRE(draw_sums.GetMin() < 10);
 }
