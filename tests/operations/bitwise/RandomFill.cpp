@@ -16,7 +16,7 @@ using spec_t = sgpl::Spec<library_t>;
 
 TEST_CASE("Test RandomFill") {
   // number of replicates
-  const size_t replicates = 1000;
+  constexpr size_t replicates = 1000;
 
   // initialize tlrand
   sgpl::tlrand.Reseed(1);

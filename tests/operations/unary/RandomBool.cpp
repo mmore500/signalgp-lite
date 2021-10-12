@@ -20,7 +20,7 @@ struct spec_t : public sgpl::Spec<library_t>{
 
 TEST_CASE("Test RandomBool") {
   // define number of replicates
-  const size_t replicates = 100;
+  constexpr size_t replicates = 100;
 
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
