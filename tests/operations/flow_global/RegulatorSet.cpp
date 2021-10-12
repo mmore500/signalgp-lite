@@ -11,7 +11,7 @@
 using library_t = sgpl::OpLibrary<
   sgpl::global::Anchor,
   sgpl::global::RegulatorGet<>,
-  sgpl::global::RegulatorSet<>,
+  sgpl::global::RegulatorSet<>
 >;
 
 struct spec_t : public sgpl::Spec<library_t>{
