@@ -42,7 +42,7 @@ TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
   sgpl::advance_core(core, program);
 
   // advance our rand K times
-  for (int i{}; i < K; ++i) comparison_rand.StepEngine();
+  for (size_t touch{}; touch < K; ++touch) comparison_rand.StepEngine();
 
   // check that internal RNG has been advanced as we expect
   REQUIRE(sgpl::tlrand.Get().GetUInt() == comparison_rand.GetUInt());
