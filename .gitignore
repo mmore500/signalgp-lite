@@ -23,6 +23,8 @@ web/signalgp-lite.js
 build/
 doc/_build/
 
+.vscode
+
 package-lock.json
 node_modules/
 coverage_include/

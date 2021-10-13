@@ -4,8 +4,15 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <fstream>
+#include <sstream>
+#include <string>
 
+#include "../../../third-party/cereal/include/cereal/archives/binary.hpp"
+#include "../../../third-party/cereal/include/cereal/archives/json.hpp"
 #include "../../../third-party/cereal/include/cereal/types/vector.hpp"
+#include "../../../third-party/conduit/include/uitsl/polyfill/filesystem.hpp"
+#include "../../../third-party/Empirical/include/emp/base/error.hpp"
 #include "../../../third-party/Empirical/include/emp/base/vector.hpp"
 #include "../../../third-party/Empirical/include/emp/datastructs/hash_utils.hpp"
 #include "../../../third-party/Empirical/include/emp/math/Random.hpp"
@@ -35,12 +42,36 @@ public:
   /// Default constructor.
   Program() = default;
 
-  Program( const size_t n ) : parent_t( n ) {
+  explicit Program( const size_t n ) : parent_t( n ) {
     sgpl::tlrand.Get().RandFill(
       reinterpret_cast<unsigned char*>( this->data() ),
       size_bytes()
     );
     Rectify();
+  }
+
+  /// Deserialize from JSON string.
+  explicit Program(const char* as_json) {
+    std::istringstream iss(as_json);
+    cereal::JSONInputArchive archive( iss );
+    archive( *this );
+  }
+
+  /// Deserialize from file.
+  explicit Program(const std::filesystem::path& path) {
+    if ( path.extension() == ".json" ) {
+      std::ifstream is(path);
+      cereal::JSONInputArchive archive( is );
+      archive( *this );
+    } else if ( path.extension() == ".bin" ) {
+      std::ifstream is(path);
+      cereal::BinaryInputArchive archive( is );
+      archive( *this );
+    } else emp_error(
+      "unknown sgpl::Program file format",
+      path.extension(),
+      path
+    );
   }
 
   /// Copy constructor.
@@ -151,6 +182,18 @@ public:
     for (auto& inst : *this) inst.Rectify(rectifier);
   }
 
+  bool HasGlobalAnchor() const {
+    const auto first_anchor = std::find_if(
+      this->begin(),
+      this->end(),
+      []( const auto& instruction ) {
+        return library_t::IsAnchorGlobalOpCode( instruction.op_code );
+      }
+    );
+
+    return first_anchor != this->end();
+  }
+
 
 };
 
@@ -171,6 +214,5 @@ struct hash<sgpl::Program<Spec>> {
 };
 
 } // namespace std
-
 
 #endif // #ifndef SGPL_PROGRAM_PROGRAM_HPP_INCLUDE
