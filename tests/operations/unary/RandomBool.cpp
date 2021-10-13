@@ -10,6 +10,7 @@
 #include "sgpl/operations/unary/RandomBool.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
+#include "sgpl/utility/CountingIterator.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 using library_t = sgpl::OpLibrary<sgpl::RandomBool>;
@@ -40,7 +41,7 @@ TEST_CASE("Test RandomBool") {
     emp::data::Range,
     emp::data::Stats
   >;
-  data_node_t successful_flips;
+  data_node_t replicate_counts;
 
   for (size_t rep{}; rep < replicates; ++rep) {
     // create and initialize cpu
@@ -52,27 +53,29 @@ TEST_CASE("Test RandomBool") {
     // so all random bool operations will write into register 0
     const sgpl::Program<spec_t> program(1);
 
-    size_t cur_replicate_successes{};
-    for (size_t flip_count{}; flip_count < 100; ++flip_count) {
-      // execute instruction
-      sgpl::execute_cpu(1, cpu, program);
-      // store result (either true or false!)
-      cur_replicate_successes += cpu.GetActiveCore().registers[0];
-    }
+    const double cur_replicate_successes = std::accumulate(
+      sgpl::CountingIterator{},
+      sgpl::CountingIterator{100ul},
+      size_t{},
+      [&cpu, &program](const auto accumulator, const auto&){
+        sgpl::execute_cpu(1, cpu, program);
+        return accumulator + cpu.GetActiveCore().registers[0];
+      }
+    );
 
-    successful_flips.Add(cur_replicate_successes);
+    replicate_counts.Add(cur_replicate_successes);
   }
 
   // check that result is within 25 "trues" of 50%
   // this means that the instruction is (sufficiently) random
   REQUIRE(
     std::clamp(
-        successful_flips.GetMean(),
+        replicate_counts.GetMean(),
         25.0,
         75.0
-    ) == successful_flips.GetMean()
+    ) == replicate_counts.GetMean()
   );
-  REQUIRE(successful_flips.GetMin() < 25);
-  REQUIRE(successful_flips.GetMax() > 75);
+  REQUIRE(replicate_counts.GetMin() < 25);
+  REQUIRE(replicate_counts.GetMax() > 75);
 
 }

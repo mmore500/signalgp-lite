@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "Catch/single_include/catch2/catch.hpp"
 #include "Empirical/include/emp/data/DataNode.hpp"
 
@@ -7,6 +9,7 @@
 #include "sgpl/operations/unary/RandomDraw.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
+#include "sgpl/utility/CountingIterator.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 // typedefs
@@ -35,7 +38,7 @@ TEST_CASE("Test RandomDraw") {
     emp::data::Range,
     emp::data::Stats
   >;
-  data_node_t draw_sums;
+  data_node_t replicate_sums;
 
   // define number of replicates
   constexpr size_t num_replicates = 100;
@@ -49,20 +52,22 @@ TEST_CASE("Test RandomDraw") {
     // so all random bool operations will write into register 0
     const sgpl::Program<spec_t> program{1};
 
-    double sum{};
-    for (size_t draw{}; draw < 100; ++draw) {
-      // execute instruction
-      sgpl::execute_cpu(1, cpu, program);
-      // store result (either true or false!)
-      sum += cpu.GetActiveCore().registers[0];
-    }
+    const double sum_over_draws = std::accumulate(
+      sgpl::CountingIterator{},
+      sgpl::CountingIterator{100ul},
+      double{},
+      [&cpu, &program](const auto accumulator, const auto&){
+        sgpl::execute_cpu(1, cpu, program);
+        return accumulator + cpu.GetActiveCore().registers[0];
+      }
+    );
 
-    draw_sums.Add(sum);
+    replicate_sums.Add(sum_over_draws);
   }
 
   // check that standard deviation is sufficiently large
   // and that the max and min bounds are proper
-  REQUIRE(draw_sums.GetStandardDeviation() > 1000.0);
-  REQUIRE(draw_sums.GetMax() > 100000.0);
-  REQUIRE(draw_sums.GetMin() < 10.0);
+  REQUIRE(replicate_sums.GetStandardDeviation() > 1000.0);
+  REQUIRE(replicate_sums.GetMax() > 100000.0);
+  REQUIRE(replicate_sums.GetMin() < 10.0);
 }
