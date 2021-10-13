@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "Catch/single_include/catch2/catch.hpp"
 #include "conduit/include/uitsl/polyfill/bit_cast.hpp"
 #include "Empirical/include/emp/data/DataNode.hpp"
@@ -74,8 +76,13 @@ TEST_CASE("Test RandomBool") {
 
   // check that result is within 25 "trues" of 50%
   // this means that the instruction is (sufficiently) random
-  REQUIRE(successful_flips.GetMean() < 75);
-  REQUIRE(25 < successful_flips.GetMean());
+  REQUIRE(
+    std::clamp(
+        successful_flips.GetMean(),
+        25.0,
+        75.0
+    ) == successful_flips.GetMean()
+  );
   REQUIRE(successful_flips.GetMin() < 25);
   REQUIRE(successful_flips.GetMax() > 75);
 
