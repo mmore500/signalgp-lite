@@ -4,8 +4,8 @@
             "operation": "Set Global Regulator",
             "args": {
                 "value0": 0,
-                "value1": 5,
-                "value2": 5
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
             "descriptors": []
@@ -14,8 +14,8 @@
             "operation": "Get Global Regulator",
             "args": {
                 "value0": 0,
-                "value1": 6,
-                "value2": 4
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
             "descriptors": []
@@ -23,9 +23,9 @@
         {
             "operation": "Global Anchor",
             "args": {
-                "value0": 4,
-                "value1": 4,
-                "value2": 4
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
             "descriptors": []
@@ -33,9 +33,9 @@
         {
             "operation": "Global Anchor",
             "args": {
-                "value0": 2,
-                "value1": 2,
-                "value2": 4
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "0100101111110101100110100101000111100101001010101100110000111000",
             "descriptors": []
@@ -44,7 +44,7 @@
             "operation": "Global Anchor",
             "args": {
                 "value0": 0,
-                "value1": 5,
+                "value1": 0,
                 "value2": 0
             },
             "bitstring": "0000011000111111100100101011111110111000100000011110111000110000",
@@ -53,9 +53,9 @@
         {
             "operation": "Global Anchor",
             "args": {
-                "value0": 6,
-                "value1": 7,
-                "value2": 5
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "1000011101111111111001001111110000100110011110011111001111011101",
             "descriptors": []
@@ -63,9 +63,9 @@
         {
             "operation": "Global Anchor",
             "args": {
-                "value0": 6,
-                "value1": 6,
-                "value2": 5
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "0100000000101011001010100111001101000011011000000011000100100111",
             "descriptors": []
@@ -73,9 +73,9 @@
         {
             "operation": "Global Anchor",
             "args": {
-                "value0": 5,
-                "value1": 1,
-                "value2": 1
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
             "descriptors": []
@@ -83,9 +83,9 @@
         {
             "operation": "Global Anchor",
             "args": {
-                "value0": 6,
-                "value1": 5,
-                "value2": 5
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "1111011101010001110001001000111010100101010101100000110000101000",
             "descriptors": []
@@ -93,9 +93,9 @@
         {
             "operation": "Global Anchor",
             "args": {
-                "value0": 5,
-                "value1": 4,
-                "value2": 1
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
             },
             "bitstring": "1001111100101100011111010101000011101001101000010100101010110011",
             "descriptors": []
