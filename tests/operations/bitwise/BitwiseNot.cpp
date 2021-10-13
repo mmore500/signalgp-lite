@@ -34,8 +34,9 @@ TEST_CASE("Test BitwiseNot") {
   )");
 
   // define value constants
-  const float operand1 = std::bit_cast<float>(0b00000000000000000000000001001001);
-  const float result = std::bit_cast<float>(0b11111111111111111111111110110110);
+  const auto raw_operand = 0b00000000000000000000000001001001;
+  const float operand1 = std::bit_cast<float>( raw_operand );
+  const float expected_result = std::bit_cast<float>( ~raw_operand );
 
   sgpl::Core<spec_t> core( {operand1, {}, {}, {}} );
 
@@ -43,5 +44,8 @@ TEST_CASE("Test BitwiseNot") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{operand1, result, {}, {}});
+  REQUIRE(
+    core.registers
+    == emp::array<float, 4>{operand1, expected_result, {}, {}}
+  );
 }
