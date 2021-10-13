@@ -11,7 +11,10 @@
 
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::RandomDraw>;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t>{
+  // lower number of registers, as 8 are not needed
+  static constexpr inline size_t num_registers{ 1 }; // eslint-disable-line no-eval
+};
 
 /**
  * This testcase is intended to check the behavior of RandomDraw.
@@ -41,10 +44,10 @@ TEST_CASE("Test RandomDraw") {
     sgpl::Cpu<spec_t> cpu;
     cpu.TryLaunchCore();
 
-    // make a program of length 1
+    // randomly generate a program of length 1
+    // we only have 1 register,
+    // so all random bool operations will write into register 0
     const sgpl::Program<spec_t> program{1};
-    // tell instruction to operate on 0th register
-    program[0].args[0] = 0.f;
 
     double sum{};
     for (size_t draw{}; draw < 100; ++draw) {
