@@ -37,12 +37,12 @@ public:
 
   Core() = default;
 
-  Core(
+  explicit Core(
     global_jump_table_array_t& global_jump_tables_
   ) : global_jump_tables(&global_jump_tables_)
   { ; }
 
-  Core(const registers_t& registers_) : registers(registers_) { ; }
+  explicit Core(const registers_t& registers_) : registers(registers_) { ; }
 
   inline void Terminate() noexcept {
     program_counter = std::numeric_limits<size_t>::max();
