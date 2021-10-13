@@ -17,7 +17,7 @@ struct spec_t : public sgpl::Spec<library_t> {
   static constexpr inline size_t num_registers{ 2 };
 };
 
-TEST_CASE("Test TerminateIf") {
+TEST_CASE("Test TerminateIf, true test flag") {
 
   sgpl::Program<spec_t> program(std::filesystem::path{
     "assets/TrueTerminateIf.json"
@@ -36,7 +36,7 @@ TEST_CASE("Test TerminateIf") {
 }
 
 
-TEST_CASE("Test False TerminateIf") {
+TEST_CASE("Test TerminateIf, false test flag") {
 
   sgpl::Program<spec_t> program(std::filesystem::path{
     "assets/FalseTerminateIf.json"
