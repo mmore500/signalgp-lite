@@ -1,4 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
@@ -15,7 +16,7 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 TEST_CASE("Test Subtract") {
 
-  sgpl::Program<spec_t> program(R"(
+  const sgpl::Program<spec_t> program(R"(
     {
       "value0": [
         {

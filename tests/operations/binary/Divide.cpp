@@ -1,4 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
@@ -15,23 +16,25 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 TEST_CASE("Test Divide") {
 
-  sgpl::Program<spec_t> program{1};
-
-  sgpl::Core<spec_t> core;
-
-  // create peripheral
-  spec_t::peripheral_t peripheral;
+  const sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Divide",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
 
   // set up initial state
-
-  // set up values to operate on in register
-  core.registers[0] = 99;
-  core.registers[1] = 2;
-
-  // set up what registers to operate on
-  program[0].args[0] = 2;
-  program[0].args[1] = 0;
-  program[0].args[2] = 1;
+  sgpl::Core<spec_t> core({99.0, 2.0, {}, {}});
 
   // check initial state
   REQUIRE(core.registers == emp::array<float, 4>{99.f, 2.f, 0.f, {}});

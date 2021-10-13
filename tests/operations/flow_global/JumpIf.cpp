@@ -14,12 +14,12 @@ using library_t = sgpl::OpLibrary<
   sgpl::global::JumpIf
 >;
 struct spec_t : public sgpl::Spec<library_t> {
-  // this is here so that we can step through the operations properly
+  // ensure that we step through operations one-by-one
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
 };
 
 TEST_CASE("Test Global JumpIf, true value") {
-  sgpl::Program<spec_t> program(std::filesystem::path{
+  const sgpl::Program<spec_t> program(std::filesystem::path{
     "assets/JumpIf.json"
   });
 
@@ -36,15 +36,24 @@ TEST_CASE("Test Global JumpIf, true value") {
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);
 
   // execute single instruction
+  REQUIRE(
+    program[cpu.GetActiveCore().GetProgramCounter()].GetOpName()
+    == "Global Jump If"
+  );
   sgpl::execute_cpu(1, cpu, program);
 
   // // make sure we jumped
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() != 1);
+  REQUIRE(
+    program[cpu.GetActiveCore().GetProgramCounter()].GetOpName()
+    == "Global Anchor"
+  );
+
 }
 
 
 TEST_CASE("Test Global JumpIf, false value") {
-  sgpl::Program<spec_t> program(std::filesystem::path{
+  const sgpl::Program<spec_t> program(std::filesystem::path{
     "assets/JumpIf.json"
   });
 
@@ -61,6 +70,10 @@ TEST_CASE("Test Global JumpIf, false value") {
   REQUIRE(cpu.GetActiveCore().GetProgramCounter() == 0);
 
   // execute single instruction
+  REQUIRE(
+    program[cpu.GetActiveCore().GetProgramCounter()].GetOpName()
+    == "Global Jump If"
+  );
   sgpl::execute_cpu(1, cpu, program);
 
   // make sure we did not jump

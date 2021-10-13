@@ -21,8 +21,6 @@ using spec_t = sgpl::Spec<library_t>;
  * and the largest sum is greater than 100,000.
  */
 TEST_CASE("Test RandomDraw") {
-  // define number of replicates
-  constexpr size_t replicates = 100;
 
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
@@ -36,18 +34,20 @@ TEST_CASE("Test RandomDraw") {
   >;
   data_node_t draw_sums;
 
-  for (size_t rep{}; rep < replicates; rep++) {
+  // define number of replicates
+  constexpr size_t num_replicates = 100;
+  for (size_t rep{}; rep < num_replicates; ++rep) {
     // create and initialize cpu
     sgpl::Cpu<spec_t> cpu;
-    for (size_t core{}; core < 20; ++core) cpu.TryLaunchCore();
+    cpu.TryLaunchCore();
 
     // make a program of length 1
-    sgpl::Program<spec_t> program{1};
+    const sgpl::Program<spec_t> program{1};
     // tell instruction to operate on 0th register
-    program[0].args[0] = 0;
+    program[0].args[0] = 0.f;
 
     double sum{};
-    for (size_t draw{}; draw < 100; draw++) {
+    for (size_t draw{}; draw < 100; ++draw) {
       // execute instruction
       sgpl::execute_cpu(1, cpu, program);
       // store result (either true or false!)

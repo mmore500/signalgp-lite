@@ -19,7 +19,7 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 TEST_CASE("Test TerminateIf, true test flag") {
 
-  sgpl::Program<spec_t> program(std::filesystem::path{
+  const sgpl::Program<spec_t> program(std::filesystem::path{
     "assets/TrueTerminateIf.json"
   });
 
@@ -38,7 +38,7 @@ TEST_CASE("Test TerminateIf, true test flag") {
 
 TEST_CASE("Test TerminateIf, false test flag") {
 
-  sgpl::Program<spec_t> program(std::filesystem::path{
+  const sgpl::Program<spec_t> program(std::filesystem::path{
     "assets/FalseTerminateIf.json"
   });
 

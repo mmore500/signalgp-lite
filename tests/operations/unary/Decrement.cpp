@@ -1,4 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
@@ -16,7 +17,7 @@ struct spec_t : public sgpl::Spec<library_t>{
 
 TEST_CASE("Test Decrement") {
 
-  sgpl::Program<spec_t> program(R"(
+  const sgpl::Program<spec_t> program(R"(
     {
       "value0": [
         {
@@ -33,13 +34,13 @@ TEST_CASE("Test Decrement") {
     }
   )");
 
-  sgpl::Core<spec_t> core( {99, 0, 0, 0} );
+  sgpl::Core<spec_t> core( {99.f, {}, {}, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{98, 0, 0, 0});
+  REQUIRE(core.registers == emp::array<float, 4>{98.f, {}, {}, {}});
 
 
 }

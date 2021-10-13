@@ -1,5 +1,6 @@
 #include "Catch/single_include/catch2/catch.hpp"
 #include "conduit/include/uitsl/polyfill/bit_cast.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
@@ -16,7 +17,7 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 TEST_CASE("Test BitwiseXor") {
 
-  sgpl::Program<spec_t> program(R"(
+  const sgpl::Program<spec_t> program(R"(
     {
       "value0": [
         {
@@ -34,9 +35,9 @@ TEST_CASE("Test BitwiseXor") {
   )");
 
   // set up initial values
-  const float operand1 = std::bit_cast<float>(0b001001);
-  const float operand2 = std::bit_cast<float>(0b100101);
-  const float val3 = std::bit_cast<float>(0b101100);
+  const auto operand1 = std::bit_cast<float>(0b001001);
+  const auto operand2 = std::bit_cast<float>(0b100101);
+  const auto expected_result = std::bit_cast<float>(0b101100);
 
   sgpl::Core<spec_t> core( {operand1, operand2, {}, {}} );
 
@@ -44,5 +45,8 @@ TEST_CASE("Test BitwiseXor") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, val3, {}});
+  REQUIRE(
+    core.registers
+    == emp::array<float, 4>{operand1, operand2, expected_result, {}}
+  );
 }

@@ -1,5 +1,6 @@
 #include "Catch/single_include/catch2/catch.hpp"
 #include "conduit/include/uitsl/polyfill/bit_cast.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
@@ -16,7 +17,7 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 TEST_CASE("Test BitwiseOr") {
 
-  sgpl::Program<spec_t> program(R"(
+  const sgpl::Program<spec_t> program(R"(
     {
       "value0": [
         {
@@ -34,9 +35,9 @@ TEST_CASE("Test BitwiseOr") {
   )");
 
   // set up value constants
-  const float operand1 = std::bit_cast<float>(0b001001);
-  const float operand2 = std::bit_cast<float>(0b100101);
-  const float val3 = std::bit_cast<float>(0b101101);
+  const auto operand1 = std::bit_cast<float>(0b001001);
+  const auto operand2 = std::bit_cast<float>(0b100101);
+  const auto val3 = std::bit_cast<float>(0b101101);
 
   sgpl::Core<spec_t> core( {operand1, operand2, {}, {}} );
 

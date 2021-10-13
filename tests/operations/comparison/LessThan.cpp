@@ -1,4 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
@@ -15,7 +16,7 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 TEST_CASE("Test LessThan, first operand smaller than second") {
 
-  sgpl::Program<spec_t> program(R"(
+  const sgpl::Program<spec_t> program(R"(
     {
       "value0": [
         {
@@ -36,19 +37,22 @@ TEST_CASE("Test LessThan, first operand smaller than second") {
   const float operand1 = 3.f;
   const float operand2 = 97.f;
 
-  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
+  sgpl::Core<spec_t> core( {operand1, operand2, {}, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, 1, {}});
+  REQUIRE(
+    core.registers
+    == emp::array<float, 4>{operand1, operand2, true, {}}
+  );
 
 }
 
 TEST_CASE("Test LessThan, second operand smaller than first") {
 
-  sgpl::Program<spec_t> program(R"(
+  const sgpl::Program<spec_t> program(R"(
     {
       "value0": [
         {
@@ -69,12 +73,12 @@ TEST_CASE("Test LessThan, second operand smaller than first") {
   const float operand1 = 97.f;
   const float operand2 = 3.f;
 
-  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
+  sgpl::Core<spec_t> core( {operand1, operand2, true, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, 0, {}});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, false, {}});
 
 }

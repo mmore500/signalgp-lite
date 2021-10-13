@@ -1,4 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
+#include "Empirical/include/emp/math/Random.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
@@ -24,7 +25,7 @@ TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
   ((size_t K), K), 1, 2, 3, 4, 5
 ) {
 
-  program_t<K> program(1);
+  const program_t<K> program(1);
 
   core_t<K> core;
 

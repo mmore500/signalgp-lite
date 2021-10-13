@@ -13,14 +13,19 @@ using library_t = sgpl::OpLibrary<
   sgpl::local::Anchor,
   sgpl::local::JumpIfNot
 >;
-using spec_t = sgpl::Spec<library_t>;
+struct spec_t : public sgpl::Spec<library_t>{
+  // ensure that we step through operations one-by-one
+  static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
+  // lower number of registers, as 8 are not needed
+  static constexpr inline size_t num_registers{ 2 };
+};
 
-TEST_CASE("Test JumpIfNot, false value") {
-  sgpl::Program<spec_t> program(std::filesystem::path{
+TEST_CASE("Test JumpIfNot, false test flag") {
+  const sgpl::Program<spec_t> program(std::filesystem::path{
     "assets/JumpIfNot.json"
   });
 
-  sgpl::Core<spec_t> core;
+  sgpl::Core<spec_t> core({ false, {}});
 
   // load all anchors manually
   core.LoadLocalAnchors(program);
@@ -32,30 +37,40 @@ TEST_CASE("Test JumpIfNot, false value") {
   REQUIRE(core.GetProgramCounter() == 0);
 
   // execute single instruction
+  REQUIRE(
+    program[core.GetProgramCounter()].GetOpName()
+    == "Local Jump If Not"
+  );
   sgpl::advance_core(core, program);
 
   // make sure we jumped
   REQUIRE(core.GetProgramCounter() != 1);
+  REQUIRE(
+    program[core.GetProgramCounter()].GetOpName()
+    == "Local Anchor"
+  );
+
 }
 
 
-TEST_CASE("Test JumpIfNot, true value") {
-  sgpl::Program<spec_t> program(std::filesystem::path{
+TEST_CASE("Test JumpIfNot, true test flag") {
+  const sgpl::Program<spec_t> program(std::filesystem::path{
     "assets/JumpIfNot.json"
   });
 
-  sgpl::Core<spec_t> core;
+  sgpl::Core<spec_t> core({true, {}});
 
   // load all anchors manually
   core.LoadLocalAnchors(program);
-
-  // set up values to operate on in register
-  core.registers[0] = true;
 
   // check initial state
   REQUIRE(core.GetProgramCounter() == 0);
 
   // execute single instruction
+  REQUIRE(
+    program[core.GetProgramCounter()].GetOpName()
+    == "Local Jump If Not"
+  );
   sgpl::advance_core(core, program);
 
   // make sure we did not jump

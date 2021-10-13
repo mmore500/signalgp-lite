@@ -1,4 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
 #include "sgpl/hardware/Cpu.hpp"
@@ -15,14 +16,14 @@ using library_t = sgpl::OpLibrary<
 >;
 
 struct spec_t : public sgpl::Spec<library_t>{
-  // this is here so that we can step through the operations properly
+  // ensure that we step through operations one-by-one
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
   // lower number of registers, as 8 are not needed
   static constexpr inline size_t num_registers{ 4 };
 };
 
 TEST_CASE("Test RegulatorSet") {
-  sgpl::Program<spec_t> program(std::filesystem::path{
+  const sgpl::Program<spec_t> program(std::filesystem::path{
     "assets/RegulatorSet.json"
   });
 
@@ -35,23 +36,38 @@ TEST_CASE("Test RegulatorSet") {
   cpu.GetActiveCore().registers[0] = 99;
 
   // check initial state
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{99, 0, 0, 0});
+  REQUIRE(
+    cpu.GetActiveCore().registers
+    == emp::array<float, 4>{99, {}, {}, {}}
+  );
 
   // execute RegulatorSet
-  REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Set Global Regulator");
+  REQUIRE(
+    program[cpu.GetActiveCore().GetProgramCounter()].GetOpName()
+    == "Set Global Regulator"
+  );
   sgpl::execute_cpu(1, cpu, program);
 
   // clear register
   cpu.GetActiveCore().registers[0] = 0;
 
   // check that registers were cleared
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{0, 0, 0, 0});
+  REQUIRE(
+    cpu.GetActiveCore().registers
+    == emp::array<float, 4>{0, {}, {}, {}}
+  );
 
   // execute RegulatorGet
-  REQUIRE(program[cpu.GetActiveCore().GetProgramCounter()].GetOpName() == "Get Global Regulator");
+  REQUIRE(
+    program[cpu.GetActiveCore().GetProgramCounter()].GetOpName()
+    == "Get Global Regulator"
+  );
   sgpl::execute_cpu(1, cpu, program);
 
-  // check to make sure value was retrieved
-  REQUIRE(cpu.GetActiveCore().registers == emp::array<float, 4>{99, 0, 0, 0});
+  // check to make sure correct value was retrieved
+  REQUIRE(
+    cpu.GetActiveCore().registers
+    == emp::array<float, 4>{99, {}, {}, {}}
+  );
 
 }

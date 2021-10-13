@@ -1,4 +1,5 @@
 #include "Catch/single_include/catch2/catch.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
 #include "sgpl/hardware/Core.hpp"
@@ -15,7 +16,7 @@ struct spec_t : public sgpl::Spec<library_t> {
 
 TEST_CASE("Test LogicalOr, both operands true") {
 
-  sgpl::Program<spec_t> program(R"(
+  const sgpl::Program<spec_t> program(R"(
     {
       "value0": [
         {
@@ -36,7 +37,7 @@ TEST_CASE("Test LogicalOr, both operands true") {
   const float operand1 = true;
   const float operand2 = true;
 
-  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
+  sgpl::Core<spec_t> core( {operand1, operand2, {}, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);
@@ -49,7 +50,7 @@ TEST_CASE("Test LogicalOr, both operands true") {
 
 TEST_CASE("Test LogicalOr, one operand true and one false") {
 
-  sgpl::Program<spec_t> program(R"(
+  const sgpl::Program<spec_t> program(R"(
     {
       "value0": [
         {
@@ -70,7 +71,7 @@ TEST_CASE("Test LogicalOr, one operand true and one false") {
   const float operand1 = true;
   const float operand2 = false;
 
-  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
+  sgpl::Core<spec_t> core( {operand1, operand2, {}, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);
@@ -82,7 +83,7 @@ TEST_CASE("Test LogicalOr, one operand true and one false") {
 
 TEST_CASE("Test LogicalOr, both operands false") {
 
-  sgpl::Program<spec_t> program(R"(
+  const sgpl::Program<spec_t> program(R"(
     {
       "value0": [
         {
@@ -103,12 +104,15 @@ TEST_CASE("Test LogicalOr, both operands false") {
   const float operand1 = false;
   const float operand2 = false;
 
-  sgpl::Core<spec_t> core( {operand1, operand2, -1, {}} );
+  sgpl::Core<spec_t> core( {operand1, operand2, true, {}} );
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, false, {}});
+  REQUIRE(
+    core.registers
+    == emp::array<float, 4>{operand1, operand2, false, {}}
+  );
 
 }
