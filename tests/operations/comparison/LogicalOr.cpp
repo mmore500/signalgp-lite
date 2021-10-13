@@ -11,7 +11,7 @@
 // typedefs
 using library_t = sgpl::OpLibrary<sgpl::LogicalOr>;
 struct spec_t : public sgpl::Spec<library_t> {
-  static constexpr inline size_t num_registers{ 4 };
+  static constexpr inline size_t num_registers{ 4 }; // eslint-disable-line no-eval
 };
 
 TEST_CASE("Test LogicalOr, both operands true") {

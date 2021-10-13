@@ -19,7 +19,7 @@ struct spec_t : public sgpl::Spec<library_t>{
   // ensure that we step through operations one-by-one
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
   // lower number of registers, as 8 are not needed
-  static constexpr inline size_t num_registers{ 4 };
+  static constexpr inline size_t num_registers{ 4 }; // eslint-disable-line no-eval
 };
 
 TEST_CASE("Test RegulatorAdj") {

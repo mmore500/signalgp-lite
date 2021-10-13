@@ -12,7 +12,7 @@
 using library_t = sgpl::OpLibrary<sgpl::Negate>;
 struct spec_t : public sgpl::Spec<library_t>{
   // lower number of registers, as 8 are not needed
-  static constexpr inline size_t num_registers{ 4 };
+  static constexpr inline size_t num_registers{ 4 }; // eslint-disable-line no-eval
 };
 
 TEST_CASE("Test Negate") {
