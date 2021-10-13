@@ -48,7 +48,7 @@ TEST_CASE("Test RandomBool") {
       {
         "value0": [
           {
-            "operation": "Random Bool",
+            "operation": "Generate Random Bool",
             "args": {
               "value0": 0,
               "value1": 0,
