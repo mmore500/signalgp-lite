@@ -8,24 +8,7 @@
                 "value2": 0
             },
             "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
-            "descriptors": [
-                {
-                    "key": "argument a",
-                    "value": "0"
-                },
-                {
-                    "key": "summary",
-                    "value": "if !a, goto tag match local anchor"
-                },
-                {
-                    "key": "tag bits",
-                    "value": "1011000001110110011010101000010111100011110110110111001011010100"
-                },
-                {
-                    "key": "tag moniker",
-                    "value": "timely ocelot"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Nop-1",
@@ -35,12 +18,7 @@
                 "value2": 1
             },
             "bitstring": "1001111100101100011111010101000011101001101000010100101010110011",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "perform no operation"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Local Anchor",
@@ -50,20 +28,7 @@
                 "value2": 4
             },
             "bitstring": "1100010010111011100100110111100101111110111100011100000000101000",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "register a local jump-to destination"
-                },
-                {
-                    "key": "tag bits",
-                    "value": "1100010010111011100100110111100101111110111100011100000000101000"
-                },
-                {
-                    "key": "tag moniker",
-                    "value": "ecstatic fungus"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Local Anchor",
@@ -73,20 +38,7 @@
                 "value2": 4
             },
             "bitstring": "1100111010101111011111100000100000100101100111011010001011010010",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "register a local jump-to destination"
-                },
-                {
-                    "key": "tag bits",
-                    "value": "1100111010101111011111100000100000100101100111011010001011010010"
-                },
-                {
-                    "key": "tag moniker",
-                    "value": "beneficent flea"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Local Anchor",
@@ -96,20 +48,7 @@
                 "value2": 4
             },
             "bitstring": "0100101111110101100110100101000111100101001010101100110000111000",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "register a local jump-to destination"
-                },
-                {
-                    "key": "tag bits",
-                    "value": "0100101111110101100110100101000111100101001010101100110000111000"
-                },
-                {
-                    "key": "tag moniker",
-                    "value": "cowardly waxbill"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Local Anchor",
@@ -119,20 +58,7 @@
                 "value2": 0
             },
             "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "register a local jump-to destination"
-                },
-                {
-                    "key": "tag bits",
-                    "value": "1011000001110110011010101000010111100011110110110111001011010100"
-                },
-                {
-                    "key": "tag moniker",
-                    "value": "timely ocelot"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Local Anchor",
@@ -142,20 +68,7 @@
                 "value2": 5
             },
             "bitstring": "1000011101111111111001001111110000100110011110011111001111011101",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "register a local jump-to destination"
-                },
-                {
-                    "key": "tag bits",
-                    "value": "1000011101111111111001001111110000100110011110011111001111011101"
-                },
-                {
-                    "key": "tag moniker",
-                    "value": "intuitive ox"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Local Anchor",
@@ -165,20 +78,7 @@
                 "value2": 5
             },
             "bitstring": "0100000000101011001010100111001101000011011000000011000100100111",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "register a local jump-to destination"
-                },
-                {
-                    "key": "tag bits",
-                    "value": "0100000000101011001010100111001101000011011000000011000100100111"
-                },
-                {
-                    "key": "tag moniker",
-                    "value": "immodest mushroom"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Local Anchor",
@@ -188,20 +88,7 @@
                 "value2": 1
             },
             "bitstring": "1110100101100011001010101100010111100000110000011111010011011101",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "register a local jump-to destination"
-                },
-                {
-                    "key": "tag bits",
-                    "value": "1110100101100011001010101100010111100000110000011111010011011101"
-                },
-                {
-                    "key": "tag moniker",
-                    "value": "tragic otter"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Local Anchor",
@@ -211,20 +98,7 @@
                 "value2": 5
             },
             "bitstring": "1111011101010001110001001000111010100101010101100000110000101000",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "register a local jump-to destination"
-                },
-                {
-                    "key": "tag bits",
-                    "value": "1111011101010001110001001000111010100101010101100000110000101000"
-                },
-                {
-                    "key": "tag moniker",
-                    "value": "jumbo seagull"
-                }
-            ]
+            "descriptors": []
         }
     ]
 }

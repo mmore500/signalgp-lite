@@ -8,16 +8,7 @@
                 "value2": 0
             },
             "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
-            "descriptors": [
-                {
-                    "key": "argument a",
-                    "value": "6"
-                },
-                {
-                    "key": "summary",
-                    "value": "if a, terminate core"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Nop-0",
@@ -27,12 +18,7 @@
                 "value2": 0
             },
             "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "perform no operation"
-                }
-            ]
+            "descriptors": []
         },
         {
             "operation": "Nop-0",
@@ -42,12 +28,7 @@
                 "value2": 0
             },
             "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
-            "descriptors": [
-                {
-                    "key": "summary",
-                    "value": "perform no operation"
-                }
-            ]
+            "descriptors": []
         }
     ]
 }
