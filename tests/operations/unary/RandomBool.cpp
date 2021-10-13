@@ -16,6 +16,8 @@ using library_t = sgpl::OpLibrary<sgpl::RandomBool>;
 struct spec_t : public sgpl::Spec<library_t>{
   // ensure that we step through operations one-by-one
   static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
+  // lower number of registers, as 8 are not needed
+  static constexpr inline size_t num_registers{ 1 }; // eslint-disable-line no-eval
 };
 
 /**
@@ -45,23 +47,10 @@ TEST_CASE("Test RandomBool") {
     sgpl::Cpu<spec_t> cpu;
     cpu.TryLaunchCore();
 
-    // make a program of length 1
-    const sgpl::Program<spec_t> program(R"(
-      {
-        "value0": [
-          {
-            "operation": "Generate Random Bool",
-            "args": {
-              "value0": 0,
-              "value1": 0,
-              "value2": 0
-            },
-            "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
-            "descriptors": []
-          }
-        ]
-      }
-    )");
+    // randomly generate a program of length 1
+    // we only have 1 register,
+    // so all random bool operations will write into register 0
+    const sgpl::Program<spec_t> program(1);
 
     size_t cur_replicate_successes{};
     for (size_t flip_count{}; flip_count < 100; ++flip_count) {
