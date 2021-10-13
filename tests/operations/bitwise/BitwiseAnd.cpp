@@ -36,7 +36,7 @@ TEST_CASE("Test BitwiseAnd") {
   // define value constants
   const float operand1 = std::bit_cast<float>(0b11010110);
   const float operand2 = std::bit_cast<float>(0b10010101);
-  const float result = std::bit_cast<float>(0b11010110 & 0b10010101);
+  const float expected_result = std::bit_cast<float>(0b11010110 & 0b10010101);
 
   // set up initial values to AND in register
   sgpl::Core<spec_t> core( {operand1, operand2, {}, {}} );
@@ -45,5 +45,8 @@ TEST_CASE("Test BitwiseAnd") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, result, {}});
+  REQUIRE(
+    core.registers
+    == emp::array<float, 4>{operand1, operand2, expected_result, {}}
+  );
 }
