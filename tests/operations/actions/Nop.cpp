@@ -9,19 +9,19 @@
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 // typedefs
-template<int K> using library_t = sgpl::OpLibrary<sgpl::Nop<K>>;
-template<int K> using spec_t = sgpl::Spec<library_t<K>>;
-template<int K> using core_t = sgpl::Core<spec_t<K>>;
-template<int K> using program_t = sgpl::Program<spec_t<K>>;
+template<size_t K> using library_t = sgpl::OpLibrary<sgpl::Nop<K>>;
+template<size_t K> using spec_t = sgpl::Spec<library_t<K>>;
+template<size_t K> using core_t = sgpl::Core<spec_t<K>>;
+template<size_t K> using program_t = sgpl::Program<spec_t<K>>;
 
 /**
  * This is a templated test case.
  * This means that a unique test case will be created
- * for each of the ints in the title, with K substituted in.
+ * for each of the size_t's in the title, with K substituted in.
  * K represents the number of RNG touches applied by the Nop instruction.
 */
 TEMPLATE_TEST_CASE_SIG("Test Nop", "[Nop]",
-  ((int K), K), 1, 2, 3, 4, 5
+  ((size_t K), K), 1, 2, 3, 4, 5
 ) {
 
   program_t<K> program(1);
