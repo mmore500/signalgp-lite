@@ -9,6 +9,7 @@
 #include <set>
 #include <string>
 
+#include "../../../../third-party/conduit/include/uitsl/polyfill/bit_cast.hpp"
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
 
 #include "../../hardware/Core.hpp"
@@ -32,17 +33,13 @@ struct CountOnes {
   ) noexcept {
     const size_t a = inst.args[0], b = inst.args[1];
 
-    static_assert( sizeof(core.registers[a]) <= sizeof(size_t) );
-    size_t as_size_t;
+    static_assert( sizeof(core.registers[b]) == sizeof(uint32_t) );
+    const uint32_t as_uint32{
+      std::bit_cast<uint32_t>(core.registers[b])
+    };
 
-    std::memcpy(
-      &as_size_t,
-      &core.registers[a],
-      sizeof( core.registers[a] )
-    );
-
-    constexpr size_t num_bits = sizeof(core.registers[a]) * 8;
-    core.registers[b] = std::bitset<num_bits>{ as_size_t }.count();
+    constexpr size_t num_bits = sizeof(core.registers[b]) * 8;
+    core.registers[a] = std::bitset<num_bits>{ as_uint32 }.count();
   }
 
   static std::string name() { return "Count Ones"; }

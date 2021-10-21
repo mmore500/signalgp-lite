@@ -1,7 +1,18 @@
-#define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
+#include "sgpl/algorithm/execute_core.hpp"
+#include "sgpl/hardware/Core.hpp"
+#include "sgpl/library/OpLibrary.hpp"
 #include "sgpl/operations/binary/Divide.hpp"
+#include "sgpl/program/Program.hpp"
+#include "sgpl/spec/Spec.hpp"
+
+// typedefs
+using library_t = sgpl::OpLibrary<sgpl::Divide>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 }; // eslint-disable-line no-eval
+};
 
 #include "sgpl/hardware/Core.hpp"
 #include "sgpl/program/Program.hpp"
@@ -22,37 +33,33 @@ spec_t::peripheral_t peripheral;
 
 TEST_CASE("Test Divide") {
 
-  sgpl::Program<spec_t> program{1};
-
-  sgpl::Core<spec_t> core;
+  const sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Divide",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
 
   // set up initial state
-
-  // set up values to operate on in register
-  core.registers[0] = 99;
-  core.registers[1] = 2;
-
-  // set up what registers to operate on
-  program[0].args[0] = 2;
-  program[0].args[1] = 0;
-  program[0].args[2] = 1;
+  sgpl::Core<spec_t> core({99.0, 2.0, {}, {}});
 
   // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{99, 2, 0, 0, 0, 0, 0, 0}
-  ));
-
-  for (auto reg : core.registers) std::cout << reg << " ";
-  std::cout << std::endl;
+  REQUIRE(core.registers == emp::array<float, 4>{99.f, 2.f, 0.f, {}});
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{99, 2, 49.5, 0, 0, 0, 0, 0}
-  ));
-
-  for (auto reg : core.registers) std::cout << reg << " ";
-  std::cout << std::endl;
+  // expected: 99 / 2 == 49.5
+  REQUIRE(core.registers == emp::array<float, 4>{99.f, 2.f, 99.f / 2.f,{}});
 }

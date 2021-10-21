@@ -2,6 +2,8 @@
 #ifndef SGPL_HARDWARE_JUMPTABLE_HPP_INCLUDE
 #define SGPL_HARDWARE_JUMPTABLE_HPP_INCLUDE
 
+#include <tuple>
+
 #include "../../../third-party/conduit/include/uitsl/math/shift_mod.hpp"
 
 #include "../program/Program.hpp"
@@ -99,6 +101,14 @@ struct JumpTable {
         match_bin.Put( pos, instruction.tag );
       }
     }
+  }
+
+  bool operator==(const JumpTable& other) const {
+    return std::tuple{
+      match_bin
+    } == std::tuple{
+      other.match_bin
+    };
   }
 
 };

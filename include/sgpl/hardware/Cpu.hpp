@@ -195,7 +195,7 @@ public:
 
   void AdvanceCycleClock(const size_t amt) noexcept {
     data.lifetime_cycle_clock += amt;
-   }
+  }
 
   size_t GetCyclesSinceConstruction() const noexcept {
     return data.lifetime_cycle_clock;

@@ -9,6 +9,7 @@
 
 namespace sgpl {
 
+// TODO: rename to CappedVector
 template<typename T, size_t N>
 class CappedSet {
 
@@ -57,9 +58,9 @@ public:
   T& back() { emp_assert( size() ); return operator[](size() - 1); };
 
   const T& back() const {
-   emp_assert( size() );
-   return operator[](size() - 1);
- };
+    emp_assert( size() );
+    return operator[](size() - 1);
+  };
 
   T& front() { return buffer.front(); };
 
@@ -77,6 +78,14 @@ public:
   T* end() { return begin() + size(); }
 
   const T* end() const { return begin() + size(); }
+
+  bool operator==(const CappedSet& other) const {
+    return std::equal(
+      begin(),
+      end(),
+      other.begin()
+    );
+  }
 
 };
 

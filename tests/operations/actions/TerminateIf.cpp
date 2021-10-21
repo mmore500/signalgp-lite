@@ -1,44 +1,55 @@
-#define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
-
-#include "sgpl/operations/actions/TerminateIf.hpp"
-
-
-#include "sgpl/hardware/Core.hpp"
-#include "sgpl/program/Program.hpp"
+#include "conduit/include/uitsl/polyfill/filesystem.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
-
+#include "sgpl/hardware/Core.hpp"
+#include "sgpl/library/OpLibrary.hpp"
+#include "sgpl/operations/actions/TerminateIf.hpp"
+#include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 
-#include "sgpl/utility/EmptyType.hpp"
+// typedefs
+using library_t = sgpl::OpLibrary<
+  sgpl::Nop<>,
+  sgpl::TerminateIf
+>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 2 }; // eslint-disable-line no-eval
+};
 
-// define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::TerminateIf>;
+TEST_CASE("Test TerminateIf, true test flag") {
 
-using spec_t = sgpl::Spec<library_t>;
+  const sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/TrueTerminateIf.json"
+  });
 
-// create peripheral
-spec_t::peripheral_t peripheral;
-
-TEST_CASE("Test TerminateIf") {
-
-  sgpl::Program<spec_t> program{1};
-
-  sgpl::Core<spec_t> core;
-
-  // set register to true
-  core.registers[0] = true;
-
-  // tell terminateif to check inside the 0th register
-  program[0].args[0] = 0;
+  sgpl::Core<spec_t> core( {true, {}} );
 
   // check initial state
   REQUIRE(!core.HasTerminated());
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
   REQUIRE(core.HasTerminated());
+}
+
+
+TEST_CASE("Test TerminateIf, false test flag") {
+
+  const sgpl::Program<spec_t> program(std::filesystem::path{
+    "assets/FalseTerminateIf.json"
+  });
+
+  sgpl::Core<spec_t> core;
+
+  // check initial state
+  REQUIRE(!core.HasTerminated());
+
+  // execute single instruction
+  sgpl::advance_core(core, program);
+
+  // check that it did not terminate
+  REQUIRE(!core.HasTerminated());
 }

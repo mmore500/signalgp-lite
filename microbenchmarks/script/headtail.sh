@@ -2,7 +2,7 @@
 
 # adapted from https://stackoverflow.com/a/44849814
 
-stdbuf -i0 -o0 -e0 awk -v offset=${MAX_LINES:-20} \
+stdbuf -i0 -o0 -e0 awk -v offset="${MAX_LINES:-20}" \
           '{
                if (NR <= offset) print;
                else {

@@ -9,6 +9,7 @@
 #include <string>
 
 #include "../../../../third-party/conduit/include/uitsl/algorithm/clamp_cast.hpp"
+#include "../../../../third-party/conduit/include/uitsl/polyfill/bit_cast.hpp"
 #include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
 
 #include "../../hardware/Core.hpp"
@@ -34,31 +35,23 @@ struct BitwiseShift {
   ) noexcept {
     const size_t a = inst.args[0], b = inst.args[1], c = inst.args[2];
 
-    static_assert( sizeof(core.registers[b]) <= sizeof(size_t) );
-    size_t as_size_t;
-
-    std::memcpy(
-      &as_size_t,
-      &core.registers[b],
-      sizeof( core.registers[b] )
-    );
+    static_assert( sizeof(core.registers[b]) == sizeof(uint32_t) );
+    const uint32_t as_uint32{
+      std::bit_cast<uint32_t>(core.registers[b])
+    };
 
     constexpr size_t num_bits = sizeof(core.registers[b]) * 8;
 
-    const size_t result = ( core.registers[c] > 0 )
-      ? std::bitset<num_bits>( as_size_t ).operator<<(
+    const uint32_t result = ( core.registers[c] > 0 )
+      ? std::bitset<num_bits>( as_uint32 ).operator<<(
           uitsl::clamp_cast<size_t>( core.registers[c] )
         ).to_ulong()
-      : std::bitset<num_bits>( as_size_t ).operator>>(
+      : std::bitset<num_bits>( as_uint32 ).operator>>(
           uitsl::clamp_cast<size_t>( -core.registers[c] )
         ).to_ulong()
       ;
 
-    std::memcpy(
-      &core.registers[a],
-      &result,
-      sizeof( core.registers[a] )
-    );
+    core.registers[a] = std::bit_cast<float>(result);
   }
 
   static std::string name() { return "Bitwise Shift"; }

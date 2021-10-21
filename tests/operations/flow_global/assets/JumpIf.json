@@ -1,0 +1,104 @@
+{
+    "value0": [
+        {
+            "operation": "Global Jump If",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
+            "descriptors": []
+        },
+        {
+            "operation": "Nop-1",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+            "descriptors": []
+        },
+        {
+            "operation": "Global Anchor",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "1100010010111011100100110111100101111110111100011100000000101000",
+            "descriptors": []
+        },
+        {
+            "operation": "Global Anchor",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "1100111010101111011111100000100000100101100111011010001011010010",
+            "descriptors": []
+        },
+        {
+            "operation": "Global Anchor",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "0100101111110101100110100101000111100101001010101100110000111000",
+            "descriptors": []
+        },
+        {
+            "operation": "Global Anchor",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
+            "descriptors": []
+        },
+        {
+            "operation": "Global Anchor",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "1000011101111111111001001111110000100110011110011111001111011101",
+            "descriptors": []
+        },
+        {
+            "operation": "Global Anchor",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "0100000000101011001010100111001101000011011000000011000100100111",
+            "descriptors": []
+        },
+        {
+            "operation": "Global Anchor",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "1110100101100011001010101100010111100000110000011111010011011101",
+            "descriptors": []
+        },
+        {
+            "operation": "Global Anchor",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "1111011101010001110001001000111010100101010101100000110000101000",
+            "descriptors": []
+        }
+    ]
+}

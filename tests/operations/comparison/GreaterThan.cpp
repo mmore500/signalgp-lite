@@ -1,85 +1,86 @@
-#define CATCH_CONFIG_MAIN
 #include "Catch/single_include/catch2/catch.hpp"
-
-#include "sgpl/operations/comparison/GreaterThan.hpp"
-
-#include "sgpl/hardware/Core.hpp"
-#include "sgpl/program/Program.hpp"
+#include "Empirical/include/emp/base/array.hpp"
 
 #include "sgpl/algorithm/execute_core.hpp"
-
+#include "sgpl/hardware/Core.hpp"
+#include "sgpl/library/OpLibrary.hpp"
+#include "sgpl/operations/comparison/GreaterThan.hpp"
+#include "sgpl/program/Program.hpp"
 #include "sgpl/spec/Spec.hpp"
 
-#include "sgpl/utility/EmptyType.hpp"
-
-// define libray and spec
+// typedefs
 using library_t = sgpl::OpLibrary<sgpl::GreaterThan>;
+struct spec_t : public sgpl::Spec<library_t> {
+  static constexpr inline size_t num_registers{ 4 }; // eslint-disable-line no-eval
+};
 
-using spec_t = sgpl::Spec<library_t>;
+TEST_CASE("Test GreaterThan, first operand greater than second") {
 
-// create peripheral
-spec_t::peripheral_t peripheral;
+  const sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Greater Than",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
 
-TEST_CASE("Test Not GreaterThan") {
+  // define value constants
+  const float operand1 = 97.f;
+  const float operand2 = 3.f;
 
-  sgpl::Program<spec_t> program{1};
-
-  sgpl::Core<spec_t> core;
-
-  // set up false check
-
-  // set up values to operate on in register
-  core.registers[0] = 7;
-  core.registers[1] = 99;
-  core.registers[2] = -1; // random int
-
-  // set up what registers to operate on
-  program[0].args[0] = 2;
-  program[0].args[1] = 0;
-  program[0].args[2] = 1;
-
-  // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{7, 99, -1, 0, 0, 0, 0, 0}
-  ));
+  sgpl::Core<spec_t> core( {operand1, operand2, {}, {}} );
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{7, 99, 0, 0, 0, 0, 0, 0}
-  ));
+  REQUIRE(
+    core.registers
+    == emp::array<float, 4>{operand1, operand2, true, {}}
+  );
 
 }
 
-TEST_CASE("Test GreaterThan") {
+TEST_CASE("Test GreaterThan, second operand greater than first") {
 
-  sgpl::Program<spec_t> program{1};
+  const sgpl::Program<spec_t> program(R"(
+    {
+      "value0": [
+        {
+          "operation": "Greater Than",
+          "args": {
+            "value0": 2,
+            "value1": 0,
+            "value2": 1
+          },
+          "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+          "descriptors": []
+        }
+      ]
+    }
+  )");
 
-  sgpl::Core<spec_t> core;
+  // define value constants
+  const float operand1 = 3.f;
+  const float operand2 = 97.f;
 
-  // set up values to operate on in register
-  core.registers[0] = 99;
-  core.registers[1] = 7;
-  core.registers[2] = -1; // random int
-
-  // set up what registers to operate on
-  program[0].args[0] = 2;
-  program[0].args[1] = 0;
-  program[0].args[2] = 1;
-
-  // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{99, 7, -1, 0, 0, 0, 0, 0}
-  ));
+  sgpl::Core<spec_t> core( {operand1, operand2, true, {}} );
 
   // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
+  sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{99, 7, 1, 0, 0, 0, 0, 0}
-  ));
-
+  REQUIRE(
+    core.registers
+    == emp::array<float, 4>{operand1, operand2, false, {}}
+  );
 }

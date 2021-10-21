@@ -19,9 +19,9 @@
 # absolute, like shown here.
 #
 import os
-import sys
-import subprocess
 import sphinx_rtd_theme
+import subprocess
+import sys
 
 # -- General configuration ---------------------------------------------
 
@@ -32,36 +32,36 @@ import sphinx_rtd_theme
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.coverage',
-    'sphinx.ext.mathjax',
-    'sphinx_rtd_theme',
-    'breathe',
-    'exhale',
-    'myst_parser',
-    'sphinxemoji.sphinxemoji',
+  'sphinx.ext.autodoc',
+  'sphinx.ext.viewcode',
+  'sphinx.ext.coverage',
+  'sphinx.ext.mathjax',
+  'sphinx_rtd_theme',
+  'breathe',
+  'exhale',
+  'myst_parser',
+  'sphinxemoji.sphinxemoji',
 ]
 
 # Setup the breathe extension
 breathe_projects = {
-    "Matthew Andres Moreno": "./doxyoutput/xml"
+  "Matthew Andres Moreno": "./doxyoutput/xml",
 }
 breathe_default_project = "Matthew Andres Moreno"
 
 # Setup the exhale extension
 exhale_args = {
-    # These arguments are required
-    "containmentFolder":     "./api",
-    "rootFileName":          "library_root.rst",
-    "rootFileTitle":         "Library API",
-    "doxygenStripFromPath":  "..",
-    # Suggested optional arguments
-    "createTreeView":        True,
-    # TIP: if using the sphinx-bootstrap-theme, you need
-    # "treeViewIsBootstrap": True,
-    "exhaleExecutesDoxygen": True,
-    "exhaleDoxygenStdin":    "INPUT = ../include"
+  # These arguments are required
+  "containmentFolder":   "./api",
+  "rootFileName":      "library_root.rst",
+  "rootFileTitle":     "Library API",
+  "doxygenStripFromPath":  "..",
+  # Suggested optional arguments
+  "createTreeView":    True,
+  # TIP: if using the sphinx-bootstrap-theme, you need
+  # "treeViewIsBootstrap": True,
+  "exhaleExecutesDoxygen": True,
+  "exhaleDoxygenStdin":  "INPUT = ../include",
 }
 
 # Add any paths that contain templates here, relative to this directory.
@@ -136,30 +136,34 @@ htmlhelp_basename = 'signalgp-litedoc'
 # -- Options for LaTeX output ------------------------------------------
 
 latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #
-    # 'papersize': 'letterpaper',
+  # The paper size ('letterpaper' or 'a4paper').
+  #
+  # 'papersize': 'letterpaper',
 
-    # The font size ('10pt', '11pt' or '12pt').
-    #
-    # 'pointsize': '10pt',
+  # The font size ('10pt', '11pt' or '12pt').
+  #
+  # 'pointsize': '10pt',
 
-    # Additional stuff for the LaTeX preamble.
-    #
-    # 'preamble': '',
+  # Additional stuff for the LaTeX preamble.
+  #
+  # 'preamble': '',
 
-    # Latex figure (float) alignment
-    #
-    # 'figure_align': 'htbp',
+  # Latex figure (float) alignment
+  #
+  # 'figure_align': 'htbp',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass
 # [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'signalgp-lite.tex',
-     u'SignalGP Lite Documentation',
-     u'Matthew Andres Moreno', 'manual'),
+  (
+    master_doc,
+    'signalgp-lite.tex',
+    u'SignalGP Lite Documentation',
+    u'Matthew Andres Moreno',
+    'manual',
+  ),
 ]
 
 
@@ -168,9 +172,13 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'signalgp-lite',
-     u'SignalGP Lite Documentation',
-     [author], 1)
+  (
+    master_doc,
+    'signalgp-lite',
+    u'SignalGP Lite Documentation',
+    [author],
+    1,
+  ),
 ]
 
 
@@ -180,12 +188,15 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'signalgp-lite',
-     u'SignalGP Lite Documentation',
-     author,
-     'signalgp-lite',
-     'One line description of project.',
-     'Miscellaneous'),
+  (
+    master_doc,
+    'signalgp-lite',
+    u'SignalGP Lite Documentation',
+    author,
+    'signalgp-lite',
+    'One line description of project.',
+    'Miscellaneous',
+  ),
 ]
 
 # -- Theme Options -------------------------------------------
@@ -195,11 +206,11 @@ texinfo_documents = [
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
 if on_rtd: # rtd doesn't run Makefile, so we have to copy assets ourself
-    subprocess.call(
-        'mkdir -p _build/html/docs/; cp -r assets _build/html/docs/',
-        shell=True,
-    )
+  subprocess.call(
+    'mkdir -p _build/html/docs/; cp -r assets _build/html/docs/',
+    shell=True,
+  )
 else:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+  import sphinx_rtd_theme
+  html_theme = 'sphinx_rtd_theme'
+  html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]

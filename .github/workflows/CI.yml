@@ -1,0 +1,240 @@
+name: CI
+'on':
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - '**'
+jobs:
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: '${{ github.token }}'
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          push: true
+          tags: 'GITHUB_ACTION_${{ github.run_number }}'
+          username: '${{ secrets.DOCKER_USERNAME }}'
+          password: '${{ secrets.DOCKER_PASSWORD }}'
+          repository: mmore500/signalgp-lite
+          add_git_labels: true
+  misc:
+    runs-on: ubuntu-20.04
+    needs:
+      - docker-build
+    name: 'Docs, Miscellaneous'
+    container:
+      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
+      options: '--user root --cap-add=SYS_ADMIN'
+      env:
+        CXX: clang++
+        CONTEXT: travis
+    steps:
+      - run: |
+          cd /opt/signalgp-lite
+          ./ci/test_tidy.sh
+          python3 ci/test_readme_snippets.py
+          make docs
+  unit-tests:
+    runs-on: ubuntu-20.04
+    name: Unit Tests
+    needs:
+      - docker-build
+    strategy:
+      matrix:
+        cxx:
+          - clang++
+          - g++
+        mode:
+          - opt
+          - test
+    container:
+      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
+      options: '--user root --cap-add=SYS_ADMIN'
+      env:
+        CXX: '${{ matrix.cxx }}'
+        CONTEXT: travis
+    steps:
+      - run: |
+          set -x
+          cd /opt/signalgp-lite/tests
+          make ${{ matrix.mode }}
+  coverage:
+    runs-on: ubuntu-20.04
+    name: Coverage
+    needs:
+      - docker-build
+    container:
+      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
+      options: '--user root --cap-add=SYS_ADMIN'
+      env:
+        CXX: clang++
+        CONTEXT: travis
+    steps:
+      - run: cd /opt/signalgp-lite && make coverage
+      - uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+          verbose: true
+          directory: /opt/signalgp-lite
+  fuzzing:
+    runs-on: ubuntu-20.04
+    name: Fuzzing
+    needs:
+      - docker-build
+    container:
+      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
+      options: >-
+        --user root --cap-add=SYS_ADMIN --cap-add=SYS_PTRACE --security-opt
+        seccomp=unconfined
+      env:
+        CXX: clang++
+        CONTEXT: travis
+    steps:
+      - run: |
+          cd /opt/signalgp-lite/fuzzing
+          make
+          make opt
+  microbenchmarks:
+    runs-on: ubuntu-20.04
+    name: Microbenchmarks
+    needs:
+      - docker-build
+    container:
+      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
+      options: '--user root --cap-add=SYS_ADMIN'
+      env:
+        CXX: clang++
+        CONTEXT: travis
+        OSF_USERNAME: '${{ secrets.OSF_USERNAME }}'
+        OSF_PASSWORD: '${{ secrets.OSF_PASSWORD }}'
+    steps:
+      - run: |
+          cd /opt/signalgp-lite/microbenchmarks
+          make
+  source:
+    runs-on: ubuntu-18.04
+    name: Source
+    needs:
+      - docker-build
+    strategy:
+      matrix:
+        cxx:
+          - clang++
+          - g++
+    container:
+      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
+      options: '--cap-add=SYS_ADMIN'
+      env:
+        CXX: '${{ matrix.cxx }}'
+        CONTEXT: travis
+    steps:
+      - run: |
+          cd /opt/signalgp-lite
+          make test
+  demos:
+    runs-on: ubuntu-18.04
+    name: Run demos
+    needs:
+      - docker-build
+    strategy:
+      matrix:
+        cxx:
+          - clang++
+          - g++
+    container:
+      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
+      options: '--user root --cap-add=SYS_ADMIN'
+      env:
+        CXX: '${{ matrix.cxx }}'
+        CONTEXT: travis
+    steps:
+      - run: |
+          cd /opt/signalgp-lite/demos
+          make opt
+  binder:
+    name: Notebooks
+    runs-on: ubuntu-20.04
+    needs:
+      - docker-build
+    container:
+      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
+      options: '--user root'
+    steps:
+      - run: /opt/signalgp-lite/binder/execute_notebooks.sh
+      - run: git init
+      - uses: fregante/setup-git-user@v1
+      - run: git commit --allow-empty -m "Initial commit"
+      - run: cp -r /opt/signalgp-lite/ deploy/
+      - uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: binder
+          folder: deploy
+  deploy-github-pages:
+    runs-on: ubuntu-20.04
+    name: Deploy to GitHub Pages
+    container:
+      image: 'mmore500/conduit:GITHUB_ACTION_${{ github.run_number }}'
+      env:
+        OSF_PASSWORD: '${{ secrets.OSF_PASSWORD }}'
+        OSF_USERNAME: '${{ secrets.OSF_USERNAME }}'
+      options: '--user root'
+    if: github.ref == 'refs/heads/master'
+    needs:
+      - docker-build
+      - misc
+      - unit-tests
+      - coverage
+      - fuzzing
+      - microbenchmarks
+      - source
+      - demos
+      - binder
+    env:
+      GH_TOKEN: '${{ github.token }}'
+    steps:
+      - run: make -C /opt/conduit/ web
+      - run: cp -r /opt/conduit/web/ web/
+      - uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          BRANCH: gh-pages
+          FOLDER: web
+          CLEAN: true
+  deploy-dockerhub:
+    name: Deploy to Dockerhub
+    runs-on: ubuntu-20.04
+    needs:
+      - docker-build
+      - misc
+      - unit-tests
+      - coverage
+      - fuzzing
+      - microbenchmarks
+      - source
+      - demos
+      - binder
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Push to DockerHub
+        uses: docker/build-push-action@v1
+        with:
+          push: true
+          username: '${{ secrets.DOCKER_USERNAME }}'
+          password: '${{ secrets.DOCKER_PASSWORD }}'
+          repository: mmore500/signalgp-lite
+          tag_with_ref: true
+          tag_with_sha: true

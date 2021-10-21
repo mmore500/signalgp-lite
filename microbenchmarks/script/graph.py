@@ -1,11 +1,10 @@
+from keyname import keyname as kn
+import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
-from keyname import keyname as kn
 from slugify import slugify
 import subprocess
 import sys
-from iterpop import iterpop as ip
 
 def facet(df):
     return sns.FacetGrid(

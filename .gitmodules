@@ -1,9 +1,11 @@
 [submodule "third-party/SignalGP"]
   path = third-party/SignalGP
   url = https://github.com/mmore500/SignalGP.git
+  shallow = true
 [submodule "third-party/conduit"]
   path = third-party/conduit
   url = https://github.com/mmore500/conduit.git
 [submodule "demos/boolean-calculator/third-party/magic_enum"]
   path = demos/boolean-calculator/third-party/magic_enum
   url = https://github.com/Neargye/magic_enum.git
+  shallow = true

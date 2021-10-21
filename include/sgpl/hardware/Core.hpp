@@ -3,6 +3,7 @@
 #define SGPL_HARDWARE_CORE_HPP_INCLUDE
 
 #include <limits>
+#include <tuple>
 
 #include "../../../third-party/Empirical/include/emp/base/array.hpp"
 
@@ -29,17 +30,19 @@ class Core {
 
 public:
 
-  Core() = default;
-
-  Core(
-    global_jump_table_array_t& global_jump_tables_
-  ) : global_jump_tables(&global_jump_tables_)
-  { ; }
-
   using registers_t = emp::array<float, Spec::num_registers>;
   registers_t registers{}; // value initialize
 
   sgpl::CappedSet<tag_t, Spec::num_fork_requests> fork_requests{};
+
+  Core() = default;
+
+  explicit Core(
+    global_jump_table_array_t& global_jump_tables_
+  ) : global_jump_tables(&global_jump_tables_)
+  { ; }
+
+  explicit Core(const registers_t& registers_) : registers(registers_) { ; }
 
   inline void Terminate() noexcept {
     program_counter = std::numeric_limits<size_t>::max();
@@ -120,6 +123,22 @@ public:
   }
 
   void DecayRegulators() noexcept { local_jump_table.DecayRegulators(); }
+
+  bool operator==(const Core& other) const {
+    return std::tuple{
+      program_counter,
+      registers,
+      fork_requests,
+      local_jump_table,
+      global_jump_tables
+    } == std::tuple{
+      other.program_counter,
+      other.registers,
+      other.fork_requests,
+      other.local_jump_table,
+      other.global_jump_tables
+    };
+  }
 
 };
 
