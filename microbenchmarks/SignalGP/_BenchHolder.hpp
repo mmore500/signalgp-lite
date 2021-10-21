@@ -37,7 +37,7 @@ struct BenchHolder {
     // Perform setup here
     for (auto _ : state) {
       // This code gets timed
-
+#ifdef CONTROL
       if constexpr (!Control) {
 
         auto& cpu = collection[agent];
@@ -56,7 +56,7 @@ struct BenchHolder {
         ++agent %= NUM_AGENTS;
 
       }
-
+#endif
     }
 
     for (auto& hardware : collection) {
