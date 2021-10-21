@@ -61,6 +61,15 @@ plt.savefig(
   dpi=300,
 )
 
+plt.savefig(
+  kn.pack({
+    'measurement' : slugify('Wall Time Speedup'),
+    'ext' : '.pdf',
+  }),
+  transparent=True,
+  dpi=300,
+)
+
 plt.clf()
 
 sns.barplot(
@@ -74,6 +83,15 @@ plt.savefig(
   kn.pack({
     'measurement' : slugify('CPU Time Speedup'),
     'ext' : '.png',
+  }),
+  transparent=True,
+  dpi=300,
+)
+
+plt.savefig(
+  kn.pack({
+    'measurement' : slugify('CPU Time Speedup'),
+    'ext' : '.pdf',
   }),
   transparent=True,
   dpi=300,

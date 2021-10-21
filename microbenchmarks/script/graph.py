@@ -40,6 +40,15 @@ def draw_plots(measurement, df):
       dpi=300,
     )
 
+    plt.savefig(
+      kn.pack({
+        'measurement' : slugify(measurement),
+        'ext' : '.pdf',
+      }),
+      transparent=True,
+      dpi=300,
+    )
+
     plt.clf()
 
     for showfliers in True, False:
@@ -58,6 +67,16 @@ def draw_plots(measurement, df):
             'fliers' : showfliers,
             'measurement' : slugify(measurement),
             'ext' : '.png',
+          }),
+          transparent=True,
+          dpi=300,
+        )
+
+        plt.savefig(
+          kn.pack({
+            'fliers' : showfliers,
+            'measurement' : slugify(measurement),
+            'ext' : '.pdf',
           }),
           transparent=True,
           dpi=300,
