@@ -142,12 +142,13 @@ jobs:
     steps:
       # workaround for permissions bug in npm
       # for example, https://github.com/mmore500/signalgp-lite/runs/3990844022?check_suite_focus=true#step:3:39
+#       - run: |
+#           export HOME="/home/user/"
+#           mkdir ~/.npm
+#           chown -R 1000:1000 ~/.npm
+      # undo github actions override of HOME to "/home/github/"
       - run: |
-          whoami
-          echo ~
-          mkdir ~/.npm
-          chown -R 1000:1000 ~/.npm
-      - run: |
+          export HOME="/home/user/"
           cd /opt/signalgp-lite
           make test
   demos:
