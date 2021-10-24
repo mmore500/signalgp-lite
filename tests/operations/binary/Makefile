@@ -1,5 +1,4 @@
 TEST_NAMES += Add
-TEST_NAMES += Exp
 TEST_NAMES += Divide
 TEST_NAMES += Modulo
 TEST_NAMES += Multiply
