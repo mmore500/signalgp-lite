@@ -140,6 +140,11 @@ jobs:
         CXX: '${{ matrix.cxx }}'
         CONTEXT: travis
     steps:
+      # workaround for permissions bug in npm
+      # for example, https://github.com/mmore500/signalgp-lite/runs/3990844022?check_suite_focus=true#step:3:39
+      - run: |
+          mkdir ~/.npm
+          chown -R 1000:1000 ~/.npm
       - run: |
           cd /opt/signalgp-lite
           make test
