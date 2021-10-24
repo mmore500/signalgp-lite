@@ -2,11 +2,11 @@
 
 # must exclude .git/ to avoid weird voodoo shenanigans
 # where /those/ files somehow change slightly...
-SOURCE_HASH=$( find \( -path ./third-party -prune -o -path ./.git -prune \) -false -o -type f | sort | xargs cat | sha1sum )
+SOURCE_HASH=$( find \( -path '*/third-party/*' -prune -o -path ./.git -prune \) -false -o -type f | sort | xargs cat | sha1sum )
 
 make clean
 
-if [ "${SOURCE_HASH}" == "$( find \( -path ./third-party -prune -o -path ./.git -prune \) -false -o -type f | sort | xargs cat | sha1sum )" ];
+if [ "${SOURCE_HASH}" == "$( find \( -path '*/third-party/*' -prune -o -path ./.git -prune \) -false -o -type f | sort | xargs cat | sha1sum )" ];
 then
   exit 0 # success
 else
