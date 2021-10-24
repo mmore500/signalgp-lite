@@ -8,7 +8,6 @@
 #include "Empirical/include/emp/datastructs/hash_utils.hpp"
 #include "Empirical/include/emp/Evolve/World.hpp"
 #include "Empirical/include/emp/math/Random.hpp"
-
 #include "magic_enum/include/magic_enum.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
