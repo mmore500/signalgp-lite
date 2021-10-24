@@ -1,5 +1,5 @@
-import sys
 import pandas as pd
+import sys
 
 expected = int(sys.argv[1])
 filename = sys.argv[2]

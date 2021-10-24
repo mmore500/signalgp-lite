@@ -4,11 +4,11 @@
 
 #include "actions/actions.hpp"
 #include "binary/binary.hpp"
-#include "unsigned_binary/unsigned_binary.hpp"
 #include "bitwise/bitwise.hpp"
 #include "comparison/comparison.hpp"
 #include "flow_global/flow_global.hpp"
 #include "flow_local/flow_local.hpp"
 #include "unary/unary.hpp"
+#include "unsigned_binary/unsigned_binary.hpp"
 
 #endif // #ifndef SGPL_OPERATIONS_OPERATIONS_HPP_INCLUDE

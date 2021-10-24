@@ -19,8 +19,8 @@
 
 #include "include/bc/config.hpp"
 #include "include/bc/GetState.hpp"
-#include "include/bc/Organism.hpp"
 #include "include/bc/load_training_set.hpp"
+#include "include/bc/Organism.hpp"
 #include "include/bc/Peripheral.hpp"
 #include "include/bc/SetState.hpp"
 #include "include/bc/setup.hpp"
