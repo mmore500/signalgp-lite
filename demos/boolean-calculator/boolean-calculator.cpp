@@ -171,8 +171,10 @@ auto GetFitFuns(bool verbose = false) {
     // shuffle the prompts
     emp::Shuffle(sgpl::tlrand.Get(), cases);
 
+    // &x=x due to clang's standards stickling on capturing structured bindings
+    // see https://burnicki.pl/en/2021/04/19/capture-structured-bindings.html
     fit_funs.push_back(
-      [&cases, verbose](const bc::Organism<spec_t>& org) -> double {
+      [&cases=cases, verbose](const bc::Organism<spec_t>& org) -> double {
         return org.Evaluate(cases.front(), verbose);
       }
     );
