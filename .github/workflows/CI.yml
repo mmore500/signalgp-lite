@@ -135,7 +135,7 @@ jobs:
           - g++
     container:
       image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
-      options: '--cap-add=SYS_ADMIN'
+      options: '--user user --cap-add=SYS_ADMIN'
       env:
         CXX: '${{ matrix.cxx }}'
         CONTEXT: travis
@@ -143,6 +143,8 @@ jobs:
       # workaround for permissions bug in npm
       # for example, https://github.com/mmore500/signalgp-lite/runs/3990844022?check_suite_focus=true#step:3:39
       - run: |
+          whoami
+          echo ~
           mkdir ~/.npm
           chown -R 1000:1000 ~/.npm
       - run: |
