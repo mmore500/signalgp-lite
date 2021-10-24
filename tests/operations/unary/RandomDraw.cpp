@@ -51,15 +51,6 @@ TEST_CASE("Test RandomDraw") {
     emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0}
   ));
 
-<<<<<<< HEAD
-  // execute single instruction
-  sgpl::advance_core(core, program, peripheral);
-
-  // check initial state
-  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
-    emp::array<float, 8>{map_draw(rand), 0, 0, 0, 0, 0, 0, 0}
-  ));
-=======
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
@@ -102,5 +93,4 @@ TEST_CASE("Test RandomDraw") {
   REQUIRE(replicate_sums.GetStandardDeviation() > 1000.0);
   REQUIRE(replicate_sums.GetMax() > 100000.0);
   REQUIRE(replicate_sums.GetMin() < 10.0);
->>>>>>> b952df9eee2e85f3097977c2fb36d3f7503ec69c
 }
