@@ -11,19 +11,19 @@
 #include "../include/sgpl/utility/ThreadLocalRandom.hpp"
 
 struct PrintMessage {
-    template<typename Spec>
-    static void run(
-        sgpl::Core<Spec>& core,
-        const sgpl::Instruction<Spec>& inst,
-        const sgpl::Program<Spec>&,
-        typename Spec::peripheral_t&
-    ) {
-        std::cout << "Hello world!" << std::endl;
-    }
+  template<typename Spec>
+  static void run(
+    sgpl::Core<Spec>& core,
+    const sgpl::Instruction<Spec>& inst,
+    const sgpl::Program<Spec>&,
+    typename Spec::peripheral_t&
+  ) {
+    std::cout << "Hello world!" << std::endl;
+  }
 
-    static std::string name() { return "PrintMessage"; }
+  static std::string name() { return "PrintMessage"; }
 
-    static size_t prevalence() { return 10; }
+  static size_t prevalence() { return 10; }
 
 };
 
@@ -33,13 +33,13 @@ using spec_t = sgpl::Spec<library_t>;
 
 int main() {
 
-    sgpl::Cpu<spec_t> cpu;
+  sgpl::Cpu<spec_t> cpu;
 
-    sgpl::Program<spec_t> program{10};
+  sgpl::Program<spec_t> program{10};
 
-    cpu.InitializeAnchors(program);
+  cpu.InitializeAnchors(program);
 
-    while (cpu.TryLaunchCore(emp::BitSet<64>(sgpl::tlrand.Get())));
+  while (cpu.TryLaunchCore(emp::BitSet<64>(sgpl::tlrand.Get())));
 
-    sgpl::execute_cpu<spec_t>(std::kilo::num, cpu, program);
+  sgpl::execute_cpu<spec_t>(std::kilo::num, cpu, program);
 }

@@ -12,25 +12,25 @@
 #include "../include/sgpl/utility/ThreadLocalRandom.hpp"
 
 struct Peripheral {
-    int output{};
-    Peripheral() = default;
-    Peripheral(int p) : output(p) { ; }
+  int output{};
+  Peripheral() = default;
+  Peripheral(int p) : output(p) { ; }
 };
 
 struct Identity {
-    template<typename Spec>
-    static void run(
-        sgpl::Core<Spec>& core,
-        const sgpl::Instruction<Spec>& inst,
-        const sgpl::Program<Spec>&,
-        typename Spec::peripheral_t& peripheral
-    ) {
-        peripheral.output = core.registers[0];
-    }
+  template<typename Spec>
+  static void run(
+    sgpl::Core<Spec>& core,
+    const sgpl::Instruction<Spec>& inst,
+    const sgpl::Program<Spec>&,
+    typename Spec::peripheral_t& peripheral
+  ) {
+    peripheral.output = core.registers[0];
+  }
 
-    static std::string name() { return "Identity"; }
+  static std::string name() { return "Identity"; }
 
-    static size_t prevalence() { return 10; }
+  static size_t prevalence() { return 10; }
 };
 
 using library_t = sgpl::OpLibraryCoupler<sgpl::CompleteOpLibrary, Identity>;
@@ -38,35 +38,35 @@ using library_t = sgpl::OpLibraryCoupler<sgpl::CompleteOpLibrary, Identity>;
 using spec_t = sgpl::Spec<library_t, Peripheral>;
 
 struct Organism {
-    mutable Peripheral peripheral;
+  mutable Peripheral peripheral;
 
-    mutable sgpl::Cpu<spec_t> cpu;
+  mutable sgpl::Cpu<spec_t> cpu;
 
-    mutable sgpl::Program<spec_t> program{100};
+  mutable sgpl::Program<spec_t> program{100};
 
-    Organism() : Organism(0) { ; }
-    Organism(int t) : peripheral(t) {
-        cpu.InitializeAnchors(program);
-        while (cpu.TryLaunchCore(emp::BitSet<64>(sgpl::tlrand.Get())));
-    }
+  Organism() : Organism(0) { ; }
+  Organism(int t) : peripheral(t) {
+    cpu.InitializeAnchors(program);
+    while (cpu.TryLaunchCore(emp::BitSet<64>(sgpl::tlrand.Get())));
+  }
 
-    double GetFitness() const {
-        cpu.InitializeAnchors(program);
-        while (cpu.TryLaunchCore(emp::BitSet<64>(sgpl::tlrand.Get())));
+  double GetFitness() const {
+    cpu.InitializeAnchors(program);
+    while (cpu.TryLaunchCore(emp::BitSet<64>(sgpl::tlrand.Get())));
 
-        sgpl::execute_cpu<spec_t>(std::kilo::num, cpu, program, peripheral);
+    sgpl::execute_cpu<spec_t>(std::kilo::num, cpu, program, peripheral);
 
-        return peripheral.output;
-    }
+    return peripheral.output;
+  }
 
-    bool DoMutations(emp::Random&) {
-        program.ApplyPointMutations( 0.005f );
-        return true;
-    }
+  bool DoMutations(emp::Random&) {
+    program.ApplyPointMutations( 0.005f );
+    return true;
+  }
 
-    bool operator== (const Organism& rhs) { return peripheral.output == rhs.peripheral.output; }
-    bool operator!= (const Organism& rhs) { return !operator==(rhs); }
-    bool operator< (const Organism& rhs) { return peripheral.output < rhs.peripheral.output; }
+  bool operator== (const Organism& rhs) { return peripheral.output == rhs.peripheral.output; }
+  bool operator!= (const Organism& rhs) { return !operator==(rhs); }
+  bool operator< (const Organism& rhs) { return peripheral.output < rhs.peripheral.output; }
 };
 
 int main() {
@@ -81,10 +81,10 @@ int main() {
   std::cout << std::endl;
 
   for (int i = 0; i < 100; i++) {
-    ea_world.DoMutations();
-    TournamentSelect(ea_world, 7, 100);
-    ea_world.Update();
-    for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
+  ea_world.DoMutations();
+  TournamentSelect(ea_world, 7, 100);
+  ea_world.Update();
+  for (size_t i = 0; i < ea_world.GetSize(); i++) std::cout << ea_world[i].GetFitness() << " ";
   }
 
 std::cout << "\nPost-Tourney Size = " << ea_world.GetSize() << "\n";

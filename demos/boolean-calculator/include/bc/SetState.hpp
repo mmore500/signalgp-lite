@@ -10,10 +10,10 @@ struct SetState {
 
   template<typename Spec>
   static void run(
-      sgpl::Core<Spec>& core,
-      const sgpl::Instruction<Spec>& inst,
-      const sgpl::Program<Spec>&,
-      typename Spec::peripheral_t& peripheral
+    sgpl::Core<Spec>& core,
+    const sgpl::Instruction<Spec>& inst,
+    const sgpl::Program<Spec>&,
+    typename Spec::peripheral_t& peripheral
   ) {
     const size_t a = inst.args[0];
     peripheral.output = std::bit_cast<uint32_t>(core.registers[a]);
