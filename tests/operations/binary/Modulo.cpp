@@ -14,23 +14,6 @@ struct spec_t : public sgpl::Spec<library_t> {
   static constexpr inline size_t num_registers{ 4 }; // eslint-disable-line no-eval
 };
 
-#include "sgpl/hardware/Core.hpp"
-#include "sgpl/program/Program.hpp"
-
-#include "sgpl/algorithm/execute_core.hpp"
-
-#include "sgpl/spec/Spec.hpp"
-
-#include "sgpl/utility/EmptyType.hpp"
-
-// define libray and spec
-using library_t = sgpl::OpLibrary<sgpl::Modulo>;
-
-using spec_t = sgpl::Spec<library_t>;
-
-// create peripheral
-spec_t::peripheral_t peripheral;
-
 TEST_CASE("Test Modulo") {
 
   const sgpl::Program<spec_t> program(R"(
