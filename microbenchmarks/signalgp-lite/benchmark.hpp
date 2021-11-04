@@ -43,9 +43,8 @@ static void DoBench(benchmark::State& state) {
 
   // Perform setup here
   for (auto _ : state) {
-#if OP_LIBRARY != Control
     auto& cpu = collection[agent];
-
+#ifndef STRIP_BENCHMARK_LOOP
     // This code gets timed
     if constexpr (fill_cores) {
       while ( cpu.TryLaunchCore( tags[tag] ) ) ++tag %= tags.size();
@@ -54,16 +53,16 @@ static void DoBench(benchmark::State& state) {
     } else {
       sgpl::execute_cpu<spec_t>( 1, cpu, program );
     }
-
+#endif // #ifndef STRIP_BENCHMARK_LOOP
     ++agent %= NUM_AGENTS;
-#endif // OP_LIBRARY != Control
   }
 
   // prevent work from being optimized away
   for (const auto& cpu : collection) assert( cpu.HasActiveCore() );
 
-  state.counters["num agents"] = NUM_AGENTS;
+  uitsl::do_not_optimize(agent);
 
+  state.counters["num agents"] = NUM_AGENTS;
 }
 
 template<size_t NUM_AGENTS>
@@ -81,7 +80,6 @@ struct Setup {
     uitsl::report_confidence<50>( res );
 
   }
-
 };
 
 Setup<1> s1;
