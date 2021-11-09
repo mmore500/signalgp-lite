@@ -5,6 +5,8 @@
 
 constexpr bool fill_cores = false;
 
+#define STRIP_BENCHMARK_LOOP
+
 #include "_BenchHolder.hpp"
 #include "_Inst_Loop.hpp"
 #include "_SignalGP.hpp"
@@ -12,8 +14,6 @@ constexpr bool fill_cores = false;
 inst_lib_t inst_lib;
 event_lib_t event_lib;
 program_t program;
-
-#define STRIP_BENCHMARK_LOOP
 
 struct SetupA {
 
