@@ -45,12 +45,18 @@ ratio['CPU Speedup'] = (
     / np.array( lite['CPU Nanoseconds'] )
 )
 
-sns.barplot(
+ax = sns.barplot(
     data=ratio,
     x='Num Agents',
     y='Wall Speedup',
     hue='Benchmark',
 )
+
+ax.set_axisbelow(True)
+ax.yaxis.grid(color='gray', linestyle='dashed')
+
+plt.legend(bbox_to_anchor=(1.02, 1), loc=2, borderaxespad=0.)
+
 
 plt.savefig(
   kn.pack({
@@ -59,6 +65,7 @@ plt.savefig(
   }),
   transparent=True,
   dpi=300,
+  bbox_inches='tight'
 )
 
 plt.savefig(
@@ -68,6 +75,7 @@ plt.savefig(
   }),
   transparent=True,
   dpi=300,
+  bbox_inches='tight'
 )
 
 plt.clf()
