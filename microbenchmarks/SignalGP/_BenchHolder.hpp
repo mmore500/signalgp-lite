@@ -38,6 +38,8 @@ struct BenchHolder {
 
     // Perform setup here
     for (auto _ : state) {
+      // prevent loop from getting optimized out under
+      // control conditions and when n = 1
       int do_not_optimize{};
       uitsl::do_not_optimize(do_not_optimize);
 
