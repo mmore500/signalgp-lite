@@ -14,6 +14,8 @@
 #include "PromptEnum.hpp"
 #include "TestCase.hpp"
 
+#include "conduit/include/uitsl/polyfill/filesystem.hpp"
+
 namespace bc {
 
 template<typename Spec>
@@ -22,7 +24,9 @@ struct Organism {
   using program_t = sgpl::Program<Spec>;
   using tag_t = typename Spec::tag_t;
 
-  program_t program{256};
+  program_t program{std::filesystem::path{
+    "nand_program.json"
+  }};
 
   bool Evaluate(const bc::TestCase& case_, bool verbose = false) const {
 
@@ -50,11 +54,15 @@ struct Organism {
       const auto did_launch = cpu.TryLaunchCore( prompt_tag );
 
       if ( did_launch && prompt.val.has_value() ) {
-        auto& reg = cpu.GetFreshestCore().registers.front();
-        reg = std::bit_cast<float>(*prompt.val);
+        // peripheral.input = std::bit_cast<float>(*prompt.val);
+        peripheral.input = static_cast<float>(*prompt.val);
+        std::cout << "input: " << *prompt.val << ", " << peripheral.input << std::endl;
       } else {
         // is an operation
         case_name = magic_enum::enum_name( prompt.which );
+        std::cout << case_name << ": " << case_.response << ", " << peripheral.output <<
+        ". " << static_cast<int>(peripheral.output == case_.response) << std::endl;
+
       }
 
       // execute up to 128 instructions
@@ -67,7 +75,7 @@ struct Organism {
 
   }
   double GetTrainingFitness(bool verbose = false) const {
-    const size_t num_tests = 20;
+    const size_t num_tests = 1;
     const size_t num_passed = std::accumulate(
       sgpl::CountingIterator{},
       sgpl::CountingIterator{num_tests},
