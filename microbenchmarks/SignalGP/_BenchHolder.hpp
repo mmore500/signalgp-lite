@@ -41,7 +41,6 @@ struct BenchHolder {
       auto& cpu = collection[agent];
 
       if constexpr ( fill_cores ) {
-
         while ( cpu.GetUnusedThreadIDs().size() ) {
           cpu.SpawnThreadWithTag( tags[tag] );
           ++tag %= tags.size();
