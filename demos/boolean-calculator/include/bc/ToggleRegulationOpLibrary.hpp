@@ -23,6 +23,7 @@ using ToggleRegulationOpLibrary = sgpl::OpLibrary<
   sgpl::BitwiseOr,
   sgpl::BitwiseShift,
   sgpl::BitwiseXor,
+  sgpl::BitwiseNand,
   sgpl::CountOnes,
   // sgpl::RandomFill,
   sgpl::Equal,
