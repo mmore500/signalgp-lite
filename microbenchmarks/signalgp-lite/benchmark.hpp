@@ -58,6 +58,8 @@ static void DoBench(benchmark::State& state) {
     ++agent %= NUM_AGENTS;
   }
 
+  std::cout << agent << std::endl;
+
   // prevent work from being optimized away
   for (const auto& cpu : collection) assert( cpu.HasActiveCore() );
 

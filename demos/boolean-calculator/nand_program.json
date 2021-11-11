@@ -1,0 +1,44 @@
+{
+    "value0": [
+        {
+            "operation": "GetInput",
+            "args": {
+                "value0": 0,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "1011000001110110011010101000010111100011110110110111001011010100",
+            "descriptors": []
+        },
+        {
+            "operation": "GetInput",
+            "args": {
+                "value0": 1,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "0000000000000000000000000000000000000000000000000000000000000000",
+            "descriptors": []
+        },
+        {
+            "operation": "Bitwise Nand",
+            "args": {
+                "value0": 2,
+                "value1": 0,
+                "value2": 1
+            },
+            "bitstring": "1100010010111011100100110111100101111110111100011100000000101000",
+            "descriptors": []
+        },
+        {
+            "operation": "SetOutput",
+            "args": {
+                "value0": 2,
+                "value1": 0,
+                "value2": 0
+            },
+            "bitstring": "1100111010101111011111100000100000100101100111011010001011010010",
+            "descriptors": []
+        }
+    ]
+}
