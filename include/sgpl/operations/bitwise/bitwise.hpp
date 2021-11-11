@@ -7,6 +7,7 @@
 #include "BitwiseOr.hpp"
 #include "BitwiseShift.hpp"
 #include "BitwiseXor.hpp"
+#include "BitwiseNand.hpp"
 #include "CountOnes.hpp"
 #include "RandomFill.hpp"
 
