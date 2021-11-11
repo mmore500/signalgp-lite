@@ -21,7 +21,6 @@
 #include "include/bc/load_training_set.hpp"
 #include "include/bc/Organism.hpp"
 #include "include/bc/Peripheral.hpp"
-#include "include/bc/SetState.hpp"
 #include "include/bc/setup.hpp"
 #include "include/bc/TestCase.hpp"
 #include "include/bc/ToggleRegulationOpLibrary.hpp"
@@ -124,8 +123,8 @@ struct GetAllGlobal {
 
 using library_t = sgpl::OpLibraryCoupler<
   bc::ToggleRegulationOpLibrary,
-  bc::GetState,
-  bc::SetState,
+  bc::GetInput,
+  bc::SetOutput,
   bc::GetGlobal,
   bc::SetGlobal,
   bc::GetAllGlobal,
@@ -133,7 +132,10 @@ using library_t = sgpl::OpLibraryCoupler<
 >;
 
 // TODO: override spec and change line 34 to ratio<1,2>
-using spec_t = sgpl::Spec<library_t, bc::Peripheral>;
+// using spec_t = sgpl::Spec<library_t, bc::Peripheral>;
+struct spec_t : public sgpl::Spec<library_t, bc::Peripheral> {
+  //static constexpr inline size_t switch_steps{ 1 }; // eslint-disable-line no-eval
+};
 
 using tag_t = spec_t::tag_t;
 
@@ -159,12 +161,9 @@ namespace bc {
 auto GetFitFuns(bool verbose = false) {
   emp::vector< std::function<double(const bc::Organism<spec_t>&)> > fit_funs;
 
-  auto& grouped_set = bc::load_grouped_training_set();
-
-  emp_assert(
-    grouped_set.size() == magic_enum::enum_count<bc::PromptEnum>() - 1, // ignore NUM
-    "Missing operations in test cases."
-  );
+  // emp_assert(
+  //     grouped_set.size() == magic_enum::enum_count<bc::PromptEnum>() - 1, // ignore NUM
+  //     "Missing operations in test cases.");
 
   for (auto& [type, cases] : grouped_set) {
     // shuffle the prompts
@@ -229,7 +228,7 @@ int main(int argc, char* argv[]) {
   for (size_t t = 0; t < bc::config.UPDATES(); ++t) {
     // loop normally
     print_fitness(t);
-    ea_world.DoMutations();
+    //ea_world.DoMutations();
     emp::LexicaseSelect(ea_world, GetFitFuns(), PopulationSize);
     ea_world.Update();
 
@@ -247,5 +246,4 @@ int main(int argc, char* argv[]) {
   }
 
   print_fitness();
-
 }
