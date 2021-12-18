@@ -24,9 +24,11 @@ struct Organism {
   using program_t = sgpl::Program<Spec>;
   using tag_t = typename Spec::tag_t;
 
-  program_t program{std::filesystem::path{
-    "nand_program.json"
-  }};
+  // program_t program{std::filesystem::path{
+  //   "nand_program.json"
+  // }};
+  program_t program{256};
+
 
   bool Evaluate(const bc::TestCase& case_, bool verbose = false) const {
 
@@ -51,47 +53,53 @@ struct Organism {
       const auto prompt_idx = magic_enum::enum_integer( prompt.which );
       const auto& prompt_tag = prompt_tags[ prompt_idx ];
 
-      const auto did_launch = cpu.TryLaunchCore( prompt_tag );
+      const bool did_launch = cpu.TryLaunchCore( prompt_tag );
+
+      emp_assert(did_launch);
+
+      emp_assert(cpu.HasActiveCore());
+
+      // emp_assert(!cpu.GetActiveCore().HasTerminated());
 
       if ( did_launch && prompt.val.has_value() ) {
         // peripheral.input = std::bit_cast<float>(*prompt.val);
-        peripheral.input = static_cast<float>(*prompt.val);
-        std::cout << "input: " << *prompt.val << ", " << peripheral.input << std::endl;
+        peripheral.input = *prompt.val;
       } else {
         // is an operation
         case_name = magic_enum::enum_name( prompt.which );
-        std::cout << case_name << ": " << case_.response << ", " << peripheral.output <<
-        ". " << static_cast<int>(peripheral.output == case_.response) << std::endl;
-
       }
 
       // execute up to 128 instructions
       sgpl::execute_cpu<Spec>(128, cpu, program, peripheral);
 
     }
-    if (verbose) std::cout << case_name << ": " << static_cast<int>(peripheral.output == case_.response) << std::endl;
 
     return peripheral.output == case_.response;
 
   }
   double GetTrainingFitness(bool verbose = false) const {
-    const size_t num_tests = 1;
+    const auto& cases = load_training_set();
+
+    // pick random subset of cases
+    emp::vector<bc::TestCase> cases_copy = cases;
+    emp::Shuffle(sgpl::tlrand.Get(), cases_copy, 25);
+    cases_copy.resize(25);
+
     const size_t num_passed = std::accumulate(
-      sgpl::CountingIterator{},
-      sgpl::CountingIterator{num_tests},
+      cases_copy.begin(),
+      cases_copy.end(),
       size_t{},
-      [this, verbose](const auto& running_sum, const auto&){
-        const auto& cases = load_training_set();
-        const size_t case_idx = sgpl::tlrand.Get().GetUInt( cases.size() );
-        const auto& case_ = cases[ case_idx ];
+      [this, verbose](const auto& running_sum, const auto& case_){
         return running_sum + Evaluate( case_, verbose );
       }
     );
 
-    return num_passed / static_cast<double>(num_tests);
+    return num_passed / static_cast<double>(cases_copy.size());
   }
+
   double GetTestingFitness() const {
     const auto& cases = load_testing_set();
+
     const size_t num_passed = std::accumulate(
       cases.begin(),
       cases.end(),
