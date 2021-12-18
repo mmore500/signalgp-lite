@@ -29,4 +29,20 @@ const emp::vector<bc::TestCase>& load_training_set() {
 
 }
 
+auto& load_grouped_training_set() {
+  thread_local std::unordered_map<bc::PromptEnum, emp::vector<bc::TestCase>> grouped_set;
+
+  const auto& cases = bc::load_training_set(); // vector<TestCase>
+
+  std::for_each(
+    cases.begin(),
+    cases.end(),
+    [](const auto _case){
+      grouped_set[_case.prompts.front().which].push_back(_case);
+    }
+  );
+
+  return grouped_set;
+}
+
 } // namespace bc
