@@ -5,6 +5,7 @@ TEST_NAMES += BitwiseShift
 TEST_NAMES += BitwiseXor
 TEST_NAMES += CountOnes
 TEST_NAMES += RandomFill
+TEST_NAMES += BitwiseNand
 
 TO_ROOT := $(shell git rev-parse --show-cdup)
 
