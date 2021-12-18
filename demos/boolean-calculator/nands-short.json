@@ -1,0 +1,1225 @@
+{
+  "value0": [
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 2314027
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 859553731
+          }
+        }
+      ],
+      "response": 4292669692
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 14064999
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 797878134
+          }
+        }
+      ],
+      "response": 4286151321
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 18736856
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 34613269
+          }
+        }
+      ],
+      "response": 4293910511
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 22827352
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 444127482
+          }
+        }
+      ],
+      "response": 4289179559
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 23637898
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 301746052
+          }
+        }
+      ],
+      "response": 4271372415
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 25870952
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 450531125
+          }
+        }
+      ],
+      "response": 4285890015
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 27680720
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 796464512
+          }
+        }
+      ],
+      "response": 4276087423
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 28519971
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 778857270
+          }
+        }
+      ],
+      "response": 4292859357
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 30065600
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 123856911
+          }
+        }
+      ],
+      "response": 4273946623
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 31551752
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 892391583
+          }
+        }
+      ],
+      "response": 4276072439
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 36270877
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 453255871
+          }
+        }
+      ],
+      "response": 4261404130
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 38896713
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 906352858
+          }
+        }
+      ],
+      "response": 4261314487
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 42848247
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 695737500
+          }
+        }
+      ],
+      "response": 4294439787
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 47109174
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 934040320
+          }
+        }
+      ],
+      "response": 4252217343
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 48381037
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 536924563
+          }
+        }
+      ],
+      "response": 4294963198
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 52027535
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 666336971
+          }
+        }
+      ],
+      "response": 4243496820
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 53020491
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 254859987
+          }
+        }
+      ],
+      "response": 4242537916
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 54349465
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 427419319
+          }
+        }
+      ],
+      "response": 4274436462
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 56745545
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 525629306
+          }
+        }
+      ],
+      "response": 4240419255
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 57689678
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 667951441
+          }
+        }
+      ],
+      "response": 4239392703
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 62804612
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 659903688
+          }
+        }
+      ],
+      "response": 4243304319
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 62994997
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 190091556
+          }
+        }
+      ],
+      "response": 4240437211
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 66193564
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 565174888
+          }
+        }
+      ],
+      "response": 4267573239
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 623417137
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 373388129
+          }
+        }
+      ],
+      "response": 4227853534
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 625759439
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 70295612
+          }
+        }
+      ],
+      "response": 4227858419
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 627851056
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 917151680
+          }
+        }
+      ],
+      "response": 3688358143
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 630914866
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 445297847
+          }
+        }
+      ],
+      "response": 4285877197
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 632186534
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 831924974
+          }
+        }
+      ],
+      "response": 3732528473
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 632474475
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 259089249
+          }
+        }
+      ],
+      "response": 4207918238
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 632683236
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 318423983
+          }
+        }
+      ],
+      "response": 4283383131
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 633017809
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 572169818
+          }
+        }
+      ],
+      "response": 3756387247
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 634052653
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 25425952
+          }
+        }
+      ],
+      "response": 4269613023
+    },
+    {
+      "prompts": [
+        {
+          "which": "NAND",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 642204934
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 526457395
+          }
+        }
+      ],
+      "response": 4190044157
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 624160530
+          }
+        }
+      ],
+      "response": 624160530
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 748413496
+          }
+        }
+      ],
+      "response": 748413496
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 682954186
+          }
+        }
+      ],
+      "response": 682954186
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 510567256
+          }
+        }
+      ],
+      "response": 510567256
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 418215654
+          }
+        }
+      ],
+      "response": 418215654
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 497254531
+          }
+        }
+      ],
+      "response": 497254531
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 455153954
+          }
+        }
+      ],
+      "response": 455153954
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 882886482
+          }
+        }
+      ],
+      "response": 882886482
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 803452549
+          }
+        }
+      ],
+      "response": 803452549
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 986127713
+          }
+        }
+      ],
+      "response": 986127713
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 642689499
+          }
+        }
+      ],
+      "response": 642689499
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 140389995
+          }
+        }
+      ],
+      "response": 140389995
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 258258953
+          }
+        }
+      ],
+      "response": 258258953
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 728463697
+          }
+        }
+      ],
+      "response": 728463697
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 727216285
+          }
+        }
+      ],
+      "response": 727216285
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 156479073
+          }
+        }
+      ],
+      "response": 156479073
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 103472808
+          }
+        }
+      ],
+      "response": 103472808
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 233073584
+          }
+        }
+      ],
+      "response": 233073584
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 794165073
+          }
+        }
+      ],
+      "response": 794165073
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 726236035
+          }
+        }
+      ],
+      "response": 726236035
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 695486557
+          }
+        }
+      ],
+      "response": 695486557
+    },
+    {
+      "prompts": [
+        {
+          "which": "ECHO",
+          "val": {
+            "nullopt": true
+          }
+        },
+        {
+          "which": "NUM",
+          "val": {
+            "nullopt": false,
+            "data": 670496422
+          }
+        }
+      ],
+      "response": 670496422
+    }
+  ]
+}
