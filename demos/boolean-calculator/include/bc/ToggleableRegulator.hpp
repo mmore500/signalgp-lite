@@ -24,12 +24,12 @@ struct ToggleableRegulator {
 
   template <typename Spec>
   static auto descriptors(const sgpl::Instruction<Spec>& inst) {
-    return op.descriptors();
+    return op.descriptors(inst);
   }
 
   template <typename Spec>
-  static auto categories(const sgpl::Instruction<Spec>&) {
-    return op.categories;
+  static auto categories(const sgpl::Instruction<Spec>& inst) {
+    return op.categories(inst);
   }
 };
 
