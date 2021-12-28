@@ -95,8 +95,10 @@ int main(int argc, char* argv[]) {
     );
   }
 
+  // fill world with organisms
   for (int i = 0; i < PopulationSize; i++) ea_world.Inject({});
 
+  // main evolution loop
   for (size_t t = 0; t < bc::config.UPDATES(); ++t) {
     std::cout << "Update " << t << std::endl;
 
@@ -113,29 +115,10 @@ int main(int argc, char* argv[]) {
     for (auto org : fitnesses) std::cout << org << " ";
     std::cout << std::endl;
 
-
     emp::LexicaseSelect(ea_world, bc::GetFitFuns<spec_t>(), PopulationSize);
-    // emp::EliteSelect(ea_world, 1, 1);
-    // emp::TournamentSelect(ea_world, 7, PopulationSize - 1);
 
-    // best_org.GetFitness(true);
-
-/**
-    // Reliability test
-    bool reliable = std::all_of(
-      sgpl::CountingIterator{},
-      sgpl::CountingIterator{ea_world.size()},
-      [&ea_world](const size_t id){
-        return ea_world.CalcFitnessID(id) == ea_world.CalcFitnessID(id);
-      }
-    );
-
-    std::cout << std::boolalpha;
-    std::cout << "Reliable? " << reliable << std::endl;
-**/
     ea_world.Update();
     ea_world.DoMutations();
-
   }
 
 }
