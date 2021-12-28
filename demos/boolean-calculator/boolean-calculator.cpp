@@ -7,6 +7,7 @@
 #include "Empirical/include/emp/base/vector.hpp"
 #include "Empirical/include/emp/datastructs/hash_utils.hpp"
 #include "Empirical/include/emp/Evolve/World.hpp"
+#include "Empirical/include/emp/Evolve/Systematics.hpp"
 #include "Empirical/include/emp/math/Random.hpp"
 #include "magic_enum/include/magic_enum.hpp"
 
@@ -53,12 +54,46 @@ int main(int argc, char* argv[]) {
 
   bc::setup(argc, argv);
 
+  using mut_count_t = std::unordered_map<std::string, int>;
+  using data_t = emp::datastruct::mut_landscape_info<emp::vector<double>>;
+  using org_t = bc::Organism<spec_t>;
+  using gene_systematics_t = emp::Systematics<org_t, org_t::program_t, data_t>;
+  // using phen_systematics_t = emp::Systematics<org_t, emp::vector<double>, data_t>;
+
+  auto gene_fun = [](const org_t& org) {
+    return org.program;
+  };
+
+  // auto phen_fun = [](const org_t& org) {
+  //   emp::vector<double> phen;
+  //   org_t org2 = org;
+  //   for (int i = 0; i < 16; i++) {
+  //     org2.ResetHardware();
+  //     org2.Process(20);
+  //     phen.push_back(org2.GetOutput(i));
+  //   }
+  //   return phen;
+  // };
+
+  mut_count_t last_mutation;
+  emp::Ptr<gene_systematics_t> gene_sys;
+  gene_sys.New(gene_fun, true,true,true);
+  // emp::Ptr<phen_systematics_t> phen_sys;
+
   emp::World<bc::Organism<spec_t>> ea_world;
   ea_world.SetPopStruct_Mixed(true);
+  ea_world.AddSystematics(gene_sys);
 
-  if (bc::config.LOGGING()) ea_world.SetupFitnessFile(
-      emp::to_string(bc::config.LOGGING_FILENAME(), ".csv")
-  );
+  // setup logging
+  if (bc::config.LOGGING()) {
+    ea_world.SetupFitnessFile(
+      emp::to_string("logging", bc::config.LOGGING_FILENAME(), ".csv")
+    );
+    ea_world.SetupSystematicsFile(
+      0,
+      emp::to_string("systematics", bc::config.LOGGING_FILENAME(), ".csv")
+    );
+  }
 
   for (int i = 0; i < PopulationSize; i++) ea_world.Inject({});
 
