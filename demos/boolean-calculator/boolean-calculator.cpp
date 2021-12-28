@@ -121,4 +121,9 @@ int main(int argc, char* argv[]) {
     ea_world.DoMutations();
   }
 
+  std::ofstream os("genome.cereal", std::ios::binary);
+  cereal::JSONOutputArchive archive( os );
+
+  archive( ea_world );
+
 }
