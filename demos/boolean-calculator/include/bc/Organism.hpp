@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include "cereal/include/cereal/types/vector.hpp"
+
 #include "Empirical/include/emp/base/vector.hpp"
 
 #include "sgpl/program/Program.hpp"
@@ -117,6 +119,14 @@ struct Organism {
   bool DoMutations(emp::Random&) {
     program.ApplyMutations(bc::config);
     return true;
+  }
+
+  // binary input/output
+  template<typename Archive>
+  void serialize( Archive& archive ) {
+    archive(
+      CEREAL_NVP( program )
+    );
   }
 
 };
