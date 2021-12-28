@@ -4,7 +4,7 @@ EXPECTED_FITNESS := 3
 
 TO_ROOT := $(shell git rev-parse --show-cdup)
 
-include $(TO_ROOT)/tests/MaketemplateRunning
+include $(TO_ROOT)/demos/MaketemplateForwarding
 
 test-%: %.cpp ../third-party/Catch/single_include/catch2/catch.hpp
 	$(CXX) $(FLAGS) -Ithird-party/ $< -o $@.out
