@@ -38,7 +38,7 @@ cp signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out data/
 cp signalgp-lite/demos/boolean-calculator/testing_set_prefix.json data/
 cp signalgp-lite/demos/boolean-calculator/training_set_prefix.json data/
 
-singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 ./test-boolean-calculator.out -UPDATES "{{ 10 if int(seed) < 1000 else updates }}" -LOGGING "1" \
+singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 ./test-boolean-calculator.out -UPDATES "{{ 10 if number(seed) < 1000 else updates }}" -LOGGING "1" \
     -LOGGING_FILENAME "${REPLICATE_NAME}" \
     -SGPL_POINT_MUTATION_RATE "{{ point_rate }}" -SGPL_SEQUENCE_DEFECT_RATE "{{ sequence_rate }}" \
     -SEED "{{ seed }}"
