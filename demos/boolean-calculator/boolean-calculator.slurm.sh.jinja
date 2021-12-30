@@ -1,6 +1,6 @@
 #!/bin/bash -login
 ########## Define Resources Needed with SBATCH Lines ##########
-#SBATCH --time=48:00:00
+#SBATCH --time="{{ '00:10:00' if seed|int() < 1000 else '48:00:00' }}"
 #SBATCH --job-name name=boolean_calculator+point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}
 #SBATCH --output="/mnt/home/%u/{{ time }}/boolean_calculator+point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}+ext=.log"
 #SBATCH --mem=8G
