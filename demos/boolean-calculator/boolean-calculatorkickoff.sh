@@ -25,9 +25,9 @@ J2_HEREDOC_EOF
 
             chmod +x ${JOB_SCRIPT}
 
-            JOB_ID=$(sbatch --parsable ${JOB_SCRIPT})
+            JOB_NAME="$(sbatch --parsable ${JOB_SCRIPT}).sh"
 
-            cp ${JOB_SCRIPT} "~/slurmscripts/${TIME}/${JOB_ID}.sh"
+            cp ${JOB_SCRIPT} ~/slurmscripts/${TIME}/${JOB_NAME}
         done
     done
 done
