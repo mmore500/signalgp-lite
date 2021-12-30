@@ -13,7 +13,7 @@ for point_rate in 0.0002 0.00006 0.00002; do
 
             echo $JOB_SCRIPT
 
-            j2 --format=yaml -o "${JOB_SCRIPT}" "boolean-calculator.slurm.sh.jinja" << J2_HEREDOC_EOF
+            j2 --format=yaml -o "${JOB_SCRIPT}" "../boolean-calculator.slurm.sh.jinja" << J2_HEREDOC_EOF
 point_rate: "${point_rate}"
 sequence_rate: "${sequence_rate}"
 replicate: "${replicate}"
