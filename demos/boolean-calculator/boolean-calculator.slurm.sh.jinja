@@ -22,17 +22,24 @@ echo "-------------------------------"
 
 REPLICATE_NAME="point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}"
 
+module purge
+module load git/2.27.0
+
 mkdir ${REPLICATE_NAME}
 cd ${REPLICATE_NAME}
 
 mkdir data
 
-git clone https://github.com/mmore500/signalgp-lite.git --recursive --depth=1 --branch=demos -o source
+git clone https://github.com/mmore500/signalgp-lite.git --recursive --depth=1 --branch=demos --shallow-submodules
 
-cd source/demos/boolean-calculator
+singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 make opt -C signalgp-lite/demos/boolean-calculator
 
-singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 make opt -C ../../../
+cp signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out data/
+cp signalgp-lite/demos/boolean-calculator/testing_set_prefix.json data/
+cp signalgp-lite/demos/boolean-calculator/training_set_prefix.json data/
 
-singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 ./test-boolean-calculator.out -UPDATES "{{ updates }}" -LOGGING "1" \
-    -LOGGING_FILENAME "point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}" \
-    -SGPL_POINT_MUTATION_RATE "{{ point_rate }}" -SGPL_SEQUENCE_DEFECT_RATE "{{ sequence_rate }}"
+singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 ./test-boolean-calculator.out -UPDATES "{{ 10 if seed < 1000 else updates }}" -LOGGING "1" \
+    -LOGGING_FILENAME "${REPLICATE_NAME}" \
+    -SGPL_POINT_MUTATION_RATE "{{ point_rate }}" -SGPL_SEQUENCE_DEFECT_RATE "{{ sequence_rate }}" \
+    -SEED "{{ seed }}"
+

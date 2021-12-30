@@ -19,11 +19,12 @@ sequence_rate: "${sequence_rate}"
 replicate: "${replicate}"
 time: "${TIME}"
 updates: "10000"
+seed: "${replicate}"
 J2_HEREDOC_EOF
 
             chmod +x ${JOB_SCRIPT}
 
-
+            # sbatch ${JOB_SCRIPT}
         done
     done
 done
