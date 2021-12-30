@@ -1,0 +1,36 @@
+#!/bin/bash -login
+########## Define Resources Needed with SBATCH Lines ##########
+#SBATCH --time=48:00:00
+#SBATCH --job-name name=boolean_calculator+point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}
+#SBATCH --output="/mnt/home/%u/{{ time }}/boolean_calculator+point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}+ext=.log"
+#SBATCH --mem=8G
+#SBATCH --ntasks 10
+#SBATCH --cpus-per-task 1
+#SBATCH --mail-type=FAIL
+# No --mail-user, the default value is the submitting user
+#SBATCH --exclude=csn-002,amr-250
+# Send interrupt when within 5 minutes of end time.
+#SBATCH --signal=SIGINT@300
+# Job may be requeued after node failure.
+#SBATCH --requeue
+
+################################################################################
+echo
+echo "running boolean-calculator.slurm.sh"
+echo "-------------------------------"
+################################################################################
+
+REPLICATE_NAME="point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}"
+
+mkdir ${REPLICATE_NAME}
+cd ${REPLICATE_NAME}
+
+git clone https://github.com/mmore500/signalgp-lite.git --recursive --depth=1 --shallow-submodules --branch=demos
+
+cd signalgp-lite/demos/boolean-calculator
+
+singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 make opt
+
+singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 ./test-boolean-calculator.out -UPDATES "{{ updates }}" -LOGGING "1" \
+    -LOGGING_FILENAME "point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}" \
+    -SGPL_POINT_MUTATION_RATE "{{ point_rate }}" -SGPL_SEQUENCE_DEFECT_RATE "{{ sequence_rate }}"
