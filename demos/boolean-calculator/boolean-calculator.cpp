@@ -19,6 +19,7 @@
 
 #include "include/bc/config.hpp"
 #include "include/bc/load_training_set.hpp"
+#include "include/bc/EmpWorldSerialize.hpp"
 #include "include/bc/Organism.hpp"
 #include "include/bc/Peripheral.hpp"
 #include "include/bc/setup.hpp"
@@ -121,9 +122,12 @@ int main(int argc, char* argv[]) {
     ea_world.DoMutations();
   }
 
-  std::ofstream os("genome.cereal", std::ios::binary);
-  cereal::JSONOutputArchive archive( os );
+  std::ofstream os(
+    emp::to_string("type=genome+", bc::config.LOGGING_FILENAME(),".cereal"),
+    std::ios::binary
+  );
+  cereal::BinaryOutputArchive archive( os );
 
-  archive( ea_world );
+  archive( bc::SerializeWorld(ea_world) );
 
 }
