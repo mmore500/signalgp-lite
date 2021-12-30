@@ -25,11 +25,13 @@ REPLICATE_NAME="point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+re
 mkdir ${REPLICATE_NAME}
 cd ${REPLICATE_NAME}
 
-git clone https://github.com/mmore500/signalgp-lite.git --recursive --depth=1 --branch=demos
+mkdir data
 
-cd signalgp-lite/demos/boolean-calculator
+git clone https://github.com/mmore500/signalgp-lite.git --recursive --depth=1 --branch=demos -o source
 
-singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 make opt
+cd source/demos/boolean-calculator
+
+singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 make opt -C ../../../
 
 singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 ./test-boolean-calculator.out -UPDATES "{{ updates }}" -LOGGING "1" \
     -LOGGING_FILENAME "point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}" \
