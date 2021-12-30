@@ -19,7 +19,7 @@ EMP_BUILD_CONFIG(
   VALUE(UPDATES, size_t, 100, "TODO"),
   VALUE(SEED, size_t, 1, "PRNG Seed"),
   VALUE(LOGGING, bool, false, "Should we log fitness data?"),
-  VALUE(LOGGING_FILENAME, size_t, 1, "TODO"),
+  VALUE(LOGGING_FILENAME, std::string, "1", "TODO"),
   VALUE(THRESHOLD_FITNESS, double, 1.0, "TODO"),
   VALUE(DO_REGULATION, bool, true, "TODO"),
   VALUE(TESTING_SET_FILENAME, std::string, "testing_set_prefix.json", "TODO"),
