@@ -2,7 +2,7 @@
 
 TIME=$(date '+%F_%H-%M-%S')
 
-mkdir "~/slurmscripts/${TIME}"
+mkdir ~/slurmscripts/${TIME}
 
 mkdir "./${TIME}"
 cd "./${TIME}"
@@ -25,9 +25,9 @@ J2_HEREDOC_EOF
 
             chmod +x ${JOB_SCRIPT}
 
-            JOB_NAME="$(sbatch --parsable ${JOB_SCRIPT}).sh"
+            JOB_ID=$(sbatch --parsable ${JOB_SCRIPT})
 
-            cp ${JOB_SCRIPT} ~/slurmscripts/${TIME}/${JOB_NAME}
+            cp ${JOB_SCRIPT} ~/slurmscripts/${TIME}/${JOB_ID}.sh
         done
     done
 done
