@@ -88,11 +88,11 @@ int main(int argc, char* argv[]) {
   // setup logging
   if (bc::config.LOGGING()) {
     ea_world.SetupFitnessFile(
-      emp::to_string("logging", bc::config.LOGGING_FILENAME(), ".csv")
+      emp::to_string("type=logging+", bc::config.LOGGING_FILENAME(), ".csv")
     );
     ea_world.SetupSystematicsFile(
       0,
-      emp::to_string("systematics", bc::config.LOGGING_FILENAME(), ".csv")
+      emp::to_string("type=systematics+", bc::config.LOGGING_FILENAME(), ".csv")
     );
   }
 
