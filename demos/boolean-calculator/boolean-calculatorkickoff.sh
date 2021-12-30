@@ -1,9 +1,9 @@
 #!/bin/bash
 
-TIME=$(date '+%F_%H:%M:%S')
+TIME=$(date '+%F_%H-%M-%S')
 
-mkdir "~/${TIME}"
-cd "~/${TIME}"
+mkdir "./${TIME}"
+cd "./${TIME}"
 
 
 for point_rate in 0.0002 0.00006 0.00002; do
