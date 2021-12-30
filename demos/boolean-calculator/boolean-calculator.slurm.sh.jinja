@@ -2,7 +2,6 @@
 ########## Define Resources Needed with SBATCH Lines ##########
 #SBATCH --time="{{ '00:10:00' if seed|int() < 1000 else '48:00:00' }}"
 #SBATCH --job-name name=boolean_calculator+point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}
-#SBATCH --output="/mnt/home/%u/{{ time }}/boolean_calculator+point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}+ext=.log"
 #SBATCH --mem=8G
 #SBATCH --ntasks 10
 #SBATCH --cpus-per-task 1
@@ -13,6 +12,8 @@
 #SBATCH --signal=SIGINT@300
 # Job may be requeued after node failure.
 #SBATCH --requeue
+#SBATCH --error=/mnt/home/%u/slurm_err/%j.log
+#SBATCH --output=/mnt/home/%u/slurm/%j.log
 
 ################################################################################
 echo
