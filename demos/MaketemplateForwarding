@@ -29,6 +29,11 @@ opt: FLAGS := -std=c++17 -pipe -pthread -DNDEBUG -O3 -ffast-math -flto -march=na
 opt: $(addprefix test-, $(TEST_NAMES))
 	# rm -rf test*.out
 
+# Production version without debug features with full traceback on crash
+production: FLAGS := -std=c++17 -pipe -pthread -DNDEBUG -DPRODUCTION -DSGPL_SOURCE_DIR_=$(TO_ROOT)/include -O3 -ffast-math -flto -march=native -Wno-unused-function -I$(TO_ROOT)/include/ -I$(TO_ROOT)/third-party/ -I$(EMP_DIR)
+production: $(addprefix test-, $(TEST_NAMES))
+	# rm -rf test*.out
+
 # Test in debug mode with pointer tracking
 fulldebug: FLAGS := -std=c++17 -pipe -pthread -g -Wall -Wno-unused-function -I$(TO_ROOT)/include/ -I$(TO_ROOT)/third-party/ -I$(EMP_DIR) -pedantic -DEMP_TRACK_MEM -D_GLIBCXX_DEBUG -D_LIBCPP_DEBUG -Wnon-virtual-dtor -Wcast-align -Woverloaded-virtual -ftemplate-backtrace-limit=0 # -Wmisleading-indentation
 fulldebug: $(addprefix test-, $(TEST_NAMES))

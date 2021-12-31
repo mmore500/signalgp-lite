@@ -9,3 +9,7 @@
   path = demos/boolean-calculator/third-party/magic_enum
   url = https://github.com/Neargye/magic_enum.git
   shallow = true
+[submodule "demos/boolean-calculator/third-party/backward-cpp"]
+  path = demos/boolean-calculator/third-party/backward-cpp
+  url = https://github.com/bombela/backward-cpp.git
+  shallow = true
