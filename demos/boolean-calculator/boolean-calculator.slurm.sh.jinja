@@ -1,6 +1,6 @@
 #!/bin/bash -login
 ########## Define Resources Needed with SBATCH Lines ##########
-#SBATCH --time="{{ '00:10:00' if seed|int() < 1000 else '48:00:00' }}"
+#SBATCH --time="{{ '04:00:00' if seed|int() < 1000 else '48:00:00' }}"
 #SBATCH --job-name name=boolean_calculator+point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}
 #SBATCH --mem=8G
 #SBATCH --ntasks 10
@@ -15,32 +15,71 @@
 #SBATCH --error=/mnt/home/%u/slurm_err/%j.log
 #SBATCH --output=/mnt/home/%u/slurm/%j.log
 
+# set fail on error
+set -e
+
 ################################################################################
 echo
 echo "running boolean-calculator.slurm.sh"
 echo "-------------------------------"
 ################################################################################
 
-REPLICATE_NAME="point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}"
+# log variables
+echo "point_rate {{ point_rate }}"
+echo "sequence_rate {{ sequence_rate }}"
+echo "replicate {{ replicate }}"
+echo "seed {{ seed }}"
+echo "absolute_path {{ absolute_path }}"
+echo "mode {{ 'short' if seed|int() < 1000 else 'long' }}"
+echo "TIME ${TIME}"
+echo "HOSTNAME ${HOSTNAME}"
 
+REPLICATE_NAME="point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}"
+echo "REPLICATE_NAME ${REPLICATE_NAME}"
+
+################################################################################
+echo
+echo "setting up enviroment and resources"
+echo "-------------------------------"
+################################################################################
+
+# load required modules
 module purge
 module load git/2.27.0
 
-mkdir ${REPLICATE_NAME}
-cd ${REPLICATE_NAME}
+WORK_DIR="{{ absolute_path }}/${REPLICATE_NAME}"
 
+mkdir ${WORK_DIR}
+cd ${WORK_DIR}
 mkdir data
 
 git clone https://github.com/mmore500/signalgp-lite.git --recursive --depth=1 --branch=demos --shallow-submodules
 
-singularity exec docker://mmore500/signalgp-lite:GITHUB_ACTION_66 make opt -C signalgp-lite/demos/boolean-calculator
+################################################################################
+echo
+echo "compiling executable"
+echo "-------------------------------"
+################################################################################
 
-cp signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out data/
-cp signalgp-lite/demos/boolean-calculator/testing_set_prefix.json data/
-cp signalgp-lite/demos/boolean-calculator/training_set_prefix.json data/
+singularity exec docker://mmore500/signalgp-lite:{{ repo_sha }} make production -C signalgp-lite/demos/boolean-calculator
 
-singularity exec --pwd "${PWD}/data" docker://mmore500/signalgp-lite:GITHUB_ACTION_66 ./test-boolean-calculator.out -UPDATES "{{ 10 if seed|int() < 1000 else updates }}" -LOGGING "1" \
+cp -v signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out data/
+cp -v signalgp-lite/demos/boolean-calculator/testing_set_prefix.json data/
+cp -v signalgp-lite/demos/boolean-calculator/training_set_prefix.json data/
+
+################################################################################
+echo
+echo "running experiment"
+echo "-------------------------------"
+################################################################################
+
+singularity exec --pwd "${PWD}/data" docker://mmore500/signalgp-lite:{{ repo_sha }} ./test-boolean-calculator.out -UPDATES "{{ 10 if seed|int() < 1000 else updates }}" -LOGGING "1" \
     -LOGGING_FILENAME "${REPLICATE_NAME}" \
     -SGPL_POINT_MUTATION_RATE "{{ point_rate }}" -SGPL_SEQUENCE_DEFECT_RATE "{{ sequence_rate }}" \
     -SEED "{{ seed }}"
 
+################################################################################
+echo
+echo "experiment complete @ $(date '+%F %H:%M:%S')"
+echo "-------------------------------"
+################################################################################
