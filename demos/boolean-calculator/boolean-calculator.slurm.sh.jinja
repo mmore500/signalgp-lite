@@ -29,9 +29,9 @@ echo "point_rate {{ point_rate }}"
 echo "sequence_rate {{ sequence_rate }}"
 echo "replicate {{ replicate }}"
 echo "seed {{ seed }}"
-echo "absolute_path {{ absolute_path }}"
-echo "mode {{ 'short' if seed|int() < 1000 else 'long' }}"
-echo "TIME ${TIME}"
+echo "kickoff_path {{ kickoff_path }}"
+echo "mode {{ 'testing' if seed|int() < 1000 else 'production' }}"
+echo "TIME {{ time }}"
 echo "HOSTNAME ${HOSTNAME}"
 
 REPLICATE_NAME="point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}"
@@ -47,13 +47,12 @@ echo "-------------------------------"
 module purge
 module load git/2.27.0
 
-WORK_DIR="{{ absolute_path }}/${REPLICATE_NAME}"
+WORK_DIR="{{ kickoff_path }}/${REPLICATE_NAME}"
 
-mkdir ${WORK_DIR}
-cd ${WORK_DIR}
-mkdir data
+mkdir "${WORK_DIR}"
+mkdir "${WORK_DIR}/data"
 
-git clone https://github.com/mmore500/signalgp-lite.git --recursive --depth=1 --branch=demos --shallow-submodules
+git clone https://github.com/mmore500/signalgp-lite.git --recursive --depth=1 --branch=demos --shallow-submodules "${WORK_DIR}/signalgp-lite"
 
 ################################################################################
 echo
@@ -61,11 +60,11 @@ echo "compiling executable"
 echo "-------------------------------"
 ################################################################################
 
-singularity exec docker://mmore500/signalgp-lite:{{ repo_sha }} make production -C signalgp-lite/demos/boolean-calculator
+singularity exec docker://mmore500/signalgp-lite:{{ SOURCE_SHA }} make production -C "${WORK_DIR}/signalgp-lite/demos/boolean-calculator"
 
-cp -v signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out data/
-cp -v signalgp-lite/demos/boolean-calculator/testing_set_prefix.json data/
-cp -v signalgp-lite/demos/boolean-calculator/training_set_prefix.json data/
+cp -v signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out "${WORK_DIR}/data"
+cp -v signalgp-lite/demos/boolean-calculator/testing_set_prefix.json "${WORK_DIR}/data"
+cp -v signalgp-lite/demos/boolean-calculator/training_set_prefix.json "${WORK_DIR}/data"
 
 ################################################################################
 echo
@@ -73,7 +72,7 @@ echo "running experiment"
 echo "-------------------------------"
 ################################################################################
 
-singularity exec --pwd "${PWD}/data" docker://mmore500/signalgp-lite:{{ repo_sha }} ./test-boolean-calculator.out -UPDATES "{{ 10 if seed|int() < 1000 else updates }}" -LOGGING "1" \
+singularity exec --pwd "${PWD}/data" docker://mmore500/signalgp-lite:{{ SOURCE_SHA }} ./test-boolean-calculator.out -UPDATES "{{ 10 if seed|int() < 1000 else updates }}" -LOGGING "1" \
     -LOGGING_FILENAME "${REPLICATE_NAME}" \
     -SGPL_POINT_MUTATION_RATE "{{ point_rate }}" -SGPL_SEQUENCE_DEFECT_RATE "{{ sequence_rate }}" \
     -SEED "{{ seed }}"
