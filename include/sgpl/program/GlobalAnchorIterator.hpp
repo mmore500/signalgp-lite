@@ -55,6 +55,8 @@ public:
 
   const value_type* operator->() { return &operator*(); }
 
+  explicit operator parent_t() const { return static_cast<parent_t>( *this ); }
+
   GlobalAnchorIterator& operator++() {
 
     bool has_encountered_local_anchor{ false };
