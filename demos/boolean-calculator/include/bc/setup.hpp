@@ -20,6 +20,13 @@ void setup(int argc, char* argv[]) {
   // print config
   bc::config.Write(std::cout);
 
+  // save config as csv
+  bc::config.WriteCSV(emp::to_string(
+    "type=config+",
+    bc::config.LOGGING_FILENAME(),
+    "+ext=.csv"
+  ));
+
   // reseed random number generator
   sgpl::tlrand.Reseed(config.SEED());
 
