@@ -22,7 +22,13 @@ const uitsl::ScopeGuard source_path_export_guard(
   ); }
 );
 
-const backward::SignalHandling backtrace_handler;
+std::vector<int> make_signals() {
+  std::vector<int> signals = backward::SignalHandling::make_default_signals();
+  signals.push_back(SIGINT);
+  return signals;
+}
+
+const backward::SignalHandling backtrace_handler{make_signals()};
 
 } // namespace internal
 } // namespace bc

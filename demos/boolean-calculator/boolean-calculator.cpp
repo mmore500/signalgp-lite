@@ -21,6 +21,7 @@
 #include "include/bc/load_training_set.hpp"
 #include "include/bc/EmpWorldSerialize.hpp"
 #include "include/bc/Organism.hpp"
+#include "include/bc/backtrace_enable.hpp"
 #include "include/bc/Peripheral.hpp"
 #include "include/bc/setup.hpp"
 #include "include/bc/TestCase.hpp"
