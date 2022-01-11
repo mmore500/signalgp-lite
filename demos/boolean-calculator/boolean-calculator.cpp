@@ -66,21 +66,9 @@ int main(int argc, char* argv[]) {
     return org.program;
   };
 
-  // auto phen_fun = [](const org_t& org) {
-  //   emp::vector<double> phen;
-  //   org_t org2 = org;
-  //   for (int i = 0; i < 16; i++) {
-  //     org2.ResetHardware();
-  //     org2.Process(20);
-  //     phen.push_back(org2.GetOutput(i));
-  //   }
-  //   return phen;
-  // };
-
   mut_count_t last_mutation;
   emp::Ptr<gene_systematics_t> gene_sys;
   gene_sys.New(gene_fun, true,true,true);
-  // emp::Ptr<phen_systematics_t> phen_sys;
 
   emp::World<bc::Organism<spec_t>> ea_world;
   ea_world.SetPopStruct_Mixed(true);
