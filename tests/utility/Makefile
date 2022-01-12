@@ -1,3 +1,4 @@
+TEST_NAMES += CappedOutputIterator
 TEST_NAMES += CappedSet
 TEST_NAMES += EmptyType
 
