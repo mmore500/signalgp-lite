@@ -1,6 +1,7 @@
 TEST_NAMES += CappedOutputIterator
 TEST_NAMES += CappedSet
 TEST_NAMES += EmptyType
+TEST_NAMES += MemoizeCtor
 
 TO_ROOT := $(shell git rev-parse --show-cdup)
 
