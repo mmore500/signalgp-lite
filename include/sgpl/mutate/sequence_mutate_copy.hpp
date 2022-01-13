@@ -8,6 +8,7 @@
 #include "../algorithm/module_indel_copy.hpp"
 #include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"
+#include "../utility/CappedOutputIterator.hpp"
 
 namespace sgpl {
 
@@ -65,6 +66,7 @@ auto sequence_mutate_copy(
   const sgpl::Program<Spec>& original,
   const float p_module_defect,
   const float p_module_defect_is_insertion,
+  const size_t program_size_cap,
   const sgpl::IndelRangeCopier& copier
 ) {
 
@@ -77,7 +79,10 @@ auto sequence_mutate_copy(
   using anchorit_t = sgpl::GlobalAnchorIterator<Spec>;
   num_muts = module_indel_copy(
     anchorit_t::make_begin(original), anchorit_t::make_end(original),
-    std::back_inserter( program_copy ),
+    sgpl::CappedOutputIterator(
+      std::back_inserter( program_copy ),
+      program_size_cap
+    ),
     p_module_defect,
     p_module_defect_is_insertion,
     copier
@@ -97,6 +102,7 @@ auto sequence_mutate_copy(
     original,
     cfg.SGPL_SEQMUTATE_MODULE_INDEL_RATE(),
     cfg.SGPL_SEQMUTATE_MODULE_INDEL_FRAC_INSERTIONS(),
+    cfg.SGPL_PROGRAM_SIZE_CAP(),
     sgpl::IndelRangeCopier(cfg)
   );
 

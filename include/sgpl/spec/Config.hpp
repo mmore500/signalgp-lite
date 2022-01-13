@@ -10,6 +10,10 @@ EMP_BUILD_CONFIG(
   Config,
 
   GROUP(MUTATION, "MUTATION"),
+  VALUE(SGPL_PROGRAM_SIZE_CAP,
+    size_t, 4096,
+    "What should the upper bound on program size be?"
+  ),
   VALUE(SGPL_POINTMUTATE_BITFLIP_RATE,
     float, 0.0002f,
     "What fraction of bits should be flipped?"
