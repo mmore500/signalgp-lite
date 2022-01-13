@@ -22,7 +22,7 @@ size_t get_cur_module_idx(
 
   for (
     auto it = sgpl::GlobalAnchorIterator<Spec>::make_begin( program );
-    it.CalcDistance( std::begin( program ) ) < core.GetProgramCounter();
+    std::distance(std::begin( program ), it.begin()) < core.GetProgramCounter();
     ++it
   ) ++res;
 

@@ -18,7 +18,11 @@ RUN \
 
 # install scripts associated with Python packages to /usr/local/bin
 RUN \
-  pip3 install --timeout 60 --retries 100 -r /opt/signalgp-lite/third-party/requirements.txt \
+  python3 -m pip install --timeout 60 --retries 100 --upgrade pip==21.3.1 \
+    && \
+  pip3 install --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt \
+    && \
+  pip3 install --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt \
     && \
   echo "installed Python packages"
 

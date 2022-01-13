@@ -42,9 +42,23 @@ struct Instruction {
     for (auto& arg : args) arg = uitsl::shift_mod(arg, Spec::num_registers);
   }
 
-  void RectifyOpCode(const rectifier_t& r) { op_code = r.Rectify(op_code); }
+  void RectifyOpCode(const rectifier_t& r=rectifier_t{}) {
+    op_code = r.Rectify(op_code);
+  }
 
-  void Rectify(const rectifier_t& r) { RectifyArgs(); RectifyOpCode(r); }
+  void Rectify(const rectifier_t& r=rectifier_t{}) {
+    RectifyArgs(); RectifyOpCode(r);
+  }
+
+  Instruction() = default;
+
+  Instruction(emp::Random& rand) {
+    rand.RandFill(
+      reinterpret_cast<unsigned char*>( this ),
+      sizeof( *this )
+    );
+    Rectify();
+  }
 
   void NopOut() {
     const size_t num_rng_touches
@@ -66,6 +80,8 @@ struct Instruction {
       == std::tuple{ other.op_code, other.args, other.tag }
     );
   }
+
+  bool operator!=(const Instruction& other) const { return !operator==(other); }
 
   bool operator<(const Instruction& other) const {
     return (

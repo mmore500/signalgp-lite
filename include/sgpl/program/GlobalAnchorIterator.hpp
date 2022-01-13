@@ -19,13 +19,13 @@ class GlobalAnchorIterator
   using container_t = emp::vector<sgpl::Instruction<Spec>>;
   using parent_t = typename container_t::const_iterator;
 
-  parent_t end;
+  parent_t end_iter;
 
   GlobalAnchorIterator(
     const parent_t& init,
-    const parent_t& end_
+    const parent_t& end_iter_
   ) : parent_t(init)
-  , end(end_)
+  , end_iter(end_iter_)
   {}
 
 
@@ -55,6 +55,9 @@ public:
 
   const value_type* operator->() { return &operator*(); }
 
+  parent_t begin() const { return static_cast<parent_t>( *this ); }
+  parent_t end() const { return std::next(*this).begin(); }
+
   GlobalAnchorIterator& operator++() {
 
     bool has_encountered_local_anchor{ false };
@@ -66,7 +69,7 @@ public:
       );
       parent_t::operator++();
     } while (
-      *this != end
+      *this != end_iter
       && (
         !library_t::IsAnchorGlobalOpCode( parent_t::operator*().op_code )
         || !has_encountered_local_anchor
@@ -89,6 +92,7 @@ public:
     return static_cast<parent_t>( *this ) != static_cast<parent_t>( other );
   }
 
+  [[deprecated]]
   size_t CalcDistance( const parent_t& from ) const {
     return std::distance( from, static_cast<parent_t>( *this ) );
   }

@@ -47,7 +47,7 @@ breathe==4.19.2
     #   exhale
 bs4==0.0.1
     # via exhale
-certifi==2020.12.5
+certifi==2021.10.8
     # via
     #   matplotlib
     #   requests
@@ -91,7 +91,7 @@ fsspec==0.8.5
     #   s3fs
 hurry.filesize==0.9
     # via nbmetalog
-idna==2.10
+idna==3.3
     # via
     #   requests
     #   yarl
@@ -249,8 +249,8 @@ pyyaml==5.3.1
     #   myst-parser
 pyzmq==22.0.3
     # via jupyter-client
-requests==2.25.1
-    # via
+requests==2.27.1
+# via
     #   osfclient
     #   sphinx
 rsa==4.5
@@ -315,7 +315,7 @@ tornado==6.1
     # via
     #   ipykernel
     #   jupyter-client
-tqdm==4.50.2
+tqdm==4.62.3
     # via
     #   -r requirements.in
     #   osfclient
@@ -332,7 +332,7 @@ typing-extensions==3.10.0.0
     # via
     #   aiohttp
     #   aioitertools
-urllib3==1.25.11
+urllib3==1.26.8
     # via
     #   botocore
     #   requests
