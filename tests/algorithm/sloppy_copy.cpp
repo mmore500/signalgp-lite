@@ -32,12 +32,10 @@ TEST_CASE("Test sloppy_copy with mild mutation") {
 
   // do all of the items in copy come from somewhere in the original?
   REQUIRE( std::all_of(
-    std::begin( copy ),
-    std::begin( copy ),
+    std::begin( copy ), std::end( copy ),
     [&original](const int val){
       return std::find(
-        std::begin( original ),
-        std::end( original ),
+        std::begin( original ), std::end( original ),
         val
       ) != std::end( original );
     }
@@ -59,12 +57,10 @@ TEST_CASE("Test sloppy_copy with severe mutation") {
 
   // do all of the items in copy come from somewhere in the original?
   REQUIRE( std::all_of(
-    std::begin( copy ),
-    std::begin( copy ),
+    std::begin( copy ), std::end( copy ),
     [&original](const int val){
       return std::find(
-        std::begin( original ),
-        std::end( original ),
+        std::begin( original ), std::end( original ),
         val
       ) != std::end( original );
     }
