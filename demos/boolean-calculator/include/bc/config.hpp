@@ -9,11 +9,36 @@ namespace bc {
 EMP_BUILD_CONFIG(
   Config,
   VALUE(SGPL_PROGRAM_MAX_SIZE, size_t, 4096, "What size should programs be capped at?"),
-  VALUE(SGPL_SEVERE_SEQUENCE_MUTATION_RATE, float, 0.001, "TODO"),
-  VALUE(SGPL_MINOR_SEQUENCE_MUTATION_BOUND, size_t, 8, "TODO"),
-  VALUE(SGPL_POINT_MUTATION_RATE, float, 0.0002, "What fraction of bits should be scrambled?"),
-  VALUE(SGPL_SEQUENCE_DEFECT_RATE, float, 0.001, "How often should sloppy copy defect occur?"),
-  VALUE(SGPL_MUTATION_OCCURENCE_RATE, float, 1.0, "How often should mutations happen?"),
+
+  VALUE(SGPL_POINTMUTATE_BITFLIP_RATE,
+    float, 0.0002f,
+    "What fraction of bits should be flipped?"
+  ),
+  VALUE(SGPL_SEQMUTATE_INST_INDEL_RATE,
+    float, 0.001f,
+    "How often should instruction indel mutations occur?"
+  ),
+  VALUE(SGPL_SEQMUTATE_INST_INDEL_FRAC_INSERTIONS,
+    float, 0.5f,
+    "What fraction of instruction indel mutations should be insertions?"
+  ),
+  VALUE(SGPL_SEQMUTATE_INST_INDEL_GARBLE_RATE,
+    float, 0.05f,
+    "What fraction of instruction indel insertions should be garbled?"
+  ),
+  VALUE(SGPL_SEQMUTATE_MODULE_INDEL_RATE,
+    float, 0.01f,
+    "How often should module indel mutations occur?"
+  ),
+  VALUE(SGPL_SEQMUTATE_MODULE_INDEL_FRAC_INSERTIONS,
+    float, 0.5f,
+    "What fraction of module indel mutations should be insertions?"
+  ),
+  VALUE(SGPL_MUTATION_OCCURENCE_RATE,
+    float, 1.0f,
+    "How often should mutations happen?"
+  ),
+
   VALUE(ENVIROMENT_STATES, size_t, 4, "TODO"),
   VALUE(NUMBER_RESPONSES, size_t, 4, "TODO"),
   VALUE(UPDATES, size_t, 100, "TODO"),
