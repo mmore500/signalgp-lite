@@ -22,6 +22,8 @@ RUN \
     && \
   pip3 install --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt \
     && \
+  pip3 install --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt \
+    && \
   echo "installed Python packages"
 
 # make sure unprivileged user has access to new files in opt

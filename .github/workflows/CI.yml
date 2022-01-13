@@ -103,7 +103,7 @@ jobs:
     name: Microbenchmarks
     env:
       CXX: clang++
-      OSF_PASSWORD: ${{ secrets.OSF_PASSWORD }}
+      OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -111,7 +111,7 @@ jobs:
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker build -t mmore500/signalgp-lite .
       - run: docker ps -a
-      - run: sudo docker run -e CXX=$CXX -e OSF_PASSWORD=$OSF_PASSWORD -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
+      - run: sudo docker run -e CXX=$CXX -e OSF_TOKEN=$OSF_TOKEN -e CONTEXT=travis mmore500/signalgp-lite /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
   source-clang:
     runs-on: ubuntu-20.04
     name: Source (clang)
