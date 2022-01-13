@@ -79,3 +79,25 @@ TEST_CASE("Test sequence_mutate_copy, mutation disabled") {
   REQUIRE( original == copy );
 
 }
+
+TEST_CASE("Test sequence_mutate_copy, hitting program size cap") {
+
+  // initialize tlrand
+  sgpl::tlrand.Reseed(1);
+
+  sgpl::Config cfg;
+  cfg.Set("SGPL_SEQMUTATE_INST_INDEL_RATE", "0.5f");
+  cfg.Set("SGPL_SEQMUTATE_INST_INDEL_FRAC_INSERTIONS", "1.f");
+  cfg.Set("SGPL_SEQMUTATE_MODULE_INDEL_RATE", "0.5f");
+  cfg.Set("SGPL_SEQMUTATE_MODULE_INDEL_FRAC_INSERTIONS", "1.f");
+  cfg.Set("SGPL_PROGRAM_SIZE_CAP", "1000");
+
+  const sgpl::Program<spec_t> original( cfg.SGPL_PROGRAM_SIZE_CAP() );
+
+  const auto [copy, n_muts] = sgpl::sequence_mutate_copy( original, cfg );
+
+  REQUIRE( n_muts );
+  REQUIRE( original != copy );
+  REQUIRE( original.size() == cfg.SGPL_PROGRAM_SIZE_CAP() );
+
+}
