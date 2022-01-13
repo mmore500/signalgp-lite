@@ -76,7 +76,7 @@ TEST_CASE("Test do_random_walk_approximation various lengths") {
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  for (int length : emp::vector{ 2, 9, 10, 20, 100 } ) {
+  for (int length : emp::vector<int>{ 2, 9, 10, 20, 100 } ) {
 
     emp::vector<int> walks;
     std::generate_n(
