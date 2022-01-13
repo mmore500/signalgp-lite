@@ -22,7 +22,7 @@ void setup(int argc, char* argv[]) {
 
   // save config as csv
   bc::config.WriteCSV(emp::to_string(
-    "type=config+",
+    "a=config+",
     bc::config.LOGGING_FILENAME(),
     "+ext=.csv"
   ));

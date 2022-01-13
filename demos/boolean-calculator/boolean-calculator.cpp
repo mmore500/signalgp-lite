@@ -77,11 +77,11 @@ int main(int argc, char* argv[]) {
   // setup logging
   if (bc::config.LOGGING()) {
     ea_world.SetupFitnessFile(
-      emp::to_string("type=logging+", bc::config.LOGGING_FILENAME(), "+ext=.csv")
+      emp::to_string("a=logging+", bc::config.LOGGING_FILENAME(), "+ext=.csv")
     );
     ea_world.SetupSystematicsFile(
       0,
-      emp::to_string("type=systematics+", bc::config.LOGGING_FILENAME(), "+ext=.csv")
+      emp::to_string("a=systematics+", bc::config.LOGGING_FILENAME(), "+ext=.csv")
     );
   }
 
@@ -112,7 +112,7 @@ int main(int argc, char* argv[]) {
   }
 
   std::ofstream os(
-    emp::to_string("type=genome+", bc::config.LOGGING_FILENAME(), "+ext=.cereal"),
+    emp::to_string("a=genome+", bc::config.LOGGING_FILENAME(), "+ext=.cereal"),
     std::ios::binary
   );
   cereal::BinaryOutputArchive archive( os );
