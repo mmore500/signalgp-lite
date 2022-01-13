@@ -41,4 +41,14 @@ TEST_CASE("Test MemoizeCtor") {
   sgpl::MemoizeCtor<CtorTester>{1};
   REQUIRE( CtorTester::ctor_count == 4);
 
+  int i{1};
+  sgpl::MemoizeCtor<CtorTester>{i};
+  sgpl::MemoizeCtor<CtorTester>::lookup(i);
+  REQUIRE( CtorTester::ctor_count == 4);
+
+  const int j{1};
+  sgpl::MemoizeCtor<CtorTester>{j};
+  sgpl::MemoizeCtor<CtorTester>::lookup(j);
+  REQUIRE( CtorTester::ctor_count == 4);
+
 }

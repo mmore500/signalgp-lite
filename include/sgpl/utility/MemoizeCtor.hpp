@@ -2,6 +2,9 @@
 #ifndef SGPL_UTILITY_MEMOIZECTOR_HPP_INCLUDE
 #define SGPL_UTILITY_MEMOIZECTOR_HPP_INCLUDE
 
+#include <type_traits>
+
+#include "../../../third-party/conduit/include/uitsl/polyfill/remove_cvref.hpp"
 #include "../../../third-party/Empirical/include/emp/datastructs/Cache.hpp"
 #include "../../../third-party/Empirical/include/emp/datastructs/tuple_utils.hpp"
 
@@ -35,9 +38,9 @@ public:
 
   template<typename... Args>
   static const T& lookup(Args&& ...args) {
-    return cache<Args...>().GetRef(
-      std::tuple{ std::forward<Args>(args)... },
-      [&](std::tuple<Args...>){ return T( std::forward<Args>(args)... ); }
+    return cache<std::remove_cvref_t<Args>...>().GetRef(
+      std::tuple<std::remove_cvref_t<Args>...>{ args... },
+      [&](std::tuple<std::remove_cvref_t<Args>...>){ return T( std::forward<Args>(args)... ); }
     );
   }
 
