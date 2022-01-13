@@ -2,6 +2,8 @@
 #ifndef SGPL_INTROSPECTION_GET_MODULE_POS_HPP_INCLUDE
 #define SGPL_INTROSPECTION_GET_MODULE_POS_HPP_INCLUDE
 
+#include <iterator>
+
 #include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"
 
@@ -17,10 +19,13 @@ size_t get_module_pos(
 
   emp_assert( module_idx < sgpl::count_modules( program ) );
 
-  const size_t raw_distance = std::next(
-    sgpl::GlobalAnchorIterator<Spec>::make_begin( program ),
-    module_idx
-  ).CalcDistance( std::begin( program ) );
+  const size_t raw_distance = std::distance(
+    std::next(
+      sgpl::GlobalAnchorIterator<Spec>::make_begin( program ),
+      module_idx
+    ).begin(),
+    std::begin( program )
+  );
 
   return raw_distance;
 
