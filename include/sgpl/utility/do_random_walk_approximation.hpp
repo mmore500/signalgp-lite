@@ -8,7 +8,7 @@
 namespace sgpl {
 
 // random walk with n steps on a one dimensional lattice
-int do_random_walk_normal_approximation(const int num_steps) {
+int do_random_walk_approximation(const int num_steps) {
   emp_assert( num_steps >= 0, num_steps );
 
   if ( num_steps == 0 ) return 0;
