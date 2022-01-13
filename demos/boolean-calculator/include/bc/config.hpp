@@ -8,7 +8,7 @@ namespace bc {
 
 EMP_BUILD_CONFIG(
   Config,
-  VALUE(SGPL_PROGRAM_MAX_SIZE, size_t, 4096, "What size should programs be capped at?"),
+  VALUE(SGPL_PROGRAM_SIZE_CAP, size_t, 4096, "What size should programs be capped at?"),
 
   VALUE(SGPL_POINTMUTATE_BITFLIP_RATE,
     float, 0.0002f,
