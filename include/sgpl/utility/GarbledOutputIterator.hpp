@@ -3,11 +3,14 @@
 #define SGPL_UTILITY_GARBLEDOUTPUTITERATOR_HPP_INCLUDE
 
 #include <iterator>
+#include <type_traits>
 
 #include "ThreadLocalRandom.hpp"
 
 namespace sgpl {
 
+// if emp::Random constructor available, inject items so constructed as garble
+// otherwise, inject default-constructed items
 template<typename OutputIterator>
 class GarbledOutputIterator
 : protected OutputIterator {
@@ -48,7 +51,13 @@ public:
   GarbledOutputIterator& operator=( const container_value_type& value ) {
     if (remaining_garble) {
       --remaining_garble;
-      parent_t::operator=( container_value_type( sgpl::tlrand.Get() ) );
+      parent_t::operator=( [](){
+        using cov_t = container_value_type;
+        // prefer random constructor, fallback to default constructor
+        if constexpr ( std::is_constructible_v<cov_t, emp::Random&> ) {
+          return cov_t( sgpl::tlrand.Get() );
+        } else return cov_t{};
+      }() );
     } else parent_t::operator=( value );
     return *this;
   }

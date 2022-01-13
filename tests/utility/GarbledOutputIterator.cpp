@@ -31,7 +31,7 @@ TEST_CASE("Test GarbledOutputIterator without garble") {
 
 }
 
-TEST_CASE("Test GarbledOutputIterator with garble") {
+TEST_CASE("Test GarbledOutputIterator with random garble") {
 
   std::vector<GarbleTester> vec;
   auto it = sgpl::GarbledOutputIterator(std::back_inserter(vec));
@@ -52,6 +52,41 @@ TEST_CASE("Test GarbledOutputIterator with garble") {
   REQUIRE( vec.back().state );
 
   ++*it = {};
+  REQUIRE( !vec.back().state );
+
+}
+
+struct GarbleTester2 {
+
+  bool state{true};
+
+  GarbleTester2() = default;
+
+  GarbleTester2( int ) : state( false ) { ; }
+
+};
+
+TEST_CASE("Test GarbledOutputIterator with default garble") {
+
+  std::vector<GarbleTester2> vec;
+  auto it = sgpl::GarbledOutputIterator(std::back_inserter(vec));
+  it.AddGarble( 2 );
+
+  ++*it = {1};
+  REQUIRE( vec.back().state );
+
+  ++*it = {1};
+  REQUIRE( vec.back().state );
+
+  ++*it = {1};
+  REQUIRE( !vec.back().state );
+
+  it.AddGarble( 1 );
+
+  ++*it = {1};
+  REQUIRE( vec.back().state );
+
+  ++*it = {1};
   REQUIRE( !vec.back().state );
 
 }
