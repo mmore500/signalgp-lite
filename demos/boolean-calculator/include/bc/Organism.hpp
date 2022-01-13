@@ -6,6 +6,8 @@
 
 #include "Empirical/include/emp/base/vector.hpp"
 
+#include "sgpl/mutate/mutate_copy.hpp"
+#include "sgpl/mutate/point_mutate.hpp"
 #include "sgpl/program/Program.hpp"
 #include "sgpl/utility/CountingIterator.hpp"
 
@@ -117,8 +119,12 @@ struct Organism {
   double GetFitness(bool verbose = false) const { return GetTrainingFitness(verbose); }
 
   bool DoMutations(emp::Random&) {
-    program.ApplyMutations(bc::config);
-    return true;
+    if (sgpl::tlrand.Get().P( config.SGPL_MUTATION_OCCURENCE_RATE() )) {
+      auto [mutated_program, num_muts] = sgpl::mutate_copy(program, bc::config);
+      program = mutated_program;
+      return true;
+    }
+    return false;
   }
 
   // binary input/output
