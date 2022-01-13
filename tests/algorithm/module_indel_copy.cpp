@@ -2,6 +2,7 @@
 #include "Empirical/include/emp/base/vector.hpp"
 
 #include "sgpl/algorithm/module_indel_copy.hpp"
+#include "sgpl/utility/CappedOutputIterator.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 template<typename T>
@@ -12,13 +13,13 @@ class FalseyAnchorIterator
   using container_t = emp::vector<T>;
   using parent_t = typename container_t::const_iterator;
 
-  parent_t end;
+  parent_t end_iter;
 
   FalseyAnchorIterator(
     const parent_t& init,
-    const parent_t& end_
+    const parent_t& end_iter_
   ) : parent_t(init)
-  , end(end_)
+  , end_iter(end_iter_)
   {}
 
 
@@ -48,13 +49,14 @@ public:
 
   const value_type* operator->() { return &operator*(); }
 
-  explicit operator parent_t() const { return static_cast<parent_t>( *this ); }
+  parent_t begin() const { return static_cast<parent_t>( *this ); }
+  parent_t end() const { return std::next(*this).begin(); }
 
   FalseyAnchorIterator& operator++() {
 
     do {
       parent_t::operator++();
-    } while ( *this != end && **this );
+    } while ( *this != end_iter && **this );
 
     return *this;
   }
@@ -82,10 +84,13 @@ TEST_CASE("Test module_indel_copy without mutation and with empty source") {
   using container_t = emp::vector<int>;
   container_t original( 0 );
 
-  auto [copy, num_muts] = sgpl::module_indel_copy<
-    container_t,
-    FalseyAnchorIterator<int>
-  >( original, 0.0f );
+  container_t copy;
+  const auto num_muts = sgpl::module_indel_copy(
+    FalseyAnchorIterator<int>::make_begin(original),
+    FalseyAnchorIterator<int>::make_end(original),
+    std::back_inserter(copy),
+    0.0f
+  );
 
   REQUIRE( original == copy );
   REQUIRE( num_muts == 0 );
@@ -99,10 +104,13 @@ TEST_CASE("Test module_indel_copy with mutation and with empty source") {
   using container_t = emp::vector<int>;
   container_t original( 0 );
 
-  auto [copy, num_muts] = sgpl::module_indel_copy<
-    container_t,
-    FalseyAnchorIterator<int>
-  >( original, 1.0f );
+  container_t copy;
+  const auto num_muts = sgpl::module_indel_copy(
+    FalseyAnchorIterator<int>::make_begin(original),
+    FalseyAnchorIterator<int>::make_end(original),
+    std::back_inserter(copy),
+    1.0f
+  );
 
   REQUIRE( original == copy );
   REQUIRE( num_muts == 0 );
@@ -119,10 +127,13 @@ TEST_CASE("Test module_indel_copy without mutation and with anchors") {
   // add anchors
   for (size_t i{}; i < original.size(); i += 10 ) original[i] = 0;
 
-  auto [copy, num_muts] = sgpl::module_indel_copy<
-    container_t,
-    FalseyAnchorIterator<int>
-  >( original, 0.0f );
+  container_t copy;
+  const auto num_muts = sgpl::module_indel_copy(
+    FalseyAnchorIterator<int>::make_begin(original),
+    FalseyAnchorIterator<int>::make_end(original),
+    std::back_inserter(copy),
+    0.0f
+  );
 
   REQUIRE( original == copy );
   REQUIRE( num_muts == 0 );
@@ -137,10 +148,13 @@ TEST_CASE("Test module_indel_copy without mutation and no anchors") {
   container_t original( 100 );
   std::iota( std::begin( original ), std::end( original ), 1 );
 
-  auto [copy, num_muts] = sgpl::module_indel_copy<
-    container_t,
-    FalseyAnchorIterator<int>
-  >( original, 0.0f );
+  container_t copy;
+  const auto num_muts = sgpl::module_indel_copy(
+    FalseyAnchorIterator<int>::make_begin(original),
+    FalseyAnchorIterator<int>::make_end(original),
+    std::back_inserter(copy),
+    0.0f
+  );
 
   REQUIRE( original == copy );
   REQUIRE( num_muts == 0 );
@@ -157,13 +171,88 @@ TEST_CASE("Test module_indel_copy with mutation and anchors") {
   // add anchors
   for (size_t i{}; i < original.size(); i += 10 ) original[i] = 0;
 
-  auto [copy, num_muts] = sgpl::module_indel_copy<
-    container_t,
-    FalseyAnchorIterator<size_t>
-  >( original, 0.5f );
+  container_t copy;
+  const auto num_muts = sgpl::module_indel_copy(
+    FalseyAnchorIterator<size_t>::make_begin(original),
+    FalseyAnchorIterator<size_t>::make_end(original),
+    std::back_inserter(copy),
+    0.5f
+  );
 
   REQUIRE( copy.size() > 0 );
   REQUIRE( copy.size() < original.size() * 2 );
+  REQUIRE( num_muts );
+
+  REQUIRE( !std::equal(
+    std::begin(original), std::end(original),
+    std::begin(copy), std::end(copy)
+  ) );
+
+  // all modules should have shifted position by exactly 10
+  // because all modules are 10 long
+  REQUIRE( copy.size() % 10 == 0 );
+  for (size_t i{}; i < copy.size(); ++i) REQUIRE(
+    copy[i] % 10 == i % 10
+  );
+
+}
+
+TEST_CASE("Test module_indel_copy with insertion mutation only and anchors") {
+
+  sgpl::tlrand.Get() = emp::Random(1);
+
+  using container_t = emp::vector<size_t>;
+  container_t original( 100 );
+  std::iota( std::begin( original ), std::end( original ), 0 );
+  // add anchors
+  for (size_t i{}; i < original.size(); i += 10 ) original[i] = 0;
+
+  container_t copy;
+  const auto num_muts = sgpl::module_indel_copy(
+    FalseyAnchorIterator<size_t>::make_begin(original),
+    FalseyAnchorIterator<size_t>::make_end(original),
+    std::back_inserter(copy),
+    0.5f, 1.f
+  );
+
+  REQUIRE( copy.size() > original.size() );
+  REQUIRE( copy.size() < original.size() * 2 );
+  REQUIRE( num_muts );
+
+  REQUIRE( !std::equal(
+    std::begin(original), std::end(original),
+    std::begin(copy), std::end(copy)
+  ) );
+
+  // all modules should have shifted position by exactly 10
+  // because all modules are 10 long
+  REQUIRE( copy.size() % 10 == 0 );
+  for (size_t i{}; i < copy.size(); ++i) REQUIRE(
+    copy[i] % 10 == i % 10
+  );
+
+}
+
+TEST_CASE("Test module_indel_copy with deletion mutation only and anchors") {
+
+  sgpl::tlrand.Get() = emp::Random(1);
+
+  using container_t = emp::vector<size_t>;
+  container_t original( 100 );
+  std::iota( std::begin( original ), std::end( original ), 0 );
+  // add anchors
+  for (size_t i{}; i < original.size(); i += 10 ) original[i] = 0;
+
+  container_t copy;
+  const auto num_muts = sgpl::module_indel_copy(
+    FalseyAnchorIterator<size_t>::make_begin(original),
+    FalseyAnchorIterator<size_t>::make_end(original),
+    std::back_inserter(copy),
+    0.5f, 0.f
+  );
+
+  REQUIRE( copy.size() < original.size() );
+  REQUIRE( copy.size() );
   REQUIRE( num_muts );
 
   REQUIRE( !std::equal(
@@ -188,10 +277,13 @@ TEST_CASE("Test module_indel_copy with mutation and no anchors") {
   container_t original( 100 );
   std::iota( std::begin( original ), std::end( original ), 1 );
 
-  auto [copy, num_muts] = sgpl::module_indel_copy<
-    container_t,
-    FalseyAnchorIterator<size_t>
-  >( original, 1.0f );
+  container_t copy;
+  const auto num_muts = sgpl::module_indel_copy(
+    FalseyAnchorIterator<size_t>::make_begin(original),
+    FalseyAnchorIterator<size_t>::make_end(original),
+    std::back_inserter(copy),
+    1.f
+  );
 
   REQUIRE( copy.size() >= 0 );
   REQUIRE( copy.size() <= original.size() * 2 );
@@ -221,10 +313,13 @@ TEST_CASE("Test module_indel_copy with mutation, anchors, and res limit") {
   // add anchors
   for (size_t i{}; i < original.size(); i += 10 ) original[i] = 0;
 
-  auto [copy, num_muts] = sgpl::module_indel_copy<
-    container_t,
-    FalseyAnchorIterator<size_t>
-  >( original, 0.5f, 57 );
+  container_t copy;
+  const auto num_muts = sgpl::module_indel_copy(
+    FalseyAnchorIterator<size_t>::make_begin(original),
+    FalseyAnchorIterator<size_t>::make_end(original),
+    sgpl::CappedOutputIterator(std::back_inserter(copy), 57),
+    0.5f
+  );
 
   REQUIRE( copy.size() > 0 );
   REQUIRE( copy.size() < original.size() * 2 );
