@@ -161,60 +161,6 @@ public:
 
   }
 
-  template <
-    typename Config
-  >
-  size_t ApplySequenceMutations(const Config& cfg) {
-    const bool is_severe = sgpl::tlrand.Get().P(
-      cfg.SGPL_SEVERE_SEQUENCE_MUTATION_RATE()
-    );
-
-    const size_t defect_bound = (
-      is_severe
-      ? parent_t::size()
-      : cfg.SGPL_MINOR_SEQUENCE_MUTATION_BOUND()
-    );
-
-    const double defect_rate
-      = cfg.SGPL_SEQUENCE_DEFECT_RATE();
-
-    size_t num_muts = 0;
-
-    // do severe sequence mutation with scrambling
-    auto [copy1, muts1] = sgpl::sloppy_copy<Program, true>(
-      *this,
-      defect_rate,
-      { -defect_bound, defect_bound },
-      cfg.SGPL_PROGRAM_MAX_SIZE()
-    );
-
-    num_muts += muts1;
-
-    // do severe sequence mutation without scrambling
-    auto [copy2, muts2] = sgpl::sloppy_copy<Program, false>(
-      copy1,
-      defect_rate,
-      { -defect_bound, defect_bound },
-      cfg.SGPL_PROGRAM_MAX_SIZE()
-    );
-
-    num_muts += muts2;
-
-    *this = std::move(copy2);
-
-    return num_muts;
-  }
-
-  template <typename Config>
-  size_t ApplyMutations(const Config& config) {
-    size_t num_muts = 0;
-    if (sgpl::tlrand.Get().P( config.SGPL_MUTATION_OCCURENCE_RATE() )) {
-      num_muts += ApplyPointMutations( config.SGPL_POINT_MUTATION_RATE() );
-      num_muts += ApplySequenceMutations( config );
-    }
-    return num_muts;
-  }
-
   void RotateGlobalAnchorToFront() {
 
     const auto first_anchor = std::find_if(
