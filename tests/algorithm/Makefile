@@ -1,3 +1,4 @@
+TEST_NAMES += drag_to
 TEST_NAMES += execute_core
 TEST_NAMES += execute_cpu
 TEST_NAMES += inst_indel_copy
