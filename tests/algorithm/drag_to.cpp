@@ -6,7 +6,7 @@
 
 #include "sgpl/algorithm/drag_to.hpp"
 
-TEST_CASE("Test forward slide") {
+TEST_CASE("Test forward drag") {
 
   emp::vector<int> buff(8);
   std::iota( std::begin(buff), std::end(buff), 0 );
@@ -20,7 +20,7 @@ TEST_CASE("Test forward slide") {
 
 }
 
-TEST_CASE("Test forward slide to end") {
+TEST_CASE("Test forward drag to end") {
 
   emp::vector<int> buff(8);
   std::iota( std::begin(buff), std::end(buff), 0 );
@@ -44,7 +44,7 @@ TEST_CASE("Test forward slide to end") {
 
 }
 
-TEST_CASE("Test backward slide") {
+TEST_CASE("Test backward drag") {
 
   emp::vector<int> buff(8);
   std::iota( std::begin(buff), std::end(buff), 0 );
@@ -58,7 +58,7 @@ TEST_CASE("Test backward slide") {
 
 }
 
-TEST_CASE("Test backward slide to front") {
+TEST_CASE("Test backward drag to front") {
 
   emp::vector<int> buff(8);
   std::iota( std::begin(buff), std::end(buff), 0 );
@@ -72,7 +72,7 @@ TEST_CASE("Test backward slide to front") {
 
 }
 
-TEST_CASE("Test internal slide") {
+TEST_CASE("Test internal drag") {
 
   emp::vector<int> buff(8);
   std::iota( std::begin(buff), std::end(buff), 0 );
@@ -109,7 +109,7 @@ TEST_CASE("Test internal slide") {
   REQUIRE( buff == emp::vector<int>{0, 1, 2, 3, 5, 6, 4, 7} );
 }
 
-TEST_CASE("Test bigger internal slide") {
+TEST_CASE("Test bigger internal drag") {
 
   emp::vector<int> buff(8);
   std::iota( std::begin(buff), std::end(buff), 0 );
@@ -155,7 +155,7 @@ TEST_CASE("Test bigger internal slide") {
   REQUIRE( buff == emp::vector<int>{0, 1, 2, 3, 5, 6, 7, 4} );
 }
 
-TEST_CASE("Test small internal slide") {
+TEST_CASE("Test small internal drag") {
 
   emp::vector<int> buff(8);
   std::iota( std::begin(buff), std::end(buff), 0 );
@@ -180,7 +180,7 @@ TEST_CASE("Test small internal slide") {
   REQUIRE( buff == emp::vector<int>{0, 1, 2, 3, 5, 4, 6, 7} );
 }
 
-TEST_CASE("Test no-op slides") {
+TEST_CASE("Test no-op drags") {
 
   emp::vector<int> buff(8);
   std::iota( std::begin(buff), std::end(buff), 0 );
