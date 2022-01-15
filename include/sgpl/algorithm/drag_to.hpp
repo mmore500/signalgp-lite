@@ -23,7 +23,8 @@ namespace sgpl {
  * @param to target to slide to
  * @tparam random access iterator type
  * @return iterator at the new position of the front of the selected range
- */template<typename RandomIt>
+ */
+template<typename RandomIt>
 RandomIt drag_to(const RandomIt first, const RandomIt last, const RandomIt to) {
 
   emp_assert( first <= last );
