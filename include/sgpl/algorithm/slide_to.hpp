@@ -13,7 +13,8 @@ namespace sgpl {
  *
  * The front of the selected range is repositioned so as if inserted before the
  * target position. If the target position is within the selected range this
- * will result in a no-op.
+ * will result in a no-op. In the case of an empty selected range, the target
+ * position is returned.
  *
  * @param first front of selection
  * @param last back of selection
@@ -26,11 +27,9 @@ RandomIt slide_to(const RandomIt first, const RandomIt last, const RandomIt to) 
 
   emp_assert( first <= last );
 
-  // empty slide window
-  if (first == last) return first;
   // adapted from https://youtu.be/W2tWOdzgXHA?t=778
   // slide backward
-  else if (to < first) {
+  if (to < first) {
     std::rotate(to, first, last);
     return to;
   }

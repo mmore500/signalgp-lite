@@ -16,7 +16,8 @@ namespace sgpl {
  * target position. If the target position is within the selected range,
  * performs a rotate so that the front of the selection reaches the target
  * position. Note that for target position equal or one after the front of the
- * selected range, this will result in a no-op.
+ * selected range, this will result in a no-op. In the case of an empty
+ * selected range, the target position is returned.
  *
  * @param first front of selection
  * @param last back of selection
@@ -29,11 +30,9 @@ RandomIt drag_to(const RandomIt first, const RandomIt last, const RandomIt to) {
 
   emp_assert( first <= last );
 
-  // empty window
-  if (first == last) return first;
   // adapted from https://youtu.be/W2tWOdzgXHA?t=778
   // slide backward
-  else if (to < first) {
+  if (to < first) {
     std::rotate(to, first, last);
     return to;
   }

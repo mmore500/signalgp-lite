@@ -186,19 +186,19 @@ TEST_CASE("Test no-op slide_to's") {
 
   REQUIRE(
     sgpl::slide_to( &buff[4], &buff[4], &buff[5] )
-    == &buff[4]
+    == &buff[5]
   );
   REQUIRE( buff == emp::vector<int>{0, 1, 2, 3, 4, 5, 6, 7} );
 
   REQUIRE(
     sgpl::slide_to( &buff[4], &buff[4], &buff[7] )
-    == &buff[4]
+    == &buff[7]
   );
   REQUIRE( buff == emp::vector<int>{0, 1, 2, 3, 4, 5, 6, 7} );
 
   REQUIRE(
     sgpl::slide_to( &buff[4], &buff[4], &buff[0] )
-    == &buff[4]
+    == &buff[0]
   );
   REQUIRE( buff == emp::vector<int>{0, 1, 2, 3, 4, 5, 6, 7} );
 
