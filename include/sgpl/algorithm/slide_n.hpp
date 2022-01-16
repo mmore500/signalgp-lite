@@ -4,7 +4,7 @@
 
 #include <iterator>
 
-#include "drag_to.hpp"
+#include "slide_to.hpp"
 
 namespace sgpl {
 
@@ -23,12 +23,11 @@ namespace sgpl {
 template<typename RandomIt>
 RandomIt slide_n(RandomIt first, RandomIt last, const int amount) {
 
-  // note: must add 1 for positive shifts due to drag_to interface
   const RandomIt to = (amount > 0)
     ? last + amount
     : first + amount
   ;
-  return sgpl::drag_to(first, last, to);
+  return sgpl::slide_to(first, last, to);
 
 }
 

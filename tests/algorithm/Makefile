@@ -6,6 +6,7 @@ TEST_NAMES += module_indel_copy
 TEST_NAMES += mutate_bits
 TEST_NAMES += mutate_bytes
 TEST_NAMES += slide_n
+TEST_NAMES += slide_to
 TEST_NAMES += sloppy_copy
 
 TO_ROOT := $(shell git rev-parse --show-cdup)
