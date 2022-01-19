@@ -42,6 +42,14 @@ EMP_BUILD_CONFIG(
   ),
 
   GROUP(TRANSPOSITION_MUTATION, "TRANSPOSITION MUTATION"),
+  VALUE(SGPL_SEQMUTATE_INST_TRANSPOSE_RATE,
+    float, 0.0001f,
+    "How often per instruction should transpose events arise?"
+  ),
+  VALUE(SGPL_SEQMUTATE_INST_TRANSPOSE_INVERSION_RATE,
+    float, 0.02f,
+    "How often should transposed windows be inverted?"
+  ),
   VALUE(SGPL_SEQMUTATE_INST_TRANSPOSE_WINDOW_SIZE_PARETO_SHAPE_PARAM,
     float, 0.5f,
     "Shape parameter (\"alpha\") for distribution of transposed window sizes"

@@ -33,6 +33,7 @@ TEST_CASE("Test mutate_copy with mutations disabled") {
   cfg.Set("SGPL_POINTMUTATE_BITFLIP_RATE", "0.f");
   cfg.Set("SGPL_SEQMUTATE_INST_INDEL_RATE", "0.f");
   cfg.Set("SGPL_SEQMUTATE_MODULE_INDEL_RATE", "0.f");
+  cfg.Set("SGPL_SEQMUTATE_INST_TRANSPOSE_RATE", "0.f");
 
   const sgpl::Program<spec_t> original( 1000 );
 
