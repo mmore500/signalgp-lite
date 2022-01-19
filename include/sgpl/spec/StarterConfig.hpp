@@ -42,30 +42,26 @@ EMP_BUILD_CONFIG(
   ),
 
   GROUP(TRANSPOSITION_MUTATION, "TRANSPOSITION MUTATION"),
-  VALUE(SGPL_SEQMUTATE_INST_TRANSPOSE_RATE,
-    float, 0.0001f,
-    "How often per instruction should transpose events arise?"
-  ),
   VALUE(SGPL_SEQMUTATE_INST_TRANSPOSE_WINDOW_SIZE_PARETO_SHAPE_PARAM,
-    float, 1.0f,
+    float, 0.5f,
     "Shape parameter (\"alpha\") for distribution of transposed window sizes"
     " when drawn from pareto distribution. "
     "Constrained > 0."
   ),
   VALUE(SGPL_SEQMUTATE_INST_TRANSPOSE_WINDOW_SIZE_PARETO_SCALE_PARAM,
-    float, 1.0f,
+    float, 2.0f,
     "Scale parameter (\"lambda\") for distribution of transposed window sizes"
     " when drawn from pareto distribution. "
     "Constrained > 0."
   ),
   VALUE(SGPL_SEQMUTATE_INST_TRANSPOSE_WINDOW_DISP_PARETO_SHAPE_PARAM,
-    float, 1.0f,
+    float, 0.5f,
     "Scale param (\"alpha\") for distn of window transposition displacements"
     " when drawn from pareto distribution. "
     "Constrained > 0."
   ),
   VALUE(SGPL_SEQMUTATE_INST_TRANSPOSE_WINDOW_DISP_PARETO_SCALE_PARAM,
-    float, 1.0f,
+    float, 2.0f,
     "Scale param (\"lambda\") for distn of window transposition displacements"
     " when drawn from pareto distribution. "
     "Constrained > 0."

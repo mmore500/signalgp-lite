@@ -10,6 +10,7 @@ TEST_NAMES += prev
 TEST_NAMES += slide_n
 TEST_NAMES += slide_to
 TEST_NAMES += sloppy_copy
+TEST_NAMES += transpose_window
 
 TO_ROOT := $(shell git rev-parse --show-cdup)
 
