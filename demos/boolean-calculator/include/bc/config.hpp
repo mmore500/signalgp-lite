@@ -18,6 +18,10 @@ EMP_BUILD_CONFIG(
     float, 0.001f,
     "How often should instruction indel mutations occur?"
   ),
+  VALUE(SGPL_SEQMUTATE_MODULE_INDEL_RATE,
+    float, 0.01f,
+    "How often should module indel mutations occur?"
+  ),
   VALUE(SGPL_SEQMUTATE_INST_INDEL_FRAC_INSERTIONS,
     float, 0.5f,
     "What fraction of instruction indel mutations should be insertions?"
@@ -26,10 +30,6 @@ EMP_BUILD_CONFIG(
     float, 0.05f,
     "What fraction of instruction indel insertions should be garbled?"
   ),
-  VALUE(SGPL_SEQMUTATE_MODULE_INDEL_RATE,
-    float, 0.01f,
-    "How often should module indel mutations occur?"
-  ),
   VALUE(SGPL_SEQMUTATE_MODULE_INDEL_FRAC_INSERTIONS,
     float, 0.5f,
     "What fraction of module indel mutations should be insertions?"
@@ -37,6 +37,10 @@ EMP_BUILD_CONFIG(
   VALUE(SGPL_MUTATION_OCCURENCE_RATE,
     float, 1.0f,
     "How often should mutations happen?"
+  ),
+  VALUE(REPLICATE,
+    size_t, 0,
+    "Replicate number (dummy value)"
   ),
 
   VALUE(ENVIROMENT_STATES, size_t, 4, "TODO"),
