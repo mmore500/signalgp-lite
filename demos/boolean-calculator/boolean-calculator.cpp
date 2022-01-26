@@ -6,6 +6,7 @@
 
 #include "Empirical/include/emp/base/vector.hpp"
 #include "Empirical/include/emp/datastructs/hash_utils.hpp"
+#include "Empirical/include/emp/tools/keyname_utils.hpp"
 #include "Empirical/include/emp/Evolve/World.hpp"
 #include "Empirical/include/emp/Evolve/Systematics.hpp"
 #include "Empirical/include/emp/math/Random.hpp"
@@ -51,7 +52,6 @@ struct spec_t : public sgpl::Spec<library_t, bc::Peripheral> {
 
 using tag_t = spec_t::tag_t;
 
-
 int main(int argc, char* argv[]) {
 
   bc::setup(argc, argv);
@@ -77,11 +77,25 @@ int main(int argc, char* argv[]) {
   // setup logging
   if (bc::config.LOGGING()) {
     ea_world.SetupFitnessFile(
-      emp::to_string("a=logging+", bc::config.LOGGING_FILENAME(), "+ext=.csv")
+      emp::keyname::pack({
+        {"a", "logging"},
+        {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+        {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+        {"replicate", emp::to_string(bc::config.REPLICATE())},
+        {"exec_instance_uuid", emp::to_string(uitsl::get_proc_instance_uuid())},
+        {"ext", ".csv"}
+      })
     );
     ea_world.SetupSystematicsFile(
       0,
-      emp::to_string("a=systematics+", bc::config.LOGGING_FILENAME(), "+ext=.csv")
+      emp::keyname::pack({
+        {"a", "systematics"},
+        {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+        {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+        {"replicate", emp::to_string(bc::config.REPLICATE())},
+        {"exec_instance_uuid", emp::to_string(uitsl::get_proc_instance_uuid())},
+        {"ext", ".csv"}
+      })
     );
   }
 
@@ -112,7 +126,14 @@ int main(int argc, char* argv[]) {
   }
 
   std::ofstream os(
-    emp::to_string("a=genome+", bc::config.LOGGING_FILENAME(), "+ext=.cereal"),
+    emp::keyname::pack({
+      {"a", "genome"},
+      {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+      {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+      {"replicate", emp::to_string(bc::config.REPLICATE())},
+      {"exec_instance_uuid", emp::to_string(uitsl::get_proc_instance_uuid())},
+      {"ext", ".cereal"}
+    }),
     std::ios::binary
   );
   cereal::BinaryOutputArchive archive( os );

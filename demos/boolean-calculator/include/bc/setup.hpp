@@ -21,11 +21,16 @@ void setup(int argc, char* argv[]) {
   bc::config.Write(std::cout);
 
   // save config as csv
-  bc::config.WriteCSV(emp::to_string(
-    "a=config+",
-    bc::config.LOGGING_FILENAME(),
-    "+ext=.csv"
-  ));
+  bc::config.WriteCSV(
+    emp::keyname::pack({
+      {"a", "genome"},
+      {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+      {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+      {"replicate", emp::to_string(bc::config.REPLICATE())},
+      {"exec_instance_uuid", emp::to_string(uitsl::get_proc_instance_uuid())},
+      {"ext", ".csv"}
+    })
+  );
 
   // reseed random number generator
   sgpl::tlrand.Reseed(config.SEED());
