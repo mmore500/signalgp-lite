@@ -1,5 +1,8 @@
 #pragma once
 
+#include "conduit/include/uitsl/utility/uuid_utils.hpp"
+#include "conduit/include/uitsl/utility/exec_utils.hpp"
+
 #include "Empirical/include/emp/config/ArgManager.hpp"
 
 #include "sgpl/utility/ThreadLocalRandom.hpp"
@@ -16,6 +19,20 @@ void setup(int argc, char* argv[]) {
   emp::ArgManager arg_manager{argc, argv, specs};
 
   arg_manager.UseCallbacks();
+
+  // set proc UUID
+  bc::config.Set(
+    "UUID",
+    emp::to_string(uitsl::get_proc_instance_uuid()),
+    "Unique process identifier"
+  );
+
+  // set git revision
+  bc::config.Set(
+    "COMMIT_HASH",
+    uitsl::exec("git rev-parse HEAD"),
+    "Hash of last git commit"
+  );
 
   // print config
   bc::config.Write(std::cout);
