@@ -33,7 +33,7 @@ size_t module_indel_copy(
   ModuleIt program_begin, ModuleIt program_end,
   OutputIt out_iter,
   const float p_defect, const float p_defect_is_insertion=0.5f,
-  const InstRangeCopier& range_copier={}
+  const InstRangeCopier& range_copier=InstRangeCopier()
 ) {
 
   size_t cumulative_insertion_deletion{};
