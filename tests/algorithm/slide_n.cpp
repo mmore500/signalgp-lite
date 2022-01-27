@@ -92,14 +92,14 @@ TEST_CASE("Test no-op slides") {
   // empty window
   REQUIRE(
     sgpl::slide_n( &buff[4], &buff[4], 2 )
-    == &buff[4]
+    == &buff[6]
   );
   REQUIRE( buff == emp::vector<int>{0, 1, 2, 3, 4, 5, 6, 7} );
 
   // empty window
   REQUIRE(
     sgpl::slide_n( &buff[4], &buff[4], -1 )
-    == &buff[4]
+    == &buff[3]
   );
   REQUIRE( buff == emp::vector<int>{0, 1, 2, 3, 4, 5, 6, 7} );
 
