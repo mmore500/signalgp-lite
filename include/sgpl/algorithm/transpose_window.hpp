@@ -13,8 +13,8 @@
 #include "../algorithm/prev.hpp"
 #include "../spec/TransposeWindowDisplacementGenerator_Default.hpp"
 #include "../spec/TransposeWindowSizeGenerator_Default.hpp"
-#include "../utility/ThreadLocalRandom.hpp"
 #include "../utility/random_between.hpp"
+#include "../utility/ThreadLocalRandom.hpp"
 
 #include "slide_n.hpp"
 

@@ -2,8 +2,8 @@
 
 #include "sgpl/mutate/point_mutate.hpp"
 #include "sgpl/program/Program.hpp"
-#include "sgpl/spec/StarterConfig.hpp"
 #include "sgpl/spec/Spec.hpp"
+#include "sgpl/spec/StarterConfig.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 using spec_t = sgpl::Spec<>;
