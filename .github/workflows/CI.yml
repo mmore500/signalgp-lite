@@ -1,27 +1,21 @@
 name: CI
-'on':
+on:
   push:
-    branches:
-      - master
-      - dev
+    branches: [ master, dev ]
   pull_request:
     branches:
       - '**'
 jobs:
+
   docker-build:
     name: Docker Build
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
-          fetch-depth: 0
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
         with:
-          access_token: '${{ github.token }}'
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
+          access_token: ${{ github.token }}
+      - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
           fetch-depth: 0 # fetch all history for all branches and tags
@@ -147,47 +141,19 @@ jobs:
   deploy-github-pages:
     runs-on: ubuntu-20.04
     name: Deploy to GitHub Pages
-    container:
-      image: 'mmore500/conduit:GITHUB_ACTION_${{ github.run_number }}'
-      env:
-        OSF_PASSWORD: '${{ secrets.OSF_PASSWORD }}'
-        OSF_USERNAME: '${{ secrets.OSF_USERNAME }}'
-      options: '--user root'
-    if: github.ref == 'refs/heads/master'
     needs:
-      - docker-build
       - misc
-      - unit-tests
+      - unit-clang-debug
+      - unit-gcc-debug
+      - unit-clang-opt
+      - unit-gcc-opt
       - coverage
       - fuzzing
       - microbenchmarks
-      - source
-      - demos
-      - binder
+      - source-clang
+      - source-gcc
     env:
-      GH_TOKEN: '${{ github.token }}'
-    steps:
-      - run: make -C /opt/conduit/ web
-      - run: cp -r /opt/conduit/web/ web/
-      - uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          BRANCH: gh-pages
-          FOLDER: web
-          CLEAN: true
-  deploy-dockerhub:
-    name: Deploy to Dockerhub
-    runs-on: ubuntu-20.04
-    needs:
-      - docker-build
-      - misc
-      - unit-tests
-      - coverage
-      - fuzzing
-      - microbenchmarks
-      - source
-      - demos
-      - binder
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker run -e GH_TOKEN=$GH_TOKEN -e GITHUB_RUN_ID ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "cd /opt/signalgp-lite && source third-party/emsdk/emsdk_env.sh && make web && make badges && ./ci/deploy_gh_pages.sh"
