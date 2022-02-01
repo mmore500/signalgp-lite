@@ -43,7 +43,7 @@ J2_HEREDOC_EOF
 
             chmod +x "${JOB_SCRIPT}"
 
-            JOB_ID="$(sbatch --parsable '${JOB_SCRIPT}')"
+            JOB_ID="$(sbatch --parsable ${JOB_SCRIPT})"
             echo "JOB_ID ${JOB_ID}"
 
             cp -v "${JOB_SCRIPT}" "${BATCH_DIR}/${JOB_ID}.sh"
