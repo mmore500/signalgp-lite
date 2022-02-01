@@ -10,7 +10,7 @@ RUN \
   apt-get install -y --allow-downgrades --no-install-recommends \
     rename \
     libdwarf-dev \
-    elfutils-devel \
+    elfutils \
     && \
   apt-get clean \
     && \
