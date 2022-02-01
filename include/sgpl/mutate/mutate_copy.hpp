@@ -8,6 +8,7 @@
 
 #include "point_mutate.hpp"
 #include "sequence_mutate_copy.hpp"
+#include "transpose_invert_mutate.hpp"
 
 namespace sgpl {
 
@@ -21,6 +22,8 @@ auto mutate_copy(
   auto& [program_copy, num_muts] = res;
 
   num_muts += sgpl::point_mutate(program_copy, cfg);
+
+  num_muts += sgpl::transpose_invert_mutate(program_copy, cfg);
 
   return res;
 

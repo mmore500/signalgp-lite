@@ -2,8 +2,8 @@
 
 #include "sgpl/mutate/sequence_mutate_copy.hpp"
 #include "sgpl/program/Program.hpp"
-#include "sgpl/spec/Config.hpp"
 #include "sgpl/spec/Spec.hpp"
+#include "sgpl/spec/StarterConfig.hpp"
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 using spec_t = sgpl::Spec<>;
@@ -13,7 +13,7 @@ TEST_CASE("Test sequence_mutate_copy, mutation enabled") {
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  sgpl::Config cfg;
+  sgpl::StarterConfig cfg;
   cfg.Set("SGPL_SEQMUTATE_INST_INDEL_RATE", "0.1f");
   cfg.Set("SGPL_SEQMUTATE_MODULE_INDEL_RATE", "0.1f");
 
@@ -31,7 +31,7 @@ TEST_CASE("Test sequence_mutate_copy, just inst mutation enabled") {
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  sgpl::Config cfg;
+  sgpl::StarterConfig cfg;
   cfg.Set("SGPL_SEQMUTATE_INST_INDEL_RATE", "0.1f");
   cfg.Set("SGPL_SEQMUTATE_MODULE_INDEL_RATE", "0.f");
 
@@ -49,7 +49,7 @@ TEST_CASE("Test sequence_mutate_copy, just module mutation enabled") {
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  sgpl::Config cfg;
+  sgpl::StarterConfig cfg;
   cfg.Set("SGPL_SEQMUTATE_INST_INDEL_RATE", "0.f");
   cfg.Set("SGPL_SEQMUTATE_MODULE_INDEL_RATE", "0.1f");
 
@@ -67,7 +67,7 @@ TEST_CASE("Test sequence_mutate_copy, mutation disabled") {
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  sgpl::Config cfg;
+  sgpl::StarterConfig cfg;
   cfg.Set("SGPL_SEQMUTATE_INST_INDEL_RATE", "0.f");
   cfg.Set("SGPL_SEQMUTATE_MODULE_INDEL_RATE", "0.f");
 
@@ -85,7 +85,7 @@ TEST_CASE("Test sequence_mutate_copy, hitting program size cap") {
   // initialize tlrand
   sgpl::tlrand.Reseed(1);
 
-  sgpl::Config cfg;
+  sgpl::StarterConfig cfg;
   cfg.Set("SGPL_SEQMUTATE_INST_INDEL_RATE", "0.5f");
   cfg.Set("SGPL_SEQMUTATE_INST_INDEL_FRAC_INSERTIONS", "1.f");
   cfg.Set("SGPL_SEQMUTATE_MODULE_INDEL_RATE", "0.5f");

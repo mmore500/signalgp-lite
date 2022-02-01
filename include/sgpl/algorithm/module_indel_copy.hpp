@@ -14,21 +14,11 @@
 
 #include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"
+#include "../spec/InstRangeCopier_Default.hpp"
 #include "../utility/random_sign.hpp"
 #include "../utility/ThreadLocalRandom.hpp"
 
 namespace sgpl {
-
-struct DefaultRangeCopier {
-
-  // return additional indels
-  template<typename InputIt, typename OutputIt>
-  size_t copy(InputIt first, InputIt last, OutputIt out) const {
-    std::copy(first, last, out);
-    return 0;
-  }
-
-};
 
 /*
  * @note if output program length should be limited,
@@ -37,13 +27,13 @@ struct DefaultRangeCopier {
 template <
   typename ModuleIt,
   typename OutputIt,
-  typename RangeCopier=DefaultRangeCopier
+  typename InstRangeCopier=sgpl::InstRangeCopier_Default
 >
 size_t module_indel_copy(
   ModuleIt program_begin, ModuleIt program_end,
   OutputIt out_iter,
   const float p_defect, const float p_defect_is_insertion=0.5f,
-  const RangeCopier& range_copier=RangeCopier{}
+  const InstRangeCopier& range_copier=InstRangeCopier()
 ) {
 
   size_t cumulative_insertion_deletion{};
@@ -72,7 +62,7 @@ size_t module_indel_copy(
 
     // copy module into result n times
     for (size_t i{}; i < num_module_copies; ++i) {
-      cumulative_insertion_deletion += range_copier.copy(
+      cumulative_insertion_deletion += range_copier(
         cur_module_begin, cur_module_end,
         out_iter
       );

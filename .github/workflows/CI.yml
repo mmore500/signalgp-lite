@@ -23,166 +23,127 @@ jobs:
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
+          submodules: 'recursive'
+          fetch-depth: 0 # fetch all history for all branches and tags
+      - name: Push to GitHub Container Registry
+        uses: docker/build-push-action@v1
+        with:
           push: true
-          tags: 'GITHUB_ACTION_${{ github.run_number }}'
-          username: '${{ secrets.DOCKER_USERNAME }}'
-          password: '${{ secrets.DOCKER_PASSWORD }}'
+          tags: "GITHUB_ACTION_${{github.run_number}}"
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           repository: mmore500/signalgp-lite
+          registry: ghcr.io
           add_git_labels: true
+
   misc:
     runs-on: ubuntu-20.04
+    name: Docs, Miscellaneous
     needs:
       - docker-build
-    name: 'Docs, Miscellaneous'
-    container:
-      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
-      options: '--user root --cap-add=SYS_ADMIN'
-      env:
-        CXX: clang++
-        CONTEXT: travis
     steps:
-      - run: |
-          cd /opt/signalgp-lite
-          ./ci/test_tidy.sh
-          python3 ci/test_readme_snippets.py
-          make docs
-  unit-tests:
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: sudo docker run ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "cd /opt/signalgp-lite && ./ci/test_tidy.sh && python3 ci/test_readme_snippets.py && make docs"
+
+  unit-clang-debug:
     runs-on: ubuntu-20.04
-    name: Unit Tests
+    name: Unit Tests (clang, debug mode)
     needs:
       - docker-build
-    strategy:
-      matrix:
-        cxx:
-          - clang++
-          - g++
-        mode:
-          - opt
-          - test
-    container:
-      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
-      options: '--user root --cap-add=SYS_ADMIN'
-      env:
-        CXX: '${{ matrix.cxx }}'
-        CONTEXT: travis
+    env:
+      CXX: clang++
     steps:
-      - run: |
-          set -x
-          cd /opt/signalgp-lite/tests
-          make ${{ matrix.mode }}
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+
+  unit-gcc-debug:
+    runs-on: ubuntu-20.04
+    name: Unit Tests (gcc, debug mode)
+    needs:
+      - docker-build
+    env:
+      CXX: g++
+    steps:
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make"
+
+  unit-clang-opt:
+    runs-on: ubuntu-20.04
+    name: Unit Tests (clang, opt mode)
+    needs:
+      - docker-build
+    env:
+      CXX: clang++
+    steps:
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
+
+  unit-gcc-opt:
+    runs-on: ubuntu-20.04
+    name: Unit Tests (gcc, opt mode)
+    needs:
+      - docker-build
+    env:
+      CXX: g++
+    steps:
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -i ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "set -x && cd /opt/signalgp-lite/tests && make opt"
+
   coverage:
     runs-on: ubuntu-20.04
     name: Coverage
     needs:
       - docker-build
-    container:
-      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
-      options: '--user root --cap-add=SYS_ADMIN'
-      env:
-        CXX: clang++
-        CONTEXT: travis
+    env:
+      CXX: clang++
     steps:
-      - run: cd /opt/signalgp-lite && make coverage
-      - uses: codecov/codecov-action@v1
-        with:
-          fail_ci_if_error: true
-          verbose: true
-          directory: /opt/signalgp-lite
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: ci_env=`bash <(curl -s https://codecov.io/env)`
+      - run: sudo docker run $ci_env -e CXX=$CXX ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "cd /opt/signalgp-lite && make coverage && bash <(curl -s https://codecov.io/bash)"
+
   fuzzing:
     runs-on: ubuntu-20.04
     name: Fuzzing
     needs:
       - docker-build
-    container:
-      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
-      options: >-
-        --user root --cap-add=SYS_ADMIN --cap-add=SYS_PTRACE --security-opt
-        seccomp=unconfined
-      env:
-        CXX: clang++
-        CONTEXT: travis
     steps:
-      - run: |
-          cd /opt/signalgp-lite/fuzzing
-          make
-          make opt
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: sudo docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -e CXX=$CXX -e CONTEXT=travis ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "cd /opt/signalgp-lite/fuzzing && make && make opt"
+
   microbenchmarks:
     runs-on: ubuntu-20.04
     name: Microbenchmarks
     needs:
       - docker-build
-    container:
-      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
-      options: '--user root --cap-add=SYS_ADMIN'
-      env:
-        CXX: clang++
-        CONTEXT: travis
-        OSF_USERNAME: '${{ secrets.OSF_USERNAME }}'
-        OSF_PASSWORD: '${{ secrets.OSF_PASSWORD }}'
+    env:
+      CXX: clang++
+      OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
     steps:
-      - run: |
-          cd /opt/signalgp-lite/microbenchmarks
-          make
-  source:
-    runs-on: ubuntu-18.04
-    name: Source
-    needs:
-      - docker-build
-    strategy:
-      matrix:
-        cxx:
-          - clang++
-          - g++
-    container:
-      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
-      options: '--user user --cap-add=SYS_ADMIN'
-      env:
-        CXX: '${{ matrix.cxx }}'
-        CONTEXT: travis
-    steps:
-      # undo github actions override of HOME to "/home/github/"
-      - run: |
-          export HOME="/home/user/"
-          cd /opt/signalgp-lite
-          make test
-  demos:
-    runs-on: ubuntu-18.04
-    name: Run demos
-    needs:
-      - docker-build
-    strategy:
-      matrix:
-        cxx:
-          - clang++
-          - g++
-    container:
-      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
-      options: '--user root --cap-add=SYS_ADMIN'
-      env:
-        CXX: '${{ matrix.cxx }}'
-        CONTEXT: travis
-    steps:
-      - run: |
-          cd /opt/signalgp-lite/demos
-          make opt
-  binder:
-    name: Notebooks
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: sudo docker run -e CXX=$CXX -e OSF_TOKEN=$OSF_TOKEN -e CONTEXT=travis ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "cd /opt/signalgp-lite/microbenchmarks && make"
+
+  source-clang:
     runs-on: ubuntu-20.04
+    name: Source (clang)
     needs:
       - docker-build
-    container:
-      image: 'mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}'
-      options: '--user root'
+    env:
+      CXX: clang++
     steps:
-      - run: /opt/signalgp-lite/binder/execute_notebooks.sh
-      - run: git init
-      - uses: fregante/setup-git-user@v1
-      - run: git commit --allow-empty -m "Initial commit"
-      - run: cp -r /opt/signalgp-lite/ deploy/
-      - uses: JamesIves/github-pages-deploy-action@4.0.0
-        with:
-          branch: binder
-          folder: deploy
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: sudo docker run --cap-add=SYS_ADMIN ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "cd /opt/signalgp-lite && make test"
+
+  source-gcc:
+    runs-on: ubuntu-20.04
+    name: Source (gcc)
+    needs:
+      - docker-build
+    env:
+      CXX: g++
+    steps:
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: sudo docker run --cap-add=SYS_ADMIN ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "cd /opt/signalgp-lite && make test"
+
   deploy-github-pages:
     runs-on: ubuntu-20.04
     name: Deploy to GitHub Pages
@@ -228,15 +189,36 @@ jobs:
       - demos
       - binder
     steps:
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker run -e GH_TOKEN=$GH_TOKEN -e GITHUB_RUN_ID ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{github.run_number}} /bin/bash -c "cd /opt/signalgp-lite && source third-party/emsdk/emsdk_env.sh && make web && make badges && ./ci/deploy_gh_pages.sh"
+
+  deploy-container:
+    runs-on: ubuntu-20.04
+    name: Deploy Container to ghcr.io
+    needs:
+      - misc
+      - unit-clang-debug
+      - unit-gcc-debug
+      - unit-clang-opt
+      - unit-gcc-opt
+      - coverage
+      - fuzzing
+      - microbenchmarks
+      - source-clang
+      - source-gcc
+    steps:
       - uses: actions/checkout@v2
         with:
-          submodules: recursive
+          submodules: 'recursive'
+          fetch-depth: 0 # fetch all history for all branches and tags
       - name: Push to DockerHub
         uses: docker/build-push-action@v1
         with:
           push: true
-          username: '${{ secrets.DOCKER_USERNAME }}'
-          password: '${{ secrets.DOCKER_PASSWORD }}'
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           repository: mmore500/signalgp-lite
+          registry: ghcr.io
           tag_with_ref: true
           tag_with_sha: true
+          add_git_labels: true
