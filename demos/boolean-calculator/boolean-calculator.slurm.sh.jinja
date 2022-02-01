@@ -49,8 +49,7 @@ module load git/2.27.0
 
 WORK_DIR="{{ kickoff_path }}/${REPLICATE_NAME}"
 
-mkdir "${WORK_DIR}"
-mkdir "${WORK_DIR}/data"
+mkdir -p "${WORK_DIR}/data"
 
 git clone https://github.com/mmore500/signalgp-lite.git --recursive --depth=1 --branch=demos --shallow-submodules "${WORK_DIR}/signalgp-lite"
 
@@ -60,7 +59,7 @@ echo "compiling executable"
 echo "-------------------------------"
 ################################################################################
 
-singularity exec docker://mmore500/signalgp-lite:{{ SOURCE_SHA }} make production -C "${WORK_DIR}/signalgp-lite/demos/boolean-calculator"
+singularity exec docker://ghcr.io/mmore500/signalgp-lite:{{ SOURCE_SHA }} make production -C "${WORK_DIR}/signalgp-lite/demos/boolean-calculator"
 
 cp -v signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out "${WORK_DIR}/data"
 cp -v signalgp-lite/demos/boolean-calculator/testing_set_prefix.json "${WORK_DIR}/data"
@@ -72,7 +71,7 @@ echo "running experiment"
 echo "-------------------------------"
 ################################################################################
 
-singularity exec --pwd "${PWD}/data" docker://mmore500/signalgp-lite:{{ SOURCE_SHA }} ./test-boolean-calculator.out -UPDATES "{{ 10 if seed|int() < 1000 else updates }}" -LOGGING "1" \
+singularity exec --pwd "${PWD}/data" docker://ghcr.io/mmore500/signalgp-lite:{{ SOURCE_SHA }} ./test-boolean-calculator.out -UPDATES "{{ 10 if seed|int() < 1000 else updates }}" -LOGGING "1" \
     -LOGGING_FILENAME "${REPLICATE_NAME}" \
     -SGPL_POINT_MUTATION_RATE "{{ point_rate }}" -SGPL_SEQUENCE_DEFECT_RATE "{{ sequence_rate }}" \
     -SEED "{{ seed }}"

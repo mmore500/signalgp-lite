@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if (( "$#" != 1 )); then
-  echo "USAGE: [source_sha]"
+if (( "$#" != 2 )); then
+  echo "USAGE: [source_sha] [container_tag]"
   exit 1
 fi
 
@@ -16,12 +16,21 @@ SOURCE_SHA="${1}"
 echo "SOURCE_SHA ${SOURCE_SHA}"
 shift
 
+CONTAINER_TAG="${1}"
+echo "CONTAINER_TAG ${CONTAINER_TAG}"
+shift
+
 for point_rate in 0.0002 0.00006 0.00002; do
     for sequence_rate in 0.001 0.0003 0.0001; do
         for replicate in $(seq 1 10); do
             JOB_SCRIPT="$(mktemp)"
+            echo "JOB_SCRIPT ${JOB_SCRIPT}"
+            JOB_TEMPLATE="$(mktemp)"
+            echo "JOB_TEMPLATE ${JOB_TEMPLATE}"
 
-            j2 --format=yaml -o "${JOB_SCRIPT}" "$(wget 'https://raw.githubusercontent.com/mmore500/signalgp-lite/${SOURCE_SHA}/demos/boolean-calculator/boolean-calculator.slurm.sh.jinja')" << J2_HEREDOC_EOF
+            curl -o "${JOB_TEMPLATE}" "https://raw.githubusercontent.com/mmore500/signalgp-lite/${SOURCE_SHA}/demos/boolean-calculator/boolean-calculator.slurm.sh.jinja"
+
+            j2 --format=yaml -o "${JOB_SCRIPT}" "${JOB_TEMPLATE}" << J2_HEREDOC_EOF
 point_rate: "${point_rate}"
 sequence_rate: "${sequence_rate}"
 replicate: "${replicate}"
