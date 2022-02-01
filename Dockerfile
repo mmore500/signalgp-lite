@@ -9,6 +9,7 @@ RUN \
     && \
   apt-get install -y --allow-downgrades --no-install-recommends \
     rename \
+    libdwarf-dev \
     && \
   apt-get clean \
     && \
