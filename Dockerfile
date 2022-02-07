@@ -11,6 +11,7 @@ RUN \
     rename \
     libdwarf-dev \
     elfutils \
+    libelf-dev \
     && \
   apt-get clean \
     && \
