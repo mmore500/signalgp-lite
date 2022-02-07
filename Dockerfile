@@ -13,6 +13,7 @@ RUN \
     elfutils \
     libelf-dev \
     libdw-dev \
+    libomp-dev \
     && \
   apt-get clean \
     && \
