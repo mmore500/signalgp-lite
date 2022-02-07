@@ -12,6 +12,7 @@ RUN \
     libdwarf-dev \
     elfutils \
     libelf-dev \
+    libdw-dev \
     && \
   apt-get clean \
     && \
