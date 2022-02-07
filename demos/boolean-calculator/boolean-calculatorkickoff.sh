@@ -10,7 +10,7 @@ echo "TIME ${TIME}"
 
 BATCH_DIR=~/slurmscripts/${TIME}
 echo "BATCH_DIR ${BATCH_DIR}"
-mkdir -p ${BATCH_DIR}
+mkdir -p "${BATCH_DIR}"
 
 SOURCE_SHA="${1}"
 echo "SOURCE_SHA ${SOURCE_SHA}"
