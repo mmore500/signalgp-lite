@@ -1,6 +1,6 @@
 EMP_DIR := $(TO_ROOT)/third-party/Empirical/include/emp
 
-CXX ?= clang++
+CXX := clang++
 
 FLAGS = -std=c++17 -D_GLIBCXX_DEBUG -D_LIBCPP_DEBUG -g -pipe -pthread -Wall -Wno-unused-function -Wno-unused-private-field -I$(TO_ROOT)/include/ -I$(TO_ROOT)/third-party/ -I$(EMP_DIR)
 
