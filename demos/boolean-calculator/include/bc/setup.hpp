@@ -1,6 +1,6 @@
 #pragma once
 
-#include "conduit/include/uitsl/utility/uuid_utils.hpp"
+#include "conduit/include/uitsl/utility/get_proc_instance_uuid.hpp"
 #include "conduit/include/uitsl/utility/exec_utils.hpp"
 
 #include "Empirical/include/emp/config/ArgManager.hpp"
