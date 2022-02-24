@@ -20,9 +20,14 @@ CONTAINER_TAG="${1}"
 echo "CONTAINER_TAG ${CONTAINER_TAG}"
 shift
 
-for point_rate in 0.0002 0.00006 0.00002; do
-    for sequence_rate in 0.001 0.0003 0.0001; do
-        for replicate in $(seq 1 10); do
+# for point_rate in 0.0002 0.00006 0.00002; do
+#     for sequence_rate in 0.001 0.0003 0.0001; do
+#         for replicate in $(seq 1 10); do
+
+for point_rate in 0.0002; do
+    for sequence_rate in 0.001; do
+        for replicate in $(seq 1 1); do
+
             JOB_SCRIPT="$(mktemp)"
             echo "JOB_SCRIPT ${JOB_SCRIPT}"
             JOB_TEMPLATE="$(mktemp)"
@@ -37,8 +42,9 @@ replicate: "${replicate}"
 time: "${TIME}"
 updates: "10000"
 seed: "${replicate}"
-kickoff_path: "/mnt/home/%u/slurmruns/boolean-calculator/${TIME}"
+kickoff_path: "/mnt/home/${USER}/slurmruns/boolean-calculator/${TIME}"
 SOURCE_SHA: "${SOURCE_SHA}"
+CONTAINER_TAG "${CONTAINER_TAG}"
 J2_HEREDOC_EOF
 
             chmod +x "${JOB_SCRIPT}"
