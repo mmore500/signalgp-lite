@@ -63,9 +63,9 @@ echo "-------------------------------"
 export SINGULARITYENV_CXX=clang++
 singularity exec docker://ghcr.io/mmore500/signalgp-lite:{{ CONTAINER_TAG }} make production -C "${WORK_DIR}/signalgp-lite/demos/boolean-calculator"
 
-cp -v "{WORK_DIR}/signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out" "${WORK_DIR}/data"
-cp -v "{WORK_DIR}/signalgp-lite/demos/boolean-calculator/testing_set_prefix.json" "${WORK_DIR}/data"
-cp -v "{WORK_DIR}/signalgp-lite/demos/boolean-calculator/training_set_prefix.json" "${WORK_DIR}/data"
+cp -v "${WORK_DIR}/signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out" "${WORK_DIR}/data"
+cp -v "${WORK_DIR}/signalgp-lite/demos/boolean-calculator/testing_set_prefix.json" "${WORK_DIR}/data"
+cp -v "${WORK_DIR}/signalgp-lite/demos/boolean-calculator/training_set_prefix.json" "${WORK_DIR}/data"
 
 ################################################################################
 echo
