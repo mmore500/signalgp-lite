@@ -76,27 +76,57 @@ int main(int argc, char* argv[]) {
 
   // setup logging
   if (bc::config.LOGGING()) {
-    ea_world.SetupFitnessFile(
+    auto& fitness_file = ea_world.SetupFitnessFile(
       emp::keyname::pack({
-        {"a", "logging"},
+        {"a", "fitness"},
         {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
         {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
         {"replicate", emp::to_string(bc::config.REPLICATE())},
-        {"exec_instance_uuid", emp::to_string(uitsl::get_proc_instance_uuid())},
         {"ext", ".csv"}
-      })
+      }),
+      false
     );
-    ea_world.SetupSystematicsFile(
+
+    fitness_file.AddFun(
+      [](){ return uitsl::get_proc_instance_uuid(); },
+      "exec_instance_uuid",
+      "exec_instance_uuid"
+    );
+
+    fitness_file.AddFun(
+      [](){ return bc::get_git_revision(); },
+      "git_revision",
+      "git_revision"
+    );
+
+    fitness_file.PrintHeaderKeys();
+
+    auto& systematics_file = ea_world.SetupSystematicsFile(
       0,
       emp::keyname::pack({
         {"a", "systematics"},
         {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
         {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
         {"replicate", emp::to_string(bc::config.REPLICATE())},
-        {"exec_instance_uuid", emp::to_string(uitsl::get_proc_instance_uuid())},
         {"ext", ".csv"}
-      })
+      }),
+      false
     );
+
+    systematics_file.AddFun(
+      [](){ return uitsl::get_proc_instance_uuid(); },
+      "exec_instance_uuid",
+      "exec_instance_uuid"
+    );
+
+    systematics_file.AddFun(
+      [](){ return bc::get_git_revision(); },
+      "git_revision",
+      "git_revision"
+    );
+
+    systematics_file.PrintHeaderKeys();
+
   }
 
   // fill world with organisms
