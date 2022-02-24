@@ -39,7 +39,7 @@ echo "REPLICATE_NAME ${REPLICATE_NAME}"
 
 ################################################################################
 echo
-echo "setting up enviroment and resources"
+echo "setting up environment and resources"
 echo "-------------------------------"
 ################################################################################
 
@@ -48,6 +48,7 @@ module purge
 module load git/2.27.0
 
 WORK_DIR="{{ kickoff_path }}/${REPLICATE_NAME}"
+echo "WORK_DIR ${WORK_DIR}"
 
 mkdir -p "${WORK_DIR}/data"
 
@@ -59,6 +60,7 @@ echo "compiling executable"
 echo "-------------------------------"
 ################################################################################
 
+export SINGULARITY_ENV_CXX=clang++
 singularity exec docker://ghcr.io/mmore500/signalgp-lite:{{ SOURCE_SHA }} make production -C "${WORK_DIR}/signalgp-lite/demos/boolean-calculator"
 
 cp -v signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out "${WORK_DIR}/data"
@@ -71,9 +73,9 @@ echo "running experiment"
 echo "-------------------------------"
 ################################################################################
 
-singularity exec --pwd "${PWD}/data" docker://ghcr.io/mmore500/signalgp-lite:{{ SOURCE_SHA }} ./test-boolean-calculator.out -UPDATES "{{ 10 if seed|int() < 1000 else updates }}" -LOGGING "1" \
+singularity exec --pwd "${WORK_DIR}/data" docker://ghcr.io/mmore500/signalgp-lite:{{ SOURCE_SHA }} "./test-boolean-calculator.out" -UPDATES "{{ 10 if seed|int() < 1000 else updates }}" -LOGGING "1" \
     -LOGGING_FILENAME "${REPLICATE_NAME}" \
-    -SGPL_POINT_MUTATION_RATE "{{ point_rate }}" -SGPL_SEQUENCE_DEFECT_RATE "{{ sequence_rate }}" \
+    -SGPL_POINTMUTATE_BITFLIP_RATE "{{ point_rate }}" -SGPL_SEQMUTATE_INST_INDEL_RATE "{{ sequence_rate }}" \
     -SEED "{{ seed }}"
 
 ################################################################################
