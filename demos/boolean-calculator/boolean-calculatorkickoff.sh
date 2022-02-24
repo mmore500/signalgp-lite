@@ -44,7 +44,7 @@ updates: "10000"
 seed: "${replicate}"
 kickoff_path: "/mnt/home/${USER}/slurmruns/boolean-calculator/${TIME}"
 SOURCE_SHA: "${SOURCE_SHA}"
-CONTAINER_TAG "${CONTAINER_TAG}"
+CONTAINER_TAG: "${CONTAINER_TAG}"
 J2_HEREDOC_EOF
 
             chmod +x "${JOB_SCRIPT}"
