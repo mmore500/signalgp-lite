@@ -8,6 +8,7 @@
 #include "sgpl/utility/ThreadLocalRandom.hpp"
 
 #include "config.hpp"
+#include "get_git_revision.hpp"
 
 namespace bc {
 
@@ -22,15 +23,15 @@ void setup(int argc, char* argv[]) {
 
   // set proc UUID
   bc::config.Set(
-    "UUID",
+    "EXEC_INSTANCE_UUID",
     emp::to_string(uitsl::get_proc_instance_uuid()),
     "Unique process identifier"
   );
 
   // set git revision
   bc::config.Set(
-    "COMMIT_HASH",
-    uitsl::exec("git rev-parse HEAD"),
+    "GIT_REVISION",
+    emp::to_string(bc::get_git_revision()),
     "Hash of last git commit"
   );
 
@@ -40,11 +41,10 @@ void setup(int argc, char* argv[]) {
   // save config as csv
   bc::config.WriteCSV(
     emp::keyname::pack({
-      {"a", "genome"},
+      {"a", "config"},
       {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
       {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
       {"replicate", emp::to_string(bc::config.REPLICATE())},
-      {"exec_instance_uuid", emp::to_string(uitsl::get_proc_instance_uuid())},
       {"ext", ".csv"}
     })
   );
