@@ -60,7 +60,7 @@ echo "compiling executable"
 echo "-------------------------------"
 ################################################################################
 
-export SINGULARITY_ENV_CXX=clang++
+export SINGULARITYENV_CXX=clang++
 singularity exec docker://ghcr.io/mmore500/signalgp-lite:{{ CONTAINER_TAG }} make production -C "${WORK_DIR}/signalgp-lite/demos/boolean-calculator"
 
 cp -v signalgp-lite/demos/boolean-calculator/test-boolean-calculator.out "${WORK_DIR}/data"
