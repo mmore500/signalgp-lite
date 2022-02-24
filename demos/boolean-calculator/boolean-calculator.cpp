@@ -155,19 +155,44 @@ int main(int argc, char* argv[]) {
     ea_world.DoMutations();
   }
 
+  // save genome
   std::ofstream os(
     emp::keyname::pack({
       {"a", "genome"},
       {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
       {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
       {"replicate", emp::to_string(bc::config.REPLICATE())},
-      {"exec_instance_uuid", emp::to_string(uitsl::get_proc_instance_uuid())},
-      {"ext", ".cereal"}
-    }),
-    std::ios::binary
+      {"ext", ".json"}
+    })
   );
-  cereal::BinaryOutputArchive archive( os );
+  cereal::JSONOutputArchive archive( os );
 
   archive( bc::SerializeWorld(ea_world) );
+
+  // save genome metadata
+  emp::DataFile metadata_file(
+    emp::keyname::pack({
+      {"a", "genome"},
+      {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+      {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+      {"replicate", emp::to_string(bc::config.REPLICATE())},
+      {"ext", ".json.meta"}
+    })
+  );
+
+  metadata_file.AddFun(
+    [](){ return uitsl::get_proc_instance_uuid(); },
+    "exec_instance_uuid",
+    "exec_instance_uuid"
+  );
+
+  metadata_file.AddFun(
+    [](){ return bc::get_git_revision(); },
+    "git_revision",
+    "git_revision"
+  );
+
+  metadata_file.PrintHeaderKeys();
+  metadata_file.Update();
 
 }
