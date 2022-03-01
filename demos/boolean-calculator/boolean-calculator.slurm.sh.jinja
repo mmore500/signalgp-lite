@@ -1,7 +1,7 @@
 #!/bin/bash -login
 ########## Define Resources Needed with SBATCH Lines ##########
 #SBATCH --time="{{ '04:00:00' if seed|int() < 1000 else '48:00:00' }}"
-#SBATCH --job-name name=boolean_calculator+point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}
+#SBATCH --job-name name=boolean_calculator+point_mut_rate={{ point_mut_rate }}+seq_mut_rate={{ seq_mut_rate }}+replicate={{ replicate }}
 #SBATCH --mem=8G
 #SBATCH --ntasks 10
 #SBATCH --cpus-per-task 1
@@ -25,8 +25,8 @@ echo "-------------------------------"
 ################################################################################
 
 # log variables
-echo "point_rate {{ point_rate }}"
-echo "sequence_rate {{ sequence_rate }}"
+echo "point_mut_rate {{ point_mut_rate }}"
+echo "seq_mut_rate {{ seq_mut_rate }}"
 echo "replicate {{ replicate }}"
 echo "seed {{ seed }}"
 echo "kickoff_path {{ kickoff_path }}"
@@ -34,7 +34,7 @@ echo "mode {{ 'testing' if seed|int() < 1000 else 'production' }}"
 echo "TIME {{ time }}"
 echo "HOSTNAME ${HOSTNAME}"
 
-REPLICATE_NAME="point_rate={{ point_rate }}+sequence_rate={{ sequence_rate }}+replicate={{ replicate }}"
+REPLICATE_NAME="point_mut_rate={{ point_mut_rate }}+seq_mut_rate={{ seq_mut_rate }}+replicate={{ replicate }}"
 echo "REPLICATE_NAME ${REPLICATE_NAME}"
 
 ################################################################################
@@ -75,7 +75,7 @@ echo "-------------------------------"
 
 singularity exec --pwd "${WORK_DIR}/data" docker://ghcr.io/mmore500/signalgp-lite:{{ CONTAINER_TAG }} "./test-boolean-calculator.out" -UPDATES "{{ 10 if seed|int() < 1000 else updates }}" -LOGGING "1" \
     -LOGGING_FILENAME "${REPLICATE_NAME}" \
-    -SGPL_POINTMUTATE_BITFLIP_RATE "{{ point_rate }}" -SGPL_SEQMUTATE_INST_INDEL_RATE "{{ sequence_rate }}" \
+    -SGPL_POINTMUTATE_BITFLIP_RATE "{{ point_mut_rate }}" -SGPL_SEQMUTATE_INST_INDEL_RATE "{{ seq_mut_rate }}" \
     -SEED "{{ seed }}"
 
 ################################################################################

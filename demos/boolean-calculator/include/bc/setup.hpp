@@ -42,8 +42,8 @@ void setup(int argc, char* argv[]) {
   bc::config.WriteCSV(
     emp::keyname::pack({
       {"a", "config"},
-      {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
-      {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+      {"point_mut_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+      {"seq_mut_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
       {"replicate", emp::to_string(bc::config.REPLICATE())},
       {"ext", ".csv"}
     })

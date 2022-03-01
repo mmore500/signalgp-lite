@@ -79,8 +79,8 @@ int main(int argc, char* argv[]) {
     auto& fitness_file = ea_world.SetupFitnessFile(
       emp::keyname::pack({
         {"a", "fitness"},
-        {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
-        {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+        {"point_mut_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+        {"seq_mut_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
         {"replicate", emp::to_string(bc::config.REPLICATE())},
         {"ext", ".csv"}
       }),
@@ -105,8 +105,8 @@ int main(int argc, char* argv[]) {
       0,
       emp::keyname::pack({
         {"a", "systematics"},
-        {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
-        {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+        {"point_mut_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+        {"seq_mut_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
         {"replicate", emp::to_string(bc::config.REPLICATE())},
         {"ext", ".csv"}
       }),
@@ -159,8 +159,8 @@ int main(int argc, char* argv[]) {
   std::ofstream os(
     emp::keyname::pack({
       {"a", "genome"},
-      {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
-      {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+      {"point_mut_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+      {"seq_mut_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
       {"replicate", emp::to_string(bc::config.REPLICATE())},
       {"ext", ".json"}
     })
@@ -173,8 +173,8 @@ int main(int argc, char* argv[]) {
   emp::DataFile metadata_file(
     emp::keyname::pack({
       {"a", "genome"},
-      {"point_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
-      {"sequence_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
+      {"point_mut_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
+      {"seq_mut_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
       {"replicate", emp::to_string(bc::config.REPLICATE())},
       {"ext", ".json.meta"}
     })
