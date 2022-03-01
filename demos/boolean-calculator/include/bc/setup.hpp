@@ -30,7 +30,7 @@ void setup(int argc, char* argv[]) {
 
   // set git revision
   bc::config.Set(
-    "GIT_REVISION",
+    "SIGNALGP_LITE_REVISION",
     emp::to_string(bc::get_git_revision()),
     "Hash of last git commit"
   );

@@ -95,8 +95,8 @@ int main(int argc, char* argv[]) {
 
     fitness_file.AddFun(
       [](){ return bc::get_git_revision(); },
-      "git_revision",
-      "git_revision"
+      "SIGNALGP_LITE_REVISION",
+      "SIGNALGP_LITE_REVISION"
     );
 
     fitness_file.PrintHeaderKeys();
@@ -121,8 +121,8 @@ int main(int argc, char* argv[]) {
 
     systematics_file.AddFun(
       [](){ return bc::get_git_revision(); },
-      "git_revision",
-      "git_revision"
+      "SIGNALGP_LITE_REVISION",
+      "SIGNALGP_LITE_REVISION"
     );
 
     systematics_file.PrintHeaderKeys();
@@ -188,8 +188,8 @@ int main(int argc, char* argv[]) {
 
   metadata_file.AddFun(
     [](){ return bc::get_git_revision(); },
-    "git_revision",
-    "git_revision"
+    "SIGNALGP_LITE_REVISION",
+    "SIGNALGP_LITE_REVISION"
   );
 
   metadata_file.PrintHeaderKeys();
