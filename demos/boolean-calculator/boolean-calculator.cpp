@@ -68,11 +68,50 @@ int main(int argc, char* argv[]) {
 
   mut_count_t last_mutation;
   emp::Ptr<gene_systematics_t> gene_sys;
-  gene_sys.New(gene_fun, true,true,true);
+  gene_sys.New(gene_fun, true, true, false);
 
   emp::World<bc::Organism<spec_t>> ea_world;
   ea_world.SetPopStruct_Mixed(true);
   ea_world.AddSystematics(gene_sys);
+
+  auto get_cases_passed = [&ea_world](const bc::Organism<spec_t>& org) {
+    auto& grouped_set = bc::load_grouped_training_set();
+
+    std::set<bc::PromptEnum> cases_passed;
+
+    for (auto& [test_type, test_cases] : grouped_set) {
+      auto& test_case = test_cases[
+        sgpl::tlrand.Get().GetUInt(
+          test_cases.size()
+        )
+      ];
+
+      if (org.Evaluate(test_case)) cases_passed.insert(test_type);
+    }
+
+    return cases_passed;
+  };
+
+  auto get_whole_pop_problems_solved = [&ea_world, get_cases_passed](emp::World<bc::Organism<spec_t>>& world) {
+    auto& grouped_set = bc::load_grouped_training_set();
+
+    std::set<bc::PromptEnum> all_cases_passed;
+
+    for (auto& org : world) {
+      auto cases_passed = get_cases_passed(org);
+      all_cases_passed.insert(
+        cases_passed.begin(),
+        cases_passed.end()
+      );
+    }
+
+    return all_cases_passed.size();
+
+  };
+
+  size_t best_fit_cases_passed{};
+  size_t whole_world_cases_passed{};
+
 
   // setup logging
   if (bc::config.LOGGING()) {
@@ -97,6 +136,18 @@ int main(int argc, char* argv[]) {
       [](){ return bc::get_git_revision(); },
       "SIGNALGP_LITE_REVISION",
       "SIGNALGP_LITE_REVISION"
+    );
+
+    fitness_file.AddVar(
+      best_fit_cases_passed,
+      "best_fit_cases_passed",
+      "best_fit_cases_passed"
+    );
+
+    fitness_file.AddVar(
+      whole_world_cases_passed,
+      "whole_world_cases_passed",
+      "whole_world_cases_passed"
     );
 
     fitness_file.PrintHeaderKeys();
@@ -139,6 +190,12 @@ int main(int argc, char* argv[]) {
     auto [best_fit, best_org, fitnesses] = bc::GetBestFitOrganism(ea_world);
 
     std::cout << "Best fitness: " << best_fit << std::endl;
+
+    // cases passed by best organism
+    best_fit_cases_passed = get_cases_passed(best_org).size();
+
+    // cases passed by ANY organism
+    whole_world_cases_passed = get_whole_pop_problems_solved(ea_world);
 
     // test for training set
     if (best_fit == 1.0) {
