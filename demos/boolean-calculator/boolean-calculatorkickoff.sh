@@ -21,13 +21,9 @@ echo "CONTAINER_TAG ${CONTAINER_TAG}"
 shift
 
 # for point_mut_rate in 0.0002 0.00006 0.00002; do
-#     for seq_mut_rate in 0.001 0.0003 0.0001; do
-#         for replicate in $(seq 1 10); do
-
-for point_mut_rate in 0.0002; do
-    for seq_mut_rate in 0.001; do
-        for replicate in $(seq 1 1); do
-
+for point_mut_rate in 0.00006; do
+    for seq_mut_rate in 0.001 0.0003 0.0001; do
+        for replicate in $(seq 1 10); do
             JOB_SCRIPT="$(mktemp)"
             echo "JOB_SCRIPT ${JOB_SCRIPT}"
             JOB_TEMPLATE="$(mktemp)"
