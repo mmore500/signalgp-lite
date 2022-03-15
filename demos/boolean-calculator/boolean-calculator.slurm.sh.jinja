@@ -3,7 +3,7 @@
 #SBATCH --time="{{ '04:00:00' if seed|int() < 1000 else '48:00:00' }}"
 #SBATCH --job-name name=boolean_calculator+point_mut_rate={{ point_mut_rate }}+seq_mut_rate={{ seq_mut_rate }}+replicate={{ replicate }}
 #SBATCH --mem=8G
-#SBATCH --ntasks 10
+#SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --mail-type=FAIL
 # No --mail-user, the default value is the submitting user
