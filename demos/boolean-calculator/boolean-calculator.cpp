@@ -212,10 +212,10 @@ int main(int argc, char* argv[]) {
     ea_world.DoMutations();
   }
 
-  // save genome
+  // save population
   std::ofstream os(
     emp::keyname::pack({
-      {"a", "genome"},
+      {"a", "population"},
       {"point_mut_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
       {"seq_mut_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
       {"replicate", emp::to_string(bc::config.REPLICATE())},
@@ -226,10 +226,10 @@ int main(int argc, char* argv[]) {
 
   archive( bc::SerializeWorld(ea_world) );
 
-  // save genome metadata
+  // save population metadata
   emp::DataFile metadata_file(
     emp::keyname::pack({
-      {"a", "genome"},
+      {"a", "population"},
       {"point_mut_rate", emp::to_string(bc::config.SGPL_POINTMUTATE_BITFLIP_RATE())},
       {"seq_mut_rate", emp::to_string(bc::config.SGPL_SEQMUTATE_INST_INDEL_RATE())},
       {"replicate", emp::to_string(bc::config.REPLICATE())},
