@@ -112,7 +112,6 @@ int main(int argc, char* argv[]) {
   size_t best_fit_cases_passed{};
   size_t whole_world_cases_passed{};
 
-
   // setup logging
   if (bc::config.LOGGING()) {
     auto& fitness_file = ea_world.SetupFitnessFile(
@@ -197,14 +196,14 @@ int main(int argc, char* argv[]) {
     // cases passed by ANY organism
     whole_world_cases_passed = get_whole_pop_problems_solved(ea_world);
 
-    // test for training set
-    if (best_fit == 1.0) {
-      const double training_fitness = best_org.GetTestingFitness();
-      std::cout << "Training Fitness of Best-Fit Organism: " << training_fitness << std::endl;
-    }
+    // // test for training set
+    // if (best_fit == 1.0) {
+    //   const double training_fitness = best_org.GetTestingFitness();
+    //   std::cout << "Training Fitness of Best-Fit Organism: " << training_fitness << std::endl;
+    // }
 
-    for (auto org : fitnesses) std::cout << org << " ";
-    std::cout << std::endl;
+    // for (auto org : fitnesses) std::cout << org << " ";
+    // std::cout << std::endl;
 
     emp::LexicaseSelect(ea_world, bc::GetFitFuns<spec_t>(), PopulationSize);
 
