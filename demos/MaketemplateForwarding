@@ -32,7 +32,8 @@ opt: $(addprefix test-, $(TEST_NAMES))
 	# rm -rf test*.out
 
 # Production version without debug features with full traceback on crash
-production: FLAGS := -std=c++17 -pipe -pthread -DNDEBUG -DUSE_OLD_SEQUENCE_MUTATION -DPRODUCTION -DGIT_REVISION_=$(GIT_REVISION) -DSGPL_SOURCE_DIR_=$(TO_ROOT)/include -O3 -ffast-math -flto -march=native -Wno-unused-function -ldw -I$(TO_ROOT)/include/ -I$(TO_ROOT)/third-party/ -I$(EMP_DIR)
+# production: FLAGS := -std=c++17 -pipe -pthread -DNDEBUG -DUSE_OLD_SEQUENCE_MUTATION -DPRODUCTION -DGIT_REVISION_=$(GIT_REVISION) -DSGPL_SOURCE_DIR_=$(TO_ROOT)/include -O3 -ffast-math -flto -march=native -Wno-unused-function -ldw -I$(TO_ROOT)/include/ -I$(TO_ROOT)/third-party/ -I$(EMP_DIR)
+production: FLAGS := -std=c++17 -pipe -pthread -DNDEBUG -DPRODUCTION -DGIT_REVISION_=$(GIT_REVISION) -DSGPL_SOURCE_DIR_=$(TO_ROOT)/include -O3 -ffast-math -flto -march=native -Wno-unused-function -ldw -I$(TO_ROOT)/include/ -I$(TO_ROOT)/third-party/ -I$(EMP_DIR)
 production: $(addprefix test-, $(TEST_NAMES))
 	# rm -rf test*.out
 
