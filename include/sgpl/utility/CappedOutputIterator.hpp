@@ -3,6 +3,7 @@
 #define SGPL_UTILITY_CAPPEDOUTPUTITERATOR_HPP_INCLUDE
 
 #include <iterator>
+#include <memory>
 
 namespace sgpl {
 
@@ -13,7 +14,7 @@ class CappedOutputIterator
   using parent_t = OutputIterator;
   using container_value_type = typename parent_t::container_type::value_type;
 
-  size_t remaining_capacity;
+  std::shared_ptr<size_t> remaining_capacity;
 
 public:
 
@@ -21,7 +22,7 @@ public:
     const OutputIterator& out,
     const size_t cap
   ) : parent_t(out)
-  , remaining_capacity(cap)
+  , remaining_capacity(std::make_shared<size_t>(cap))
   {}
 
   using container_type = typename parent_t::container_type;
@@ -40,9 +41,9 @@ public:
   CappedOutputIterator& operator++(int) { return *this; }
 
   CappedOutputIterator& operator=( const container_value_type& value ) {
-    if (remaining_capacity) {
+    if (*remaining_capacity) {
       parent_t::operator=(value);
-      --remaining_capacity;
+      --(*remaining_capacity);
     }
     return *this;
   }
