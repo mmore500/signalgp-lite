@@ -12,8 +12,8 @@
 namespace bc {
 
 template <typename Organism>
-emp::vector<typename Organism::program_t> SerializeWorld(emp::World<Organism>& world) {
-  emp::vector<typename Organism::program_t> programs;
+std::vector<typename Organism::program_t> SerializeWorld(emp::World<Organism>& world) {
+  std::vector<typename Organism::program_t> programs;
 
   std::transform(
     world.begin(),
