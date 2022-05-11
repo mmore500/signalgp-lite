@@ -27,6 +27,29 @@ struct spec_t : public sgpl::Spec<library_t>{
  * and the largest sum is greater than 100,000.
  */
 TEST_CASE("Test RandomDraw") {
+  // create peripheral
+  typename spec_t::peripheral_t peripheral;
+
+  sgpl::Program<spec_t> program{1};
+
+  sgpl::Core<spec_t> core;
+
+  // set up what register to operate on
+  program[0].args[0] = 0;
+
+  // initialize rand
+  emp::Random rand(1);
+
+  // initialize tlrand
+  sgpl::tlrand.Reseed(1);
+
+  // check that internal RNG is what we expect
+  REQUIRE(sgpl::tlrand.Get().GetUInt() == rand.GetUInt());
+
+  // check initial state
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0}
+  ));
 
   // initialize tlrand
   sgpl::tlrand.Reseed(1);

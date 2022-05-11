@@ -19,6 +19,7 @@
 #include "../../../third-party/Empirical/include/emp/polyfill/span.hpp"
 
 #include "../algorithm/mutate_bits.hpp"
+#include "../algorithm/sloppy_copy.hpp"
 #include "../utility/ThreadLocalRandom.hpp"
 
 #include "Instruction.hpp"
@@ -180,6 +181,11 @@ public:
 
   void Rectify(const rectifier_t& rectifier=rectifier_t{}) {
     for (auto& inst : *this) inst.Rectify(rectifier);
+  }
+
+  void Print(std::ostream& os) {
+    cereal::JSONOutputArchive archive(os);
+    archive( *this );
   }
 
   bool HasGlobalAnchor() const {

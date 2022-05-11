@@ -10,6 +10,11 @@ RUN \
   apt-get install -y --allow-downgrades --no-install-recommends \
     rename \
     libdwarf-dev \
+    elfutils \
+    libelf-dev \
+    libdw-dev \
+    libomp5 \
+    libomp-dev \
     && \
   apt-get clean \
     && \

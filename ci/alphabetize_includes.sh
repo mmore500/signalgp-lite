@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGETS=$(find . -type f \( -name "*.hpp" -o -name "*.cpp" \) ! -path "./third-party/*")
+TARGETS=$(find . -type f \( -name "*.hpp" -o -name "*.cpp" \) ! -path "*/third-party/*")
 
 for filename in $TARGETS
 do

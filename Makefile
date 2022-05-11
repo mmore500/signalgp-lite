@@ -80,7 +80,10 @@ tests:
 coverage:
 	$(MAKE) coverage -C tests/
 
+demos:
+	cd demos && make opt
+
 install-test-dependencies:
 	git submodule update --init && cd third-party && bash ./install_emsdk.sh && bash ./install_force_cover.sh
 
-.PHONY: tests clean test serve debug native web tests install-test-dependencies documentation-coverage documentation-coverage-badge.json version-badge.json doto-badge.json
+.PHONY: tests clean test demos serve debug native web tests install-test-dependencies documentation-coverage documentation-coverage-badge.json version-badge.json doto-badge.json

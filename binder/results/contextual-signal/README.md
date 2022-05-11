@@ -1,0 +1,1 @@
+The data in this folder was generated on 2021-05-28 by running the `contextual-signal` demo with the arguments `-LOGGING 1 -UPDATES 10001 -DO_REGULATION {p} -SEED {n} -LOGGING_FILENAME {n}`, where {} is `true` or `false` and corresponds to whether regulation will be enabled, and {n} is the sequence of numbers 1...100 and corresponds to the pRNG seed.

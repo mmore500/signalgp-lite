@@ -35,7 +35,7 @@ struct Spec {
     emp::OptimizedApproxDualStreakMetric<64>,
     // match selector
     emp::statics::RankedSelector<
-      std::ratio<1, 5> // match threshold
+      std::ratio<1, 2> // match threshold
     >,
     // regulator
     emp::PlusCountdownRegulator<

@@ -3,6 +3,7 @@
 #define SGPL_OPERATIONS_BITWISE_BITWISE_HPP_INCLUDE
 
 #include "BitwiseAnd.hpp"
+#include "BitwiseNand.hpp"
 #include "BitwiseNot.hpp"
 #include "BitwiseOr.hpp"
 #include "BitwiseShift.hpp"

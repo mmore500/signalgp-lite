@@ -7,8 +7,11 @@
 [![Documentation Status](https://readthedocs.org/projects/signalgp-lite/badge/?version=latest)](https://signalgp-lite.readthedocs.io/en/latest/?badge=latest)
 [![documentation coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fmmore500.github.io%2Fsignalgp-lite%2Fdocumentation-coverage-badge.json)](https://signalgp-lite.readthedocs.io/en/latest/)
 [![code coverage status](https://codecov.io/gh/mmore500/signalgp-lite/branch/master/graph/badge.svg)](https://codecov.io/gh/mmore500/signalgp-lite)
+[![DockerHub](https://img.shields.io/badge/DockerHub-Hosted-blue)](https://hub.docker.com/r/mmore500/signalgp-lite)
 [![dotos](https://img.shields.io/endpoint?url=https%3A%2F%2Fmmore500.com%2Fsignalgp-lite%2Fdoto-badge.json)](https://github.com/mmore500/signalgp-lite/search?q=todo+OR+fixme&type=)
 [![GitHub stars](https://img.shields.io/github/stars/mmore500/signalgp-lite.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/mmore500/signalgp-lite)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mmore500/signalgp-lite/binder?filepath=binder%2Findex.ipynb)
+
 
 <!-- Check out the live in-browser web app at <https://mmore500.github.io/signalgp-lite>. -->
 

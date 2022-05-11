@@ -48,4 +48,8 @@ TEST_CASE("Test Not") {
   // check final state
   REQUIRE(core.registers == emp::array<float, 4>{true, {}, {}, {}});
 
+  // check final state
+  REQUIRE_THAT(core.registers, Catch::Matchers::Equals(
+    emp::array<float, 8>{0, 0, 0, 0, 0, 0, 0, 0}
+  ));
 }
