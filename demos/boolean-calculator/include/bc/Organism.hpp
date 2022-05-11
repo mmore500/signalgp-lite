@@ -81,6 +81,7 @@ struct Organism {
     return peripheral.output == case_.response;
 
   }
+
   double GetTrainingFitness(bool verbose = false) const {
     const auto& cases = load_training_set();
 
