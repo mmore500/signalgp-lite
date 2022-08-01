@@ -22,11 +22,17 @@ void execute_cpu(
 ) {
 
   emp_assert( program.size() );
+  const size_t end_cycles = state.GetCyclesSinceConstruction() + cycles;
 
-  for (size_t i{}; i < cycles && state.HasActiveCore(); ++i) {
+  while (state.GetCyclesSinceConstruction() < end_cycles && state.HasActiveCore()) {
 
     auto& core = state.GetActiveCore();
-    const size_t num_cycles = execute_core<Spec>(core, program, peripheral);
+    const size_t num_cycles = execute_core<Spec>(
+      core,
+      program,
+      peripheral,
+      end_cycles - state.GetCyclesSinceConstruction()
+    );
     state.AdvanceCycleClock( num_cycles );
     if ( core.HasTerminated() ) state.KillActiveCore();
 

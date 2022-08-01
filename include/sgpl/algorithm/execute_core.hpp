@@ -65,7 +65,8 @@ template<typename Spec>
 size_t execute_core(
   sgpl::Core<Spec>& state,
   const sgpl::Program<Spec>& program,
-  typename Spec::peripheral_t& peripheral
+  typename Spec::peripheral_t& peripheral,
+  size_t max_cycles
 ) {
 
   /**
@@ -82,12 +83,24 @@ size_t execute_core(
     state.GetGlobalJumpTable().GetSize(),
     program.HasGlobalAnchor()
   );
+  max_cycles = std::min(Spec::switch_steps, max_cycles);
 
   size_t i;
-  for (i = 0; i < Spec::switch_steps && !state.HasTerminated(); ++i) {
+  for (i = 0; i < max_cycles && !state.HasTerminated(); ++i) {
     advance_core<Spec>(state, program, peripheral);
   }
   return i;
+
+};
+
+template<typename Spec>
+inline size_t execute_core(
+  sgpl::Core<Spec>& state,
+  const sgpl::Program<Spec>& program,
+  typename Spec::peripheral_t& peripheral
+) {
+
+  return execute_core(state, program, peripheral, Spec::switch_steps);
 
 };
 
