@@ -27,7 +27,7 @@ void execute_cpu_n_cycles(
 
     auto& core = state.GetActiveCore();
     const size_t try_cycles = std::min(Spec::switch_steps, max_cycles - c);
-    const size_t res_cycles = execute_core<Spec>(
+    const size_t res_cycles = execute_core_cycles<Spec>(
       core,
       program,
       peripheral,
@@ -43,7 +43,7 @@ void execute_cpu_n_cycles(
 }
 
 template<typename Spec=sgpl::Spec<>>
-inline void execute_cpu_n_cylces(
+inline void execute_cpu_n_cycles(
   const size_t cycles,
   sgpl::Cpu<Spec>& state,
   const sgpl::Program<Spec>& program
@@ -52,7 +52,7 @@ inline void execute_cpu_n_cylces(
   using peripheral_t = typename Spec::peripheral_t;
   peripheral_t peripheral;
 
-  execute_cpu<Spec>( cycles, state, program, peripheral );
+  execute_cpu_n_cycles<Spec>( cycles, state, program, peripheral );
 
 }
 
