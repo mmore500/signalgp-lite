@@ -2,51 +2,38 @@
 #ifndef SGPL_ALGORITHM_EXECUTE_CPU_HPP_INCLUDE
 #define SGPL_ALGORITHM_EXECUTE_CPU_HPP_INCLUDE
 
-#include <tuple>
-
-#include "../hardware/Cpu.hpp"
-#include "../program/Program.hpp"
-#include "../spec/Spec.hpp"
-#include "../utility/EmptyType.hpp"
-
-#include "execute_core.hpp"
+#include "execute_cpu_n_slices.hpp"
 
 namespace sgpl {
 
 template<typename Spec>
-void execute_cpu(
-  const size_t cycles,
+[[deprecated("Use execute_cpu_n_slices instead.")]]
+inline void execute_cpu(
+  const size_t max_slices,
   sgpl::Cpu<Spec>& state,
   const sgpl::Program<Spec>& program,
   typename Spec::peripheral_t& peripheral
 ) {
-
-  emp_assert( program.size() );
-
-  for (size_t i{}; i < cycles && state.HasActiveCore(); ++i) {
-
-    auto& core = state.GetActiveCore();
-    const size_t num_cycles = execute_core<Spec>(core, program, peripheral);
-    state.AdvanceCycleClock( num_cycles );
-    if ( core.HasTerminated() ) state.KillActiveCore();
-
-    state.TryActivateNextCore();
-  }
-
+  return execute_cpu_n_slices(
+    max_slices,
+    state,
+    program,
+    peripheral
+  );
 }
 
-template<typename Spec=sgpl::Spec<>>
-void execute_cpu(
-  const size_t cycles,
+template<typename Spec>
+[[deprecated("Use execute_cpu_n_slices instead.")]]
+inline void execute_cpu(
+  const size_t max_slices,
   sgpl::Cpu<Spec>& state,
   const sgpl::Program<Spec>& program
 ) {
-
-  using peripheral_t = typename Spec::peripheral_t;
-  peripheral_t peripheral;
-
-  execute_cpu<Spec>( cycles, state, program, peripheral );
-
+  return execute_cpu_n_slices(
+    max_slices,
+    state,
+    program
+  );
 }
 
 } // namespace sgpl
