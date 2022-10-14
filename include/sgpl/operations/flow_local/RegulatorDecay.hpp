@@ -7,8 +7,8 @@
 #include <string>
 
 #include "../../../../third-party/conduit/include/uitsl/algorithm/clamp_cast.hpp"
-#include "../../../../third-party/Empirical/include/emp/tools/hash_namify.hpp"
-#include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
+#include "../../../../third-party/conduit/include/uit_emp/tools/hash_namify.hpp"
+#include "../../../../third-party/conduit/include/uit_emp/tools/string_utils.hpp"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -53,10 +53,10 @@ struct RegulatorDecay {
     using tag_t = typename Spec::tag_t;
 
     return std::map<std::string, std::string>{
-      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "argument a", uit_emp::to_string( static_cast<int>( inst.args[0] ) ) },
       { "summary", "decay local regulator value by register a" },
-      { "tag bits", emp::to_string( inst.tag ) },
-      { "tag moniker", emp::hash_namify( std::hash< tag_t >{}( inst.tag ) ) },
+      { "tag bits", uit_emp::to_string( inst.tag ) },
+      { "tag moniker", uit_emp::hash_namify( std::hash< tag_t >{}( inst.tag ) ) },
     };
   }
 

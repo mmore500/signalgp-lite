@@ -7,7 +7,7 @@
 
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_has_type.hpp"
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_index.hpp"
-#include "../../../third-party/Empirical/include/emp/base/macros.hpp"
+#include "../../../third-party/conduit/include/uit_emp/base/macros.hpp"
 
 #include "../debug/sgpl_assert.hpp"
 #include "../debug/sgpl_error.hpp"
@@ -16,6 +16,7 @@
 #include "../utility/count_operation_random_touches.hpp"
 
 namespace sgpl {
+#include "../../../third-party/conduit/include/uit_emp/vendorization/push_macros.hh"
 
 template<typename Library>
 class OpLookup {
@@ -247,6 +248,7 @@ public:
 
 };
 
+#include "../../../third-party/conduit/include/uit_emp/vendorization/pop_macros.hh"
 } // namespace sgpl
 
 #endif // #ifndef SGPL_LIBRARY_OPLOOKUP_HPP_INCLUDE

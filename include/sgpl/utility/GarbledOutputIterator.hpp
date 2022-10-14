@@ -5,6 +5,8 @@
 #include <iterator>
 #include <type_traits>
 
+#include "../../../third-party/conduit/include/uit_emp/math/Random.hpp"
+
 #include "ThreadLocalRandom.hpp"
 
 namespace sgpl {
@@ -54,7 +56,7 @@ public:
       parent_t::operator=( [](){
         using cov_t = container_value_type;
         // prefer random constructor, fallback to default constructor
-        if constexpr ( std::is_constructible_v<cov_t, emp::Random&> ) {
+        if constexpr ( std::is_constructible_v<cov_t, uit_emp::Random&> ) {
           return cov_t( sgpl::tlrand.Get() );
         } else return cov_t{};
       }() );

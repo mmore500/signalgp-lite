@@ -4,7 +4,7 @@
 
 #include <cassert>
 
-#include "../../../third-party/Empirical/include/emp/math/Distribution.hpp"
+#include "../../../third-party/conduit/include/uit_emp/math/Distribution.hpp"
 
 #include "MemoizeCtor.hpp"
 #include "ThreadLocalRandom.hpp"
@@ -31,7 +31,7 @@ public:
     const bool res = !remaining_count;
 
     if (!remaining_count) {
-      auto& distn = sgpl::MemoizeCtor<emp::NegativeBinomial>::lookup(p, n);
+      auto& distn = sgpl::MemoizeCtor<uit_emp::NegativeBinomial>::lookup(p, n);
       remaining_count = distn.PickRandom( sgpl::tlrand.Get() );
     }
 

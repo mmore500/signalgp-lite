@@ -6,7 +6,7 @@
 #include <limits>
 
 #include "../../../third-party/conduit/include/uitsl/math/shift_mod.hpp"
-#include "../../../third-party/Empirical/include/emp/polyfill/span.hpp"
+#include "../../../third-party/conduit/include/uit_emp/polyfill/span.hpp"
 
 #include "../utility/ThreadLocalRandom.hpp"
 

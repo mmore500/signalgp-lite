@@ -2,6 +2,8 @@
 #ifndef SGPL_ALGORITHM_EXECUTE_CPU_HPP_INCLUDE
 #define SGPL_ALGORITHM_EXECUTE_CPU_HPP_INCLUDE
 
+#include <cstddef>
+
 #include "execute_cpu_n_slices.hpp"
 
 namespace sgpl {

@@ -6,10 +6,10 @@
 #include <ratio>
 #include <type_traits>
 
-#include "../../../third-party/Empirical/include/emp/matching/matchbin_metrics.hpp"
-#include "../../../third-party/Empirical/include/emp/matching/MatchDepository.hpp"
-#include "../../../third-party/Empirical/include/emp/matching/regulators/PlusCountdownRegulator.hpp"
-#include "../../../third-party/Empirical/include/emp/matching/selectors_static/RankedSelector.hpp"
+#include "../../../third-party/conduit/include/uit_emp/matching/matchbin_metrics.hpp"
+#include "../../../third-party/conduit/include/uit_emp/matching/MatchDepository.hpp"
+#include "../../../third-party/conduit/include/uit_emp/matching/regulators/PlusCountdownRegulator.hpp"
+#include "../../../third-party/conduit/include/uit_emp/matching/selectors_static/RankedSelector.hpp"
 
 #include "../library/prefab/CompleteOpLibrary.hpp"
 #include "../utility/EmptyType.hpp"
@@ -29,16 +29,16 @@ struct Spec {
   // make match cutoff threshold strict because there are many potential matches
   // among modules (each module is a potential match)
   /// What matching implementation should we use for global jump tables?
-  using global_matching_t = emp::MatchDepository<
+  using global_matching_t = uit_emp::MatchDepository<
     unsigned short, // program index type
     // matching metric
-    emp::OptimizedApproxDualStreakMetric<64>,
+    uit_emp::OptimizedApproxDualStreakMetric<64>,
     // match selector
-    emp::statics::RankedSelector<
+    uit_emp::statics::RankedSelector<
       std::ratio<1, 5> // match threshold
     >,
     // regulator
-    emp::PlusCountdownRegulator<
+    uit_emp::PlusCountdownRegulator<
       std::deci, // Slope
       std::ratio<1,4>, // MaxUpreg
       std::deci, // ClampLeeway
@@ -52,16 +52,16 @@ struct Spec {
   // matches within a module
   /// What matching datastructure implementation should we use for local jump
   /// tables?
-  using local_matching_t = emp::MatchDepository<
+  using local_matching_t = uit_emp::MatchDepository<
     unsigned short, // program index type
     // matching metric
-    emp::OptimizedApproxDualStreakMetric<64>,
+    uit_emp::OptimizedApproxDualStreakMetric<64>,
     // match selector
-    emp::statics::RankedSelector<
+    uit_emp::statics::RankedSelector<
       std::ratio<1, 2> // match threshold
     >,
     // regulator
-    emp::PlusCountdownRegulator<
+    uit_emp::PlusCountdownRegulator<
       std::deci, // Slope
       std::ratio<1,4>, // MaxUpreg
       std::deci, // ClampLeeway

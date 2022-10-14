@@ -16,8 +16,8 @@
 #include "../../../third-party/cereal/include/cereal/types/map.hpp"
 #include "../../../third-party/cereal/include/cereal/types/string.hpp"
 #include "../../../third-party/conduit/include/uitsl/math/shift_mod.hpp"
-#include "../../../third-party/Empirical/include/emp/math/math.hpp"
-#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
+#include "../../../third-party/conduit/include/uit_emp/math/math.hpp"
+#include "../../../third-party/conduit/include/uit_emp/math/Random.hpp"
 
 #include "OpCodeRectifier.hpp"
 
@@ -37,7 +37,7 @@ struct Instruction {
   tag_t tag;
 
   void RectifyArgs() {
-    static_assert( emp::IsPowerOf2( Spec::num_registers ) );
+    static_assert( uit_emp::IsPowerOf2( Spec::num_registers ) );
     for (auto& arg : args) arg = uitsl::shift_mod(arg, Spec::num_registers);
   }
 
@@ -51,7 +51,7 @@ struct Instruction {
 
   Instruction() = default;
 
-  Instruction(emp::Random& rand) {
+  Instruction(uit_emp::Random& rand) {
     rand.RandFill(
       reinterpret_cast<unsigned char*>( this ),
       sizeof( *this )

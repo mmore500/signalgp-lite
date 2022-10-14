@@ -10,7 +10,7 @@
 #include <string>
 
 #include "../../../../third-party/conduit/include/uitsl/polyfill/bit_cast.hpp"
-#include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
+#include "../../../../third-party/conduit/include/uit_emp/tools/string_utils.hpp"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -50,8 +50,8 @@ struct CountOnes {
   static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
     return std::map<std::string, std::string>{
-      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
-      { "argument b", emp::to_string( static_cast<int>( inst.args[1] ) ) },
+      { "argument a", uit_emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "argument b", uit_emp::to_string( static_cast<int>( inst.args[1] ) ) },
       { "summary", "a = popcnt( b )" },
     };
   }

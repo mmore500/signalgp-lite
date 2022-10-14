@@ -3,6 +3,7 @@
 #define SGPL_ALGORITHM_EXECUTE_CPU_N_SLICES_HPP_INCLUDE
 
 #include <cassert>
+#include <cstddef>
 #include <tuple>
 
 #include "../hardware/Cpu.hpp"

@@ -5,7 +5,7 @@
 #include <cassert>
 #include <tuple>
 
-#include "../../../third-party/Empirical/include/emp/base/macros.hpp"
+#include "../../../third-party/conduit/include/uit_emp/base/macros.hpp"
 
 #include "../debug/sgpl_assert.hpp"
 #include "../hardware/Core.hpp"
@@ -14,6 +14,7 @@
 #include "../utility/ByteEnumeration.hpp"
 
 namespace sgpl {
+#include "../../../third-party/conduit/include/uit_emp/vendorization/push_macros.hh"
 
 // tried a dispatch table, seemed to do about the same or worse
 // https://eli.thegreenplace.net/2012/07/12/computed-goto-for-efficient-dispatch-tables
@@ -73,7 +74,7 @@ inline void advance_core(
 
 }
 
-
+#include "../../../third-party/conduit/include/uit_emp/vendorization/pop_macros.hh"
 } // namespace sgpl
 
 #endif // #ifndef SGPL_ALGORITHM_ADVANCE_CORE_HPP_INCLUDE

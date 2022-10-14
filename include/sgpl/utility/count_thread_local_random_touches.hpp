@@ -6,8 +6,8 @@
 #include <cstddef>
 #include <functional>
 
-#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
-#include "../../../third-party/Empirical/include/emp/math/random_utils.hpp"
+#include "../../../third-party/conduit/include/uit_emp/math/Random.hpp"
+#include "../../../third-party/conduit/include/uit_emp/math/random_utils.hpp"
 
 #include "ThreadLocalRandom.hpp"
 
@@ -15,7 +15,7 @@ namespace sgpl {
 
 size_t count_thread_local_random_touches(const std::function<void()> routine) {
 
-  return emp::CountRngTouches( [routine]( emp::Random& rand ){
+  return uit_emp::CountRngTouches( [routine]( uit_emp::Random& rand ){
     std::swap( sgpl::tlrand.Get(), rand );
     routine();
     std::swap( sgpl::tlrand.Get(), rand );

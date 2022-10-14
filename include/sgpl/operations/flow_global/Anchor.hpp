@@ -6,8 +6,8 @@
 #include <set>
 #include <string>
 
-#include "../../../../third-party/Empirical/include/emp/tools/hash_namify.hpp"
-#include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
+#include "../../../../third-party/conduit/include/uit_emp/tools/hash_namify.hpp"
+#include "../../../../third-party/conduit/include/uit_emp/tools/string_utils.hpp"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -62,8 +62,8 @@ struct Anchor {
 
     return std::map<std::string, std::string>{
       { "summary", "register a global jump-to destination, maybe terminate" },
-      { "tag bits", emp::to_string( inst.tag ) },
-      { "tag moniker", emp::hash_namify( std::hash< tag_t >{}( inst.tag ) ) },
+      { "tag bits", uit_emp::to_string( inst.tag ) },
+      { "tag moniker", uit_emp::hash_namify( std::hash< tag_t >{}( inst.tag ) ) },
     };
   }
 

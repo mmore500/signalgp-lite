@@ -13,8 +13,8 @@
 #include "../../../third-party/cereal/include/cereal/archives/json.hpp"
 #include "../../../third-party/cereal/include/cereal/types/vector.hpp"
 #include "../../../third-party/conduit/include/uitsl/polyfill/filesystem.hpp"
-#include "../../../third-party/Empirical/include/emp/datastructs/hash_utils.hpp"
-#include "../../../third-party/Empirical/include/emp/polyfill/span.hpp"
+#include "../../../third-party/conduit/include/uit_emp/datastructs/hash_utils.hpp"
+#include "../../../third-party/conduit/include/uit_emp/polyfill/span.hpp"
 
 #include "../algorithm/mutate_bits.hpp"
 #include "../debug/sgpl_error.hpp"
@@ -202,7 +202,7 @@ template <typename Spec>
 struct hash<sgpl::Program<Spec>> {
 
   size_t operator()( const sgpl::Program<Spec>& program ) const {
-    return emp::murmur_hash( std::span<const std::byte>(
+    return uit_emp::murmur_hash( std::span<const std::byte>(
       reinterpret_cast<const std::byte*>( program.data() ),
       program.size() * sizeof( program.front() )
     ) );

@@ -7,8 +7,8 @@
 #include <string>
 
 #include "../../../../third-party/conduit/include/uitsl/algorithm/clamp_cast.hpp"
-#include "../../../../third-party/Empirical/include/emp/tools/hash_namify.hpp"
-#include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
+#include "../../../../third-party/conduit/include/uit_emp/tools/hash_namify.hpp"
+#include "../../../../third-party/conduit/include/uit_emp/tools/string_utils.hpp"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -52,7 +52,7 @@ struct RegulatorDecay {
       return "Decay Global Regulator";
     } else if constexpr ( JUMP_TABLE_IDX == 1 ) {
       return "Decay Secondary Global Regulator";
-    } else return emp::to_string(
+    } else return uit_emp::to_string(
       "Decay ", JUMP_TABLE_IDX, "iary Global Regulator"
     );
   }
@@ -65,11 +65,11 @@ struct RegulatorDecay {
     using tag_t = typename Spec::tag_t;
 
     return std::map<std::string, std::string>{
-      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "argument a", uit_emp::to_string( static_cast<int>( inst.args[0] ) ) },
       { "summary", "decay global regulator value by register a" },
-      { "target jump table", emp::to_string( JUMP_TABLE_IDX ) },
-      { "tag bits", emp::to_string( inst.tag ) },
-      { "tag moniker", emp::hash_namify( std::hash< tag_t >{}( inst.tag ) ) },
+      { "target jump table", uit_emp::to_string( JUMP_TABLE_IDX ) },
+      { "tag bits", uit_emp::to_string( inst.tag ) },
+      { "tag moniker", uit_emp::hash_namify( std::hash< tag_t >{}( inst.tag ) ) },
     };
   }
 

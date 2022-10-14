@@ -6,7 +6,7 @@
 #include <set>
 #include <string>
 
-#include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
+#include "../../../../third-party/conduit/include/uit_emp/tools/string_utils.hpp"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -56,8 +56,8 @@ public:
   static auto descriptors( const sgpl::Instruction<Spec>& inst ) {
 
     return std::map<std::string, std::string>{
-      { "argument a", emp::to_string( static_cast<int>( inst.args[0] ) ) },
-      { "probability", emp::to_string( map_to_unit<Spec>( inst.tag ) ) },
+      { "argument a", uit_emp::to_string( static_cast<int>( inst.args[0] ) ) },
+      { "probability", uit_emp::to_string( map_to_unit<Spec>( inst.tag ) ) },
       { "summary", "if p, a = 1; else a = 0" },
     };
   }

@@ -6,7 +6,7 @@
 #include <set>
 #include <string>
 
-#include "../../../../third-party/Empirical/include/emp/tools/string_utils.hpp"
+#include "../../../../third-party/conduit/include/uit_emp/tools/string_utils.hpp"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
@@ -36,7 +36,7 @@ struct Nop {
     }
   }
 
-  static std::string name() { return emp::to_string("Nop-", NumRngTouches); }
+  static std::string name() { return uit_emp::to_string("Nop-", NumRngTouches); }
 
   static size_t prevalence() { return Prevalence; }
 

@@ -2,9 +2,10 @@
 #ifndef SGPL_SPEC_STARTERCONFIG_HPP_INCLUDE
 #define SGPL_SPEC_STARTERCONFIG_HPP_INCLUDE
 
-#include "../../../third-party/Empirical/include/emp/config/config.hpp"
+#include "../../../third-party/conduit/include/uit_emp/config/config.hpp"
 
 namespace sgpl {
+#include "../../../third-party/conduit/include/uit_emp/vendorization/push_macros.hh"
 
 EMP_BUILD_CONFIG(
   StarterConfig,
@@ -77,6 +78,7 @@ EMP_BUILD_CONFIG(
 
 );
 
+#include "../../../third-party/conduit/include/uit_emp/vendorization/pop_macros.hh"
 } // namespace sgpl
 
 #endif // #ifndef SGPL_SPEC_STARTERCONFIG_HPP_INCLUDE
