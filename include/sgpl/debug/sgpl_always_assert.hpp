@@ -35,10 +35,14 @@ do {                                                                          \
     std::cout << '\n';                                                        \
     std::cout << "MESSAGE:\n";                                                \
     std::cout << SGPL_STRINGIFY(__VA_ARGS__) << '\n';                         \
-    std::cout << uitsl_ns::SetSeparator(" << ") __VA_OPT__(<<) __VA_ARGS__;   \
+    std::cout << uitsl_ns::SetSeparator(" << ") << __VA_ARGS__;\
     std::cout << '\n';                                                        \
     std::abort();                                                             \
   }                                                                           \
 } while(0)
+
+// no clang support for __VA_OPT__ yet
+// std::cout << uitsl_ns::SetSeparator(" << ") __VA_OPT__(<<) __VA_ARGS__;\
+
 
 #endif // #ifndef SGPL_DEBUG_SGPL_ALWAYS_ASSERT_HPP_INCLUDE
