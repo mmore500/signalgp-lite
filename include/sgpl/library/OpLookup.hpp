@@ -7,9 +7,10 @@
 
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_has_type.hpp"
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_index.hpp"
-#include "../../../third-party/Empirical/include/emp/base/always_assert.hpp"
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
+#include "../../../third-party/Empirical/include/emp/base/macros.hpp"
 
+#include "../debug/sgpl_assert.hpp"
+#include "../debug/sgpl_error.hpp"
 #include "../operations/actions/Nop.hpp"
 #include "../utility/ByteEnumeration.hpp"
 #include "../utility/count_operation_random_touches.hpp"
@@ -37,8 +38,9 @@ public:
 
     EMP_WRAP_EACH( SGPL_OP_LOOKUP_PAYLOAD, SGPL_BYTE_ENUMERATION )
 
-    emp_assert(
-      table.size() == Library::GetSize(), table.size(), Library::GetSize()
+    sgpl_assert(
+      table.size() == Library::GetSize(),
+      table.size() << Library::GetSize()
     );
 
   }
@@ -49,7 +51,7 @@ public:
 
   static std::string GetOpName(const size_t op_code) {
 
-    // can't use emp_assert due to obsucre macro error
+    // can't use assert due to obsucre macro error
     #define SGPL_OP_NAME_PAYLOAD(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
@@ -68,12 +70,12 @@ public:
       EMP_WRAP_EACH( SGPL_OP_NAME_PAYLOAD, SGPL_BYTE_ENUMERATION )
 
       default:
-        emp_assert( false, op_code );
+        sgpl_assert( false, op_code );
         __builtin_unreachable();
 
     }
 
-    emp_assert(false, op_code);
+    sgpl_error(op_code);
     __builtin_unreachable();
 
   }
@@ -81,7 +83,6 @@ public:
   template< typename Spec >
   static size_t GetOpNumRngTouches(const size_t op_code) {
 
-    // can't use emp_assert due to obsucre macro error
     #define SGPL_OP_NUM_RNG_TOUCHES_PAYLOAD(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
@@ -100,19 +101,18 @@ public:
       EMP_WRAP_EACH( SGPL_OP_NUM_RNG_TOUCHES_PAYLOAD, SGPL_BYTE_ENUMERATION )
 
       default:
-        emp_assert(false, op_code);
+        sgpl_error(op_code);
         __builtin_unreachable();
 
     }
 
-    emp_assert(false, op_code);
+    sgpl_error(op_code);
     __builtin_unreachable();
 
   }
 
   static size_t GetNopOpCode( const size_t num_rng_touches ) {
 
-    // can't use emp_assert due to obsucre macro error
     #define SGPL_NOP_OP_CODE_PAYLOAD(N) \
       case N: \
         if constexpr ( \
@@ -127,26 +127,25 @@ public:
         } \
       break;
 
-    emp_assert( num_rng_touches < 256 );
+    assert( num_rng_touches < 256 );
 
     switch( num_rng_touches ) {
 
       EMP_WRAP_EACH( SGPL_NOP_OP_CODE_PAYLOAD, SGPL_BYTE_ENUMERATION )
 
       default:
-        emp_assert(false, num_rng_touches);
+        sgpl_error(num_rng_touches);
         __builtin_unreachable();
 
     }
 
-    emp_assert(false, num_rng_touches);
+    sgpl_error(num_rng_touches);
     __builtin_unreachable();
 
   }
 
   static size_t GetOpPrevalence(const size_t op_code) {
 
-    // can't use emp_assert due to obsucre macro error
     #define SGPL_OP_PREVALENCE_PAYLOAD(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
@@ -165,12 +164,12 @@ public:
       EMP_WRAP_EACH( SGPL_OP_PREVALENCE_PAYLOAD, SGPL_BYTE_ENUMERATION )
 
       default:
-        emp_assert(false, op_code);
+        sgpl_error(op_code);
         __builtin_unreachable();
 
     }
 
-    emp_assert(false, op_code);
+    sgpl_error(op_code);
     __builtin_unreachable();
 
   }
@@ -180,7 +179,6 @@ public:
     const size_t op_code, const Instruction& instruction
   ) {
 
-    // can't use emp_assert due to obsucre macro error
     #define SGPL_OP_GET_DESCRIPTORS(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
@@ -201,12 +199,12 @@ public:
       )
 
       default:
-        emp_assert(false, op_code);
+        sgpl_error(op_code);
         __builtin_unreachable();
 
     }
 
-    emp_assert(false, op_code);
+    sgpl_error(op_code);
     __builtin_unreachable();
 
   }
@@ -216,7 +214,7 @@ public:
     const size_t op_code, const Instruction& instruction
   ) {
 
-    // can't use emp_assert due to obsucre macro error
+    // can't use sgpl_assert due to obsucre macro error
     #define SGPL_OP_GET_CATEGORIES(N) \
       case N: \
         if constexpr (N < Library::GetSize()) { \
@@ -237,12 +235,12 @@ public:
       )
 
       default:
-        emp_assert(false, op_code);
+        sgpl_error(op_code);
         __builtin_unreachable();
 
     }
 
-    emp_assert(false, op_code);
+    sgpl_error(op_code);
     __builtin_unreachable();
 
   }

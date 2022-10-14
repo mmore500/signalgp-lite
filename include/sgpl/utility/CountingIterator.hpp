@@ -2,6 +2,9 @@
 #ifndef SGPL_UTILITY_COUNTINGITERATOR_HPP_INCLUDE
 #define SGPL_UTILITY_COUNTINGITERATOR_HPP_INCLUDE
 
+#include <cstddef>
+#include <iterator>
+
 namespace sgpl {
 
 template<typename T=size_t>

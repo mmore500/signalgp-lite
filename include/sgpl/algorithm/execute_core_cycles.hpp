@@ -2,9 +2,7 @@
 #ifndef SGPL_ALGORITHM_EXECUTE_CORE_CYCLES_HPP_INCLUDE
 #define SGPL_ALGORITHM_EXECUTE_CORE_CYCLES_HPP_INCLUDE
 
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
-#include "../../../third-party/Empirical/include/emp/base/macros.hpp"
-
+#include "../debug/sgpl_assert.hpp"
 #include "../hardware/Core.hpp"
 #include "../program/Instruction.hpp"
 #include "../program/Program.hpp"
@@ -27,13 +25,13 @@ inline size_t execute_core_cycles(
    * In this case, when there are no GlobalAnchors within the program,
    * it is acceptable for the GlobalJumpTable to be empty.
    */
-  emp_assert(
+  sgpl_assert(
     state.GetGlobalJumpTable().GetSize()
     || !program.HasGlobalAnchor(),
-    "Global anchors not initialized! "
-    "Hint: call Cpu.InitializeAnchors()",
-    state.GetGlobalJumpTable().GetSize(),
-    program.HasGlobalAnchor()
+      "Global anchors not initialized! "
+      "Hint: call Cpu.InitializeAnchors()"
+      << state.GetGlobalJumpTable().GetSize()
+      << program.HasGlobalAnchor()
   );
 
   size_t c;

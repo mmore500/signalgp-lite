@@ -3,24 +3,23 @@
 #define SGPL_PROGRAM_OPCODERECTIFIER_HPP_INCLUDE
 
 #include <algorithm>
+#include <array>
+#include <cassert>
 #include <numeric>
-
-#include "../../../third-party/Empirical/include/emp/base/array.hpp"
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
 
 namespace sgpl {
 
 template<typename Library>
 class OpCodeRectifier {
 
-  emp::array< unsigned char, 256> mapper;
+  std::array< unsigned char, 256> mapper;
 
 public:
 
   OpCodeRectifier() {
 
     // first part of mapper must be 1-1 with instruction codes
-    emp_assert( Library::GetSize() && Library::GetSize() <= mapper.size());
+    assert( Library::GetSize() && Library::GetSize() <= mapper.size());
     std::iota(
       std::begin(mapper),
       std::begin(mapper) + Library::GetSize(),
@@ -41,7 +40,7 @@ public:
         ++op_code;
         if (op_code == Library::GetSize()) first_time_thru = false;
         op_code %= Library::GetSize();
-        emp_assert( Library::GetOpPrevalence( op_code ) );
+        assert( Library::GetOpPrevalence( op_code ) );
         rep_countdown = Library::GetOpPrevalence( op_code ) - first_time_thru;
         if ( rep_countdown == 0 ) { mapper_idx -= first_time_thru; continue; }
       }

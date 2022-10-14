@@ -3,6 +3,7 @@
 #define SGPL_INTROSPECTION_GET_MODULE_REGULATOR_HPP_INCLUDE
 
 #include <algorithm>
+#include <optional>
 
 #include "../hardware/Cpu.hpp"
 #include "../program/Program.hpp"
@@ -13,7 +14,7 @@
 namespace sgpl {
 
 template<typename Spec>
-emp::optional<float> get_module_regulator(
+std::optional<float> get_module_regulator(
   const sgpl::Cpu<Spec>& cpu,
   const sgpl::Program<Spec>& program,
   const size_t module_idx,

@@ -2,10 +2,10 @@
 #ifndef SGPL_UTILITY_CAPPEDSET_HPP_INCLUDE
 #define SGPL_UTILITY_CAPPEDSET_HPP_INCLUDE
 
+#include <array>
+#include <cassert>
+#include <cstddef>
 #include <utility>
-
-#include "../../../third-party/Empirical/include/emp/base/array.hpp"
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
 
 namespace sgpl {
 
@@ -13,7 +13,7 @@ namespace sgpl {
 template<typename T, size_t N>
 class CappedSet {
 
-  emp::array<T, N> buffer;
+  std::array<T, N> buffer;
 
   size_t size_{};
 
@@ -53,12 +53,12 @@ public:
 
   bool full() const { return size() == N; }
 
-  void pop_back() { emp_assert( size() ); --size_; }
+  void pop_back() { assert( size() ); --size_; }
 
-  T& back() { emp_assert( size() ); return operator[](size() - 1); };
+  T& back() { assert( size() ); return operator[](size() - 1); };
 
   const T& back() const {
-    emp_assert( size() );
+    assert( size() );
     return operator[](size() - 1);
   };
 

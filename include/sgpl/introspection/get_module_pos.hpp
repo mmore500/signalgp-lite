@@ -2,6 +2,7 @@
 #ifndef SGPL_INTROSPECTION_GET_MODULE_POS_HPP_INCLUDE
 #define SGPL_INTROSPECTION_GET_MODULE_POS_HPP_INCLUDE
 
+#include <cassert>
 #include <iterator>
 
 #include "../program/GlobalAnchorIterator.hpp"
@@ -17,7 +18,7 @@ size_t get_module_pos(
   const size_t module_idx
 ) {
 
-  emp_assert( module_idx < sgpl::count_modules( program ) );
+  assert( module_idx < sgpl::count_modules( program ) );
 
   const size_t raw_distance = std::distance(
     std::next(

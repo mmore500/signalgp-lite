@@ -2,9 +2,9 @@
 #ifndef SGPL_UTILITY_THREADLOCALRANDOM_HPP_INCLUDE
 #define SGPL_UTILITY_THREADLOCALRANDOM_HPP_INCLUDE
 
+#include <cassert>
 #include <cstddef>
 
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
 #include "../../../third-party/Empirical/include/emp/math/Random.hpp"
 
 namespace sgpl {
@@ -43,7 +43,7 @@ public:
   void Reseed( const int seed ) {
 
     // seed <= 0 non-deterministic (uses system time and memory address)
-    emp_assert( seed > 0 );
+    assert( seed > 0 );
 
     cache_pos = sizeof( cache );
 
@@ -54,7 +54,7 @@ public:
   void Initialize( const int seed ) {
 
     // assert that rng hasn't been touched already
-    emp_assert( Get().GetUInt() == emp::Random{ 1 }.GetUInt() );
+    assert( Get().GetUInt() == emp::Random{ 1 }.GetUInt() );
 
     Reseed( seed );
 

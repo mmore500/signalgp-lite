@@ -3,8 +3,7 @@
 #define SGPL_PROGRAM_GLOBALANCHORITERATOR_HPP_INCLUDE
 
 #include <iterator>
-
-#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
+#include <vector>
 
 #include "Instruction.hpp"
 
@@ -12,11 +11,11 @@ namespace sgpl {
 
 template<typename Spec>
 class GlobalAnchorIterator
-: protected emp::vector<sgpl::Instruction<Spec>>::const_iterator {
+: protected std::vector<sgpl::Instruction<Spec>>::const_iterator {
 
   using inst_t = sgpl::Instruction<Spec>;
   using library_t = typename Spec::library_t;
-  using container_t = emp::vector<sgpl::Instruction<Spec>>;
+  using container_t = std::vector<sgpl::Instruction<Spec>>;
   using parent_t = typename container_t::const_iterator;
 
   parent_t end_iter;

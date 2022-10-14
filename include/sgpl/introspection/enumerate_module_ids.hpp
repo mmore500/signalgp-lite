@@ -3,10 +3,11 @@
 #define SGPL_INTROSPECTION_ENUMERATE_MODULE_IDS_HPP_INCLUDE
 
 #include <algorithm>
+#include <cassert>
 #include <iterator>
+#include <vector>
 
 #include "../../../third-party/conduit/include/uitsl/algorithm/for_each.hpp"
-#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
 
 #include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"
@@ -15,9 +16,9 @@
 namespace sgpl {
 
 template<typename Spec>
-emp::vector<size_t> enumerate_module_ids( const sgpl::Program<Spec>& program ) {
+std::vector<size_t> enumerate_module_ids( const sgpl::Program<Spec>& program ) {
 
-  emp::vector< size_t > res;
+  std::vector< size_t > res;
 
   if ( program.empty() ) return res;
 
@@ -39,7 +40,7 @@ emp::vector<size_t> enumerate_module_ids( const sgpl::Program<Spec>& program ) {
   // fill in last module
   res.resize( program.size() , res.size() ? res.back() + 1 : 0 );
 
-  emp_assert( res.size() == program.size() );
+  assert( res.size() == program.size() );
 
   return res;
 

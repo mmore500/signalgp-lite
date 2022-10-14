@@ -2,10 +2,9 @@
 #ifndef SGPL_HARDWARE_CPU_HPP_INCLUDE
 #define SGPL_HARDWARE_CPU_HPP_INCLUDE
 
+#include <array>
+#include <cassert>
 #include <utility>
-
-#include "../../../third-party/Empirical/include/emp/base/array.hpp"
-#include "../../../third-party/Empirical/include/emp/base/optional.hpp"
 
 #include "../utility/RingResevoir.hpp"
 
@@ -27,7 +26,7 @@ class Cpu {
 
     size_t active_core_idx{};
 
-    emp::array<global_jump_table_t, Spec::num_global_jump_tables>
+    std::array<global_jump_table_t, Spec::num_global_jump_tables>
       global_jump_tables{};
 
     // total number of instructions executed over the lifetime of the object
@@ -70,39 +69,39 @@ public:
   }
 
   void ActivateNextCore() noexcept {
-    emp_assert( GetNumBusyCores() );
+    assert( GetNumBusyCores() );
     ++data.active_core_idx %= GetNumBusyCores();
   }
 
   bool TryActivateNextCore() noexcept {
     if ( HasActiveCore() ) { ActivateNextCore(); return true; }
-    else { emp_assert( data.active_core_idx == 0 ); return false; }
+    else { assert( data.active_core_idx == 0 ); return false; }
   }
 
   void ActivatePrevCore() noexcept {
-    emp_assert( GetNumBusyCores() );
+    assert( GetNumBusyCores() );
     data.active_core_idx += GetNumBusyCores() - 1;
     data.active_core_idx %= GetNumBusyCores();
   }
 
   bool TryActivatePrevCore() noexcept {
     if ( HasActiveCore() ) { ActivatePrevCore(); return true; }
-    else { emp_assert( data.active_core_idx == 0 ); return false; }
+    else { assert( data.active_core_idx == 0 ); return false; }
   }
 
   __attribute__ ((hot))
   core_t& GetActiveCore() noexcept {
-    emp_assert( HasActiveCore() );
+    assert( HasActiveCore() );
     return data.scheduler.Get( data.active_core_idx );
   };
 
   core_t& GetFreshestCore() noexcept {
-    emp_assert( HasActiveCore() );
+    assert( HasActiveCore() );
     return data.scheduler.GetHead();
   };
 
   void KillActiveCore() noexcept {
-    emp_assert( HasActiveCore() );
+    assert( HasActiveCore() );
     for ( const auto& req : GetActiveCore().fork_requests ) {
       if ( !TryLaunchCore(req) ) break;
     }
@@ -111,13 +110,13 @@ public:
   }
 
   void KillStaleCore() noexcept {
-    emp_assert( !HasFreeCore() );
+    assert( !HasFreeCore() );
     data.scheduler.ReleaseTail();
     // no need to activate prev core, killed core is idx 0
   }
 
   void DoLaunchCore() noexcept {
-    emp_assert( HasFreeCore() );
+    assert( HasFreeCore() );
     auto& acquired = data.scheduler.Acquire();
     acquired.Reset();
   }
@@ -133,7 +132,7 @@ public:
   }
 
   void DoLaunchCore( const tag_t& tag, const size_t jt_idx=0 ) noexcept {
-    emp_assert( HasFreeCore() );
+    assert( HasFreeCore() );
     auto& acquired = data.scheduler.Acquire();
     acquired.Reset();
     acquired.JumpToGlobalAnchorMatch( tag, jt_idx );

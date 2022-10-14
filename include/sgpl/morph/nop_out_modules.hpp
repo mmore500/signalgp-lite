@@ -3,8 +3,8 @@
 #define SGPL_MORPH_NOP_OUT_MODULES_HPP_INCLUDE
 
 #include <algorithm>
-
-#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
+#include <cassert>
+#include <vector>
 
 #include "../introspection/count_modules.hpp"
 #include "../introspection/make_module_mask.hpp"
@@ -16,14 +16,14 @@ namespace sgpl {
 
 template< typename Spec >
 sgpl::Program<Spec> nop_out_modules(
-  sgpl::Program<Spec> program, const emp::vector<char> modulewise_should_nop
+  sgpl::Program<Spec> program, const std::vector<char> modulewise_should_nop
 ) {
 
-  emp_assert(
+  assert(
     sgpl::count_modules<Spec>( program ) == modulewise_should_nop.size()
   );
 
-  emp::vector<char> instructionwise_should_nop( program.size(), false );
+  std::vector<char> instructionwise_should_nop( program.size(), false );
 
   const size_t num_modules = modulewise_should_nop.size();
   for (size_t module_idx{}; module_idx < num_modules; ++module_idx) {

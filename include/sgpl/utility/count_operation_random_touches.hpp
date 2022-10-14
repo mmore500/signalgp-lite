@@ -3,13 +3,11 @@
 #define SGPL_UTILITY_COUNT_OPERATION_RANDOM_TOUCHES_HPP_INCLUDE
 
 #include <algorithm>
+#include <cassert>
 #include <cstddef>
 #include <functional>
+#include <optional>
 #include <type_traits>
-
-#include "../../../third-party/Empirical/include/emp/base/optional.hpp"
-#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
-#include "../../../third-party/Empirical/include/emp/math/random_utils.hpp"
 
 #include "../hardware/Cpu.hpp"
 #include "../program/Instruction.hpp"
@@ -29,7 +27,7 @@ size_t count_operation_random_touches() {
 
     using peripheral_t = typename Spec::peripheral_t;
 
-    emp::optional< peripheral_t > peripheral;
+    std::optional< peripheral_t > peripheral;
     if constexpr ( std::is_default_constructible< peripheral_t >::value ) {
       peripheral.emplace();
     } else {
@@ -42,7 +40,7 @@ size_t count_operation_random_touches() {
   thread_local const size_t res
     = sgpl::count_thread_local_random_touches( routine );
 
-  emp_assert( res == sgpl::count_thread_local_random_touches( routine ) );
+  assert( res == sgpl::count_thread_local_random_touches( routine ) );
 
   return res;
 

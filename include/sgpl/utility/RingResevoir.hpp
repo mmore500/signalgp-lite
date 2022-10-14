@@ -2,21 +2,20 @@
 #ifndef SGPL_UTILITY_RINGRESEVOIR_HPP_INCLUDE
 #define SGPL_UTILITY_RINGRESEVOIR_HPP_INCLUDE
 
+#include <array>
+#include <cassert>
 #include <numeric>
 #include <utility>
 
 #include "../../../third-party/conduit/include/uitsl/datastructs/RingBuffer.hpp"
 #include "../../../third-party/conduit/include/uitsl/debug/safe_compare.hpp"
-#include "../../../third-party/Empirical/include/emp/base/array.hpp"
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
-#include "../../../third-party/Empirical/include/emp/base/optional.hpp"
 
 namespace sgpl {
 
 template<typename T, size_t N>
 class RingResevoir {
 
-  emp::array<T, N> buffer{};
+  std::array<T, N> buffer{};
 
   size_t tail_index{};
   size_t num_items{};
@@ -24,8 +23,8 @@ class RingResevoir {
   inline void AdvanceTail() { ++tail_index %= GetCapacity(); }
 
   inline size_t GetBufferIndex( const size_t pos ) const {
-    emp_assert( pos < GetSize() );
-    emp_assert( tail_index < GetCapacity() );
+    assert( pos < GetSize() );
+    assert( tail_index < GetCapacity() );
     return ( tail_index + pos ) % GetCapacity();
   }
 
@@ -50,28 +49,28 @@ public:
   }
 
   inline T& GetTail() {
-    emp_assert( !IsEmpty() );
+    assert( !IsEmpty() );
     return buffer[tail_index];
   }
 
   inline T& GetHead() {
-    emp_assert( !IsEmpty() );
+    assert( !IsEmpty() );
     return Get( GetSize() - 1 );
   }
 
   T& Acquire() {
-    emp_assert( !IsFull() );
+    assert( !IsFull() );
     ++num_items;
     return GetHead();
   }
 
   inline void ReleaseHead() {
-    emp_assert( !IsEmpty() );
+    assert( !IsEmpty() );
     --num_items;
   }
 
   inline void ReleaseTail() {
-    emp_assert( !IsEmpty() );
+    assert( !IsEmpty() );
     AdvanceTail();
     --num_items;
   }
@@ -95,7 +94,7 @@ public:
     num_items = {};
   }
 
-  emp::array<T, N>& GetBuffer() { return buffer; }
+  std::array<T, N>& GetBuffer() { return buffer; }
 
 };
 

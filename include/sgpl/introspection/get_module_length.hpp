@@ -2,6 +2,8 @@
 #ifndef SGPL_INTROSPECTION_GET_MODULE_LENGTH_HPP_INCLUDE
 #define SGPL_INTROSPECTION_GET_MODULE_LENGTH_HPP_INCLUDE
 
+#include <cassert>
+
 #include "../program/GlobalAnchorIterator.hpp"
 #include "../program/Program.hpp"
 
@@ -15,7 +17,7 @@ size_t get_module_length(
   const size_t module_idx
 ) {
 
-  emp_assert( sgpl::count_modules( program ) );
+  assert( sgpl::count_modules( program ) );
 
   if ( module_idx + 1 == sgpl::count_modules( program ) ) {
     // if last module, get distance to last inst instead of to next module

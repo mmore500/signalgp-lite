@@ -2,17 +2,17 @@
 #ifndef SGPL_UTILITY_RESEVOIR_HPP_INCLUDE
 #define SGPL_UTILITY_RESEVOIR_HPP_INCLUDE
 
+#include <array>
+#include <cassert>
+#include <cstddef>
 #include <utility>
-
-#include "../../../third-party/Empirical/include/emp/base/array.hpp"
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
 
 namespace sgpl {
 
 template<typename T, size_t N>
 class Resevoir {
 
-  emp::array<T, N> buffer_;
+  std::array<T, N> buffer_;
 
   size_t size_{};
 
@@ -43,10 +43,10 @@ public:
 
   void release_back() { --size_; }
 
-  T& back() { emp_assert( size() ); return operator[](size() - 1); };
+  T& back() { assert( size() ); return operator[](size() - 1); };
 
   const T& back() const {
-    emp_assert( size() );
+    assert( size() );
     return operator[](size() - 1);
   };
 

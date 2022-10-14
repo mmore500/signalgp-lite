@@ -3,6 +3,7 @@
 #define SGPL_PROGRAM_INSTRUCTION_HPP_INCLUDE
 
 #include <algorithm>
+#include <array>
 #include <cstddef>
 #include <map>
 #include <set>
@@ -15,8 +16,6 @@
 #include "../../../third-party/cereal/include/cereal/types/map.hpp"
 #include "../../../third-party/cereal/include/cereal/types/string.hpp"
 #include "../../../third-party/conduit/include/uitsl/math/shift_mod.hpp"
-#include "../../../third-party/Empirical/include/emp/base/array.hpp"
-#include "../../../third-party/Empirical/include/emp/bits/BitSet.hpp"
 #include "../../../third-party/Empirical/include/emp/math/math.hpp"
 #include "../../../third-party/Empirical/include/emp/math/Random.hpp"
 

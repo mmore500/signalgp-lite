@@ -2,7 +2,7 @@
 #ifndef SGPL_INTROSPECTION_COUNT_NOP_INSTRUCTIONS_HPP_INCLUDE
 #define SGPL_INTROSPECTION_COUNT_NOP_INSTRUCTIONS_HPP_INCLUDE
 
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
+#include <cassert>
 
 #include "../program/Program.hpp"
 
@@ -13,7 +13,7 @@ namespace sgpl {
 template<typename Spec>
 size_t count_nop_instructions( const sgpl::Program<Spec>& program ) {
 
-  emp_assert(
+  assert(
     sgpl::count_instructions<Spec>( program, "op" )
     == program.size() - sgpl::count_instructions<Spec>( program, "nop" )
   );

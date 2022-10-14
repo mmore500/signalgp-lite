@@ -2,6 +2,7 @@
 #ifndef SGPL_ALGORITHM_EXECUTE_CPU_N_SLICES_HPP_INCLUDE
 #define SGPL_ALGORITHM_EXECUTE_CPU_N_SLICES_HPP_INCLUDE
 
+#include <cassert>
 #include <tuple>
 
 #include "../hardware/Cpu.hpp"
@@ -21,7 +22,7 @@ void execute_cpu_n_slices(
   typename Spec::peripheral_t& peripheral
 ) {
 
-  emp_assert( program.size() );
+  assert( program.size() );
 
   for (size_t s{}; s < max_slices && state.HasActiveCore(); ++s) {
 

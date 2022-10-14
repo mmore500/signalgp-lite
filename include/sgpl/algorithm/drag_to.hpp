@@ -3,9 +3,8 @@
 #define SGPL_ALGORITHM_DRAG_TO_HPP_INCLUDE
 
 #include <algorithm>
+#include <cassert>
 #include <iterator>
-
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
 
 namespace sgpl {
 
@@ -28,7 +27,7 @@ namespace sgpl {
 template<typename RandomIt>
 RandomIt drag_to(const RandomIt first, const RandomIt last, const RandomIt to) {
 
-  emp_assert( first <= last );
+  assert( first <= last );
 
   // adapted from https://youtu.be/W2tWOdzgXHA?t=778
   // slide backward

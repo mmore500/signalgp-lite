@@ -7,8 +7,6 @@
 #include <utility>
 
 #include "../../../third-party/conduit/include/uitsl/debug/audit_cast.hpp"
-#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
-#include "../../../third-party/Empirical/include/emp/math/Distribution.hpp"
 
 #include "../utility/RepeatingNegativeBinomialCountdown.hpp"
 #include "../utility/ThreadLocalRandom.hpp"

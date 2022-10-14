@@ -3,8 +3,7 @@
 #define SGPL_ALGORITHM_SLIDE_TO_HPP_INCLUDE
 
 #include <algorithm>
-
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
+#include <cassert>
 
 namespace sgpl {
 
@@ -25,7 +24,7 @@ namespace sgpl {
 template<typename RandomIt>
 RandomIt slide_to(const RandomIt first, const RandomIt last, const RandomIt to) {
 
-  emp_assert( first <= last );
+  assert( first <= last );
 
   // adapted from https://youtu.be/W2tWOdzgXHA?t=778
   // slide backward

@@ -4,6 +4,8 @@
 
 #include <cmath>
 
+#include "../debug/sgpl_assert.hpp"
+
 #include "random_sign.hpp"
 
 namespace sgpl {
@@ -11,7 +13,7 @@ namespace sgpl {
 // random walk with n steps on a one dimensional lattice
 int do_random_walk_exact(const int num_steps) {
 
-  emp_assert( num_steps >= 0, num_steps );
+  sgpl_assert( num_steps >= 0, num_steps );
 
   int res{};
   for (int i{}; i < num_steps; ++i) res += sgpl::random_sign();

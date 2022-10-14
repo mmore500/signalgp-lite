@@ -5,7 +5,8 @@
 #include <cmath>
 
 #include "../../../third-party/conduit/include/uitsl/algorithm/clamp_cast.hpp"
-#include "../../../third-party/Empirical/include/emp/base/assert.hpp"
+
+#include "../debug/sgpl_assert.hpp"
 
 #include "ThreadLocalRandom.hpp"
 
@@ -15,7 +16,7 @@ namespace sgpl {
 // good approximation for n > 9
 // https://en.wikipedia.org/wiki/Binomial_distribution#Normal_approximation
 int do_random_walk_normal_approximation(const int num_steps) {
-  emp_assert( num_steps >= 0, num_steps );
+  sgpl_assert( num_steps >= 0, num_steps );
   return std::clamp(
     /*
      * Binomial(n, p) ~= Normal(np, sqrt(np(1-p)))

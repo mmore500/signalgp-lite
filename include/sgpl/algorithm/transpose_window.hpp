@@ -3,11 +3,10 @@
 #define SGPL_ALGORITHM_TRANSPOSE_WINDOW_HPP_INCLUDE
 
 #include <algorithm>
+#include <cassert>
 #include <iterator>
 #include <tuple>
 #include <utility>
-
-#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
 
 #include "../algorithm/next.hpp"
 #include "../algorithm/prev.hpp"
@@ -34,9 +33,9 @@ std::tuple<RandomIt, RandomIt, RandomIt> transpose_window(
   const WindowDisplacementGenerator& window_displacement_generator
 ) {
 
-  emp_assert(genome_first <= window_first);
-  emp_assert(window_first <= window_last);
-  emp_assert(window_last <= genome_last);
+  assert(genome_first <= window_first);
+  assert(window_first <= window_last);
+  assert(window_last <= genome_last);
 
   const int num_sites_before_window
     = std::distance(genome_first, window_first);
@@ -77,8 +76,8 @@ std::tuple<RandomIt, RandomIt, RandomIt> transpose_window(
   const WindowSizeGenerator& window_size_generator
 ) {
 
-  emp_assert(genome_first <= target_site);
-  emp_assert(target_site <= genome_last);
+  assert(genome_first <= target_site);
+  assert(target_site <= genome_last);
 
   const size_t num_genome_sites = std::distance(
     genome_first,

@@ -5,10 +5,9 @@
 #include <limits>
 #include <tuple>
 #include <utility>
+#include <vector>
 
 #include "../../../third-party/conduit/include/uitsl/debug/audit_cast.hpp"
-#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
-#include "../../../third-party/Empirical/include/emp/math/Distribution.hpp"
 
 #include "../utility/do_random_walk_normal_approximation.hpp"
 #include "../utility/GarbledOutputIterator.hpp"

@@ -2,6 +2,7 @@
 #ifndef SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE
 #define SGPL_OPERATIONS_UNARY_TERMINAL_HPP_INCLUDE
 
+#include <cassert>
 #include <map>
 #include <set>
 #include <string>
@@ -40,7 +41,7 @@ class Terminal {
   }
 
   static double map_up( const double plusminus_unit_val ) noexcept {
-    emp_assert( plusminus_unit_val != 0 );
+    assert( plusminus_unit_val != 0 );
 
     return 1.0 / (
       plusminus_unit_val * plusminus_unit_val * plusminus_unit_val

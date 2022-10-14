@@ -9,7 +9,8 @@
 #include "../../../third-party/cereal/include/cereal/archives/json.hpp"
 #include "../../../third-party/cereal/include/cereal/cereal.hpp"
 #include "../../../third-party/conduit/include/uitsl/polyfill/filesystem.hpp"
-#include "../../../third-party/Empirical/include/emp/base/error.hpp"
+
+#include "../debug/sgpl_error.hpp"
 
 #include "Program.hpp"
 
@@ -26,12 +27,14 @@ sgpl::Program<Spec> load_program(const std::filesystem::path& path) {
   } else if (path.extension() == ".bin") {
     cereal::BinaryInputArchive archive( is );
   } else {
-    emp_error("Unknown extension.", path, path.extension());
+    sgpl_error("Unknown extension." << path << path.extension());
   }
 
   archive( program );
 
   return program;
 }
+
+} // namespace sgpl
 
 #endif // #ifndef SGPL_PROGRAM_LOAD_PROGRAM_HPP_INCLUDE

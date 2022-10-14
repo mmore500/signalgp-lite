@@ -2,8 +2,9 @@
 #ifndef SGPL_MORPH_NOP_OUT_NTH_OP_HPP_INCLUDE
 #define SGPL_MORPH_NOP_OUT_NTH_OP_HPP_INCLUDE
 
-#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
+#include <cassert>
 
+#include "../debug/sgpl_always_assert.hpp"
 #include "../introspection/count_op_instructions.hpp"
 #include "../program/Program.hpp"
 
@@ -15,7 +16,7 @@ sgpl::Program<Spec> nop_out_nth_op(
   const size_t n
 ) {
 
-  emp_assert( n < sgpl::count_op_instructions<Spec>( program ) );
+  assert( n < sgpl::count_op_instructions<Spec>( program ) );
 
   size_t op_counter{};
   for ( size_t idx{}; idx < program.size(); ++idx ) {
@@ -28,7 +29,7 @@ sgpl::Program<Spec> nop_out_nth_op(
 
   }
 
-  emp_always_assert( false, n, program.size() );
+  sgpl_always_assert( false, n << program.size() );
   __builtin_unreachable();
 
 }

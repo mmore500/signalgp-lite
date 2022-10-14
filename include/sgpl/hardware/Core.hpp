@@ -2,10 +2,10 @@
 #ifndef SGPL_HARDWARE_CORE_HPP_INCLUDE
 #define SGPL_HARDWARE_CORE_HPP_INCLUDE
 
+#include <array>
+#include <cassert>
 #include <limits>
 #include <tuple>
-
-#include "../../../third-party/Empirical/include/emp/base/array.hpp"
 
 #include "../utility/CappedSet.hpp"
 
@@ -23,14 +23,14 @@ class Core {
   using global_jump_table_t
     = sgpl::JumpTable<Spec, typename Spec::global_matching_t>;
   using global_jump_table_array_t
-    = emp::array<global_jump_table_t, Spec::num_global_jump_tables>;
+    = std::array<global_jump_table_t, Spec::num_global_jump_tables>;
   global_jump_table_array_t* global_jump_tables{}; // non-owning ptr
 
   using tag_t = typename Spec::tag_t;
 
 public:
 
-  using registers_t = emp::array<float, Spec::num_registers>;
+  using registers_t = std::array<float, Spec::num_registers>;
   registers_t registers{}; // value initialize
 
   sgpl::CappedSet<tag_t, Spec::num_fork_requests> fork_requests{};
@@ -68,7 +68,7 @@ public:
     program_counter %= program_length;
     program_counter -= has_termianted;
 
-    emp_assert( has_termianted || program_counter < program_length );
+    assert( has_termianted || program_counter < program_length );
   }
 
   inline bool HasLocalAnchors() const noexcept {
@@ -76,7 +76,7 @@ public:
   }
 
   inline void LoadLocalAnchors( const sgpl::Program<Spec>& program ) noexcept {
-    emp_assert( ! HasLocalAnchors() );
+    assert( ! HasLocalAnchors() );
     local_jump_table.InitializeLocalAnchors( program, GetProgramCounter() );
   }
 

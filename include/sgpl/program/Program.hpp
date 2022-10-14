@@ -7,18 +7,17 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 #include "../../../third-party/cereal/include/cereal/archives/binary.hpp"
 #include "../../../third-party/cereal/include/cereal/archives/json.hpp"
 #include "../../../third-party/cereal/include/cereal/types/vector.hpp"
 #include "../../../third-party/conduit/include/uitsl/polyfill/filesystem.hpp"
-#include "../../../third-party/Empirical/include/emp/base/error.hpp"
-#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
 #include "../../../third-party/Empirical/include/emp/datastructs/hash_utils.hpp"
-#include "../../../third-party/Empirical/include/emp/math/Random.hpp"
 #include "../../../third-party/Empirical/include/emp/polyfill/span.hpp"
 
 #include "../algorithm/mutate_bits.hpp"
+#include "../debug/sgpl_error.hpp"
 #include "../utility/ThreadLocalRandom.hpp"
 
 #include "Instruction.hpp"
@@ -27,9 +26,9 @@
 namespace sgpl {
 
 template<typename Spec>
-class Program : public emp::vector<sgpl::Instruction<Spec>> {
+class Program : public std::vector<sgpl::Instruction<Spec>> {
 
-  using parent_t = emp::vector<sgpl::Instruction<Spec>>;
+  using parent_t = std::vector<sgpl::Instruction<Spec>>;
   using library_t = typename Spec::library_t;
   using rectifier_t = sgpl::OpCodeRectifier<library_t>;
 
@@ -67,10 +66,8 @@ public:
       std::ifstream is(path);
       cereal::BinaryInputArchive archive( is );
       archive( *this );
-    } else emp_error(
-      "unknown sgpl::Program file format",
-      path.extension(),
-      path
+    } else sgpl_error(
+      "unknown sgpl::Program file format" << path.extension() << path
     );
   }
 

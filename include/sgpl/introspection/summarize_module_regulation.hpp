@@ -3,8 +3,7 @@
 #define SGPL_INTROSPECTION_SUMMARIZE_MODULE_REGULATION_HPP_INCLUDE
 
 #include <algorithm>
-
-#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
+#include <vector>
 
 #include "../hardware/Cpu.hpp"
 #include "../program/Program.hpp"
@@ -17,13 +16,13 @@ namespace sgpl {
 
 // index represents module ID, value represents regulation
 template<typename Spec>
-emp::vector<float> summarize_module_regulation(
+std::vector<float> summarize_module_regulation(
   const sgpl::Cpu<Spec>& cpu,
   const sgpl::Program<Spec>& program,
   const size_t jump_table_idx=0
 ) {
 
-  emp::vector<float> res;
+  std::vector<float> res;
 
   std::transform(
     sgpl::CountingIterator{},

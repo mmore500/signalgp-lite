@@ -3,8 +3,7 @@
 #define SGPL_INTROSPECTION_SUMMARIZE_MODULE_EXPRESSION_HPP_INCLUDE
 
 #include <algorithm>
-
-#include "../../../third-party/Empirical/include/emp/base/vector.hpp"
+#include <vector>
 
 #include "../hardware/Cpu.hpp"
 #include "../program/Program.hpp"
@@ -17,12 +16,12 @@ namespace sgpl {
 
 // index represents module ID, value represents expression count
 template<typename Spec>
-emp::vector<size_t> summarize_module_expression(
+std::vector<size_t> summarize_module_expression(
   const sgpl::Cpu<Spec>& cpu,
   const sgpl::Program<Spec>& program
 ) {
 
-  emp::vector<size_t> res;
+  std::vector<size_t> res;
 
   std::transform(
     sgpl::CountingIterator{},

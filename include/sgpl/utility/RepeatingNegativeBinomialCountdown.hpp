@@ -2,6 +2,8 @@
 #ifndef SGPL_UTILITY_REPEATINGNEGATIVEBINOMIALCOUNTDOWN_HPP_INCLUDE
 #define SGPL_UTILITY_REPEATINGNEGATIVEBINOMIALCOUNTDOWN_HPP_INCLUDE
 
+#include <cassert>
+
 #include "../../../third-party/Empirical/include/emp/math/Distribution.hpp"
 
 #include "MemoizeCtor.hpp"
@@ -33,7 +35,7 @@ public:
       remaining_count = distn.PickRandom( sgpl::tlrand.Get() );
     }
 
-    emp_assert(remaining_count);
+    assert(remaining_count);
     --remaining_count;
 
     return res;

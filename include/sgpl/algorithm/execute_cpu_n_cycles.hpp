@@ -3,6 +3,7 @@
 #define SGPL_ALGORITHM_EXECUTE_CPU_N_CYCLES_HPP_INCLUDE
 
 #include <algorithm>
+#include <cassert>
 
 #include "../hardware/Cpu.hpp"
 #include "../program/Program.hpp"
@@ -21,7 +22,7 @@ void execute_cpu_n_cycles(
   typename Spec::peripheral_t& peripheral
 ) {
 
-  emp_assert( program.size() );
+  assert( program.size() );
 
   for (size_t c{}; c < max_cycles && state.HasActiveCore(); /*incr c inside*/) {
 
