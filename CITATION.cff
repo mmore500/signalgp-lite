@@ -19,15 +19,19 @@ date-released: 2021-07-28
 license: MIT
 version: 0.2.0
 authors:
-  - affiliation: Michigan State University
+  - affiliation: University of Michigan
     family-names: Moreno
     given-names: Matthew Andres
     orcid: 'https://orcid.org/0000-0003-4726-4479'
   - affiliation: Michigan State University
     family-names: Rodriguez Papa
     given-names: Santiago
+    orcid: 'https://orcid.org/0000-0003-0994-2718'
+  - affiliation: Grand Valley State University
+    family-names: Lalejini
+    given-names: Alexander
     orcid: 'https://orcid.org/0000-0002-6028-2105'
-  - affiliation: Michigan State University
+- affiliation: Michigan State University
     family-names: Ofria
     given-names: Charles
     orcid: 'https://orcid.org/0000-0003-2924-1732'
