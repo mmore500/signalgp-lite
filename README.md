@@ -132,7 +132,7 @@ Microbenchmarks are performed, graphed, and uploaded as part of the project's CI
 
 ## Citing
 
-If pecking contributes to a scientific publication, please cite it as
+If signalgp-lite contributes to a scientific publication, please cite it as
 
 > Moreno, M. A., Rodriguez Papa, S., & Ofria, C. (2021). SignalGP-Lite: Event Driven Genetic Programming Library for Large-Scale Artificial Life Applications. arXiv preprint arXiv:2108.00382.
 
