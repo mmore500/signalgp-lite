@@ -130,6 +130,28 @@ Details on the machine used to perform these benchmarks are available via [Open 
 
 Microbenchmarks are performed, graphed, and uploaded as part of the project's CI build, so check the [project's OSF page](https://osf.io/j8pge/) for up-to-the-minute profiling information!
 
+## Citing
+
+If pecking contributes to a scientific publication, please cite it as
+
+> Moreno, M. A., Rodriguez Papa, S., & Ofria, C. (2021). SignalGP-Lite: Event Driven Genetic Programming Library for Large-Scale Artificial Life Applications. arXiv preprint arXiv:2108.00382.
+
+```bibtex
+@misc{moreno2021signalgp,
+  doi = {10.48550/ARXIV.2108.00382},
+  url = {https://arxiv.org/abs/2108.00382},
+  author = {Moreno, Matthew Andres and Rodriguez Papa, Santiago and Lalejini, Alexander and Ofria, Charles},
+  keywords = {Neural and Evolutionary Computing (cs.NE), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {SignalGP-Lite: Event Driven Genetic Programming Library for Large-Scale Artificial Life Applications},
+  publisher = {arXiv},
+  year = {2021},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+```
+
+Consider also citing [Empirical](https://github.com/devosoft/Empirical).
+And don't forget to leave a [star on GitHub](https://github.com/mmore500/signalgp-lite/stargazers)!
+
 ## Credits
 
 This library draws heavily on Alex Lalejini's work with SignalGP.
