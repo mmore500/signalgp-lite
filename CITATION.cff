@@ -16,7 +16,7 @@ abstract: >-
   programs to respond to a large number of signals and to modulate signal
   response based on context.
 date-released: 2021-07-28
-doi: 10.48550/arXiv.2108.00382
+doi: '10.48550/arXiv.2108.00382'
 license: MIT
 version: 0.2.0
 authors:
