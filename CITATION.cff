@@ -1,5 +1,4 @@
 type: article
-status: in-preparation
 abstract: >-
   Event-driven genetic programming representations have been shown to outperform
   traditional imperative representations on interaction-intensive problems.
