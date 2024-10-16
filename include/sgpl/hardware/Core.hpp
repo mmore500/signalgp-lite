@@ -95,6 +95,8 @@ public:
     if ( res.size() ) program_counter = local_jump_table.GetVal( res.front() );
   }
 
+  void JumpToIndex(const size_t idx) noexcept { program_counter = idx; }
+
   inline auto& GetLocalJumpTable() noexcept { return local_jump_table; }
 
   inline auto& GetGlobalJumpTable(const size_t jt_idx=0) noexcept {
