@@ -41,12 +41,15 @@ public:
   /// Default constructor.
   Program() = default;
 
-  explicit Program( const size_t n ) : parent_t( n ) {
+  explicit Program(
+    const size_t n,
+    const rectifier_t& rectifier=rectifier_t{}
+  ) : parent_t( n ) {
     sgpl::tlrand.Get().RandFill(
       reinterpret_cast<unsigned char*>( this->data() ),
       size_bytes()
     );
-    Rectify();
+    Rectify(rectifier);
   }
 
   /// Deserialize from JSON string.
