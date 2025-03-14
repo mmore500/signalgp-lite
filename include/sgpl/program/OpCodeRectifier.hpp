@@ -10,11 +10,9 @@
 namespace sgpl {
 
 template<typename Library>
-class OpCodeRectifier {
+struct OpCodeRectifier {
 
   std::array< unsigned char, 256> mapper;
-
-public:
 
   OpCodeRectifier() {
 
