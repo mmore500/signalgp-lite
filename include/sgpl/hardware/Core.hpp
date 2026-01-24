@@ -63,12 +63,12 @@ public:
     //   ++program_counter;
     //  program_counter %= program_length;
     // }
-    const bool has_termianted{ HasTerminated() };
+    const bool has_terminated{ HasTerminated() };
     ++program_counter; // if has terminated, wraps around
     program_counter %= program_length;
-    program_counter -= has_termianted;
+    program_counter -= has_terminated;
 
-    assert( has_termianted || program_counter < program_length );
+    assert( has_terminated || program_counter < program_length );
   }
 
   inline bool HasLocalAnchors() const noexcept {
