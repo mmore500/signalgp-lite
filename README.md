@@ -1,5 +1,4 @@
-
-# signalgp-lite
+![signalgp-lite wordmark](docs/assets/sgpl-wordmark.jpg)
 
 [![version](https://img.shields.io/endpoint?url=https%3A%2F%2Fmmore500.github.io%2Fsignalgp-lite%2Fversion-badge.json)](https://github.com/mmore500/signalgp-lite/releases)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d4ec421f786a4d00bd850bf0d1719d5d)](https://www.codacy.com/gh/mmore500/signalgp-lite/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mmore500/signalgp-lite&amp;utm_campaign=Badge_Grade)
