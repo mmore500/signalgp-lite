@@ -10,7 +10,7 @@ on:
 jobs:
   docker-build:
     name: Docker Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
@@ -33,7 +33,7 @@ jobs:
 
   misc:
     name: Docs, Miscellaneous
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
     needs:
@@ -47,7 +47,7 @@ jobs:
 
   unit-clang-debug:
     name: Unit Tests (clang, debug mode)
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
@@ -63,7 +63,7 @@ jobs:
 
   unit-gcc-debug:
     name: Unit Tests (gcc, debug mode)
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
@@ -79,7 +79,7 @@ jobs:
 
   unit-clang-opt:
     name: Unit Tests (clang, opt mode)
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
@@ -95,7 +95,7 @@ jobs:
 
   unit-gcc-opt:
     name: Unit Tests (gcc, opt mode)
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
@@ -111,7 +111,7 @@ jobs:
 
   coverage:
     name: Coverage
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
     needs:
@@ -128,7 +128,7 @@ jobs:
 
   fuzzing:
     name: Fuzzing
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_PTRACE --security-opt seccomp=unconfined
@@ -144,7 +144,7 @@ jobs:
 
   microbenchmarks:
     name: Microbenchmarks
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
     needs:
@@ -160,7 +160,7 @@ jobs:
 
   source-clang:
     name: Source (clang)
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
@@ -175,7 +175,7 @@ jobs:
 
   source-gcc:
     name: Source (gcc)
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
@@ -190,7 +190,7 @@ jobs:
 
   deploy-github-pages:
     name: Deploy to GitHub Pages
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
     needs:
@@ -217,7 +217,7 @@ jobs:
 
   deploy-container:
     name: Deploy Container to ghcr.io
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs:
       - misc
       - unit-clang-debug
