@@ -8,36 +8,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  docker-build:
-    name: Docker Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.6.0
-        with:
-          access_token: ${{ github.token }}
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-          fetch-depth: 0 # fetch all history for all branches and tags
-      - name: Push to GitHub Container Registry
-        uses: docker/build-push-action@v1
-        with:
-          push: true
-          tags: "GITHUB_ACTION_${{ github.run_number }}"
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          repository: mmore500/signalgp-lite
-          registry: ghcr.io
-          add_git_labels: true
-
   misc:
     name: Docs, Miscellaneous
     runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-    needs:
-      - docker-build
     steps:
       - run: |
           cd /opt/signalgp-lite
@@ -51,8 +26,6 @@ jobs:
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
     env:
       CXX: clang++
     steps:
@@ -67,8 +40,6 @@ jobs:
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
     env:
       CXX: g++
     steps:
@@ -83,8 +54,6 @@ jobs:
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
     env:
       CXX: clang++
     steps:
@@ -99,8 +68,6 @@ jobs:
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
     env:
       CXX: g++
     steps:
@@ -114,8 +81,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-    needs:
-      - docker-build
     env:
       CXX: clang++
     steps:
@@ -132,8 +97,6 @@ jobs:
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_PTRACE --security-opt seccomp=unconfined
-    needs:
-      - docker-build
     env:
       CONTEXT: travis
     steps:
@@ -147,8 +110,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-    needs:
-      - docker-build
     env:
       CXX: clang++
       OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
@@ -164,8 +125,6 @@ jobs:
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
     env:
       CXX: clang++
     steps:
@@ -179,8 +138,6 @@ jobs:
     container:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
       options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
     env:
       CXX: g++
     steps:
