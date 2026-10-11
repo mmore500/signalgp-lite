@@ -12,13 +12,13 @@ jobs:
     name: Docs, Miscellaneous
     runs-on: ubuntu-latest
     steps:
-      - name: Installs Python packages
+      - name: Installing Python packages
         run: |
-          python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip==21.3.1
+          python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt 
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt
 
-      - name: Installs APT packages
+      - name: Installing APT packages
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
@@ -36,12 +36,12 @@ jobs:
     env:
       CXX: clang++
     steps:
-      - name: Installs APT packages
+      - name: Installing APT packages
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
 
-      - name: Run Tests
+      - name: Run Clang Tests
         run: |
           set -x
           cd /opt/signalgp-lite/tests
@@ -50,13 +50,16 @@ jobs:
   unit-gcc-debug:
     name: Unit Tests (gcc, debug mode)
     runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
     env:
       CXX: g++
     steps:
-      - run: |
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Run GCC Tests
+        run: |
           set -x
           cd /opt/signalgp-lite/tests
           make
@@ -64,13 +67,16 @@ jobs:
   unit-clang-opt:
     name: Unit Tests (clang, opt mode)
     runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
     env:
       CXX: clang++
     steps:
-      - run: |
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Unit Tests (opt mode)
+        run: |
           set -x
           cd /opt/signalgp-lite/tests
           make opt
@@ -78,13 +84,16 @@ jobs:
   unit-gcc-opt:
     name: Unit Tests (gcc, opt mode)
     runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
     env:
       CXX: g++
     steps:
-      - run: |
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Unit Tests (gcc, opt mode) 
+        run: |
           set -x
           cd /opt/signalgp-lite/tests
           make opt
@@ -92,12 +101,22 @@ jobs:
   coverage:
     name: Coverage
     runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
     env:
       CXX: clang++
     steps:
-      - run: |
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Installing Python packages
+        run: |
+          python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt
+
+      - name: Coverage
+        run: |
           ci_env=$(bash <(curl -s https://codecov.io/env))
           export $ci_env
           cd /opt/signalgp-lite
@@ -107,13 +126,16 @@ jobs:
   fuzzing:
     name: Fuzzing
     runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_PTRACE --security-opt seccomp=unconfined
     env:
       CONTEXT: travis
     steps:
-      - run: |
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Fuzzing
+        run: |
           cd /opt/signalgp-lite/fuzzing
           make
           make opt
@@ -121,48 +143,68 @@ jobs:
   microbenchmarks:
     name: Microbenchmarks
     runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
     env:
       CXX: clang++
       OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
       CONTEXT: travis
     steps:
-      - run: |
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Microbenchmarks
+        run: |
           cd /opt/signalgp-lite/microbenchmarks
           make
 
   source-clang:
     name: Source (clang)
     runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
     env:
       CXX: clang++
     steps:
-      - run: |
+      - name: Installing Python packages
+        run: |
+          python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt
+      
+      - name: Installing Editor Configs
+        run: |
+           pip3 install --timeout 60 --retries 100 editorconfig-checker==2.3.54
+           ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker 
+
+      - name: Run Tests
+        run: |
           cd /opt/signalgp-lite
           make test
 
   source-gcc:
     name: Source (gcc)
     runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
     env:
       CXX: g++
     steps:
-      - run: |
+      - name: Installing Python packages
+        run: |
+          python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt
+
+      - name: Installing Editor Configs
+        run: |
+           pip3 install --timeout 60 --retries 100 editorconfig-checker==2.3.54
+           ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker 
+
+      - name: Run tests
+       `run: |
           cd /opt/signalgp-lite
           make test
 
   deploy-github-pages:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
     needs:
       - misc
       - unit-clang-debug
@@ -204,6 +246,12 @@ jobs:
         with:
           submodules: 'recursive'
           fetch-depth: 0 # fetch all history for all branches and tags
+
+      - name: Installing User Bin Permissions
+        run: |
+            chgrp --recursive user /opt/signalgp-lite
+            chmod --recursive g+rwx /opt/signalgp-lite
+
       - name: Push to DockerHub
         uses: docker/build-push-action@v1
         with:
