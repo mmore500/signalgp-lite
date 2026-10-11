@@ -198,7 +198,7 @@ jobs:
            ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker 
 
       - name: Run tests
-       `run: |
+        run: |
           cd /opt/signalgp-lite
           make test
 
