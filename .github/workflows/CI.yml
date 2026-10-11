@@ -15,14 +15,14 @@ jobs:
       image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
     steps:
       - name: Installs Python packages
-      - run: |
+        run: |
           python3 -m pip install --timeout 60 --retries 100 --upgrade pip==21.3.1
           pip3 install --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt 
           pip3 install --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt
           echo "installed Python packages"
 
       - name: Installs APT packages
-      - run: |
+        run: |
           apt-get update -qq
           apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
           apt-get clean
@@ -42,7 +42,7 @@ jobs:
     env:
       CXX: clang++
     steps:
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Installs APT packages
       - run: |
