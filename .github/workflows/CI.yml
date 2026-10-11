@@ -28,7 +28,7 @@ jobs:
           apt-get clean
 
       - name: Documents
-      - run: |
+        run: |
           cd /opt/signalgp-lite
           ./ci/test_tidy.sh
           python3 ci/test_readme_snippets.py
