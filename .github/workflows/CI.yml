@@ -12,11 +12,15 @@ jobs:
     name: Docs, Miscellaneous
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
       - name: Installing Python packages
         run: |
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt 
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
 
       - name: Installing APT packages
         run: |
@@ -25,7 +29,6 @@ jobs:
 
       - name: Documents
         run: |
-          cd /opt/signalgp-lite
           ./ci/test_tidy.sh
           python3 ci/test_readme_snippets.py
           make docs
@@ -36,6 +39,9 @@ jobs:
     env:
       CXX: clang++
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
@@ -44,7 +50,7 @@ jobs:
       - name: Run Clang Tests
         run: |
           set -x
-          cd /opt/signalgp-lite/tests
+          cd tests
           make
 
   unit-gcc-debug:
@@ -53,6 +59,9 @@ jobs:
     env:
       CXX: g++
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
@@ -61,7 +70,7 @@ jobs:
       - name: Run GCC Tests
         run: |
           set -x
-          cd /opt/signalgp-lite/tests
+          cd tests
           make
 
   unit-clang-opt:
@@ -70,6 +79,9 @@ jobs:
     env:
       CXX: clang++
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
@@ -78,7 +90,7 @@ jobs:
       - name: Unit Tests (opt mode)
         run: |
           set -x
-          cd /opt/signalgp-lite/tests
+          cd tests
           make opt
 
   unit-gcc-opt:
@@ -87,6 +99,9 @@ jobs:
     env:
       CXX: g++
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
@@ -95,7 +110,7 @@ jobs:
       - name: Unit Tests (gcc, opt mode) 
         run: |
           set -x
-          cd /opt/signalgp-lite/tests
+          cd tests
           make opt
 
   coverage:
@@ -104,6 +119,9 @@ jobs:
     env:
       CXX: clang++
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
@@ -112,14 +130,13 @@ jobs:
       - name: Installing Python packages
         run: |
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt 
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
 
       - name: Coverage
         run: |
           ci_env=$(bash <(curl -s https://codecov.io/env))
           export $ci_env
-          cd /opt/signalgp-lite
           make coverage
           bash <(curl -s https://codecov.io/bash)
 
@@ -129,6 +146,9 @@ jobs:
     env:
       CONTEXT: travis
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
@@ -136,7 +156,7 @@ jobs:
 
       - name: Fuzzing
         run: |
-          cd /opt/signalgp-lite/fuzzing
+          cd fuzzing
           make
           make opt
 
@@ -148,6 +168,9 @@ jobs:
       OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
       CONTEXT: travis
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
@@ -155,7 +178,7 @@ jobs:
 
       - name: Microbenchmarks
         run: |
-          cd /opt/signalgp-lite/microbenchmarks
+          cd microbenchmarks
           make
 
   source-clang:
@@ -164,11 +187,14 @@ jobs:
     env:
       CXX: clang++
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Installing Python packages
         run: |
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt 
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
       
       - name: Installing Editor Configs
         run: |
@@ -177,7 +203,6 @@ jobs:
 
       - name: Run Tests
         run: |
-          cd /opt/signalgp-lite
           make test
 
   source-gcc:
@@ -186,11 +211,14 @@ jobs:
     env:
       CXX: g++
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Installing Python packages
         run: |
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/docs/requirements.txt 
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r /opt/signalgp-lite/third-party/requirements.txt
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
 
       - name: Installing Editor Configs
         run: |
@@ -199,7 +227,6 @@ jobs:
 
       - name: Run tests
         run: |
-          cd /opt/signalgp-lite
           make test
 
   deploy-github-pages:
@@ -220,8 +247,10 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       GITHUB_RUN_ID: ${{ github.run_id }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - run: |
-          cd /opt/signalgp-lite
           source third-party/emsdk/emsdk_env.sh
           make web
           make badges
@@ -242,7 +271,7 @@ jobs:
       - source-clang
       - source-gcc
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
           fetch-depth: 0 # fetch all history for all branches and tags
