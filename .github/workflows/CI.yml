@@ -5,193 +5,236 @@ on:
   pull_request:
     branches:
       - '**'
+  workflow_dispatch:
 
 jobs:
-  docker-build:
-    name: Docker Build
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.6.0
-        with:
-          access_token: ${{ github.token }}
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-          fetch-depth: 0 # fetch all history for all branches and tags
-      - name: Push to GitHub Container Registry
-        uses: docker/build-push-action@v1
-        with:
-          push: true
-          tags: "GITHUB_ACTION_${{ github.run_number }}"
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          repository: mmore500/signalgp-lite
-          registry: ghcr.io
-          add_git_labels: true
-
   misc:
     name: Docs, Miscellaneous
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     steps:
-      - run: |
-          cd /opt/signalgp-lite
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+
+      - name: Installing Python packages
+        run: |
+          python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
+
+      - name: Installing Editor Configs
+        run: |
+           pip3 install --user --timeout 60 --retries 100 editorconfig-checker==2.3.54
+           ln -sf $HOME/.local/bin/ec $HOME/.local/bin/editorconfig-checker
+
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Documents
+        run: |
           ./ci/test_tidy.sh
           python3 ci/test_readme_snippets.py
           make docs
 
   unit-clang-debug:
     name: Unit Tests (clang, debug mode)
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     env:
       CXX: clang++
     steps:
-      - run: |
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Run Clang Tests
+        run: |
           set -x
-          cd /opt/signalgp-lite/tests
+          cd tests
           make
 
   unit-gcc-debug:
     name: Unit Tests (gcc, debug mode)
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     env:
       CXX: g++
     steps:
-      - run: |
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Run GCC Tests
+        run: |
           set -x
-          cd /opt/signalgp-lite/tests
+          cd tests
           make
 
   unit-clang-opt:
     name: Unit Tests (clang, opt mode)
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     env:
       CXX: clang++
     steps:
-      - run: |
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Unit Tests (opt mode)
+        run: |
           set -x
-          cd /opt/signalgp-lite/tests
+          cd tests
           make opt
 
   unit-gcc-opt:
     name: Unit Tests (gcc, opt mode)
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     env:
       CXX: g++
     steps:
-      - run: |
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Unit Tests (gcc, opt mode)
+        run: |
           set -x
-          cd /opt/signalgp-lite/tests
+          cd tests
           make opt
 
   coverage:
     name: Coverage
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     env:
       CXX: clang++
     steps:
-      - run: |
-          ci_env=$(bash <(curl -s https://codecov.io/env))
-          export $ci_env
-          cd /opt/signalgp-lite
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev libbenchmark-dev
+
+      - name: Installing Python packages
+        run: |
+          python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
+
+      - name: Coverage
+        run: |
           make coverage
           bash <(curl -s https://codecov.io/bash)
 
   fuzzing:
     name: Fuzzing
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_PTRACE --security-opt seccomp=unconfined
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     env:
       CONTEXT: travis
     steps:
-      - run: |
-          cd /opt/signalgp-lite/fuzzing
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+
+      - name: Fuzzing
+        run: |
+          cd fuzzing
           make
           make opt
 
   microbenchmarks:
     name: Microbenchmarks
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     env:
       CXX: clang++
       OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
       CONTEXT: travis
     steps:
-      - run: |
-          cd /opt/signalgp-lite/microbenchmarks
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Installing APT packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev  libbenchmark-dev
+
+      - name: Microbenchmarks
+        run: |
+          cd microbenchmarks
           make
 
   source-clang:
     name: Source (clang)
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     env:
       CXX: clang++
     steps:
-      - run: |
-          cd /opt/signalgp-lite
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Installing Python packages
+        run: |
+          python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
+
+      - name: Installing Editor Configs
+        run: |
+           pip3 install --user --timeout 60 --retries 100 editorconfig-checker==2.3.54
+           ln -sf $HOME/.local/bin/ec $HOME/.local/bin/editorconfig-checker
+
+      - name: Run Tests
+        run: |
           make test
 
   source-gcc:
     name: Source (gcc)
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
-      options: --cap-add=SYS_ADMIN
-    needs:
-      - docker-build
+    runs-on: ubuntu-latest
     env:
       CXX: g++
     steps:
-      - run: |
-          cd /opt/signalgp-lite
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Installing Python packages
+        run: |
+          python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
+
+      - name: Installing Editor Configs
+        run: |
+           pip3 install --user --timeout 60 --retries 100 editorconfig-checker==2.3.54
+           ln -sf $HOME/.local/bin/ec $HOME/.local/bin/editorconfig-checker
+
+      - name: Run tests
+        run: |
           make test
 
   deploy-github-pages:
     name: Deploy to GitHub Pages
-    runs-on: ubuntu-20.04
-    container:
-      image: "ghcr.io/mmore500/signalgp-lite:GITHUB_ACTION_${{ github.run_number }}"
+    runs-on: ubuntu-latest
     needs:
       - misc
       - unit-clang-debug
@@ -207,8 +250,10 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       GITHUB_RUN_ID: ${{ github.run_id }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - run: |
-          cd /opt/signalgp-lite
           source third-party/emsdk/emsdk_env.sh
           make web
           make badges
@@ -216,7 +261,7 @@ jobs:
 
   deploy-container:
     name: Deploy Container to ghcr.io
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs:
       - misc
       - unit-clang-debug
@@ -229,10 +274,16 @@ jobs:
       - source-clang
       - source-gcc
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
           fetch-depth: 0 # fetch all history for all branches and tags
+
+      - name: Installing User Bin Permissions
+        run: |
+            chgrp --recursive user /opt/signalgp-lite
+            chmod --recursive g+rwx /opt/signalgp-lite
+
       - name: Push to DockerHub
         uses: docker/build-push-action@v1
         with:

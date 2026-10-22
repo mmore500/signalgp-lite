@@ -9,8 +9,8 @@
 #include <set>
 #include <string>
 
-#include "../../../../third-party/conduit/include/uitsl/polyfill/bit_cast.hpp"
 #include "../../../../third-party/conduit/include/uit_emp/tools/string_utils.hpp"
+#include "../../../../third-party/conduit/include/uitsl/polyfill/bit_cast.hpp"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
