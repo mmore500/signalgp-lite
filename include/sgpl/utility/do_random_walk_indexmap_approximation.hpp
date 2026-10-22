@@ -2,8 +2,8 @@
 #ifndef SGPL_UTILITY_DO_RANDOM_WALK_INDEXMAP_APPROXIMATION_HPP_INCLUDE
 #define SGPL_UTILITY_DO_RANDOM_WALK_INDEXMAP_APPROXIMATION_HPP_INCLUDE
 
-#include "../../../third-party/conduit/include/uitsl/algorithm/clamp_cast.hpp"
 #include "../../../third-party/conduit/include/uit_emp/math/Distribution.hpp"
+#include "../../../third-party/conduit/include/uitsl/algorithm/clamp_cast.hpp"
 
 #include "../debug/sgpl_assert.hpp"
 

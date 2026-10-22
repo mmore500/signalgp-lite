@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGETS=$(find . -type f \( -name "*.py" -o -name "*.ipynb" \) ! -path "./third-party/*")
+TARGETS=$(find . -type f \( -name "*.py" -o -name "*.ipynb" \) ! -path "./third-party/*" ! -path "./.env/*")
 
 for filename in ${TARGETS}
 do

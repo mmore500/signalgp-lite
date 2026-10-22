@@ -15,9 +15,9 @@
 #include "../../../third-party/cereal/include/cereal/types/array.hpp"
 #include "../../../third-party/cereal/include/cereal/types/map.hpp"
 #include "../../../third-party/cereal/include/cereal/types/string.hpp"
-#include "../../../third-party/conduit/include/uitsl/math/shift_mod.hpp"
 #include "../../../third-party/conduit/include/uit_emp/math/math.hpp"
 #include "../../../third-party/conduit/include/uit_emp/math/Random.hpp"
+#include "../../../third-party/conduit/include/uitsl/math/shift_mod.hpp"
 
 #include "OpCodeRectifier.hpp"
 

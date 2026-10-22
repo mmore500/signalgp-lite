@@ -5,11 +5,11 @@
 #include "Empirical/include/emp/math/Random.hpp"
 
 #include "sgpl/algorithm/execute_cpu.hpp"
-#include "sgpl/spec/Spec.hpp"
 #include "sgpl/hardware/Cpu.hpp"
 #include "sgpl/library/OpLibraryCoupler.hpp"
 #include "sgpl/library/prefab/ControlFlowOpLibrary.hpp"
 #include "sgpl/program/Program.hpp"
+#include "sgpl/spec/Spec.hpp"
 
 emp::Random rng;
 

@@ -19,7 +19,7 @@ jobs:
       - name: Installing Python packages
         run: |
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
 
       - name: Installing APT packages
@@ -107,7 +107,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
 
-      - name: Unit Tests (gcc, opt mode) 
+      - name: Unit Tests (gcc, opt mode)
         run: |
           set -x
           cd tests
@@ -130,7 +130,7 @@ jobs:
       - name: Installing Python packages
         run: |
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
 
       - name: Coverage
@@ -193,13 +193,13 @@ jobs:
       - name: Installing Python packages
         run: |
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
-      
+
       - name: Installing Editor Configs
         run: |
            pip3 install --timeout 60 --retries 100 editorconfig-checker==2.3.54
-           ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker 
+           ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker
 
       - name: Run Tests
         run: |
@@ -217,13 +217,13 @@ jobs:
       - name: Installing Python packages
         run: |
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
-          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt 
+          pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
 
       - name: Installing Editor Configs
         run: |
            pip3 install --timeout 60 --retries 100 editorconfig-checker==2.3.54
-           ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker 
+           ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker
 
       - name: Run tests
         run: |
