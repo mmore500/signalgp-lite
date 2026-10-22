@@ -12,7 +12,7 @@ jobs:
     name: Docs, Miscellaneous
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
 
@@ -44,7 +44,7 @@ jobs:
     env:
       CXX: clang++
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Installing APT packages
@@ -64,7 +64,7 @@ jobs:
     env:
       CXX: g++
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Installing APT packages
@@ -84,7 +84,7 @@ jobs:
     env:
       CXX: clang++
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Installing APT packages
@@ -104,7 +104,7 @@ jobs:
     env:
       CXX: g++
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Installing APT packages
@@ -124,7 +124,7 @@ jobs:
     env:
       CXX: clang++
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Installing APT packages
@@ -140,8 +140,6 @@ jobs:
 
       - name: Coverage
         run: |
-          ci_env=$(bash <(curl -s https://codecov.io/env))
-          export $ci_env
           make coverage
           bash <(curl -s https://codecov.io/bash)
 
@@ -151,7 +149,7 @@ jobs:
     env:
       CONTEXT: travis
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Installing APT packages
@@ -173,7 +171,7 @@ jobs:
       OSF_TOKEN: ${{ secrets.OSF_TOKEN }}
       CONTEXT: travis
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Installing APT packages
@@ -192,7 +190,7 @@ jobs:
     env:
       CXX: clang++
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Installing Python packages
@@ -216,7 +214,7 @@ jobs:
     env:
       CXX: g++
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Installing Python packages
