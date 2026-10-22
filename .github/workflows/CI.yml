@@ -130,7 +130,7 @@ jobs:
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev libbenchmark-dev
 
       - name: Installing Python packages
         run: |
@@ -179,7 +179,7 @@ jobs:
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev  libbenchmark-dev
 
       - name: Microbenchmarks
         run: |
