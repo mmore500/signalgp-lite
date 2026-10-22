@@ -133,7 +133,7 @@ Microbenchmarks are performed, graphed, and uploaded as part of the project's CI
 
 If signalgp-lite contributes to a scientific publication, please cite it as
 
-> Moreno, M. A., Rodriguez Papa, S., & Ofria, C. (2021). SignalGP-Lite: Event Driven Genetic Programming Library for Large-Scale Artificial Life Applications. arXiv preprint arXiv:2108.00382.
+> Moreno, M. A., Rodriguez Papa, S., & Ofria, C. (2021). SignalGP-Lite: Event Driven Genetic Programming Library for Large-Scale Artificial Life Applications. arXiv preprint arXiv:2108.00382. <https://doi.org/10.48550/ARXIV.2108.00382>
 
 ```bibtex
 @misc{moreno2021signalgp,
