@@ -25,7 +25,7 @@ jobs:
       - name: Installing Editor Configs
         run: |
            pip3 install --user --timeout 60 --retries 100 editorconfig-checker==2.3.54
-           ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker 
+           ln -sf $HOME/.local/bin/ec $HOME/.local/bin/editorconfig-checker 
 
       - name: Installing APT packages
         run: |
@@ -203,8 +203,8 @@ jobs:
       
       - name: Installing Editor Configs
         run: |
-           pip3 install --timeout 60 --retries 100 editorconfig-checker==2.3.54
-           ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker 
+           pip3 install --user --timeout 60 --retries 100 editorconfig-checker==2.3.54
+           ln -sf $HOME/.local/bin/ec $HOME/.local/bin/editorconfig-checker 
 
       - name: Run Tests
         run: |
@@ -227,8 +227,8 @@ jobs:
 
       - name: Installing Editor Configs
         run: |
-           pip3 install --timeout 60 --retries 100 editorconfig-checker==2.3.54
-           ln -s /home/user/.local/bin/ec /home/user/.local/bin/editorconfig-checker 
+           pip3 install --user --timeout 60 --retries 100 editorconfig-checker==2.3.54
+           ln -sf $HOME/.local/bin/ec $HOME/.local/bin/editorconfig-checker 
 
       - name: Run tests
         run: |
