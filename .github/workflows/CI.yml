@@ -130,7 +130,7 @@ jobs:
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev libbenchmark-dev
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev 
 
       - name: Installing Python packages
         run: |
@@ -140,6 +140,8 @@ jobs:
 
       - name: Coverage
         run: |
+          ci_env=$(bash <(curl -s https://codecov.io/env))
+          export $ci_env
           make coverage
           bash <(curl -s https://codecov.io/bash)
 
@@ -177,7 +179,7 @@ jobs:
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev  libbenchmark-dev
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev  
 
       - name: Microbenchmarks
         run: |
