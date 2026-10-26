@@ -137,13 +137,12 @@ jobs:
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
-
-      - name: Coverage
-        run: |
-          ci_env=$(bash <(curl -s https://codecov.io/env))
-          export $ci_env
-          make coverage
-          bash <(curl -s https://codecov.io/bash)
+      - run: make coverage
+      - uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: tests
+          fail_ci_if_error: false
 
   fuzzing:
     name: Fuzzing
