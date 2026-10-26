@@ -5,9 +5,9 @@
 #include <cassert>
 #include <unordered_map>
 
+#include "../../../third-party/conduit/include/uit_emp/base/macros.hpp"
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_has_type.hpp"
 #include "../../../third-party/conduit/include/uitsl/meta/tuple_index.hpp"
-#include "../../../third-party/conduit/include/uit_emp/base/macros.hpp"
 
 #include "../debug/sgpl_assert.hpp"
 #include "../debug/sgpl_error.hpp"

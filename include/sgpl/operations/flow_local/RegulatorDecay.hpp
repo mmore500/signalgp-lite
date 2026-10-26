@@ -6,9 +6,9 @@
 #include <set>
 #include <string>
 
-#include "../../../../third-party/conduit/include/uitsl/algorithm/clamp_cast.hpp"
 #include "../../../../third-party/conduit/include/uit_emp/tools/hash_namify.hpp"
 #include "../../../../third-party/conduit/include/uit_emp/tools/string_utils.hpp"
+#include "../../../../third-party/conduit/include/uitsl/algorithm/clamp_cast.hpp"
 
 #include "../../hardware/Core.hpp"
 #include "../../program/Instruction.hpp"
