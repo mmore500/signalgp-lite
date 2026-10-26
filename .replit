@@ -1,7 +1,16 @@
-modules = ["bash", "python-3.12", "web"]
+hidden = [".config", ".pythonlibs"]
 
 [nix]
-channel = "stable-25_05"
+channel = "stable-24_05"
 
-[agent]
-expertMode = true
+[env]
+GIT_EDITOR = "vim"
+CXX = "g++"
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
+
+[[ports]]
+localPort = 8000
+externalPort = 80
