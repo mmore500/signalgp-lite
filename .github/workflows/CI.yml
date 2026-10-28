@@ -204,6 +204,7 @@ jobs:
         run: |
            pip3 install --user --timeout 60 --retries 100 editorconfig-checker==2.3.54
            ln -sf $HOME/.local/bin/ec $HOME/.local/bin/editorconfig-checker
+           ./third-party/install_emsdk.sh
 
       - name: Run Tests
         run: |
