@@ -41,5 +41,5 @@ TEST_CASE("Test Add") {
 
   // check final state
   // expected: 1 + 2 == 3
-  REQUIRE(core.registers == emp::array<float, 4>{1.f, 2.f, 1.f + 2.f, {}});
+  REQUIRE(core.registers == std::array<float, 4>{1.f, 2.f, 1.f + 2.f, {}});
 }

@@ -41,5 +41,5 @@ TEST_CASE("Test Modulo") {
 
   // check final state
   // expected: 99 % 7 == 1
-  REQUIRE(core.registers == emp::array<float, 4>{99.f, 7.f, 99 % 7, {}});
+  REQUIRE(core.registers == std::array<float, 4>{99.f, 7.f, 99 % 7, 0.f});
 }

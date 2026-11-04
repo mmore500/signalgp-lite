@@ -37,12 +37,12 @@ TEST_CASE("Test Divide") {
   sgpl::Core<spec_t> core({99.0, 2.0, {}, {}});
 
   // check initial state
-  REQUIRE(core.registers == emp::array<float, 4>{99.f, 2.f, 0.f, {}});
+  REQUIRE(core.registers == std::array<float, 4>{99.f, 2.f, 0.f, 0.f});
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
   // expected: 99 / 2 == 49.5
-  REQUIRE(core.registers == emp::array<float, 4>{99.f, 2.f, 99.f / 2.f,{}});
+  REQUIRE(core.registers == std::array<float, 4>{99.f, 2.f, 99.f / 2.f,0.f});
 }
