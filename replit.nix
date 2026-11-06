@@ -3,10 +3,11 @@
     pkgs.htop
     pkgs.vim
     pkgs.git
-    pkgs.gnumake
-    pkgs.gcc
     pkgs.clang_18
     # llvm-profdata and llvm-cov
+    pkgs.llvmPackages_18.clang-unwrapped
+    pkgs.llvmPackages_18.clang-tools
+    pkgs.llvmPackages_18.clang
     pkgs.llvmPackages_18.llvm
     pkgs.libdwarf
     # docs and tidy checks

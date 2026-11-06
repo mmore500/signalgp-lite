@@ -137,7 +137,7 @@ jobs:
           python3 -m pip install --user --timeout 60 --retries 100 --upgrade pip
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
-      - run: make coverage
+      - run: export CXX=clang++ && make coverage
       - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
