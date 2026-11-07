@@ -1,0 +1,16 @@
+hidden = [".config", ".pythonlibs"]
+
+[nix]
+channel = "stable-24_05"
+
+[env]
+GIT_EDITOR = "vim"
+CXX = "g++"
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
+
+[[ports]]
+localPort = 8000
+externalPort = 80

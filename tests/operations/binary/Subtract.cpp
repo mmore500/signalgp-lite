@@ -41,5 +41,5 @@ TEST_CASE("Test Subtract") {
 
   // check final state
   // expected: 99 - 7 == 92
-  REQUIRE(core.registers == emp::array<float, 4>{99.f, 7.f, 99.f - 7.f, {}});
+  REQUIRE(core.registers == std::array<float, 4>{99.f, 7.f, 99.f - 7.f, 0.f});
 }

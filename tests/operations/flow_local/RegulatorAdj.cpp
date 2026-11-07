@@ -44,7 +44,7 @@ TEST_CASE("Test RegulatorAdj") {
 
   REQUIRE(
     core.registers
-    == emp::array<float, 4>{99.f, 100000.f, {}, {}}
+    == std::array<float, 4>{99.f, 100000.f, {}, {}}
   );
 
   // execute RegulatorAdj
@@ -71,7 +71,7 @@ TEST_CASE("Test RegulatorAdj") {
   // check to make sure value was adjusted
   REQUIRE(
     core.registers
-    == emp::array<float, 4>{100099.f, 100000.f, {}, {}}
+    == std::array<float, 4>{100099.f, 100000.f, {}, {}}
   );
 
 }

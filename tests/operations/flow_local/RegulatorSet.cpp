@@ -42,7 +42,7 @@ TEST_CASE("Test RegulatorSet") {
   core.registers[0] = 0.f;
 
   // check that registers were cleared
-  REQUIRE(core.registers == emp::array<float, 4>{0.f, {}, {}, {}});
+  REQUIRE(core.registers == std::array<float, 4>{0.f, {}, {}, {}});
 
   // execute RegulatorGet
   REQUIRE(
@@ -52,6 +52,6 @@ TEST_CASE("Test RegulatorSet") {
   sgpl::advance_core(core, program);
 
   // check to make sure value was retrieved
-  REQUIRE(core.registers == emp::array<float, 4>{99.f, {}, {}, {}});
+  REQUIRE(core.registers == std::array<float, 4>{99.f, {}, {}, {}});
 
 }

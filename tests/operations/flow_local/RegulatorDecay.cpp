@@ -42,7 +42,7 @@ TEST_CASE("Test RegulatorDecay, positive value") {
   // set register to a big number (amount to decay by)
   core.registers[1] = 9999999.f;
 
-  REQUIRE(core.registers == emp::array<float, 4>{99.f, 9999999.f, {}, {}});
+  REQUIRE(core.registers == std::array<float, 4>{99.f, 9999999.f, {}, {}});
 
   // execute RegulatorDecay
   REQUIRE(
@@ -90,7 +90,7 @@ TEST_CASE("Test RegulatorDecay, negative value (forestalls decay)") {
   // set register to a small number (amount to anti-decay by)
   core.registers[1] = ;
 
-  REQUIRE(core.registers == emp::array<float, 4>{99.f, -9999999.f, {}, {}});
+  REQUIRE(core.registers == std::array<float, 4>{99.f, -9999999.f, {}, {}});
 
   // execute RegulatorDecay
   REQUIRE(
@@ -114,6 +114,6 @@ TEST_CASE("Test RegulatorDecay, negative value (forestalls decay)") {
   sgpl::advance_core(core, program);
 
   // check to make sure value was protected from decay
-  REQUIRE(core.registers == emp::array<float, 4>{99.f, -9999999.f, {}, {}});
+  REQUIRE(core.registers == std::array<float, 4>{99.f, -9999999.f, {}, {}});
 
 }

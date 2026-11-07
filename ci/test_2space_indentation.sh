@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGETS=$(find . -type f \( -name "*.hpp" -o -name "*.cpp" \) ! -path "./third-party/*" ! -path "./node_modules/*")
+TARGETS=$(find . -type f \( -name "*.hpp" -o -name "*.cpp" \) ! -path "./third-party/*" ! -path "./node_modules/*" ! -path "./.env/*")
 
 for filename in ${TARGETS}; do
 

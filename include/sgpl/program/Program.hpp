@@ -12,9 +12,9 @@
 #include "../../../third-party/cereal/include/cereal/archives/binary.hpp"
 #include "../../../third-party/cereal/include/cereal/archives/json.hpp"
 #include "../../../third-party/cereal/include/cereal/types/vector.hpp"
-#include "../../../third-party/conduit/include/uitsl/polyfill/filesystem.hpp"
 #include "../../../third-party/conduit/include/uit_emp/datastructs/hash_utils.hpp"
 #include "../../../third-party/conduit/include/uit_emp/polyfill/span.hpp"
+#include "../../../third-party/conduit/include/uitsl/polyfill/filesystem.hpp"
 
 #include "../algorithm/mutate_bits.hpp"
 #include "../debug/sgpl_error.hpp"

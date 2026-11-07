@@ -43,7 +43,7 @@ TEST_CASE("Test LogicalAnd, both operands true") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, true, {}});
+  REQUIRE(core.registers == std::array<float, 4>{operand1, operand2, true, {}});
 
 }
 
@@ -79,7 +79,7 @@ TEST_CASE("Test LogicalAnd, one operand true and one false") {
   // check final state
   REQUIRE(
     core.registers
-    == emp::array<float, 4>{operand1, operand2, false, {}}
+    == std::array<float, 4>{operand1, operand2, false, {}}
   );
 
 }
@@ -115,7 +115,7 @@ TEST_CASE("Test LogicalAnd, both operands false") {
   // check final state
   REQUIRE(
     core.registers
-    == emp::array<float, 4>{operand1, operand2, false, {}}
+    == std::array<float, 4>{operand1, operand2, false, {}}
   );
 
 }
