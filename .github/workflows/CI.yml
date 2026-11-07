@@ -130,7 +130,7 @@ jobs:
       - name: Installing APT packages
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev clang llvm
+          sudo apt-get install -y --allow-downgrades --no-install-recommends rename libdwarf-dev 
 
       - name: Installing Python packages
         run: |
@@ -138,7 +138,7 @@ jobs:
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r docs/requirements.txt
           pip3 install --user --timeout 60 --retries 100 --ignore-installed -r third-party/requirements.txt
       - name: Installing LLVM
-        run: }
+        run: |
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
           sudo ./llvm.sh 18

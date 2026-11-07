@@ -40,7 +40,7 @@ TEST_CASE("Test Decrement") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{98.f, {}, {}, {}});
+  REQUIRE(core.registers == std::array<float, 4>{98.f, {}, {}, {}});
 
 
 }

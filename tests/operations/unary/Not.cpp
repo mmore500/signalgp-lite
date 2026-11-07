@@ -40,12 +40,12 @@ TEST_CASE("Test Not") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{false, {}, {}, {}});
+  REQUIRE(core.registers == std::array<float, 4>{false, {}, {}, {}});
 
   // execute single instruction
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == emp::array<float, 4>{true, {}, {}, {}});
+  REQUIRE(core.registers == std::array<float, 4>{true, {}, {}, {}});
 
 }
