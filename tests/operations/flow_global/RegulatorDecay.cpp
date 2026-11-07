@@ -44,7 +44,7 @@ TEST_CASE("Test RegulatorDecay, positive decay value") {
   // check initial state
   REQUIRE(
     cpu.GetActiveCore().registers
-    == std::array<float, 4>{99.f, {}, {}, {}}
+    == emp::array<float, 4>{99.f, {}, {}, {}}
   );
 
   // execute RegulatorSet
@@ -56,7 +56,7 @@ TEST_CASE("Test RegulatorDecay, positive decay value") {
 
   REQUIRE(
     cpu.GetActiveCore().registers
-    == std::array<float, 4>{99.f, 9999999.f, {}, {}}
+    == emp::array<float, 4>{99.f, 9999999.f, {}, {}}
   );
 
   // execute RegulatorDecay
@@ -74,7 +74,7 @@ TEST_CASE("Test RegulatorDecay, positive decay value") {
   // check to make sure value was decayed
   REQUIRE(
     cpu.GetActiveCore().registers
-    == std::array<float, 4>{0, 9999999.f, {}, {}}
+    == emp::array<float, 4>{0, 9999999.f, {}, {}}
   );
 
 }
@@ -100,7 +100,7 @@ TEST_CASE("Test RegulatorDecay, negative decay value") {
   // check initial state
   REQUIRE(
     cpu.GetActiveCore().registers
-    == std::array<float, 4>{99, {}, {}, {}}
+    == emp::array<float, 4>{99, {}, {}, {}}
   );
 
   // execute RegulatorSet
@@ -111,7 +111,7 @@ TEST_CASE("Test RegulatorDecay, negative decay value") {
 
   REQUIRE(
     cpu.GetActiveCore().registers
-    == std::array<float, 4>{99, -9999999, {}, {}}
+    == emp::array<float, 4>{99, -9999999, {}, {}}
   );
 
   // execute RegulatorDecay
@@ -126,7 +126,7 @@ TEST_CASE("Test RegulatorDecay, negative decay value") {
   // check to make sure value was decayed
   REQUIRE(
     cpu.GetActiveCore().registers
-    == std::array<float, 4>{99, -9999999, {}, {}}
+    == emp::array<float, 4>{99, -9999999, {}, {}}
   );
 
 }

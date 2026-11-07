@@ -45,7 +45,7 @@ TEST_CASE("Test Equal, operands not equal") {
   // check final state
   REQUIRE(
     core.registers
-    == std::array<float, 4>{operand1, operand2, false, {}}
+    == emp::array<float, 4>{operand1, operand2, false, {}}
   );
 
 }
@@ -79,6 +79,6 @@ TEST_CASE("Test Equal, operands equal") {
   sgpl::advance_core(core, program);
 
   // check final state
-  REQUIRE(core.registers == std::array<float, 4>{operand1, operand2, true, {}});
+  REQUIRE(core.registers == emp::array<float, 4>{operand1, operand2, true, {}});
 
 }

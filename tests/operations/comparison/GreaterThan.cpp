@@ -45,7 +45,7 @@ TEST_CASE("Test GreaterThan, first operand greater than second") {
   // check final state
   REQUIRE(
     core.registers
-    == std::array<float, 4>{operand1, operand2, true, {}}
+    == emp::array<float, 4>{operand1, operand2, true, {}}
   );
 
 }
@@ -81,6 +81,6 @@ TEST_CASE("Test GreaterThan, second operand greater than first") {
   // check final state
   REQUIRE(
     core.registers
-    == std::array<float, 4>{operand1, operand2, false, {}}
+    == emp::array<float, 4>{operand1, operand2, false, {}}
   );
 }

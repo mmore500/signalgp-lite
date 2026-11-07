@@ -1,7 +1,7 @@
 hidden = [".config", ".pythonlibs"]
 
 [nix]
-channel = "stable-24_11"
+channel = "stable-24_05"
 
 [env]
 GIT_EDITOR = "vim"

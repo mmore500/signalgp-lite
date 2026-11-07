@@ -40,7 +40,7 @@ TEST_CASE("Test RegulatorAdj") {
   // check initial state
   REQUIRE(
     cpu.GetActiveCore().registers
-    == std::array<float, 4>{99.f, {}, {}, {}}
+    == emp::array<float, 4>{99.f, {}, {}, {}}
   );
 
   // execute RegulatorSet
@@ -55,7 +55,7 @@ TEST_CASE("Test RegulatorAdj") {
 
   REQUIRE(
     cpu.GetActiveCore().registers
-    == std::array<float, 4>{99.f, 100000.f, {}, {}}
+    == emp::array<float, 4>{99.f, 100000.f, {}, {}}
   );
 
   // execute RegulatorAdj
@@ -82,6 +82,6 @@ TEST_CASE("Test RegulatorAdj") {
   // check to make sure value was adjusted
   REQUIRE(
     cpu.GetActiveCore().registers
-    == std::array<float, 4>{100099.f, 100000.f, {}, {}}
+    == emp::array<float, 4>{100099.f, 100000.f, {}, {}}
   );
 }
