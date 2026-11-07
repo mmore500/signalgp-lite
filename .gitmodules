@@ -1,8 +1,8 @@
 [submodule "third-party/SignalGP"]
-  path = third-party/SignalGP
-  url = https://github.com/mmore500/SignalGP.git
-  shallow = true
+	path = third-party/SignalGP
+	url = https://github.com/mmore500/SignalGP.git
+	shallow = true
 [submodule "third-party/conduit"]
 	path = third-party/conduit
-	url = httpe://github.com
-  shallow = true
+	url = https://github.com/mmore500/conduit.git
+	shallow = true
