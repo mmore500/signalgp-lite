@@ -38,7 +38,7 @@ TEST_CASE("Test RegulatorSet") {
   // check initial state
   REQUIRE(
     cpu.GetActiveCore().registers
-    == emp::array<float, 4>{99, {}, {}, {}}
+    == std::array<float, 4>{99, {}, {}, {}}
   );
 
   // execute RegulatorSet
@@ -54,7 +54,7 @@ TEST_CASE("Test RegulatorSet") {
   // check that registers were cleared
   REQUIRE(
     cpu.GetActiveCore().registers
-    == emp::array<float, 4>{0, {}, {}, {}}
+    == std::array<float, 4>{0, {}, {}, {}}
   );
 
   // execute RegulatorGet
@@ -67,7 +67,7 @@ TEST_CASE("Test RegulatorSet") {
   // check to make sure correct value was retrieved
   REQUIRE(
     cpu.GetActiveCore().registers
-    == emp::array<float, 4>{99, {}, {}, {}}
+    == std::array<float, 4>{99, {}, {}, {}}
   );
 
 }

@@ -34,6 +34,6 @@ TEST_CASE("Test RegulatorGet") {
   sgpl::advance_core(core, program);
 
   // check final state (value is 0 by default)
-  REQUIRE(core.registers == emp::array<float, 4>{0.f, {}, {}, {}});
+  REQUIRE(core.registers == std::array<float, 4>{0.f, {}, {}, {}});
 
 }
