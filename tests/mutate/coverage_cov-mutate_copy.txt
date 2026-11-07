@@ -17034,7 +17034,7 @@
   164|       |*/
   165|       |#ifndef CEREAL_RAPIDJSON_NO_INT64DEFINE
   166|       |//!@cond CEREAL_RAPIDJSON_HIDDEN_FROM_DOXYGEN
-  167|       |#if defined(_MSC_VER) && (_MSC_VER < 1800)	// Visual Studio 2013
+  167|       |#if defined(_MSC_VER) && (_MSC_VER < 1800)  // Visual Studio 2013
   168|       |#include "msinttypes/stdint.h"
   169|       |#include "msinttypes/inttypes.h"
   170|       |#else
@@ -18946,7 +18946,7 @@
  1403|      0|        CEREAL_RAPIDJSON_FORCEINLINE Ch Peek() const { return is.Peek(); }
  1404|       |        CEREAL_RAPIDJSON_FORCEINLINE Ch TakePush() { return is.Take(); }
  1405|      0|        CEREAL_RAPIDJSON_FORCEINLINE Ch Take() { return is.Take(); }
- 1406|       |		  CEREAL_RAPIDJSON_FORCEINLINE void Push(char) {}
+ 1406|       |      CEREAL_RAPIDJSON_FORCEINLINE void Push(char) {}
  1407|       |
  1408|      0|        size_t Tell() { return is.Tell(); }
  1409|       |        size_t Length() { return 0; }
@@ -29921,7 +29921,7 @@
   292|      0|
   293|      0|      if (in_num_fields != prev_num_fields) {
   294|      0|        if (bit_set) bit_set.DeleteArray();
-  295|      0|	      if (num_bits) bit_set = NewArrayPtr<field_t>(in_num_fields);
+  295|      0|        if (num_bits) bit_set = NewArrayPtr<field_t>(in_num_fields);
   296|      0|        else bit_set = nullptr;
   297|      0|      }
   298|      0|
@@ -32002,8 +32002,8 @@
   104|      0|      emp_assert(step > 0);
   105|      0|      emp_assert(first < last);
   106|      0|      timing_fun = [first,step,last](size_t update) {
-  107|      0|	      if (update < first || update > last) return false;
-  108|      0|	      return ((update - first) % step) == 0;
+  107|      0|        if (update < first || update > last) return false;
+  108|      0|        return ((update - first) % step) == 0;
   109|      0|      };
   110|      0|    }
   111|       |

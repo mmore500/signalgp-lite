@@ -14303,7 +14303,7 @@
  1403|      0|        CEREAL_RAPIDJSON_FORCEINLINE Ch Peek() const { return is.Peek(); }
  1404|       |        CEREAL_RAPIDJSON_FORCEINLINE Ch TakePush() { return is.Take(); }
  1405|      0|        CEREAL_RAPIDJSON_FORCEINLINE Ch Take() { return is.Take(); }
- 1406|       |		  CEREAL_RAPIDJSON_FORCEINLINE void Push(char) {}
+ 1406|       |      CEREAL_RAPIDJSON_FORCEINLINE void Push(char) {}
  1407|       |
  1408|      0|        size_t Tell() { return is.Tell(); }
  1409|       |        size_t Length() { return 0; }
@@ -21614,7 +21614,7 @@
   292|      0|
   293|      0|      if (in_num_fields != prev_num_fields) {
   294|      0|        if (bit_set) bit_set.DeleteArray();
-  295|      0|	      if (num_bits) bit_set = NewArrayPtr<field_t>(in_num_fields);
+  295|      0|        if (num_bits) bit_set = NewArrayPtr<field_t>(in_num_fields);
   296|      0|        else bit_set = nullptr;
   297|      0|      }
   298|      0|

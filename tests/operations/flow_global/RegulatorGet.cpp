@@ -36,7 +36,7 @@ TEST_CASE("Test RegulatorGet") {
   // check initial state
   REQUIRE(
     cpu.GetActiveCore().registers
-    == emp::array<float, 4>{1.f, {}, {}, {}}
+    == std::array<float, 4>{1.f, {}, {}, {}}
   );
 
   // execute single instruction
@@ -45,7 +45,7 @@ TEST_CASE("Test RegulatorGet") {
   // check final state (value is 0 by default)
   REQUIRE(
     cpu.GetActiveCore().registers
-    == emp::array<float, 4>{0.f, {}, {}, {}}
+    == std::array<float, 4>{0.f, {}, {}, {}}
   );
 
 }

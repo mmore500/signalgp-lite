@@ -11439,7 +11439,7 @@
  1403|      0|        CEREAL_RAPIDJSON_FORCEINLINE Ch Peek() const { return is.Peek(); }
  1404|       |        CEREAL_RAPIDJSON_FORCEINLINE Ch TakePush() { return is.Take(); }
  1405|      0|        CEREAL_RAPIDJSON_FORCEINLINE Ch Take() { return is.Take(); }
- 1406|       |		  CEREAL_RAPIDJSON_FORCEINLINE void Push(char) {}
+ 1406|       |      CEREAL_RAPIDJSON_FORCEINLINE void Push(char) {}
  1407|       |
  1408|      0|        size_t Tell() { return is.Tell(); }
  1409|       |        size_t Length() { return 0; }

@@ -1598,11 +1598,11 @@
    17|       |namespace emp {
    18|       |
    19|       |  template <class KEY,                                        // Cache::key_type
-   20|       |	    class T,                                                // Cache::mapped_type
-   21|       |	    class HASH = std::hash<KEY>,                            // Cache::hasher
-   22|       |	    class PRED = std::equal_to<KEY>,                        // Cache::key_equal
-   23|       |	    class ALLOC = std::allocator< std::pair<const KEY,T> >  // Cache::allocator_type
-   24|       |	   >
+   20|       |      class T,                                                // Cache::mapped_type
+   21|       |      class HASH = std::hash<KEY>,                            // Cache::hasher
+   22|       |      class PRED = std::equal_to<KEY>,                        // Cache::key_equal
+   23|       |      class ALLOC = std::allocator< std::pair<const KEY,T> >  // Cache::allocator_type
+   24|       |     >
    25|       |  class Cache {
    26|       |  private:
    27|       |    std::unordered_map<KEY, T, HASH, PRED, ALLOC> cache_map;
